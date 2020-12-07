@@ -31,14 +31,14 @@
       <label>Tipo rol</label>
       <input type="text" name="" placeholder="tipo rol" [(ngModel)]="usuario.id_rol" />
     </div>
+    <div class="col-sm-4">
+
   <div class="col-sm-4">
     <select name="miselect" [(ngModel)]="usuario.id_rol" >
       <option [value]="item" *ngFor="let usuario of usuarios">{{usuario.tipo_rol}}</option>
       </select>   
   </div>
   
-
-
     <div class="col-sm-4">
       <label>Contraseña</label>
       <input type="password" name="" placeholder="Contraseña" [(ngModel)]="usuario.contrasenia"/>
