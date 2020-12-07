@@ -6,6 +6,10 @@ class UsuariosController {
     const usuarios = await pool.query("SELECT * FROM usuario");
     res.json(usuarios);
   }
+  public async list1(req: Request, res: Response) {
+    const usuarios = await pool.query("SELECT u.cedula, u.nombre, u.apellido,u.nivel_academico,u.carrera,u.unidad_educativa,u.contrasenia, r.tipo_rol from usuario u, rol r WHERE r.id_rol=u.id_rol");
+    res.json(usuarios);
+  }
   public async getOne(req: Request, res: Response) {
     const {id} = req.params;
     const roles = await pool.query("SELECT * FROM usuario WHERE cedula=?", [id]);
@@ -16,9 +20,26 @@ class UsuariosController {
     res.status(404).json({ text: "el rol no existe" });
   }
   public async create(req: Request, res: Response) {
+ 
     await pool.query("INSERT INTO usuario set ?",[req.body]);
     res.json({text: "usuario guardado"});
     console.log([req.body]);
+  }
+
+  public async create1(req: Request, res: Response) {
+    const cedula =req.body.cedula;
+    const nombre =req.body.nombre;
+    const apellido =req.body.apellido;
+    const nivel_academico =req.body.nivel_academico;
+    const carrera=req.body.carrera;
+    const unidad_educativa =req.body.unidad_educativa;
+    const contrasenia =req.body.contrasenia;
+    const id_rol =req.body.id_rol;
+
+    const query="INSERT INTO usuario (cedula, nombre,apellido,nivel_academico,carrera,unidad_educativa,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,(select id_rol from rol where tipo_rol=?))"
+    pool.query(query,[cedula, nombre,apellido,nivel_academico,carrera,unidad_educativa,contrasenia, id_rol]);
+    res.json({text: "usuario guardado"});
+    //console.log([req.body]);
   }
   public  async delete(req: Request, res: Response): Promise <void>
    {

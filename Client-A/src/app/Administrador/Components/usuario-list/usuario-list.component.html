@@ -1,2 +1,90 @@
-<p>usuario-list works!</p>
+ <div class="row">
+  <div class="col-sm-4">
+      <label>Cedula</label>
+    <input type="text" name="cedula"  [(ngModel)]="usuario.cedula" placeholder="Cedula" />
+  </div>
+  <div class="col-sm-4"  >
+    <label>Nombre</label>
+    <input type="text" name="" placeholder="Nombre" [(ngModel)]="usuario.nombre" />
+    </div>
+  <div class="col-sm-4" >
+    <label>Apellido</label>
+    <input type="text" name="" placeholder="Apellido"  [(ngModel)]="usuario.apellido"/>
+  </div>
+    <div class="col-sm-4"  >
+      <label>Nivel académico</label>
+      <input type="text" name="" placeholder="Nivel académico" [(ngModel)]="usuario.nivel_academico" />
+      </div>
+    <div class="col-sm-4">
+      <label>Carrera</label>
+      <input type="text" name="" placeholder="Carrera" [(ngModel)]="usuario.carrera" />
+    </div>
+    <div class="col-sm-4">
+      <label>Unidad Educativa</label>
+      <input type="text" name="" placeholder="Unidad Educativa" [(ngModel)]="usuario.unidad_educativa" />
+    </div>
+    <div class="col-sm-4">
+      <label>Tipo rol</label>
+      <input type="text" name="" placeholder="tipo rol" [(ngModel)]="usuario.id_rol" />
+    </div>
+  <div class="col-sm-4">
+    <select name="miselect" [(ngModel)]="usuario.id_rol" >
+      <option [value]="item" *ngFor="let usuario of usuarios">{{usuario.tipo_rol}}</option>
+      </select>   
+  </div>
+  
 
+
+    <div class="col-sm-4">
+      <label>Contraseña</label>
+      <input type="password" name="" placeholder="Contraseña" [(ngModel)]="usuario.contrasenia"/>
+    </div>
+    <div class="col-sm-4">
+    <button class="btn btn-primary"  (click)="saveUsuario()">
+      Agregar
+      <i class="fas fa-plus-square"></i>
+    </button>
+  </div>
+</div>
+
+
+
+<br />
+<div class="column">
+  <table class="table table-hover">
+    <thead>
+      <tr class="table-active">
+        <th scope="col">Cedula</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Nivel académico</th>
+        <th scope="col">Carrera</th>
+        <th scope="col">Unidad educativa</th>
+
+        <th scope="col">Tipo rol</th>
+        <th scope="col">acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{ usuario.cedula }}</td>
+        <td>{{ usuario.nombre }}</td>
+        <td>{{ usuario.apellido }}</td>
+        <td>{{ usuario.nivel_academico }}</td>
+        <td>{{ usuario.carrera }}</td>
+        <td>{{ usuario.unidad_educativa }}</td>
+
+        <td>{{ usuario.id_rol }}</td>
+        <td>
+          <button class="btn btn-primary">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="btn btn-danger " (click)="  deleteUsuario(usuario.cedula)">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -21,6 +21,12 @@ class UsuariosController {
             res.json(usuarios);
         });
     }
+    list1(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const usuarios = yield database_1.default.query("SELECT u.cedula, u.nombre, u.apellido,u.nivel_academico,u.carrera,u.unidad_educativa,u.contrasenia, r.tipo_rol from usuario u, rol r WHERE r.id_rol=u.id_rol");
+            res.json(usuarios);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
@@ -37,6 +43,22 @@ class UsuariosController {
             yield database_1.default.query("INSERT INTO usuario set ?", [req.body]);
             res.json({ text: "usuario guardado" });
             console.log([req.body]);
+        });
+    }
+    create1(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const cedula = req.body.cedula;
+            const nombre = req.body.nombre;
+            const apellido = req.body.apellido;
+            const nivel_academico = req.body.nivel_academico;
+            const carrera = req.body.carrera;
+            const unidad_educativa = req.body.unidad_educativa;
+            const contrasenia = req.body.contrasenia;
+            const id_rol = req.body.id_rol;
+            const query = "INSERT INTO usuario (cedula, nombre,apellido,nivel_academico,carrera,unidad_educativa,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,(select id_rol from rol where tipo_rol=?))";
+            database_1.default.query(query, [cedula, nombre, apellido, nivel_academico, carrera, unidad_educativa, contrasenia, id_rol]);
+            res.json({ text: "usuario guardado" });
+            //console.log([req.body]);
         });
     }
     delete(req, res) {

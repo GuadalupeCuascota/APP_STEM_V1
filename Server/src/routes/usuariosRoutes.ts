@@ -9,9 +9,9 @@ constructor(){
 this.config();
 }
 config(): void{
-this.router.get('/',usuariosController.list);
+this.router.get('/',usuariosController.list1);
 this.router.get('/:id',usuariosController.getOne);
-this.router.post('/',usuariosController.create);
+this.router.post('/',usuariosController.create1);
 this.router.delete('/:id',usuariosController.delete);
 this.router.put('/:id',usuariosController.update);
 

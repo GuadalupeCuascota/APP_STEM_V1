@@ -4,6 +4,7 @@ import cors from 'cors';
 //importar las rutas
 import rolesRoutes from './routes/rolesRoutes';
 import usuariosRoutes from './routes/usuariosRoutes';
+import archivosRoutes from './routes/archivosRoutes';
 
 class Server {
     public app: Application
@@ -22,10 +23,10 @@ class Server {
     routes():void{//método para definir rutas del servidor
      this.app.use('/api/roles',rolesRoutes);
      this.app.use('/api/usuarios',usuariosRoutes);
-     
+     this.app.use('/api/archivos',archivosRoutes);
     
     }
-    start(): void{//método para inicializar el servido  r
+    start(): void{//método para inicializar el servidor
      this.app.listen(this.app.get('port'),()=>{ 
          console.log('Server on port', this.app.get('port'));
      })

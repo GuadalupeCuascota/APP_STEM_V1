@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table table-hover">
+        <thead>
+          <tr class="table-active">
+            <th scope="col">Id rol</th>
+            <th scope="col">Tipo rol</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let rol of roles">
+            <td>{{ rol.id_rol }}</td>
+            <td>{{ rol.tipo_rol }}</td>
+
+            <td>
+              <button class="btn btn-primary" (click)="getRol(rol.id_rol)">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn btn-danger" (click)="deleteRol(rol.id_rol)">
+                <i class="far fa-trash-alt" ></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <input
+            type="text"
+            name="tipo_rol"
+            [(ngModel)]="rol.tipo_rol"
+            placeholder="Tipo Rol"
+          />
+         <button class="btn btn-primary" (click)="edit ? updateRol(): saveRol()">
+           Agregar
+            <i class="fas fa-plus-square"></i>
+          </button>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

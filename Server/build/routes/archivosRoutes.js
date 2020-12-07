@@ -15,3 +15,5 @@ class ArchivosRoutes {
         this.router.put("/:id", archivosController_1.archivosController.update);
     }
 }
+const archivosRoutes = new ArchivosRoutes();
+exports.default = archivosRoutes.router;

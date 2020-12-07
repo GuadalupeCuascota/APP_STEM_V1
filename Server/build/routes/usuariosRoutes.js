@@ -9,9 +9,9 @@ class UsuariosRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', usuariosController_1.usuariosController.list);
+        this.router.get('/', usuariosController_1.usuariosController.list1);
         this.router.get('/:id', usuariosController_1.usuariosController.getOne);
-        this.router.post('/', usuariosController_1.usuariosController.create);
+        this.router.post('/', usuariosController_1.usuariosController.create1);
         this.router.delete('/:id', usuariosController_1.usuariosController.delete);
         this.router.put('/:id', usuariosController_1.usuariosController.update);
     }

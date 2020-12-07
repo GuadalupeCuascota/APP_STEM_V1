@@ -12,55 +12,48 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.rolesController = void 0;
+exports.archivosController = void 0;
 const database_1 = __importDefault(require("../database"));
-class RolesController {
+class ArchivosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const roles = yield database_1.default.query("SELECT * FROM rol");
+            const roles = yield database_1.default.query("SELECT * FROM archivo");
             res.json(roles);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const roles = yield database_1.default.query("SELECT * FROM rol WHERE id_rol=?", [id]);
+            const roles = yield database_1.default.query("SELECT * FROM archivo WHERE id_archivo=?", [id]);
             console.log(roles);
             if (roles.length > 0) {
                 return res.json(roles[0]);
             }
-            res.status(404).json({ text: "el rol no existe" });
+            res.status(404).json({ text: "el archivo no existe" });
         });
     }
     //res.json({ text: "rol encontrado" +req.params.id});
     create(req, res) {
-        //console.log(req.body);
-        // const tipo=req.body.tipo_rol;
-        // console.log(tipo)
-        database_1.default.query("INSERT INTO rol set ?", [req.body]);
-        res.json({ text: "rol guardado " });
+        return __awaiter(this, void 0, void 0, function* () {
+            yield database_1.default.query("INSERT INTO archivo set ?", [req.body]);
+            res.json({ text: "archivo guardado " });
+        });
     }
-    create1(req, res) {
-        //console.log(req.body);
-        const tipo_rol = req.body.tipo_rol;
-        const query = "INSERT INTO rol(tipo_rol)VALUES (?)";
-        database_1.default.query(query, [tipo_rol]);
-        res.json({ text: "rol guardado " });
-    }
+    //console.log(req.body);
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query(" DELETE FROM rol WHERE id_rol=?", [id]);
-            res.json({ message: "el rol fue eliminado" });
+            yield database_1.default.query(" DELETE FROM archivo WHERE id_archivo=?", [id]);
+            res.json({ message: "el archivo fue eliminado" });
         });
     }
     // res.json({ text: "eliminando" + req.params.id });
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const roles = yield database_1.default.query(" UPDATE rol set ? WHERE id_rol=?", [req.body, id]);
+            const roles = yield database_1.default.query(" UPDATE archivo set ? WHERE id_archivo=?", [req.body, id]);
             res.json({ message: "actualizado" });
         });
     }
 }
-exports.rolesController = new RolesController(); //instanciar la clase
+exports.archivosController = new ArchivosController(); //instanciar la clase

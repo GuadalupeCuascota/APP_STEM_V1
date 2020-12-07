@@ -3,12 +3,13 @@ import keys from './keys';
 
 
 const pool=mysql.createPool(keys.database);
-pool.getConnection()
-.then(connection =>{
+pool.getConnection() //probar la conexión
+.then(connection=>{
     pool.releaseConnection(connection);
-    console.log('DB is connect');
-
-});
+    console.log('DB es conectada');
+},
+err=>console.error("No se estableció conexion")
+);
 
 export default pool
 

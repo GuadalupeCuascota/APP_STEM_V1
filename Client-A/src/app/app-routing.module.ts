@@ -1,18 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UsuarioListComponent } from './Administrador/Components/usuario-list/usuario-list.component';
+import {RolesListComponent } from './Administrador/Components/roles-list/roles-list.component';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //    redirectTo: '/usuarios',
+  //    pathMatch: 'full'
+  // },
+  // {
+  //    path: 'usuarios',
+  //   component: UsuarioListComponent
+
+  // }
   {
-    path: '',
-    redirectTo: '/usuarios',
-    pathMatch: 'full'
+    path: 'roles',
+    component:RolesListComponent
   },
   {
     path: 'usuarios',
-    component: UsuarioListComponent
-
-  }
+    component:UsuarioListComponent
+  },
 ];
 
 @NgModule({

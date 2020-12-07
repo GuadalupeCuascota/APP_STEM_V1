@@ -11,9 +11,10 @@ this.config();
 config(): void{
 this.router.get('/',rolesController.list);
 this.router.get('/:id',rolesController.getOne);
-this.router.post('/',rolesController.create);
+this.router.post('/',rolesController.create1);
 this.router.delete('/:id',rolesController.delete);
 this.router.put('/:id',rolesController.update);
+
 }
 }
 const rolesRoutes=new RolesRoutes();
