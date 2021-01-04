@@ -5,7 +5,7 @@ import cors from 'cors';
 import rolesRoutes from './routes/rolesRoutes';
 import usuariosRoutes from './routes/usuariosRoutes';
 import archivosRoutes from './routes/archivosRoutes';
-
+import  tipoPublicacionRoutes from './routes/tipo-publicaciónRoute';
 class Server {
     public app: Application
     constructor(){ //crear el método constructor 
@@ -23,6 +23,7 @@ class Server {
     routes():void{//método para definir rutas del servidor
      this.app.use('/api/roles',rolesRoutes);
      this.app.use('/api/usuarios',usuariosRoutes);
+     this.app.use('/api/tipoPublicacion',tipoPublicacionRoutes);
      this.app.use('/api/archivos',archivosRoutes);
     
     }

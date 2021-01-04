@@ -10,6 +10,7 @@ const cors_1 = __importDefault(require("cors"));
 const rolesRoutes_1 = __importDefault(require("./routes/rolesRoutes"));
 const usuariosRoutes_1 = __importDefault(require("./routes/usuariosRoutes"));
 const archivosRoutes_1 = __importDefault(require("./routes/archivosRoutes"));
+const tipo_publicaci_nRoute_1 = __importDefault(require("./routes/tipo-publicaci\u00F3nRoute"));
 class Server {
     constructor() {
         this.app = express_1.default(); // inicializamos express
@@ -26,6 +27,7 @@ class Server {
     routes() {
         this.app.use('/api/roles', rolesRoutes_1.default);
         this.app.use('/api/usuarios', usuariosRoutes_1.default);
+        this.app.use('/api/tipoPublicacion', tipo_publicaci_nRoute_1.default);
         this.app.use('/api/archivos', archivosRoutes_1.default);
     }
     start() {

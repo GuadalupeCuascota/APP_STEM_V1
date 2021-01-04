@@ -1,10 +1,12 @@
 import { getTranslationDeclStmts } from '@angular/compiler/src/render3/view/template';
 import { Component, OnInit } from '@angular/core';
 import { RegistroRolService } from '../../Services/registro-rol.service';
-import { ToastrService } from 'ngx-toastr';
+
+import{AlertsService} from '../../../Services/alerts/alerts.service';
 
 //importar las rutas
 import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-roles-list',
@@ -22,7 +24,7 @@ export class RolesListComponent implements OnInit {
   constructor( 
     private registroRolService: RegistroRolService,
     private router: Router,
-    private toastr: ToastrService,
+    private alerts: AlertsService,
     private activedRoute: ActivatedRoute
   ) {}
 
@@ -48,21 +50,22 @@ export class RolesListComponent implements OnInit {
       (res) => {
         console.log(res);
         this.getRoles();
-        //  window.location.reload();
-        //this.router.navigate(['usuarios']);
+        this.alerts.showSuccess('Successfull Operation', 'Rol guardado')
       },
       (err) => console.error(err)
     );
   }
   deleteRol(id: string) {
+    if(confirm('Esta seguro que desea eliminar esto?')){
     this.registroRolService.deleteURol(id).subscribe(
       (res) => {
         console.log(res);
         this.getRoles();
-        //this.toastr.success('Successfull Operation', 'Rol eliminado');
+        this.alerts.showSuccess('Successfull Operation', 'Rol eliminado');
       },
       (err) => console.log(err)
     );
+    }
   }
   getRol(id: String) {
     console.log(id);

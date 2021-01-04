@@ -27,20 +27,25 @@
         </tbody>
       </table>
     </div>
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-body">
+    
+    <div class="list-group">
+      <div class="list-group-item">
+        <div class="form-group row">
+          <div class="col">
           <input
             type="text"
             name="tipo_rol"
+            class="form-control"
             [(ngModel)]="rol.tipo_rol"
             placeholder="Tipo Rol"
           />
+        </div>
+        <div class="col">
          <button class="btn btn-primary" (click)="edit ? updateRol(): saveRol()">
            Agregar
             <i class="fas fa-plus-square"></i>
           </button>
-        
+        </div>
         </div>
       </div>
     </div>

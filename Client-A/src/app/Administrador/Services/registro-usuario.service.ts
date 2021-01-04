@@ -5,11 +5,13 @@ import{HttpClient} from '@angular/common/http'
 import {Usuario} from '../Models/usuario'
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class RegistroUsuarioService {
   API_URI='http://localhost:3000/api';
+  
 
   constructor(private http: HttpClient) { }
 
@@ -17,6 +19,7 @@ export class RegistroUsuarioService {
     return this.http.get(`${this.API_URI}/usuarios`);
   
   }
+  
   getUsuario (id:String){
     return this.http.get(`${this.API_URI}/usuarios/${id}`);
   
@@ -33,4 +36,7 @@ updateUsuario (id:number, updateUsuario:Usuario){
     return this.http.put(`${this.API_URI}/usuarios/${id}`,updateUsuario);
   
   }
+  
+  
+
 }
