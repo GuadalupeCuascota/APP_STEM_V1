@@ -17,17 +17,24 @@ const database_1 = __importDefault(require("../database"));
 class ArchivosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const roles = yield database_1.default.query("SELECT * FROM archivo");
-            res.json(roles);
+            yield database_1.default.query("SELECT * FROM archivo", (err, rows) => {
+                if (err) {
+                    res.json("error al cargar");
+                    console.log(err);
+                }
+                else {
+                    res.json(rows);
+                    console.log("Datos seleccionados");
+                }
+            });
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const roles = yield database_1.default.query("SELECT * FROM archivo WHERE id_archivo=?", [id]);
-            console.log(roles);
-            if (roles.length > 0) {
-                return res.json(roles[0]);
+            const archivo = yield database_1.default.query("SELECT * FROM archivo WHERE id_archivo=?", [id]);
+            if (archivo.length > 0) {
+                return res.json(archivo[0]);
             }
             res.status(404).json({ text: "el archivo no existe" });
         });
@@ -35,15 +42,26 @@ class ArchivosController {
     //res.json({ text: "rol encontrado" +req.params.id});
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query("INSERT INTO archivo set ?", [req.body]);
-            res.json({ text: "archivo guardado " });
+            console.log(req.file); //file variable donde se guarda los datos del archivo
+            try {
+                const nombre_archivo = req.file.filename;
+                const tipo_archivo = req.file.mimetype;
+                const ruta = req.file.path;
+                const query = "INSERT INTO archivo (nombre_archivo, tipo_archivo,ruta) VALUES (?,?,?)";
+                database_1.default.query(query, [nombre_archivo, tipo_archivo, ruta]);
+                res.json({ text: "Archivo guardando" });
+            }
+            catch (error) {
+                console.log("hubo un error" + error);
+                res.json("NO se puede guardar");
+            }
         });
     }
     //console.log(req.body);
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query(" DELETE FROM archivo WHERE id_archivo=?", [id]);
+            const archivo = yield database_1.default.query(" DELETE FROM archivo WHERE id_archivo=?", [id]);
             res.json({ message: "el archivo fue eliminado" });
         });
     }

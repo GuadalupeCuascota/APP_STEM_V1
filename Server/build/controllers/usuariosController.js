@@ -21,8 +21,16 @@ class UsuariosController {
     // }
     list1(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuarios = yield database_1.default.query("SELECT u.cedula, u.nombre, u.apellido,u.nivel_academico,u.carrera,u.unidad_educativa,u.contrasenia, r.tipo_rol from usuario u, rol r WHERE r.id_rol=u.id_rol");
-            res.json(usuarios);
+            yield database_1.default.query("SELECT u.cedula, u.nombre, u.apellido,u.nivel_academico,u.carrera,u.unidad_educativa,u.contrasenia, r.tipo_rol from usuario u, rol r WHERE r.id_rol=u.id_rol", (err, rows) => {
+                if (err) {
+                    res.json("error al cargar");
+                    console.log(err);
+                }
+                else {
+                    res.json(rows);
+                    console.log("Datos de usuarios seleccionados");
+                }
+            });
         });
     }
     getOne(req, res) {
@@ -51,18 +59,30 @@ class UsuariosController {
             const unidad_educativa = req.body.unidad_educativa;
             const contrasenia = req.body.contrasenia;
             const id_rol = req.body.id_rol;
-            const query = "INSERT INTO usuario (cedula, nombre,apellido,nivel_academico,carrera,unidad_educativa,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,(select id_rol from rol where tipo_rol=?))";
-            database_1.default.query(query, [cedula, nombre, apellido, nivel_academico, carrera, unidad_educativa, contrasenia, id_rol]);
-            res.json({ text: "usuario guardado" });
+            try {
+                const query = "INSERT INTO usuario (cedula, nombre,apellido,nivel_academico,carrera,unidad_educativa,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,(select id_rol from rol where tipo_rol=?))";
+                database_1.default.query(query, [cedula, nombre, apellido, nivel_academico, carrera, unidad_educativa, contrasenia, id_rol]);
+                res.json({ text: "usuario guardado" });
+            }
+            catch (error) {
+                res.json({ text: "Hubo un error " });
+                console.log("no se puede guardar" + error);
+            }
             //console.log([req.body]);
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            console.log("cedula:" + id);
-            yield database_1.default.query(" DELETE FROM usuario WHERE cedula=?", [id]);
-            res.json({ message: "el dato fue eliminado" });
+            try {
+                const { id } = req.params;
+                console.log("cedula:" + id);
+                yield database_1.default.query(" DELETE FROM usuario WHERE cedula=?", [id]);
+                res.json({ message: "el dato fue eliminado" });
+            }
+            catch (error) {
+                res.json({ text: "Hubo un error " });
+                console.log("no se puede eliminar" + error);
+            }
         });
     }
     // res.json({ text: "eliminando" + req.params.id });

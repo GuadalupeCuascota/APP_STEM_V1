@@ -2,6 +2,7 @@ import mysql from 'promise-mysql';
 import keys from './keys';
 
 
+
 const pool=mysql.createPool(keys.database);
 pool.getConnection() //probar la conexión
 .then(connection=>{
@@ -12,5 +13,4 @@ err=>console.error("No se estableció conexion")
 );
 
 export default pool
-
 

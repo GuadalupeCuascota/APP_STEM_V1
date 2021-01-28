@@ -8,7 +8,9 @@ import { AppComponent } from './app.component';
 import { RegistroUsuarioComponent } from './Administrador/Components/menu-principal/registro-usuario.component';
 import { UsuarioListComponent } from './Administrador/Components/usuario-list/usuario-list.component';
 import{RegistroUsuarioService} from './Administrador/Services/registro-usuario.service';
+import { RegistroArchivoService } from "./Editor/Services/registro-archivo.service";
 import { RolesListComponent } from './Administrador/Components/roles-list/roles-list.component';
+
 //imporar modulo para animacion de mensajes de alterta 
 import{BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import{ToastrModule} from 'ngx-toastr';
@@ -57,7 +59,7 @@ import { PerfilesMujeresComponent } from './Editor/Components/perfiles-mujeres/p
 
   ],
   //agreagr un proveedor
-  providers: [RegistroUsuarioService],
+  providers: [RegistroUsuarioService, RegistroArchivoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

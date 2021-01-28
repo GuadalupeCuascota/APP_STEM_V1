@@ -5,13 +5,15 @@ class  TipoPublicacionRoutes {
   constructor() {
     this.config();
   }
+  
   config(): void {
     this.router.get("/",tipoPublicaciónController.list);
-    this.router.get("/:id", );
-    this.router.post("/", );
-    this.router.delete("/:id",);
-    this.router.put("/:id", );
+    this.router.get("/:id",tipoPublicaciónController.getOne);
+    this.router.post("/", tipoPublicaciónController.create);
+    this.router.delete("/:id",tipoPublicaciónController.delete);
+    this.router.put("/:id",tipoPublicaciónController.update );
   }
+  
 }
 const tipoPublicacionRoutes=new TipoPublicacionRoutes();
 export default  tipoPublicacionRoutes.router;

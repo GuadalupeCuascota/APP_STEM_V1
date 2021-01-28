@@ -1,6 +1,9 @@
 import express, {Application} from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+
+import path from "path";
+
 //importar las rutas
 import rolesRoutes from './routes/rolesRoutes';
 import usuariosRoutes from './routes/usuariosRoutes';
@@ -25,11 +28,16 @@ class Server {
      this.app.use('/api/usuarios',usuariosRoutes);
      this.app.use('/api/tipoPublicacion',tipoPublicacionRoutes);
      this.app.use('/api/archivos',archivosRoutes);
+     this.app.use('/uploads',express.static(path.resolve('uploads')));
+     //carpeta para almacenar archivos publicos
+
+    
     
     }
     start(): void{//método para inicializar el servidor
      this.app.listen(this.app.get('port'),()=>{ 
          console.log('Server on port', this.app.get('port'));
+         
      })
     }
 }

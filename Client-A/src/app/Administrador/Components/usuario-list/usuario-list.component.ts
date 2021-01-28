@@ -81,7 +81,7 @@ export class UsuarioListComponent implements OnInit {
       /*  res=> console.log(res), */
       (err) => console.error(err)
     );
-    (err)
+  
   }
   getUsuario(cedula: String) {
     console.log(cedula);

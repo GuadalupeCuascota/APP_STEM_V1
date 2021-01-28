@@ -7,10 +7,20 @@ class UsuariosController {
   //   res.json(usuarios);
   // }
   public async list1(req: Request, res: Response) {
-    const usuarios = await pool.query("SELECT u.cedula, u.nombre, u.apellido,u.nivel_academico,u.carrera,u.unidad_educativa,u.contrasenia, r.tipo_rol from usuario u, rol r WHERE r.id_rol=u.id_rol");
-    res.json(usuarios);
+
+    await pool.query("SELECT u.cedula, u.nombre, u.apellido,u.nivel_academico,u.carrera,u.unidad_educativa,u.contrasenia, r.tipo_rol from usuario u, rol r WHERE r.id_rol=u.id_rol", (err: any, rows: any) => {
+      if (err) {
+        res.json("error al cargar");
+        console.log(err)
+      } else {
+        res.json(rows);
+        console.log("Datos de usuarios seleccionados");
+      }
+    });
+    
   }
   public async getOne(req: Request, res: Response) {
+
     const {id} =  req.params;
     const usuarios = await pool.query("SELECT u.cedula, u.nombre, u.apellido,u.nivel_academico,u.carrera,u.unidad_educativa,u.contrasenia, r.tipo_rol from usuario u, rol r WHERE  r.id_rol=u.id_rol and u.cedula=?", [id]);
     
@@ -36,19 +46,31 @@ class UsuariosController {
     const unidad_educativa =req.body.unidad_educativa;
     const contrasenia =req.body.contrasenia;
     const id_rol =req.body.id_rol;
-    
-    const query="INSERT INTO usuario (cedula, nombre,apellido,nivel_academico,carrera,unidad_educativa,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,(select id_rol from rol where tipo_rol=?))";
+    try {
+      const query="INSERT INTO usuario (cedula, nombre,apellido,nivel_academico,carrera,unidad_educativa,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,(select id_rol from rol where tipo_rol=?))";
     pool.query(query,[cedula, nombre,apellido,nivel_academico,carrera,unidad_educativa,contrasenia,id_rol]);
     res.json({text: "usuario guardado"});
 
+    } catch (error) {
+      res.json({ text: "Hubo un error " });
+      console.log("no se puede guardar"+ error)
+    }
+    
+    
     //console.log([req.body]);
   }
   public  async delete(req: Request, res: Response): Promise <void>
    {
-    const {id} = req.params;
-    console.log("cedula:"+id)
-    await pool.query(" DELETE FROM usuario WHERE cedula=?", [id]);
-    res.json({message: "el dato fue eliminado"});
+     try {
+      const {id} = req.params;
+      console.log("cedula:"+id)
+      await pool.query(" DELETE FROM usuario WHERE cedula=?", [id]);
+      res.json({message: "el dato fue eliminado"});
+     } catch (error) {
+      res.json({ text: "Hubo un error " });
+      console.log("no se puede eliminar"+ error)
+     }
+   
     
   
   }

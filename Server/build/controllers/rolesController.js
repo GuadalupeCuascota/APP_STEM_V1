@@ -17,49 +17,71 @@ const database_1 = __importDefault(require("../database"));
 class RolesController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const roles = yield database_1.default.query("SELECT * FROM rol");
-            res.json(roles);
+            // const roles = await pool.query("SELECT * FROM rol");
+            // res.json(roles);
+            yield database_1.default.query("SELECT * FROM rol", (err, rows) => {
+                if (err) {
+                    res.json("error al cargar");
+                    console.log(err);
+                }
+                else {
+                    res.json(rows);
+                    console.log("Datos seleccionados");
+                }
+            });
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            // pool.query("INSERT INTO rol set ?", [req.body]);
             const { id } = req.params;
             const roles = yield database_1.default.query("SELECT * FROM rol WHERE id_rol=?", [id]);
             console.log(roles);
             if (roles.length > 0) {
                 return res.json(roles[0]);
             }
-            res.status(404).json({ text: "el rol no existe" });
+            res.json({ text: "el rol no existe" });
         });
     }
-    //res.json({ text: "rol encontrado" +req.params.id});
     create(req, res) {
-        //console.log(req.body);
-        // const tipo=req.body.tipo_rol;
-        // console.log(tipo)
-        database_1.default.query("INSERT INTO rol set ?", [req.body]);
-        res.json({ text: "rol guardado " });
-    }
-    create1(req, res) {
-        //console.log(req.body);
-        const tipo_rol = req.body.tipo_rol;
-        const query = "INSERT INTO rol(tipo_rol)VALUES (?)";
-        database_1.default.query(query, [tipo_rol]);
-        res.json({ text: "rol guardado " });
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const tipo_rol = req.body.tipo_rol;
+                const query = "INSERT INTO rol(tipo_rol)VALUES (?)";
+                yield database_1.default.query(query, [tipo_rol]);
+                res.json({ text: "rol guardado" });
+            }
+            catch (err) {
+                res.json({ text: "Hubo un error " });
+                console.log("hubo un errro" + err);
+            }
+        });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            yield database_1.default.query(" DELETE FROM rol WHERE id_rol=?", [id]);
-            res.json({ message: "el rol fue eliminado" });
+            try {
+                const { id } = req.params;
+                yield database_1.default.query(" DELETE FROM rol WHERE id_rol=?", [id]);
+                res.json({ message: "el rol fue eliminado" });
+            }
+            catch (err) {
+                res.json({ text: "Hubo un error " });
+                console.log("No se puede eliminar" + err);
+            }
         });
     }
     // res.json({ text: "eliminando" + req.params.id });
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const roles = yield database_1.default.query(" UPDATE rol set ? WHERE id_rol=?", [req.body, id]);
-            res.json({ message: "actualizado" });
+            try {
+                const { id } = req.params;
+                const roles = yield database_1.default.query(" UPDATE rol set ? WHERE id_rol=?", [req.body, id]);
+                res.json({ message: "actualizado" });
+            }
+            catch (err) {
+                res.json({ text: "Hubo un error " });
+                console.log("No se puede actualizar" + err);
+            }
         });
     }
 }
