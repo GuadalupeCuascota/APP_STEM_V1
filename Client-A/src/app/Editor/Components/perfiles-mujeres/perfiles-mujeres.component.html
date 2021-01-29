@@ -1,6 +1,6 @@
 <app-menu-principal-editor></app-menu-principal-editor>
 
-<div class="col-md-12 offset-md">
+<div class="col-md-10 offset-md">
     <div class="list-group-item">
       <h4 class="text-center"> Perfiles de Mujeres en STEM </h4>
       <div class="form-group">
@@ -23,23 +23,64 @@
          
         /> 
       </div>
-
+      <select
+            class="form-control"
+            name="miselect"
+            
+  
+          >
+  
+            <option value="0">Selecciona una opción</option>
+            <option >Estudiante</option>
+            <option >Graduada</option>
+          </select>
       <div class="form-group">
-        <label>Seleccione imagen/video</label>
-        <input
-          type="file"
-          class="form-control"
-          name=""
-          placeholder=""
-          (change)="onFileSelect($event)"
-        />
+        <label>Descripción</label>
+        <textarea class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Seleccione imagen/video:</label>
+        <button class="btn btn-primary" (click)="open(contenido)">Seleccionar</button>
+      
+          
+<!--         
+        -->
       </div>
        
         
          
       <button class="btn btn-primary" (click)="saveArchivo()">
-        Subir
+        Publicar
         <i class="fas fa-plus-square"></i>
       </button>
     </div>
   </div>
+
+  <ng-template #contenido let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Seleccionar video/imagen</h4>
+      <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="list-group-item">
+        
+        <input
+        type="file"
+        class="form-control"
+        name=""
+        placeholder=""
+        (change)="onFileSelect($event)"
+      />
+        </div>
+
+      </div>
+  
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)=close(contenido)>Cerrar</button>
+      <button type="button" class="btn btn-primary" (click)="saveArchivo()">SUBIR </button>
+      
+    </div>
+  </ng-template>
+    

@@ -19,12 +19,13 @@ export class UsuarioListComponent implements OnInit {
   usuarios: any = [];
   usuario1: any = {};
   usuario: Usuario = {
-    cedula: '',
+   
     nombre: '',
     apellido: '',
     nivel_academico: '',
     carrera: '',
     unidad_educativa: '',
+    correo_electronico: '',
     contrasenia: '',
     id_rol: 0,
   };
@@ -73,6 +74,7 @@ export class UsuarioListComponent implements OnInit {
   ////////////////////////////////////////////////////
 
   getUsuarios() {
+    
     this.registroUsuarioService.getUsuarios().subscribe(
       (res) => {
         console.log(res);
@@ -83,10 +85,10 @@ export class UsuarioListComponent implements OnInit {
     );
   
   }
-  getUsuario(cedula: String) {
-    console.log(cedula);
-    if (cedula) {
-      this.registroUsuarioService.getUsuario(cedula).subscribe(
+  getUsuario(id_usuario: String) {
+    console.log("este es el id"+id_usuario);
+    if (id_usuario) {
+      this.registroUsuarioService.getUsuario(id_usuario).subscribe(
         (res) => {
           console.log(res);
 
@@ -125,9 +127,9 @@ export class UsuarioListComponent implements OnInit {
       (err) => console.error(err)
     );
   }
-  deleteUsuario(cedula: string) {
+  deleteUsuario(id_usuario: string) {
     if(confirm('Esta seguro que desea eliminar esto?')){
-    this.registroUsuarioService.deleteUsuario(cedula).subscribe(
+    this.registroUsuarioService.deleteUsuario(id_usuario).subscribe(
       (res) => {
         console.log(res);
         this.getUsuarios();
@@ -142,9 +144,10 @@ export class UsuarioListComponent implements OnInit {
   updateUsuario() {
     console.log(this.usuario1);
     this.registroUsuarioService
-      .updateUsuario(this.usuario1.cedula, this.usuario1)
+      .updateUsuario(this.usuario1.id_usuario, this.usuario1)
       .subscribe(
         (res) => {
+          this.alerts.showSuccess('Successfull Operation', 'Usuario actualizado');
           this.getUsuarios();
           console.log(res);
         },

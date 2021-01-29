@@ -10,7 +10,7 @@ const path_1 = __importDefault(require("path"));
 //importar las rutas
 const rolesRoutes_1 = __importDefault(require("./routes/rolesRoutes"));
 const usuariosRoutes_1 = __importDefault(require("./routes/usuariosRoutes"));
-const archivosRoutes_1 = __importDefault(require("./routes/archivosRoutes"));
+const publicacionRoutes_1 = __importDefault(require("./routes/publicacionRoutes"));
 const tipo_publicaci_nRoute_1 = __importDefault(require("./routes/tipo-publicaci\u00F3nRoute"));
 class Server {
     constructor() {
@@ -29,7 +29,7 @@ class Server {
         this.app.use('/api/roles', rolesRoutes_1.default);
         this.app.use('/api/usuarios', usuariosRoutes_1.default);
         this.app.use('/api/tipoPublicacion', tipo_publicaci_nRoute_1.default);
-        this.app.use('/api/archivos', archivosRoutes_1.default);
+        this.app.use('/api/archivos', publicacionRoutes_1.default);
         this.app.use('/uploads', express_1.default.static(path_1.default.resolve('uploads')));
         //carpeta para almacenar archivos publicos
     }

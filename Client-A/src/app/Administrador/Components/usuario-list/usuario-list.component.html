@@ -1,19 +1,21 @@
 <app-registro-usuario></app-registro-usuario>
 <br>
 <div class="col-md-12 offset-md">
-  <div class="list-group-item">
-    <div class="form-group">
-      <label>Nombre</label>
-      <input
-        type="text"
-        class="form-control"
-        name=""
-        placeholder="Ingrese nombre"
-        [(ngModel)]="usuario.nombre"
-      />
-    </div>
-    <div class="form-group">
-      <label>Apellido</label>
+  <div  class="list-group-item">
+    <div class="form-group row">
+      <div class="col">
+        <label>Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          name=""
+          placeholder="Ingrese nombre"
+          [(ngModel)]="usuario.nombre"
+        />
+      </div>
+      
+      <div class="col">
+        <label>Apellido</label>
       <input
         type="text"
         class="form-control"
@@ -21,16 +23,20 @@
         placeholder="Ingrese apellido"
         [(ngModel)]="usuario.apellido"
       />
+      </div>
+      
     </div>
+    
+  
     <div class="form-group row">
       <div class="col">
-        <label>Cedula</label>
+        <label>Correo</label>
         <input
           type="text"
           class="form-control"
           name="cedula"
-          [(ngModel)]="usuario.cedula"
-          placeholder="Ingrese cedula"
+          [(ngModel)]="usuario.correo_electronico"
+          placeholder="Ingrese correo electrónico"
         />
       </div>
       <div class="col">
@@ -69,9 +75,10 @@
     <table class="table table-hover">
       <thead>
         <tr class="table-active">
-          <th scope="col">Cedula</th>
+         
           <th scope="col">Nombre</th>
           <th scope="col">Apellido</th>
+          <th scope="col">Correo electrónico</th>
           <th scope="col">Tipo rol</th>
           <th scope="col">acciones</th>
         </tr>
@@ -84,20 +91,21 @@
               | paginate: { itemsPerPage: 4, currentPage: p }
           "
         >
-          <td>{{ usuario.cedula }}</td>
+          
           <td>{{ usuario.nombre }}</td>
           <td>{{ usuario.apellido }}</td>
+          <td>{{ usuario.correo_electronico }}</td>
           <td>{{ usuario.tipo_rol }}</td>
           <td>
             <button
               class="btn btn-primary"
-              (click)="getUsuario(usuario.cedula) ; open(contenido) " 
+              (click)="getUsuario(usuario.id_usuario) ; open(contenido) " 
             >
               <i class="fas fa-edit"></i>
             </button>
             <button
               class="btn btn-danger"
-              (click)="deleteUsuario(usuario.cedula)"
+              (click)="deleteUsuario(usuario.id_usuario)"
             >
               <i class="far fa-trash-alt"></i>
             </button>
@@ -139,13 +147,13 @@
       </div>
       <div class="form-group row">
         <div class="col">
-          <label>Cedula</label>
+          <label>Correo</label>
           <input
             type="text"
             class="form-control"
-            name="cedula"
-            [(ngModel)]="usuario1.cedula"
-            placeholder="Ingrese cedula"
+            name="correo_electronico"
+            [(ngModel)]="usuario1.correo_electronico"
+            placeholder="Ingrese correo electrónico"
           />
         </div>
         <div class="col">

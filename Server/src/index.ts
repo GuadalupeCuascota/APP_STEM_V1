@@ -7,7 +7,7 @@ import path from "path";
 //importar las rutas
 import rolesRoutes from './routes/rolesRoutes';
 import usuariosRoutes from './routes/usuariosRoutes';
-import archivosRoutes from './routes/archivosRoutes';
+import publicacionRoutes from './routes/publicacionRoutes';
 import  tipoPublicacionRoutes from './routes/tipo-publicaciónRoute';
 class Server {
     public app: Application
@@ -27,7 +27,7 @@ class Server {
      this.app.use('/api/roles',rolesRoutes);
      this.app.use('/api/usuarios',usuariosRoutes);
      this.app.use('/api/tipoPublicacion',tipoPublicacionRoutes);
-     this.app.use('/api/archivos',archivosRoutes);
+     this.app.use('/api/archivos',publicacionRoutes);
      this.app.use('/uploads',express.static(path.resolve('uploads')));
      //carpeta para almacenar archivos publicos
 

@@ -32,7 +32,7 @@ export class RegistroUsuarioService {
     return this.http.delete(`${this.API_URI}/usuarios/${id}`);
   
   }
-updateUsuario (id:number, updateUsuario:Usuario){
+updateUsuario (id:String, updateUsuario:Usuario){
     return this.http.put(`${this.API_URI}/usuarios/${id}`,updateUsuario);
   
   }

@@ -66,6 +66,7 @@ class RolesController {
   public async update(req: Request, res: Response) {
     try{
       const {id} = req.params;
+      console.log("id"+id)
       const roles= await pool.query(" UPDATE rol set ? WHERE id_rol=?",[req.body,id]);
       res.json({ message: "actualizado"});
   

@@ -75,6 +75,7 @@ class RolesController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { id } = req.params;
+                console.log("id" + id);
                 const roles = yield database_1.default.query(" UPDATE rol set ? WHERE id_rol=?", [req.body, id]);
                 res.json({ message: "actualizado" });
             }
