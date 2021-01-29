@@ -29,7 +29,7 @@ class Server {
         this.app.use('/api/roles', rolesRoutes_1.default);
         this.app.use('/api/usuarios', usuariosRoutes_1.default);
         this.app.use('/api/tipoPublicacion', tipo_publicaci_nRoute_1.default);
-        this.app.use('/api/archivos', publicacionRoutes_1.default);
+        this.app.use('/api/publicaciones', publicacionRoutes_1.default);
         this.app.use('/uploads', express_1.default.static(path_1.default.resolve('uploads')));
         //carpeta para almacenar archivos publicos
     }

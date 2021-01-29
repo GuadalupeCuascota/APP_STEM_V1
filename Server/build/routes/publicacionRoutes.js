@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const archivosController_1 = require("../controllers/archivosController");
+const publicacionController_1 = require("../controllers/publicacionController");
 const multer_1 = __importDefault(require("../libs/multer"));
 class PublicacionRoutes {
     constructor() {
@@ -12,11 +12,11 @@ class PublicacionRoutes {
         this.config();
     }
     config() {
-        this.router.get("/", archivosController_1.archivosController.list);
-        this.router.get("/:id", archivosController_1.archivosController.getOne);
-        this.router.post("/", multer_1.default.single('file'), archivosController_1.archivosController.create); //antes de procesar pasa por multer para saber si hay un archivo 
-        this.router.delete("/:id", archivosController_1.archivosController.delete);
-        this.router.put("/:id", archivosController_1.archivosController.update);
+        this.router.get("/", publicacionController_1.archivosController.list);
+        this.router.get("/:id", publicacionController_1.archivosController.getOne);
+        this.router.post("/", multer_1.default.single('file'), publicacionController_1.archivosController.create); //antes de procesar pasa por multer para saber si hay un archivo 
+        this.router.delete("/:id", publicacionController_1.archivosController.delete);
+        this.router.put("/:id", publicacionController_1.archivosController.update);
     }
 }
 const publicacionRoutes = new PublicacionRoutes();

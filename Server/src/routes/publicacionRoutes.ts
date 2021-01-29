@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {archivosController} from "../controllers/archivosController"
+import {archivosController} from "../controllers/publicacionController"
 import multer from '../libs/multer';
 class PublicacionRoutes {
   public router: Router = Router();
