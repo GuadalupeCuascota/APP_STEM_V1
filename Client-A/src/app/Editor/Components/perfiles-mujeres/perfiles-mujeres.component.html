@@ -1,86 +1,156 @@
 <app-menu-principal-editor></app-menu-principal-editor>
+<br />
+<button class="btn btn-primary" (click)="open(contenido)">
+  CREAR PERFIL <i class="fas fa-plus-square"></i>
+</button>
 
-<div class="col-md-10 offset-md">
-    <div class="list-group-item">
-      <h4 class="text-center"> Perfiles de Mujeres en STEM </h4>
+<ng-template #contenido let-modal >
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      Perfiles de Mujeres en STEM
+    </h4>
+    <button
+      class="close"
+      aria-label="close"
+      type="button"
+      (click)="modal.dismiss()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+   
       <div class="form-group">
-        <label>Titulo</label>
         <input
           type="text"
           class="form-control"
           name=""
           placeholder="Ingrese titulo"
-         
+          [(ngModel)]="perfiles.titulo"
+          required
         />
       </div>
       <div class="form-group">
-        <label>Carrera/profesión</label>
-        <input
-          type="text"
+        <textarea
+          rows="2"
           class="form-control"
-          name=""
-          placeholder="Ingrese Carrera"
-         
-        /> 
-      </div>
-      <select
-            class="form-control"
-            name="miselect"
-            
-  
-          >
-  
-            <option value="0">Selecciona una opción</option>
-            <option >Estudiante</option>
-            <option >Graduada</option>
-          </select>
-      <div class="form-group">
-        <label>Descripción</label>
-        <textarea class="form-control"></textarea>
+          [(ngModel)]="perfiles.descripcion"
+          placeholder="Ingrese Descripción"
+          required
+        ></textarea>
       </div>
       <div class="form-group">
-        <label>Seleccione imagen/video:</label>
-        <button class="btn btn-primary" (click)="open(contenido)">Seleccionar</button>
+      <input
+        type="file" 
+        name=""
+        placeholder=""
+        (change)="onFileSelect($event)" #photo
+      />
+    
+      <!-- class="d-none"<img [src]="../../../../assets/noimage.png" class="img-fluid" alt="no-image" (click)="photo.click()"> -->
+      </div>
       
-          
-<!--         
-        -->
-      </div>
-       
-        
-         
-      <button class="btn btn-primary" (click)="saveArchivo()">
-        Publicar
-        <i class="fas fa-plus-square"></i>
-      </button>
     </div>
+  
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        data-dismiss="modal"
+        (click)="close(contenido)"
+      >
+        Cerrar
+      </button>
+      <button type="button" class="btn btn-primary" (click)="saveArchivo()">
+        PUBLICAR
+      </button>
+   
   </div>
+</ng-template>
 
-  <ng-template #contenido let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Seleccionar video/imagen</h4>
-      <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
-      <span aria-hidden="true">&times;</span>
-      </button>
+<!-- <div class="col-md-10 offset-md">
+  <div class="list-group-item">
+    <h4 class="text-center">Perfiles de Mujeres en STEM</h4>
+    <div class="form-group">
+      <label>Titulo</label>
+      <input
+        type="text"
+        class="form-control"
+        name=""
+        placeholder="Ingrese titulo"
+        [(ngModel)]="perfiles.titulo"
+        #titulo
+      />
     </div>
-    <div class="modal-body">
-      <div class="list-group-item">
-        
-        <input
+
+    <div class="form-group">
+      <label>Descripción</label>
+      <textarea
+        class="form-control"
+        [(ngModel)]="perfiles.descripcion"
+        #descripcion
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label>usuario</label>
+      <input
+        type="text"
+        class="form-control"
+        name=""
+        placeholder="Ingrese Carrera"
+        [(ngModel)]="perfiles.id_usuario"
+        #id_usuario
+      />
+    </div>
+    <div class="form-group">
+      <label>tipo publicación</label>
+      <input
+        type="text"
+        class="form-control"
+        name=""
+        placeholder="Ingrese Carrera"
+        [(ngModel)]="perfiles.id_tipo_publicacion"
+        #id_tipo_publicación
+      />
+    </div>
+    <div class="form-group">
+      <label>estado tipo publicación</label>
+      <input
+        type="text"
+        class="form-control"
+        name=""
+        placeholder="Ingrese Carrera"
+        [(ngModel)]="perfiles.id_estado_publicacion"
+        #id_estado_publicación
+      />
+    </div>
+    <div class="form-group">
+      <input
         type="file"
         class="form-control"
         name=""
         placeholder=""
         (change)="onFileSelect($event)"
       />
-        </div>
+    </div> -->
 
-      </div>
-  
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)=close(contenido)>Cerrar</button>
-      <button type="button" class="btn btn-primary" (click)="saveArchivo()">SUBIR </button>
+<!-- <div class="form-group">
+        <label>Seleccione imagen/video:</label>
+        <button class="btn btn-primary" (click)="open(contenido)" >Seleccionar</button>
       
-    </div>
-  </ng-template>
-    
+          
+
+      </div> -->
+
+<!-- <select
+            class="form-control"
+            name="miselect"
+            [(ngModel)]="perfiles.estado_profesion"
+            
+            #estado_profesion
+          >
+  
+            <option value="0">Selecciona una opción</option>
+            <option >Estudiante</option>
+            <option >Graduada</option>
+          </select> -->

@@ -73,15 +73,20 @@ class RolesController {
     // res.json({ text: "eliminando" + req.params.id });
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const { id } = req.params;
-                console.log("id" + id);
-                const roles = yield database_1.default.query(" UPDATE rol set ? WHERE id_rol=?", [req.body, id]);
-                res.json({ message: "actualizado" });
+            const { id } = req.params;
+            const { id_rol, tipo_rol } = req.body;
+            if (tipo_rol) {
+                try {
+                    const roles = yield database_1.default.query(" UPDATE rol set ? WHERE id_rol=?", [req.body, id]);
+                    res.json({ message: "actualizado" });
+                }
+                catch (error) {
+                    res.json({ text: "Hubo un error ", error });
+                    console.log("No se puede actualizar" + error);
+                }
             }
-            catch (err) {
-                res.json({ text: "Hubo un error " });
-                console.log("No se puede actualizar" + err);
+            else {
+                res.json({ message: "Atributos requeridos" });
             }
         });
     }

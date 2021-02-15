@@ -1,3 +1,4 @@
+import { validate } from "class-validator";
 import { Request, Response } from "express";
 import pool from "../database";
 
@@ -64,17 +65,27 @@ class RolesController {
    // res.json({ text: "eliminando" + req.params.id });
   
   public async update(req: Request, res: Response) {
-    try{
+    
       const {id} = req.params;
-      console.log("id"+id)
-      const roles= await pool.query(" UPDATE rol set ? WHERE id_rol=?",[req.body,id]);
-      res.json({ message: "actualizado"});
-  
-    }catch(err){
-      res.json({ text: "Hubo un error " });
-      console.log("No se puede actualizar"+ err)
+      const{id_rol,tipo_rol}=req.body
+     
+      
+     if(tipo_rol){
+       try {
+        const roles= await pool.query(" UPDATE rol set ? WHERE id_rol=?",[req.body,id]);
+        res.json({ message: "actualizado"});
+       } catch (error) {
+        res.json({ text: "Hubo un error " ,error});
+        console.log("No se puede actualizar"+ error)
+       }
+      
+    } else{
+      res.json({ message: "Atributos requeridos"});
     }
-  
+    
+      
+   
+    
    
   }
 }

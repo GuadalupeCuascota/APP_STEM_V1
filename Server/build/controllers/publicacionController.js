@@ -17,7 +17,7 @@ const database_1 = __importDefault(require("../database"));
 class ArchivosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query("SELECT * FROM archivo", (err, rows) => {
+            yield database_1.default.query("SELECT * FROM publicacion", (err, rows) => {
                 if (err) {
                     res.json("error al cargar");
                     console.log(err);
@@ -42,14 +42,25 @@ class ArchivosController {
     //res.json({ text: "rol encontrado" +req.params.id});
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(req.file); //file variable donde se guarda los datos del archivo
             try {
-                const nombre_archivo = req.file.filename;
-                const tipo_archivo = req.file.mimetype;
-                const ruta = req.file.path;
-                const query = "INSERT INTO archivo (nombre_archivo, tipo_archivo,ruta) VALUES (?,?,?)";
-                database_1.default.query(query, [nombre_archivo, tipo_archivo, ruta]);
-                res.json({ text: "Archivo guardando" });
+                const { titulo, descripcion, enlace, profesion, estado_profesion, id_tipo_publicacion, id_usuario, id_estado_publicacion, } = req.body;
+                console.log("id_tio_publicasion:" + req.body.id_tipo_publicacion);
+                console.log("titulo:" + req.body.titulo);
+                console.log(req.file); //file variable donde se guarda los datos del archivo
+                const ruta_archivo = req.file.path;
+                const query = "INSERT INTO publicacion (titulo,descripcion,enlace,profesion,estado_profesion,ruta_archivo,id_tipo_publicacion,id_usuario,id_estado_publicacion) VALUES (?,?,?,?,?,?,?,?,?)";
+                yield database_1.default.query(query, [
+                    titulo,
+                    descripcion,
+                    enlace,
+                    profesion,
+                    estado_profesion,
+                    ruta_archivo,
+                    id_tipo_publicacion,
+                    id_usuario,
+                    id_estado_publicacion,
+                ]);
+                res.json({ text: "Archivo guardado" });
             }
             catch (error) {
                 console.log("hubo un error" + error);
@@ -69,7 +80,10 @@ class ArchivosController {
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const roles = yield database_1.default.query(" UPDATE archivo set ? WHERE id_archivo=?", [req.body, id]);
+            const roles = yield database_1.default.query(" UPDATE archivo set ? WHERE id_archivo=?", [
+                req.body,
+                id,
+            ]);
             res.json({ message: "actualizado" });
         });
     }

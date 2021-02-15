@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import{HttpClient} from '@angular/common/http'
 import {Archivo} from '../Models/archivo'
+import {Publicacion} from '../../Editor/Models/publicacion';
 
 @Injectable({
   providedIn: 'root'
@@ -10,25 +11,25 @@ export class RegistroArchivoService {
   
   constructor(private http:HttpClient) { }
   getArchivos (){
-    return this.http.get(`${this.API_URI}/archivos`);
+    return this.http.get(`${this.API_URI}/publicaciones`);
   
   }
   
   getArchivo (id:String){
-    return this.http.get(`${this.API_URI}/archivos/${id}`);
+    return this.http.get(`${this.API_URI}/publicaciones/${id}`);
   
   }
   saveArchivo (formData){
     
-    return this.http.post(`${this.API_URI}/archivos`,formData);
+    return this.http.post(`${this.API_URI}/publicaciones`,formData);
   
   }
   deleteArchivo (id:String){
-    return this.http.delete(`${this.API_URI}/archivo/${id}`);
+    return this.http.delete(`${this.API_URI}/publicaciones/${id}`);
   
   }
 updateUsuario (id:number, updateArcivo:Archivo){
-    return this.http.put(`${this.API_URI}/usuarios/${id}`,updateArcivo);
+    return this.http.put(`${this.API_URI}/publicaciones/${id}`,updateArcivo);
   
   }
   

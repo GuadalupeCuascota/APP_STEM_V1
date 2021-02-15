@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistroArchivoService } from "../../../Editor/Services/registro-archivo.service";
-
+import {Publicacion} from '../../Models/publicacion'
 import{AlertsService} from '../../../Services/alerts/alerts.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
@@ -10,8 +10,21 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./perfiles-mujeres.component.css']
 })
 export class PerfilesMujeresComponent implements OnInit {
+  perfiles:  Publicacion= {
+    titulo:'',
+    descripcion:'',
+    enlace:'',
+    profesion:'',
+    estado_profesion: '',
+    ruta_archivo:'',
+    id_tipo_publicacion: '1',
+    id_estado_publicacion :'1',
+    id_usuario : '1',
+  };
   closeResult = '';
-  archivosSeleccionado :Array <File>
+  //file: Array<File>
+  archivosSeleccionado :File
+  fotoSeleccionada:string| ArrayBuffer 
   constructor(private registroArchivo: RegistroArchivoService, private alerts : AlertsService,
   private modalService: NgbModal) { }
 
@@ -44,23 +57,43 @@ export class PerfilesMujeresComponent implements OnInit {
     this.modalService.dismissAll(content);
    
   }
-  onFileSelect  (e){
-    if(e.target.files.length>0){
-      this.archivosSeleccionado=e.target.files;
+  ///////////////////////////////////////////////////////
+  onFileSelect  (event){
+   
+    if(event.target.files.length>0){
+
+      this.archivosSeleccionado= <File> event.target.files[0];
       console.log("Archivo cargado", this.archivosSeleccionado)
 
+      const reader= new FileReader(); //Crear un objeto de tipo FileReader  para leer la imagen
+      reader.readAsDataURL(this.archivosSeleccionado); //leemos la imagen pasado por parametro
+      reader.onload =e=>this.fotoSeleccionada=reader.result //Comprobamos la carga del archivo y enviamos el resultado
+      
+     
+    
+     
+  
+
+    }else {
+      this.alerts.showError('Error Operation', 'Seleccione imagen')
     }
    
    
   }
  
   saveArchivo(){
+   console.log(this.perfiles)
+   
     try{
       const fd =new FormData(); //objeto que almacena datos de un formulario
-      for( let i=0; i<this.archivosSeleccionado.length; i++){
-        fd.append('file',this.archivosSeleccionado[i])
-    
-      }
+      // for( let i=0; i<this.archivosSeleccionado.length; i++){
+        fd.append('ruta_archivo',this.archivosSeleccionado)
+        fd.append('titulo',this.perfiles.titulo)
+        fd.append('descripcion',this.perfiles.descripcion)
+        fd.append('id_usuario',this.perfiles.id_usuario)
+        fd.append('id_tipo_publicacion',this.perfiles.id_tipo_publicacion)
+        fd.append('id_estado_publicacion',this.perfiles.id_estado_publicacion)
+      
       this.registroArchivo.saveArchivo(fd).subscribe(
         (res)=>{
           this.alerts.showSuccess('Successfull Operation', 'Archivo guardado')
