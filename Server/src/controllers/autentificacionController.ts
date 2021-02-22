@@ -18,7 +18,7 @@ class AutentificacionController {
                 [correo_electronico,contrasenia]);
                 if (usuario.length > 0) {
                     //return res.json(usuario[0]);
-                     const Token=jwt.sign({correo_electronico,contrasenia}, 'TODO_SCRET',{expiresIn: '1h'})
+                     const Token=jwt.sign({usuario}, 'SCRET',{expiresIn: '1h'})
                      res.json({message: 'OK', Token}) 
 
                 

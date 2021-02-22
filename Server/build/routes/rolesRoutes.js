@@ -9,7 +9,7 @@ class RolesRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', [jwt_1.checkjwt], rolesController_1.rolesController.list);
+        this.router.get('/', jwt_1.checkjwt, rolesController_1.rolesController.list);
         this.router.get('/:id', rolesController_1.rolesController.getOne);
         this.router.post('/', rolesController_1.rolesController.create);
         this.router.delete('/:id', rolesController_1.rolesController.delete);

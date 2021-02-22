@@ -10,7 +10,7 @@ constructor(){
 this.config();
 }
 config(): void{
-this.router.get('/',[checkjwt],rolesController.list);
+this.router.get('/',checkjwt,rolesController.list);
 this.router.get('/:id',rolesController.getOne);
 this.router.post('/',rolesController.create);
 this.router.delete('/:id',rolesController.delete);

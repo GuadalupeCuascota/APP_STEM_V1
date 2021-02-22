@@ -15,10 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.autentificacionController = void 0;
 const database_1 = __importDefault(require("../database"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+// import { getRepository } from 'typeorm';
 class AutentificacionController {
     login(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { correo_electronico, contrasenia } = req.body;
+            const { correo_electronico, contrasenia, id_rol } = req.body;
             if (!(correo_electronico && contrasenia)) {
                 return res.status(400).json({ message: 'correo y contraseña son requeridos' });
             }
@@ -26,7 +27,7 @@ class AutentificacionController {
                 const usuario = yield database_1.default.query("SELECT * FROM usuario WHERE correo_electronico=? and contrasenia=?", [correo_electronico, contrasenia]);
                 if (usuario.length > 0) {
                     //return res.json(usuario[0]);
-                    const Token = jsonwebtoken_1.default.sign({ correo_electronico, contrasenia }, 'TODO_SCRET', { expiresIn: '1h' });
+                    const Token = jsonwebtoken_1.default.sign({ usuario }, 'SCRET', { expiresIn: '1h' });
                     res.json({ message: 'OK', Token });
                 }
                 else {
