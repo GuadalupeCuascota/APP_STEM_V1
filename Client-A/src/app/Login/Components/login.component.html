@@ -1,17 +1,20 @@
 <div class="login-page">
+    
     <div class="form">
+    
+        <div  role="alert" *ngIf="errorstatus">
+            {{msj}}
+          </div>
+        <img src="../../../assets/Fica Stem JPG.jpg">
         <h2>Iniciar Sesión</h2>
       
-        <input type="text" placeholder="Email" [(ngModel)]="user.usuario" class="form-control" required autofocus/>
+        <input type="text" placeholder="Email" [(ngModel)]="user.correo_electronico" class="form-control" required autofocus/> 
         <input type="password" placeholder="Contraseña " class="form-control" [(ngModel)]="user.contrasenia" required autofocus/>
         <button (click)="login()" class="btn btn-primary btn-block">Acceder </button>
         <!-- <p class="message">Not registered? <a href="/admin">Admin</a></p> -->
-        <p > <a href="/admin">Administrador</a></p>
-         
-        <p><a href="/editor">Editor Stem</a></p>
-        
-       
+      
     </div>
+    
   </div>
 
 

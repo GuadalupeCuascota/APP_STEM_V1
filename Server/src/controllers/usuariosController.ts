@@ -1,5 +1,6 @@
-import { Request, Response } from "express";
+import { query, Request, Response } from "express";
 import pool from "../database";
+import brycpt from 'bcryptjs'
 
 class UsuariosController {
   // public async list(req: Request, res: Response) {
@@ -37,29 +38,42 @@ class UsuariosController {
   //   console.log([req.body]);
   // }
 
-  public async create(req: Request, res: Response,) {
+  public async create(req: Request, res: Response) {
     
-    const nombre =req.body.nombre;
-    const apellido =req.body.apellido;
-    const nivel_academico =req.body.nivel_academico;
-    const carrera=req.body.carrera;
-    const unidad_educativa =req.body.unidad_educativa;
-    const correo_electronico =req.body.correo_electronico;
-    const contrasenia =req.body.contrasenia;
-    const id_rol =req.body.id_rol;
+        //  const crypt=await brycpt.genSalt(10)
+    //     const contrasenian= await brycpt.hash(contrasenia,crypt)
+    //     console.log("contraseñia encriptda", contrasenian)
+    const{nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico, contrasenia, id_rol}=req.body
+    
+   
+    const query="INSERT INTO usuario ( nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,(select id_rol from rol where tipo_rol=?))";
+    if(!id_rol){
+        const newId_rol="Estudiante Secundaria"
+        try {
+          
+        await pool.query(query,[ nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia,newId_rol]);
+        res.json({text: "usuario guardado"});
+    
+        } catch (error) {
+          res.json({ text: "Hubo un error " });
+          console.log("no se puede guardar"+ error)
+        }
+       
+      }else{
     try {
-      const query="INSERT INTO usuario ( nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,(select id_rol from rol where tipo_rol=?))";
-    pool.query(query,[ nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia,id_rol]);
+      console.log("pasa siguiente")
+    await pool.query(query,[ nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia,id_rol]);
     res.json({text: "usuario guardado"});
 
     } catch (error) {
       res.json({ text: "Hubo un error " });
       console.log("no se puede guardar"+ error)
     }
-    
-    
-    //console.log([req.body]);
   }
+    // 
+      
+}
+  
   public  async delete(req: Request, res: Response): Promise <void>
    {
      try {

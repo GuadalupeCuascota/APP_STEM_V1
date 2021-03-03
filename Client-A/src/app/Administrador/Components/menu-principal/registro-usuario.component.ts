@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router'
+
 
 @Component({
   selector: 'app-registro-usuario',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registro-usuario.component.css']
 })
 export class RegistroUsuarioComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  datos: any = {};
+  constructor( private router: Router,
+ ) { }
+  logOut(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/login'])
   }
-
+  ngOnInit(): void {
+    
+    
+  }
+ 
 }

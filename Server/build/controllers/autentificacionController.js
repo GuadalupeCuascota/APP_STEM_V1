@@ -15,29 +15,43 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.autentificacionController = void 0;
 const database_1 = __importDefault(require("../database"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 // import { getRepository } from 'typeorm';
 class AutentificacionController {
     login(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { correo_electronico, contrasenia, id_rol } = req.body;
+            const { correo_electronico, contrasenia } = req.body;
             if (!(correo_electronico && contrasenia)) {
-                return res.status(400).json({ message: 'correo y contraseña son requeridos' });
+                return res.status(404).json({ text: 'correo y contraseña son requeridos' });
             }
             else {
-                const usuario = yield database_1.default.query("SELECT * FROM usuario WHERE correo_electronico=? and contrasenia=?", [correo_electronico, contrasenia]);
+                const usuario = yield database_1.default.query("SELECT * FROM usuario WHERE correo_electronico=?", [correo_electronico]);
                 if (usuario.length > 0) {
-                    //return res.json(usuario[0]);
-                    const Token = jsonwebtoken_1.default.sign({ usuario }, 'SCRET', { expiresIn: '1h' });
-                    res.json({ message: 'OK', Token });
+                    if (usuario[0].contrasenia !== contrasenia) {
+                        return res.status(404).json({ text: 'contraseña es incorrecta' });
+                    }
+                    const payload = {
+                        id_usuario: usuario[0].id_usuario,
+                        nombre: usuario[0].nombre,
+                        apellido: usuario[0].apellido,
+                        id_rol: usuario[0].id_rol
+                    };
+                    const Token = jsonwebtoken_1.default.sign({ payload }, 'SCRET', { expiresIn: '1h' });
+                    console.log(Token);
+                    return res.json({ message: "ok", Token, payload });
                 }
                 else {
-                    res.status(404).json({ text: "correo o contraseña es incorrecto" });
+                    console.log("pasa");
+                    return res.status(404).json({ text: 'correo es incorrecta' });
                 }
             }
         });
     }
-    cambiarContrasenia(req, res) {
+    encriyptContraseña(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            const contrasenia = req.body;
+            const crypt = yield bcryptjs_1.default.genSalt(10);
+            return yield bcryptjs_1.default.hash(contrasenia, crypt);
         });
     }
 }

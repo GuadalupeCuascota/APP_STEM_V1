@@ -1,40 +1,68 @@
-import { constants } from "buffer";
+
 import { Request, Response } from "express";
 import pool from "../database";
 import jwt from 'jsonwebtoken';
+import brycpt from 'bcryptjs'
+
+
 // import { getRepository } from 'typeorm';
 
 class AutentificacionController {
-   
+  
     public async login (req: Request, res: Response) {
         
-            const {correo_electronico, contrasenia,id_rol}=req.body;
-            
+            const {correo_electronico, contrasenia}=req.body;
+    
             if(!(correo_electronico && contrasenia)){
-                return res.status(400).json({message: 'correo y contraseña son requeridos'})
+                return res.status(404).json({text: 'correo y contraseña son requeridos'})
             }else{
               const usuario=await pool.query(
-                "SELECT * FROM usuario WHERE correo_electronico=? and contrasenia=?",
-                [correo_electronico,contrasenia]);
-                if (usuario.length > 0) {
-                    //return res.json(usuario[0]);
-                     const Token=jwt.sign({usuario}, 'SCRET',{expiresIn: '1h'})
-                     res.json({message: 'OK', Token}) 
+                "SELECT * FROM usuario WHERE correo_electronico=?",
+                [correo_electronico]);
+              
+                if(usuario.length>0){
+            
+                  if (usuario[0].contrasenia!==contrasenia){
+                      return res.status(404).json({text: 'contraseña es incorrecta'})
 
-                
-                  } else{
-                    res.status(404).json({ text: "correo o contraseña es incorrecto" });
+                    }
+                  const payload={
+                    id_usuario: usuario[0].id_usuario,
+                    nombre:usuario[0].nombre,
+                    apellido:usuario[0].apellido,
+                    id_rol:usuario[0].id_rol
                   }
-                 
+                   const Token=jwt.sign({payload}, 'SCRET',{expiresIn: '1h'})
+                   
+                   console.log(Token)
+                   return res.json({message:"ok",Token,payload});
+
+                   
+                }else{
+                  console.log("pasa")
+                  return res.status(404).json({text: 'correo es incorrecta'})
+
+                }
+               
               
             }
+          
 
        
 
     }
-    public async cambiarContrasenia (req: Request, res: Response) {
+   public async encriyptContraseña(req: Request, res: Response) {
+    const contrasenia =req.body;
+     const crypt=await brycpt.genSalt(10)
+     return await brycpt.hash(contrasenia,crypt)
 
-    }
+   }
+  
+  //  public async compareContraseña(req: Request, res: Response) {
+  //   const contrasenia =req.body;
+  //    return await brycpt.compare(contrasenia,crypt)
+
+  //  }
     
     
 }

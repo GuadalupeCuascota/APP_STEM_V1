@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import{HttpClientModule} from '@angular/common/http';
+import{HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +10,7 @@ import { UsuarioListComponent } from './Administrador/Components/usuario-list/us
 import{RegistroUsuarioService} from './Administrador/Services/registro-usuario.service';
 import { RegistroArchivoService } from "./Editor/Services/registro-archivo.service";
 import { RolesListComponent } from './Administrador/Components/roles-list/roles-list.component';
+
 
 //imporar modulo para animacion de mensajes de alterta 
 import{BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -24,9 +25,10 @@ import { from } from 'rxjs';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { MenuPrincipalEditorComponent } from './Editor/Components/menu-principal-editor/menu-principal-editor.component';
- import { LoginComponent } from './Login/Components/login/login.component';
+ import { LoginComponent } from './Login/Components/login.component';
 import { PerfilesMujeresComponent } from './Editor/Components/perfiles-mujeres/perfiles-mujeres.component'
-
+import {LoginGuard} from './Login/Services/login.guard'
+// import {TokenInterceptorService} from './Login/Services/token-interceptor.service'
 
 @NgModule({
   declarations: [
@@ -58,8 +60,8 @@ import { PerfilesMujeresComponent } from './Editor/Components/perfiles-mujeres/p
    
 
   ],
-  //agreagr un proveedor
-  providers: [RegistroUsuarioService, RegistroArchivoService],
+  //agreagr un proveedor para utilizar en cualquier clase
+  providers: [RegistroUsuarioService, RegistroArchivoService,LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

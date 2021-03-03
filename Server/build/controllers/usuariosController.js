@@ -51,24 +51,34 @@ class UsuariosController {
     // }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const nombre = req.body.nombre;
-            const apellido = req.body.apellido;
-            const nivel_academico = req.body.nivel_academico;
-            const carrera = req.body.carrera;
-            const unidad_educativa = req.body.unidad_educativa;
-            const correo_electronico = req.body.correo_electronico;
-            const contrasenia = req.body.contrasenia;
-            const id_rol = req.body.id_rol;
-            try {
-                const query = "INSERT INTO usuario ( nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,(select id_rol from rol where tipo_rol=?))";
-                database_1.default.query(query, [nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, id_rol]);
-                res.json({ text: "usuario guardado" });
+            //  const crypt=await brycpt.genSalt(10)
+            //     const contrasenian= await brycpt.hash(contrasenia,crypt)
+            //     console.log("contraseñia encriptda", contrasenian)
+            const { nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, id_rol } = req.body;
+            const query = "INSERT INTO usuario ( nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,(select id_rol from rol where tipo_rol=?))";
+            if (!id_rol) {
+                const newId_rol = "Estudiante Secundaria";
+                try {
+                    yield database_1.default.query(query, [nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, newId_rol]);
+                    res.json({ text: "usuario guardado" });
+                }
+                catch (error) {
+                    res.json({ text: "Hubo un error " });
+                    console.log("no se puede guardar" + error);
+                }
             }
-            catch (error) {
-                res.json({ text: "Hubo un error " });
-                console.log("no se puede guardar" + error);
+            else {
+                try {
+                    console.log("pasa siguiente");
+                    yield database_1.default.query(query, [nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, id_rol]);
+                    res.json({ text: "usuario guardado" });
+                }
+                catch (error) {
+                    res.json({ text: "Hubo un error " });
+                    console.log("no se puede guardar" + error);
+                }
             }
-            //console.log([req.body]);
+            // 
         });
     }
     delete(req, res) {

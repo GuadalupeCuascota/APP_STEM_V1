@@ -1,35 +1,41 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkjwt = void 0;
+exports.isAdmin = exports.checkjwt = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const checkjwt = (req, res, next) => {
-    console.log("req", req.headers.login);
     if (!req.headers.login) {
-        return res.status(401).send('no existe cabezera');
+        return res.status(401).json('no existe cabezera');
     }
     else {
+        console.log("pasaaa");
         try {
             const token = req.headers.login;
             const payload = jsonwebtoken_1.default.verify(token, 'SCRET'); //obtener  los datos que se envio en el token
-            console.log("este es el ", payload);
-            res.locals.jwtPayload = payload;
-            //req.user_id=payload._id;
+            console.log("este es el payload", payload);
+            res.locals.payload = payload;
             next();
+            //  res.locals.payload=payload
+            // //req.user_id=payload._id;
+            // next();
         }
         catch (error) {
-            console.log("erro", error);
             res.status(401).json({ message: 'Not autorizado' });
         }
     }
-    // const token =<string> req.headers['login']; //esperamos un parametro login en el que se envia el token de la validadcion de usuario y contraseña
-    // console.log("validar",token)
-    //     const {correo_electronico, contrasenia}=payload;
-    //     console.log("payloadd",jwtPayload)
-    //     const newToken=jwt.sign({correo_electronico,contrasenia}, 'SCRET',{expiresIn: '1h'});
-    //  res.setHeader('token',newToken);
-    // console.log("nuevo toke", newToken)
 };
 exports.checkjwt = checkjwt;
+const isAdmin = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+});
+exports.isAdmin = isAdmin;

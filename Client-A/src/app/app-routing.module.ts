@@ -3,9 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { UsuarioListComponent } from './Administrador/Components/usuario-list/usuario-list.component';
 import {RolesListComponent } from './Administrador/Components/roles-list/roles-list.component';
 import { MenuPrincipalEditorComponent} from './Editor/Components/menu-principal-editor/menu-principal-editor.component';
-import {RegistroUsuarioComponent} from './Administrador/Components/menu-principal/registro-usuario.component'
-import {LoginComponent} from './Login/Components/login/login.component'
-import {PerfilesMujeresComponent} from './Editor/Components/perfiles-mujeres/perfiles-mujeres.component'
+import {RegistroUsuarioComponent} from './Administrador/Components/menu-principal/registro-usuario.component';
+import {LoginComponent} from './Login/Components/login.component'
+import {PerfilesMujeresComponent} from './Editor/Components/perfiles-mujeres/perfiles-mujeres.component';
+import {LoginGuard} from './Login/Services/login.guard'
 
 const routes: Routes = [
   {
@@ -16,28 +17,35 @@ const routes: Routes = [
   {
      path: 'login',
     component: LoginComponent
-
+    
   },
   {
     path: 'perfiles',
-    component:PerfilesMujeresComponent
+    component:PerfilesMujeresComponent,
+    canActivate:[LoginGuard]
   },
 
   {
     path: 'admin',
-    component:RegistroUsuarioComponent
+    component:RegistroUsuarioComponent,
+     canActivate:[LoginGuard],
+    
+
   },
   {
     path: 'roles',
-    component:RolesListComponent
+    component:RolesListComponent,
+    canActivate:[LoginGuard]
   },
   {
     path: 'usuarios',
-    component:UsuarioListComponent
+    component:UsuarioListComponent,
+     canActivate:[LoginGuard]
   },
   {
     path: 'editor',
-    component: MenuPrincipalEditorComponent
+    component: MenuPrincipalEditorComponent,
+    canActivate:[LoginGuard]
   },
 
 ];
