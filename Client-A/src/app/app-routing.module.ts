@@ -3,9 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { UsuarioListComponent } from './Administrador/Components/usuario-list/usuario-list.component';
 import {RolesListComponent } from './Administrador/Components/roles-list/roles-list.component';
 import { MenuPrincipalEditorComponent} from './Editor/Components/menu-principal-editor/menu-principal-editor.component';
+import {MenuPublicacionComponent } from './Editor/Components/menu-publicacion/menu-publicacion.component';
 import {RegistroUsuarioComponent} from './Administrador/Components/menu-principal/registro-usuario.component';
 import {LoginComponent} from './Login/Components/login.component'
 import {PerfilesMujeresComponent} from './Editor/Components/perfiles-mujeres/perfiles-mujeres.component';
+import {NoticiasComponent} from './Editor/Components/noticias/noticias.component';
 import {LoginGuard} from './Login/Services/login.guard'
 
 const routes: Routes = [
@@ -20,9 +22,21 @@ const routes: Routes = [
     
   },
   {
-    path: 'perfiles',
+    path: 'perfiles/:id',
     component:PerfilesMujeresComponent,
     canActivate:[LoginGuard]
+  },
+  {
+    path: 'noticias/:id',
+    component:NoticiasComponent,
+    canActivate:[LoginGuard]
+
+  },
+  {
+    path: 'menu-publicacion',
+    component:MenuPublicacionComponent,
+    canActivate:[LoginGuard]
+
   },
 
   {

@@ -16,7 +16,7 @@ export class RegistroArchivoService {
   }
   
   getArchivo (id:String){
-    return this.http.get(`${this.API_URI}/publicaciones/${id}`);
+    return this.http.get<Archivo>(`${this.API_URI}/publicaciones/${id}`);
   
   }
   saveArchivo (formData){
@@ -28,8 +28,8 @@ export class RegistroArchivoService {
     return this.http.delete(`${this.API_URI}/publicaciones/${id}`);
   
   }
-updateUsuario (id:number, updateArcivo:Archivo){
-    return this.http.put(`${this.API_URI}/publicaciones/${id}`,updateArcivo);
+updateArchivo (id:number, formData){
+    return this.http.put(`${this.API_URI}/publicaciones/${id}`,formData);
   
   }
   

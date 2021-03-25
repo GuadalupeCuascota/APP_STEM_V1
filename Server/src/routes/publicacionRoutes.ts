@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {archivosController} from "../controllers/publicacionController";
 import multer from '../libs/multer';
-import {checkjwt}from '../midleware/jwt';
+
 class PublicacionRoutes {
   public router: Router = Router();
   constructor() {
@@ -12,7 +12,7 @@ class PublicacionRoutes {
     this.router.get("/:id", archivosController.getOne);
     this.router.post("/", multer.single('ruta_archivo'),archivosController.create ); //antes de procesar pasa por multer para saber si hay un archivo 
     this.router.delete("/:id",archivosController.delete);
-    this.router.put("/:id",archivosController.update );
+    this.router.put("/:id",multer.single('ruta_archivo'),archivosController.update );
   }
 }
 const publicacionRoutes=new PublicacionRoutes();

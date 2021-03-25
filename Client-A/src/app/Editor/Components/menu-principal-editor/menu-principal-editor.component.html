@@ -1,27 +1,91 @@
 
-<!-- class="navbar navbar-expand-lg navbar-dark bg-primary" -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
-    <div class="container">
-      <a class="navbar-brand" routerLink="/">Bienvenido Editor</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+ <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+  <a class="navbar-brand" routerLink="/editor">
+    <!-- <img src="../../../assets/Fica Stem JPG.jpg" width="50" height="40" class="d-inline-block align-top" alt=""> -->
+    Bienvenido Editor  FICA STEM</a>
+  
+  <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!collapsed" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
+    <ul class="navbar-nav ">
+      <li class="nav-item ">
+        <a class="nav-link" routerLink="/editor" routerLinkActive="active"><i class="fas fa-home fa-2x fa-lg" ></i> </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      
+
+      <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
+        <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button"> 
+          <i class="fas fa-users-cog fa-2x"></i>
+          {{datos.nombre}} {{datos.apellido}}
+        </a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+          <a ngbDropdownItem href="#" (click)="$event.preventDefault()"><i class="fas fa-key"></i>  Cambiar contraseña</a>
+          <a ngbDropdownItem  (click)="logOut()"><i class="far fa-arrow-alt-circle-left"></i>     Cerrar Sesión</a>
+          
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="list-group">
+
+   
+  <a href="#" class="list-group-item active"> <span>Menu</span></a>
+
+  <a href="#" class="list-group-item"><i class="fa fa-book"></i> <span>  Gestionar Tutorias académicas</span></a>
+  <a href="#" class="list-group-item"><i class="fa fa-question-circle"></i> <span>  solicitudes de publicación</span></a>
+  <a href="#" class="list-group-item"><i class="fas fa-chart-bar"></i> <span>   Dashboard</span></a>
+  </div>
+<app-menu-publicacion></app-menu-publicacion>
+ 
+  
+  
+
+ <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+  
+    
+      <a class="navbar-brand" routerLink="/editor">Bienvenido Editor  FICA STEM</a>
+      
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item ">
+        <li class="nav-item">
           <a class="nav-link" routerLink="/perfiles" routerLinkActive="active">Perfiles</a>
         </li>
      
         <li class="nav-item">
-          <a class="nav-link" routerLink="" routerLinkActive="">Noticias</a>
+          <a class="nav-link" routerLink="/noticias" routerLinkActive="">Noticias</a>
         </li>
         <li
          class="nav-item">
           <a class="nav-link" routerLink="" routerLinkActive="">Oferta Académica FICA</a>
         </li>
+       
+       
+        <li class="nav-item">
+          {{datos.nombre}} {{datos.apellido}}
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" style="cursor:pointer;"   routerLinkActive="active"><i class="fas fa-times-circle"></i>Cerrar Sesión</a>
+        </li>
         
       </ul>
     </div>
 
-    </div>
-  </nav>
+    
+  </nav> -->
+  
+ 
+
+
+    
+
+    

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../Services/login.service';
 import { Usuario } from '../../Administrador/Models/usuario';
-import {Router} from '@angular/router'
-import{AlertsService} from '../../Services/alerts/alerts.service';
-import { JwtHelperService } from "@auth0/angular-jwt";
-const helper=new JwtHelperService
+import { Router } from '@angular/router';
+import { AlertsService } from '../../Services/alerts/alerts.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+const helper = new JwtHelperService();
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,57 +22,48 @@ export class LoginComponent implements OnInit {
     id_rol: 0,
   };
   resp: any = {};
- 
-  errorstatus:boolean=false;
-  errorMsj:any={};
-  msj:any="";
-  // usuario:String= '';
-  // contrasenia:String='';
-  constructor(
-    private loginServices: LoginService,
-    private router: Router,
-    
-    ) {}
-  
+
+  errorstatus: boolean = false;
+  errorMsj: any = {};
+  msj: any = '';
+
+  constructor(private loginServices: LoginService, private router: Router) {}
 
   login() {
     console.log(this.user);
     this.loginServices.login(this.user).subscribe(
       (res) => {
         console.log(res);
-        this.resp=res
-        localStorage.setItem('token',this.resp.Token)
-
-      console.log("el token:",this.resp.Token)
-      const id_rol=this.resp.payload.id_rol;
-      
-      
-      localStorage.setItem("payload",id_rol)
-        if(id_rol==1){
-          console.log("verdadero")
-        this.router.navigate(['/admin']);
-        }else{
-          if(id_rol==2){
+        this.resp = res;
+        console.log("datos usuario",this.resp.payload)
+        localStorage.setItem('token', this.resp.Token);
+        localStorage.setItem('payload',JSON.stringify(this.resp.payload));
+        
+        
+    
+        const id_rol = this.resp.payload.id_rol;
+        
+        
+        if (id_rol == 1) {
+          console.log('Admin');
+          this.router.navigate(['/admin']);
+        } else {
+          if (id_rol == 2) {
+            console.log('Editor');
             this.router.navigate(['/editor']);
           }
-         
         }
-        
-     
-
       },
-      (err)=> {
-        console.log("el error",err)
-         this.errorstatus=true;
-        this.errorMsj=err.error;
+      (err) => {
+        console.log('el error', err);
+        this.errorstatus = true;
+        this.errorMsj = err.error;
 
-        this.msj=this.errorMsj.text
-      
+        this.msj = this.errorMsj.text;
       }
-      
     );
   }
-  logOut(){
+  logOut() {
     this.loginServices.logOut();
   }
   ngOnInit(): void {}

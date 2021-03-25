@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
+import {LoginService} from '../../../Login/Services/login.service'
 
 
 @Component({
@@ -9,15 +10,16 @@ import {Router} from '@angular/router'
 })
 export class RegistroUsuarioComponent implements OnInit {
   datos: any = {};
+  collapsed = true;
   constructor( private router: Router,
+    private loginServices: LoginService
  ) { }
   logOut(){
-    localStorage.removeItem('token');
-    this.router.navigate(['/login'])
+    this.loginServices.logOut();
   }
   ngOnInit(): void {
-    
-    
+    this.datos=JSON.parse(localStorage.getItem('payload'));
+    console.log("hola admin",this.datos)
   }
  
 }

@@ -14,6 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.archivosController = void 0;
 const database_1 = __importDefault(require("../database"));
+const path_1 = __importDefault(require("path"));
+const fs_extra_1 = __importDefault(require("fs-extra"));
 class ArchivosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -32,59 +34,128 @@ class ArchivosController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const archivo = yield database_1.default.query("SELECT * FROM archivo WHERE id_archivo=?", [id]);
-            if (archivo.length > 0) {
-                return res.json(archivo[0]);
+            const publicacion = yield database_1.default.query("SELECT * FROM publicacion WHERE id_publicacion=?", [id]);
+            if (publicacion.length > 0) {
+                return res.json(publicacion[0]);
             }
-            res.status(404).json({ text: "el archivo no existe" });
+            res.status(404).json({ text: "publicación no existe" });
         });
     }
     //res.json({ text: "rol encontrado" +req.params.id});
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log("CREAR");
             try {
                 const { titulo, descripcion, enlace, profesion, estado_profesion, id_tipo_publicacion, id_usuario, id_estado_publicacion, } = req.body;
-                console.log("id_tio_publicasion:" + req.body.id_tipo_publicacion);
-                console.log("titulo:" + req.body.titulo);
-                console.log(req.file); //file variable donde se guarda los datos del archivo
-                const ruta_archivo = req.file.path;
+                console.log(req.file);
+                console.log("titulo:" + req.body.estado_profesion);
+                console.log("descripcion", req.body.descripcion);
+                console.log("enlace", req.body.enlace);
+                console.log("profeion", req.body.profesion);
+                console.log("estado profesion", req.body.estado_profesion);
+                console.log("id_tipo_publicacion:" + req.body.id_tipo_publicacion);
+                console.log("usuario:" + req.body.id_usuario);
+                console.log("id_estado_publicación:" + req.body.id_estado_publicacion);
                 const query = "INSERT INTO publicacion (titulo,descripcion,enlace,profesion,estado_profesion,ruta_archivo,id_tipo_publicacion,id_usuario,id_estado_publicacion) VALUES (?,?,?,?,?,?,?,?,?)";
-                yield database_1.default.query(query, [
-                    titulo,
-                    descripcion,
-                    enlace,
-                    profesion,
-                    estado_profesion,
-                    ruta_archivo,
-                    id_tipo_publicacion,
-                    id_usuario,
-                    id_estado_publicacion,
-                ]);
-                res.json({ text: "Archivo guardado" });
+                if (req.file) {
+                    console.log("pasa");
+                    const ruta_archivo = req.file.path;
+                    console.log(req.file.path);
+                    yield database_1.default.query(query, [
+                        titulo,
+                        descripcion,
+                        enlace,
+                        profesion,
+                        estado_profesion,
+                        ruta_archivo,
+                        id_tipo_publicacion,
+                        id_usuario,
+                        id_estado_publicacion,
+                    ]);
+                    res.json({ text: "Archivo guardado" });
+                }
+                else {
+                    const ruta_archivo = null;
+                    yield database_1.default.query(query, [
+                        titulo,
+                        descripcion,
+                        enlace,
+                        profesion,
+                        estado_profesion,
+                        ruta_archivo,
+                        id_tipo_publicacion,
+                        id_usuario,
+                        id_estado_publicacion,
+                    ]);
+                    res.json({ text: "Archivo guardado" });
+                }
             }
-            catch (error) {
-                console.log("hubo un error" + error);
-                res.json("NO se puede guardar");
+            catch (err) {
+                console.log("hubo un error" + err);
+                err.json({ text: "error" });
             }
         });
     }
-    //console.log(req.body);
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const archivo = yield database_1.default.query(" DELETE FROM archivo WHERE id_archivo=?", [id]);
-            res.json({ message: "el archivo fue eliminado" });
+            const publicacion = yield database_1.default.query("SELECT * FROM publicacion WHERE id_publicacion=?", [id]);
+            if (publicacion.length > 0) {
+                console.log("pasa");
+                const archivo = yield database_1.default.query(" DELETE FROM publicacion WHERE id_publicacion=?", [id]);
+                if (publicacion[0].ruta_archivo != null) {
+                    console.log("si hay ruta");
+                    if (!path_1.default.resolve(publicacion[0].ruta_archivo)) {
+                        console.log("segundo pasa");
+                        yield fs_extra_1.default.unlink(path_1.default.resolve(publicacion[0].ruta_archivo));
+                    }
+                    else {
+                        return res.json({ message: "No existe archivo en el servidor" });
+                    }
+                }
+                return res.json({ message: "el archivo fue eliminado" });
+            }
+            return res.status(404).json({ text: "el archivo no existe" });
         });
     }
-    // res.json({ text: "eliminando" + req.params.id });
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const roles = yield database_1.default.query(" UPDATE archivo set ? WHERE id_archivo=?", [
-                req.body,
-                id,
-            ]);
-            res.json({ message: "actualizado" });
+            try {
+                const { id } = req.params;
+                console.log("id: " + id);
+                const { titulo, descripcion, enlace, profesion, estado_profesion, } = req.body;
+                const query = "UPDATE publicacion set titulo=?,descripcion=?,enlace=?, profesion=?,estado_profesion=?, ruta_archivo=? WHERE id_publicacion=?";
+                if (req.file) {
+                    const ruta_archivo = req.file.path;
+                    database_1.default.query(query, [
+                        titulo,
+                        descripcion,
+                        enlace,
+                        profesion,
+                        estado_profesion,
+                        ruta_archivo,
+                        id,
+                    ]);
+                    return res.json({ text: "publicación actualizado" });
+                }
+                else {
+                    const ruta_archivo = null;
+                    database_1.default.query(query, [
+                        titulo,
+                        descripcion,
+                        enlace,
+                        profesion,
+                        estado_profesion,
+                        ruta_archivo,
+                        id,
+                    ]);
+                    return res.json({ text: "publicación actualizado" });
+                }
+            }
+            catch (err) {
+                console.log("no se puede actualizar" + err);
+                return res.json({ text: "Hubo un error " });
+            }
         });
     }
 }

@@ -124,7 +124,10 @@ export class UsuarioListComponent implements OnInit {
         console.log(res);
         this.alerts.showSuccess('Successfull Operation', 'Usuario guardado')
       },
-      (err) => console.error(err)
+      (err) => {
+        console.error(err)
+      this.alerts.showError('Error Operation', 'No se puede guardar')
+      }
     );
   }
   deleteUsuario(id_usuario: string) {

@@ -114,6 +114,7 @@ class UsuariosController {
                 console.log("rol:" + req.body.tipo_rol);
                 console.log("id_usuario:" + req.body.id_usuario);
                 console.log("nombre:" + req.body.nombre);
+                console.log("correo:" + req.body.correo_electronico);
                 const query = "UPDATE usuario set nombre=?,apellido=?,nivel_academico=?,carrera=?,unidad_educativa=?,correo_electronico=?,contrasenia=?, id_rol=(select id_rol from rol where tipo_rol=?) WHERE id_usuario=?";
                 database_1.default.query(query, [nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, tipo_rol, id]);
                 res.json({ text: "usuario actualizadoo" });

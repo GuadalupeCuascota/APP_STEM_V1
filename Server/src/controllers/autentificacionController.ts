@@ -37,7 +37,7 @@ class AutentificacionController {
                    console.log(Token)
                    return res.json({message:"ok",Token,payload});
 
-                   
+      
                 }else{
                   console.log("pasa")
                   return res.status(404).json({text: 'correo es incorrecta'})

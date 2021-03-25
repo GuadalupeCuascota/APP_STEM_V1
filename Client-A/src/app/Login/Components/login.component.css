@@ -1,7 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 .login-page {
-  width: 300px;
+  width: 350px;
+  height: 400px;
   padding: 2% 0 0;
   margin: auto;
 }
@@ -33,7 +34,7 @@ img{
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #6793f3;
+  background: #cc81e2;
   width: 100%;
   border: 0;
   padding: 15px;
@@ -44,7 +45,7 @@ img{
   cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
-  background: #6793f3;
+  background: #c64dca;
 }
 .form .message {
   margin: 15px 0 0;
@@ -100,4 +101,8 @@ body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
+}
+.alert{
+ 
+  text-align: center;
 }

@@ -18,7 +18,7 @@ class UsuariosController {
         console.log("Datos de usuarios seleccionados");
       }
     });
-    
+                         
   }
   public async getOne(req: Request, res: Response) {
 
@@ -112,6 +112,7 @@ class UsuariosController {
        console.log("rol:"+req.body.tipo_rol)
        console.log("id_usuario:"+req.body.id_usuario)
        console.log("nombre:"+req.body.nombre)
+       console.log("correo:"+req.body.correo_electronico)
       const query="UPDATE usuario set nombre=?,apellido=?,nivel_academico=?,carrera=?,unidad_educativa=?,correo_electronico=?,contrasenia=?, id_rol=(select id_rol from rol where tipo_rol=?) WHERE id_usuario=?";
       pool.query(query,[nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia, tipo_rol,id]);
       res.json({text: "usuario actualizadoo"});

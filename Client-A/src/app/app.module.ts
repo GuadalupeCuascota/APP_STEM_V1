@@ -27,7 +27,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { MenuPrincipalEditorComponent } from './Editor/Components/menu-principal-editor/menu-principal-editor.component';
  import { LoginComponent } from './Login/Components/login.component';
 import { PerfilesMujeresComponent } from './Editor/Components/perfiles-mujeres/perfiles-mujeres.component'
-import {LoginGuard} from './Login/Services/login.guard'
+import {LoginGuard} from './Login/Services/login.guard';
+import { NoticiasComponent } from './Editor/Components/noticias/noticias.component';
+import { MenuPublicacionComponent } from './Editor/Components/menu-publicacion/menu-publicacion.component'
 // import {TokenInterceptorService} from './Login/Services/token-interceptor.service'
 
 @NgModule({
@@ -43,7 +45,13 @@ import {LoginGuard} from './Login/Services/login.guard'
    LoginComponent,
   
    
-   PerfilesMujeresComponent
+   PerfilesMujeresComponent,
+  
+   
+   NoticiasComponent,
+  
+   
+   MenuPublicacionComponent
    
   ],
   imports: [

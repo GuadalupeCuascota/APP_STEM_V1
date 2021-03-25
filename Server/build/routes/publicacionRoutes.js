@@ -16,7 +16,7 @@ class PublicacionRoutes {
         this.router.get("/:id", publicacionController_1.archivosController.getOne);
         this.router.post("/", multer_1.default.single('ruta_archivo'), publicacionController_1.archivosController.create); //antes de procesar pasa por multer para saber si hay un archivo 
         this.router.delete("/:id", publicacionController_1.archivosController.delete);
-        this.router.put("/:id", publicacionController_1.archivosController.update);
+        this.router.put("/:id", multer_1.default.single('ruta_archivo'), publicacionController_1.archivosController.update);
     }
 }
 const publicacionRoutes = new PublicacionRoutes();

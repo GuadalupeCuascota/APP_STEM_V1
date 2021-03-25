@@ -1,6 +1,7 @@
 export interface Publicacion {
-  
-    titulo:string;
+    id_publicacion: number;
+    titulo: string;
+    fecha_publicacion: Date;
     descripcion:string;
     enlace:string;
     profesion:string;

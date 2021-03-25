@@ -1,8 +1,5 @@
 <app-menu-principal-editor></app-menu-principal-editor>
 <br />
-<button class="btn btn-primary" (click)="open(contenido)">
-  CREAR PERFIL <i class="fas fa-plus-square"></i>
-</button>
 
 <ng-template #contenido let-modal>
   <div class="modal-header">
@@ -20,21 +17,45 @@
   </div>
   <div class="modal-body">
     <div class="form-group">
+      <label>Campo de trabajo/estudio: </label>
       <input
         type="text"
         class="form-control"
         name=""
-        placeholder="Ingrese titulo"
-        [(ngModel)]="perfiles.titulo"
+        placeholder="Ingrese campo de trabajo o estudio"
+        [(ngModel)]="perfil.profesion"
         required
       />
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          value="graduada"
+          name="estado_profesion"
+          [(ngModel)]="perfil.estado_profesion"
+        />
+        <label class="form-check-label">graduada</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          value="estudiante"
+          name="estado_profesion"
+          [(ngModel)]="perfil.estado_profesion"
+        />
+        <label class="form-check-label" for="inlineRadio2">estudiante</label>
+      </div>
     </div>
+   
+
     <div class="form-group">
+      <label>Descripción:</label>
       <textarea
         rows="2"
         class="form-control"
-        [(ngModel)]="perfiles.descripcion"
-        placeholder="Ingrese Descripción"
+        [(ngModel)]="perfil.descripcion"
+        placeholder="Ingrese descripción"
         required
       ></textarea>
     </div>
@@ -46,8 +67,11 @@
         (change)="onFileSelect($event)"
         #photo
       />
-
-      <!-- class="d-none"<img [src]="../../../../assets/noimage.png" class="img-fluid" alt="no-image" (click)="photo.click()"> -->
+       
+        <img [src]="leerArchivo || API_URI || '../../../../assets/noimage.png'" class="img-fluid" alt="no-image" >
+     
+     
+      <!-- <class="d-none"<img [src]="../../../../assets/noimage.png" class="img-fluid" alt="no-image" (click)="photo.click()"> -->
     </div>
   </div>
 
@@ -60,39 +84,54 @@
     >
       Cerrar
     </button>
-    <button type="button" class="btn btn-primary" (click)="saveArchivo()">
+    <button type="button" class="btn btn-primary" (click)=" edit ? updatepublicacion():saveArchivo()">
       PUBLICAR
     </button>
   </div>
 </ng-template>
-<div class="column">
-  <table class="table table-hover">
-    <thead>
-      <tr class="table-active">
-        <th scope="col">Titulo</th>
-        <th scope="col">Descripción</th>
-        <th scope="col">Imagen</th>
-        <th scope="col">acciones</th>
-      </tr>
-    </thead>
+<br />
 
-    <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        
-        <td>
-          <button class="btn btn-primary">
-            <i class="fas fa-edit"></i>
-          </button>
-          <button class="btn btn-danger">
-            <i class="far fa-trash-alt"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="row">
+  <div class="col-md-8 offset-md-3">
+    <button type="reset" class="btn btn-primary" (click)="open(contenido);clear()">
+      CREAR PERFIL <i class="fas fa-plus-square"></i>
+    </button>
+    <br />
+    <table class="table table-hover">
+      <thead>
+        <tr class="table-active">
+          <th scope="col">Profesion</th>
+          
+          <th scope="col">Descripción</th>
+          
+          <th scope="col">acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr  *ngFor="
+        let perfil of perfiles | paginate: { itemsPerPage: 3, currentPage: p }">
+          <td>{{ perfil.profesion }}</td>
+          
+          <td>{{ perfil.descripcion}}</td>
+          <!-- <td><img [src]="'http://localhost:3000/'+ perfil.ruta_archivo" class="img-card-top w-100"  alt="no-image"></td> -->
+          <td>
+            <button class="btn btn-primary"  (click)="getpublicacion(perfil.id_publicacion); open(contenido)" >
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-danger"  (click)="deletePublicacion(perfil.id_publicacion )">
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  
+    <!-- <video src="../../../../assets/Pregunta a.mp4" width="300" controls> -->
+    <!-- </video> -->
+  
+  </div>
 </div>
 
 
