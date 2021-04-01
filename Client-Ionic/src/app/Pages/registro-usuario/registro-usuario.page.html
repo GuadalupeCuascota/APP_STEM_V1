@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center"> Crear cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formUsuario" (ngSubmit)="saveUsuarios()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating"> Nombre:</ion-label>
+        <ion-input
+          formControlName="nombre"
+          placeholder="Ingrese nombre"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> Apellido:</ion-label>
+        <ion-input
+          formControlName="apellido"
+          placeholder="Ingrese apellido"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating"> Usuario:</ion-label>
+        <ion-input
+          formControlName="correo_electronico"
+          placeholder="Ingrese email"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating"> Contraseña:</ion-label>
+        <ion-input
+          [type]="showPassword ? 'text': 'password'"
+          formControlName="contrasenia"
+          placeholder="Ingrese contraseña"
+        ></ion-input>
+        <ion-icon
+          slot="end"
+          [name]="passwordIcon"
+          (click)="toggleShow()"
+        ></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nivel académico:</ion-label>
+        <ion-select
+          (ionChange)="optionsFn($event)"
+          placeholder="Seleccione"
+          formControlName="nivel_academico"
+        >
+          <ion-select-option value="secundaria">Secundaria</ion-select-option>
+          <ion-select-option value="superior"
+            >Educación superior</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+      
+        <ion-item *ngIf="estado==false">
+          <ion-label> Carrera: </ion-label>
+          <ion-select placeholder="Seleccione" formControlName="carrera">
+            <ion-select-option value="Mecatronica"
+              >Ing.Mecatronica</ion-select-option
+            >
+            <ion-select-option value="Sistemas Computacionales"
+              >Ing.Sistemas Computacionales</ion-select-option
+            >
+            <ion-select-option value="Telecomunicación"
+              >Ing.Telecomunicación</ion-select-option
+            >
+            <ion-select-option value="Textil">Ing.Textil</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="estado">
+          <ion-label position="floating"> Unidad Educativa:</ion-label>
+          <ion-input
+            formControlName="unidad_educativa"
+            placeholder="Ingrese unidad educativa"
+          ></ion-input>
+        </ion-item>
+    
+    </ion-list>
+    <ion-button type="submit" [disabled]="!formUsuario.valid" expand="block"
+      >Suscribirse</ion-button
+    >
+  </form>
+</ion-content>

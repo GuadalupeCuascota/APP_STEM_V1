@@ -57,7 +57,7 @@ class UsuariosController {
             const { nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, id_rol } = req.body;
             const query = "INSERT INTO usuario ( nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,(select id_rol from rol where tipo_rol=?))";
             if (!id_rol) {
-                const newId_rol = "Estudiante Secundaria";
+                const newId_rol = "Estudiante";
                 try {
                     yield database_1.default.query(query, [nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, newId_rol]);
                     res.json({ text: "usuario guardado" });

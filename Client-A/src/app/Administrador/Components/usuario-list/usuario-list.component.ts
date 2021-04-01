@@ -19,6 +19,7 @@ export class UsuarioListComponent implements OnInit {
   usuarios: any = [];
   usuario1: any = {};
   usuario: Usuario = {
+ 
    
     nombre: '',
     apellido: '',

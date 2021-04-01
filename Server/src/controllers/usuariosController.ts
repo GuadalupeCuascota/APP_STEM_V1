@@ -48,7 +48,7 @@ class UsuariosController {
    
     const query="INSERT INTO usuario ( nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,(select id_rol from rol where tipo_rol=?))";
     if(!id_rol){
-        const newId_rol="Estudiante Secundaria"
+        const newId_rol="Estudiante"
         try {
           
         await pool.query(query,[ nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia,newId_rol]);

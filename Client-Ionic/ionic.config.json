@@ -1,0 +1,7 @@
+{
+  "name": "Client-Ionic",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
