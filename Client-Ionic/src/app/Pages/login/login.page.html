@@ -1,9 +1,38 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center"> Iniciar Sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="formLogin" (ngSubmit)="login()">
+    <img src="../../../assets/Fica Stem PNG.png" />
 
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating"> Usuario:</ion-label>
+        <ion-input   formControlName="correo_electronico" placeholder="Ingrese email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating"> Contraseña:</ion-label>
+        <ion-input formControlName="contrasenia" 
+          [type]="showPassword ? 'text': 'password'"
+          placeholder="Ingrese contraseña" 
+        ></ion-input>
+        <ion-icon
+          slot="end"
+          [name]="passwordIcon"
+          (click)="toggleShow()"
+        ></ion-icon>
+      </ion-item>
+      <ion-button type="submit"  [disabled]="!formLogin.valid" expand="block" >ENTRAR</ion-button>
+      <ion-button
+        color="secondary"
+        type="submit"
+        routerLink="/registro-usuario"
+        expand="block"
+        >Registarse</ion-button
+      >
+    </ion-card>
+  </form>
 </ion-content>

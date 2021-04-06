@@ -20,6 +20,7 @@ const bcryptjs_1 = __importDefault(require("bcryptjs"));
 class AutentificacionController {
     login(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log("PASAA");
             const { correo_electronico, contrasenia } = req.body;
             if (!(correo_electronico && contrasenia)) {
                 return res.status(404).json({ text: 'correo y contraseña son requeridos' });
@@ -34,7 +35,8 @@ class AutentificacionController {
                         id_usuario: usuario[0].id_usuario,
                         nombre: usuario[0].nombre,
                         apellido: usuario[0].apellido,
-                        id_rol: usuario[0].id_rol
+                        id_rol: usuario[0].id_rol,
+                        nivel_academico: usuario[0].nivel_academico,
                     };
                     const Token = jsonwebtoken_1.default.sign({ payload }, 'SCRET', { expiresIn: '1h' });
                     console.log(Token);
@@ -42,7 +44,7 @@ class AutentificacionController {
                 }
                 else {
                     console.log("pasa");
-                    return res.status(404).json({ text: 'correo es incorrecta' });
+                    return res.status(412).json({ text: 'correo es incorrecta' });
                 }
             }
         });
