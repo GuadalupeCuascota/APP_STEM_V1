@@ -17,7 +17,7 @@ import { LoadingService } from 'src/app/Services/loading.service';
 })
 export class LoginPage implements OnInit {
   showPassword = false;
-  passwordIcon = 'eye';
+  passwordIcon = 'eye-off';
   formLogin: FormGroup;
   resp: any = {};
   constructor(
@@ -43,10 +43,10 @@ export class LoginPage implements OnInit {
   }
   toggleShow(): void {
     this.showPassword = !this.showPassword;
-    if (this.passwordIcon == 'eye') {
-      this.passwordIcon = 'eye-off';
-    } else {
+    if (this.passwordIcon == 'eye-off') {
       this.passwordIcon = 'eye';
+    } else {
+      this.passwordIcon = 'eye-off';
     }
   }
  async login() {

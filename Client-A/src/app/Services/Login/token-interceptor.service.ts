@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpInterceptor} from '@angular/common/http'
-import {LoginService} from '../Services/login.service'
+import {LoginService} from '../../Services/Login/login.service'
 @Injectable({
   providedIn: 'root'
 })

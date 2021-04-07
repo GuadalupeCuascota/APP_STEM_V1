@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UsuarioListComponent } from './Administrador/Components/usuario-list/usuario-list.component';
-import {RolesListComponent } from './Administrador/Components/roles-list/roles-list.component';
-import { MenuPrincipalEditorComponent} from './Editor/Components/menu-principal-editor/menu-principal-editor.component';
-import {MenuPublicacionComponent } from './Editor/Components/menu-publicacion/menu-publicacion.component';
-import {RegistroUsuarioComponent} from './Administrador/Components/menu-principal/registro-usuario.component';
-import {LoginComponent} from './Login/Components/login.component'
-import {PerfilesMujeresComponent} from './Editor/Components/perfiles-mujeres/perfiles-mujeres.component';
-import {NoticiasComponent} from './Editor/Components/noticias/noticias.component';
-import {LoginGuard} from './Login/Services/login.guard'
+import { UsuarioListComponent } from './Componets/Administrador/usuario-list/usuario-list.component';
+import {RolesListComponent } from './Componets/Administrador/roles-list/roles-list.component';
+import { MenuPrincipalEditorComponent} from './Componets/Editor/menu-principal-editor/menu-principal-editor.component';
+import {MenuPublicacionComponent } from './Componets/Editor/menu-publicacion/menu-publicacion.component';
+import {RegistroUsuarioComponent} from './Componets/Administrador/menu-principal/registro-usuario.component';
+import {LoginComponent} from './Componets/Login/login.component'
+import {PerfilesMujeresComponent} from './Componets/Editor/perfiles-mujeres/perfiles-mujeres.component';
+import {NoticiasComponent} from './Componets/Editor/noticias/noticias.component';
+import {LoginGuard} from './Services/Login/login.guard'
 
 const routes: Routes = [
   {

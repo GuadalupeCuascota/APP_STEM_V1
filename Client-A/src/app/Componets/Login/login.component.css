@@ -106,3 +106,12 @@ body {
  
   text-align: center;
 }
+.iconoInput {
+  color: #646262;
+  font-size: 15px;
+  position: absolute;
+  right: 30px;
+  padding-top: 12px;}
+
+  .inputPadding {
+  padding-left: 70px;}
