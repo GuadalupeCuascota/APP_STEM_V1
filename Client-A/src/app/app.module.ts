@@ -39,20 +39,11 @@ import { MenuPublicacionComponent } from './Componets/Editor/menu-publicacion/me
     RegistroUsuarioComponent,
     UsuarioListComponent,
     RolesListComponent,
-  
     MenuPrincipalEditorComponent,
-  
-   
-   LoginComponent,
-  
-   
-   PerfilesMujeresComponent,
-  
-   
-   NoticiasComponent,
-  
-   
-   MenuPublicacionComponent
+    LoginComponent,
+    PerfilesMujeresComponent,
+    NoticiasComponent,
+    MenuPublicacionComponent
    
   ],
   imports: [
