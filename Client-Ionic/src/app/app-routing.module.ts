@@ -28,6 +28,23 @@ const routes: Routes = [
     path: 'menu-principal-u',
     loadChildren: () => import('./Pages/Estudiante-superior/menu-principal-u/menu-principal-u.module').then( m => m.MenuPrincipalUPageModule)
   },
+  {
+    path: 'menu-opciones-se',
+    loadChildren: () => import('./Pages/Estudiante-secundaria/menu-opciones-se/menu-opciones-se.module').then( m => m.MenuOpcionesSePageModule)
+  },
+  {
+    path: 'perfiles',
+    loadChildren: () => import('./Pages/perfiles/perfiles.module').then( m => m.PerfilesPageModule)
+  },
+  
+  {
+    path: 'noticias',
+    loadChildren: () => import('./Pages/noticias/noticias.module').then( m => m.NoticiasPageModule)
+  },
+  {
+    path: 'inicio',
+    loadChildren: () => import('./Pages/inicio/inicio.module').then( m => m.InicioPageModule)
+  },
   
 ];
 

@@ -31,6 +31,7 @@ import { PerfilesMujeresComponent } from './Componets/Editor/perfiles-mujeres/pe
 import {LoginGuard} from './Services/Login/login.guard';
 import { NoticiasComponent } from './Componets/Editor/noticias/noticias.component';
 import { MenuPublicacionComponent } from './Componets/Editor/menu-publicacion/menu-publicacion.component'
+
 // import {TokenInterceptorService} from './Login/Services/token-interceptor.service'
 
 @NgModule({
@@ -57,8 +58,6 @@ import { MenuPublicacionComponent } from './Componets/Editor/menu-publicacion/me
     ToastrModule.forRoot(),
     NgxPaginationModule,
     NgbModule
-
-   
 
   ],
   //agreagr un proveedor para utilizar en cualquier clase

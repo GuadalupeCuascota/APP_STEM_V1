@@ -1,4 +1,4 @@
-<div class="alert alert-dark" role="alert" *ngIf="errorstatus">
+<div class="alert alert-danger" role="alert" *ngIf="errorstatus">
   {{msj}}
 </div>
 
@@ -10,7 +10,7 @@
     <img src="../../../assets/Fica Stem JPG.jpg">
     <h2>Iniciar Sesión</h2>
     
-    <input type="text" value="lgrandra@utn.edu.ec" placeholder="Email" [(ngModel)]="user.correo_electronico"
+    <input type="text"  placeholder="Email" [(ngModel)]="user.correo_electronico"
       class="form-control" required autofocus />
 
      <div>
@@ -25,7 +25,7 @@
 
     <button (click)="login()" class="btn btn-primary btn-block">Acceder </button>
     <!-- <p class="message">Not registered? <a href="/admin">Admin</a></p> -->
-
+    <!-- "node_modules/bootswatch/dist/Pulse/bootstrap.min.css", -->
   </div>
 
 </div>

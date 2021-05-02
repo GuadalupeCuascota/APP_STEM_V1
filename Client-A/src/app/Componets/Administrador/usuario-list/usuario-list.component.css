@@ -2,3 +2,10 @@
     background: rgba(248, 246, 248, 0.952);
 
 }
+.iconoInput {
+ color: #1a1818;
+ font-size: 15px;
+  position: absolute;
+  right: 30px;
+  top: 40px;
+  }

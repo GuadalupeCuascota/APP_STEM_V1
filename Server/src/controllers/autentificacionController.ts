@@ -46,7 +46,7 @@ class AutentificacionController {
       
                 }else{
                   console.log("pasa")
-                  return res.status(412).json({text: 'correo es incorrecta'})
+                  return res.status(412).json({text: 'correo es incorrecto'})
 
                 }
                

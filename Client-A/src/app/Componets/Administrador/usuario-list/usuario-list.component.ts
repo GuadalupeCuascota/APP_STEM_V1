@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { from } from 'rxjs';
 import { RegistroUsuarioService } from '../../../Services/registro-usuario.service';
+import { FormBuilder, FormControl, FormGroup, Validators,ReactiveFormsModule} from '@angular/forms';
 import { RegistroRolService } from '../../../Services/registro-rol.service';
 import { Rol } from '../../../Models/rol';
 //importat modulo del modal para la edicion
@@ -15,13 +16,13 @@ import{AlertsService} from '../../../Services/alerts/alerts.service';
 })
 export class UsuarioListComponent implements OnInit {
   closeResult = '';
+  showPassword = false;
+  show_eye: Boolean = false;
   roles: any = [];
   usuarios: any = [];
   usuario1: any = {};
   usuario: Usuario = {
- 
-   
-    nombre: '',
+    nombre: 'hola',
     apellido: '',
     nivel_academico: '',
     carrera: '',
@@ -42,6 +43,11 @@ export class UsuarioListComponent implements OnInit {
   ngOnInit(): void {
     this.getUsuarios();
     this.ObtenerRoles();
+  }
+  toggleShow(): void {
+    this.showPassword = !this.showPassword;
+    this.show_eye = !this.show_eye;
+
   }
   ///////////////////////METODOS DEL MODAL///////////////////////////
 
@@ -75,11 +81,20 @@ export class UsuarioListComponent implements OnInit {
   ////////////////////////////////////////////////////
 
   getUsuarios() {
-    
+    var usuAE = [];
     this.registroUsuarioService.getUsuarios().subscribe(
-      (res) => {
-        console.log(res);
-        this.usuarios = res;
+      
+      (res:any) => {
+        console.log(res)
+        for (let usu1 of res) {
+          if (usu1.tipo_rol == "Admin" || usu1.tipo_rol == "Editor") {
+            usuAE.push(usu1);
+            console.log(usuAE);
+        }
+      }
+        // console.log(res);
+         this.usuarios = usuAE  ;
+
       },
       /*  res=> console.log(res), */
       (err) => console.error(err)

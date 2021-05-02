@@ -9,7 +9,7 @@
       <div class="col">
         <label style="color: #161515">Nombre</label>
         <input
-          type="text"
+          type="text" value="lgrandra@utn.edu.ec"
           class="form-control"
           name=""
           placeholder="Ingrese nombre"
@@ -42,15 +42,23 @@
         />
       </div>
       <div class="col">
+        
         <label style="color: #161515">Contraseña</label>
+        
         <input
-          type="password"
+        [type]="showPassword ? 'text': 'password'" 
           class="form-control"
           name=""
           placeholder="Ingrese contraseña"
           [(ngModel)]="usuario.contrasenia"
+        
+          
         />
+     
+        <i  [class]=" show_eye ? 'fa fa-eye iconoInput' : 'fa fa-eye-slash iconoInput' " (click)="toggleShow()"></i>
+        
       </div>
+      
       <div class="col">
         <label style="color: #161515">Tipo rol</label>
         <select

@@ -59,15 +59,19 @@ export class LoginPage implements OnInit {
       (res) => {
         if (res) {
           this.resp = res;
-          this.storage.set('Token',this.resp.Token);
-          this.storage.set('payload',JSON.stringify(this.resp.payload));
-          
+          localStorage.setItem('Token',this.resp.Token)
+          localStorage.setItem('payload',JSON.stringify(this.resp.payload))
+          // // this.storage.set('Token',this.resp.Token);
+          // // this.storage.set('payload',JSON.stringify(this.resp.payload));
+       
           const id_rol = this.resp.payload.id_rol;
           const nivel_academico = this.resp.payload.nivel_academico;
           if (id_rol == 3 && nivel_academico=="secundaria"){
+            console.log("pASA ")
             this.router.navigate(['/menu-principal']);
           }else{
             if (id_rol == 3 && nivel_academico=="superior"){
+              
               this.router.navigate(['/menu-principal-u']);
           }
 
@@ -79,4 +83,5 @@ export class LoginPage implements OnInit {
       }
     );
   }
+  
 }
