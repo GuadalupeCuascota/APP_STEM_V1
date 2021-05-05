@@ -25,9 +25,9 @@ import { from } from 'rxjs';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { MenuPrincipalEditorComponent } from './Components/Editor/menu-principal-editor/menu-principal-editor.component';
- import { LoginComponent } from './Login/Components/login.component';
+ import { LoginComponent } from './Components/Login/login.component';
 import { PerfilesMujeresComponent } from './Components/Editor/perfiles-mujeres/perfiles-mujeres.component'
-import {LoginGuard} from './Login/Services/login.guard';
+import {LoginGuard} from './Service/login.guard';
 import { NoticiasComponent } from './Components/Editor/noticias/noticias.component';
 import { MenuPublicacionComponent } from './Components/Editor/menu-publicacion/menu-publicacion.component'
 // import {TokenInterceptorService} from './Login/Services/token-interceptor.service'

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistroArchivoService } from "../../../Service/registro-archivo.service";
 import {Publicacion} from '../../../Models/publicacion'
-import{AlertsService} from '../../../Services/alerts/alerts.service';
+import{AlertsService} from '../../../Service/alerts/alerts.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import {Router,ActivatedRoute} from '@angular/router'
 

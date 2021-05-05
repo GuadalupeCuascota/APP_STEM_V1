@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import{HttpClient} from '@angular/common/http'
-import {Usuario} from '../../Administrador/Models/usuario'
+import {Usuario} from '../Models/usuario'
 import {Router} from '@angular/router'
 import { JwtHelperService } from "@auth0/angular-jwt";
 const helper=new JwtHelperService

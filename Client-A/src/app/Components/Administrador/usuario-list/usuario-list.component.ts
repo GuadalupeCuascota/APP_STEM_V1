@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { from } from 'rxjs';
-import { RegistroUsuarioService } from '../../../Administrador/Services/registro-usuario.service';
-import { RegistroRolService } from '../../../Administrador/Services/registro-rol.service';
+import { RegistroUsuarioService } from '../../../Service/registro-usuario.service';
+import { RegistroRolService } from '../../../Service/registro-rol.service';
 import { Rol } from '../../../Models/rol';
 //importat modulo del modal para la edicion
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Usuario } from '../../../Models/usuario';
-import{AlertsService} from '../../../Services/alerts/alerts.service';
+import{AlertsService} from '../../../Service/alerts/alerts.service';
 
 @Component({
   selector: 'app-usuario-list',

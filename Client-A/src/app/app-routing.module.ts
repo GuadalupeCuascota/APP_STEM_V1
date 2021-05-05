@@ -5,10 +5,10 @@ import {RolesListComponent } from './Components/Administrador/roles-list/roles-l
 import { MenuPrincipalEditorComponent} from './Components/Editor/menu-principal-editor/menu-principal-editor.component';
 import {MenuPublicacionComponent } from './Components/Editor/menu-publicacion/menu-publicacion.component';
 import {RegistroUsuarioComponent} from './Components/Administrador/menu-principal/registro-usuario.component';
-import {LoginComponent} from './Login/Components/login.component'
+import {LoginComponent} from './Components/Login/login.component'
 import {PerfilesMujeresComponent} from './Components/Editor/perfiles-mujeres/perfiles-mujeres.component';
 import {NoticiasComponent} from './Components/Editor/noticias/noticias.component';
-import {LoginGuard} from './Login/Services/login.guard'
+import {LoginGuard} from './Service/login.guard'
 
 const routes: Routes = [
   {

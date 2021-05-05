@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../Services/login.service';
-import { Usuario } from '../../Administrador/Models/usuario';
+import { LoginService } from '../../Service/login.service';
+import { Usuario } from '../../Models/usuario';
 import { Router } from '@angular/router';
-import { AlertsService } from '../../Services/alerts/alerts.service';
+import { AlertsService } from '../../Service/alerts/alerts.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 const helper = new JwtHelperService();
 @Component({
