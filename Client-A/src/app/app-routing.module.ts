@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UsuarioListComponent } from './Administrador/Components/usuario-list/usuario-list.component';
-import {RolesListComponent } from './Administrador/Components/roles-list/roles-list.component';
-import { MenuPrincipalEditorComponent} from './Editor/Components/menu-principal-editor/menu-principal-editor.component';
-import {MenuPublicacionComponent } from './Editor/Components/menu-publicacion/menu-publicacion.component';
-import {RegistroUsuarioComponent} from './Administrador/Components/menu-principal/registro-usuario.component';
+import { UsuarioListComponent } from './Components/Administrador/usuario-list/usuario-list.component';
+import {RolesListComponent } from './Components/Administrador/roles-list/roles-list.component';
+import { MenuPrincipalEditorComponent} from './Components/Editor/menu-principal-editor/menu-principal-editor.component';
+import {MenuPublicacionComponent } from './Components/Editor/menu-publicacion/menu-publicacion.component';
+import {RegistroUsuarioComponent} from './Components/Administrador/menu-principal/registro-usuario.component';
 import {LoginComponent} from './Login/Components/login.component'
-import {PerfilesMujeresComponent} from './Editor/Components/perfiles-mujeres/perfiles-mujeres.component';
-import {NoticiasComponent} from './Editor/Components/noticias/noticias.component';
+import {PerfilesMujeresComponent} from './Components/Editor/perfiles-mujeres/perfiles-mujeres.component';
+import {NoticiasComponent} from './Components/Editor/noticias/noticias.component';
 import {LoginGuard} from './Login/Services/login.guard'
 
 const routes: Routes = [

@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { RegistroArchivoService } from "../../../Editor/Services/registro-archivo.service";
-import {Publicacion} from '../../Models/publicacion'
+import { RegistroArchivoService } from "../../../Service/registro-archivo.service";
+import {Publicacion} from '../../../Models/publicacion'
 import{AlertsService} from '../../../Services/alerts/alerts.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import {Router,ActivatedRoute} from '@angular/router'
 
 @Component({
-  selector: 'app-perfiles-mujeres',
-  templateUrl: './perfiles-mujeres.component.html',
-  styleUrls: ['./perfiles-mujeres.component.css']
+  selector: 'app-noticias',
+  templateUrl: './noticias.component.html',
+  styleUrls: ['./noticias.component.css']
 })
-export class PerfilesMujeresComponent implements OnInit {
+export class NoticiasComponent implements OnInit {
   id='';
   datos: any = {};
-  perfiles: any|Publicacion=[];
+  noticias: any|Publicacion=[];
   
   
-  perfil: any|Publicacion= {
+  noticia: any|Publicacion= {
     id_publicacion:0,
-    titulo :'',
+    tiulo:'',
     fecha_publicacion: new Date(),
     descripcion:'',
     enlace:'',
@@ -77,10 +77,12 @@ export class PerfilesMujeresComponent implements OnInit {
 
   clear() {
     console.log("clear clicked")
-    this.perfil.descripcion=null
-    this.perfil.estado_profesion=null
-    this.perfil.profesion=null
+    this.noticia.titulo=null
+    this.noticia.descripcion=null
+    this.noticia.estado_profesion=null
+    this.noticia.profesion=null
     this.leerArchivo=null
+    this.archivosSeleccionado=null
     this.API_URI=null
     
 
@@ -105,24 +107,25 @@ export class PerfilesMujeresComponent implements OnInit {
   }
  
   saveArchivo(){
-   console.log(this.perfil)
+   console.log(this.noticia)
    
     try{
       const fd =new FormData(); //objeto que almacena datos de un formulario
       // for( let i=0; i<this.archivosSeleccionado.length; i++){
         fd.append('ruta_archivo',this.archivosSeleccionado)
-        fd.append('profesion',this.perfil.profesion)
-        fd.append('estado_profesion',this.perfil.estado_profesion)
-        fd.append('descripcion',this.perfil.descripcion)
+        fd.append('titulo',this.noticia.titulo)
+        fd.append('descripcion',this.noticia.descripcion)
+        fd.append('enlace',this.noticia.enlace)
         fd.append('id_usuario',this.datos.id_usuario)
         fd.append('id_tipo_publicacion',this.id)
-        fd.append('id_estado_publicacion',this.perfil.id_estado_publicacion)
+        fd.append('id_estado_publicacion',this.noticia.id_estado_publicacion)
       
       this.registroArchivo.saveArchivo(fd).subscribe(
         (res)=>{
           console.log(res)
           this.getpublicaciones();
-          this.alerts.showSuccess('Successfull Operation', 'Archivo guardado')
+          this.alerts.showSuccess('Successfull Operation', 'Noticia guardado')
+         
         },
     
          (err)=>
@@ -130,25 +133,26 @@ export class PerfilesMujeresComponent implements OnInit {
         
       );
      }catch{
-       console.log("No se ha seleccionado el archivo")
+       console.log("error")
      }
+     this.clear();
+    
   }
 
   getpublicaciones() {
-    var per = [];
-    
+    var not = [];
     this.registroArchivo.getArchivos().subscribe(
+      
       (res:any) => {
-        for (let per1 of res) {
-          if (per1.id_tipo_publicacion == 1 ) {
-            per.push(per1);
-            console.log(per);
+        for (let n of res) {
+          if (n.id_tipo_publicacion == 2 ) {
+            not.push(n);
+            console.log(not);
           }
         }
-      
-        
+   
 
-        this.perfiles = per;
+        this.noticias = not;
         
       },
       /*  res=> console.log(res), */
@@ -163,8 +167,8 @@ export class PerfilesMujeresComponent implements OnInit {
       this.registroArchivo.getArchivo(id).subscribe(
         res => {
           console.log(res);
-          this.perfil=res;
-          this.API_URI='http://localhost:3000/'+this.perfil.ruta_archivo;
+          this.noticia=res;
+          this.API_URI='http://localhost:3000/'+this.noticia.ruta_archivo;
           this.edit=true 
          
           
@@ -175,19 +179,20 @@ export class PerfilesMujeresComponent implements OnInit {
     
   }
   updatepublicacion() {
-    console.log("hola",this.perfil.ruta_archivo)
+    
     try {
       const fda =new FormData(); //objeto que almacena datos de un formulario
       // for( let i=0; i<this.archivosSeleccionado.length; i++){
         fda.append('ruta_archivo',this.archivosSeleccionado)
-        fda.append('profesion',this.perfil.profesion)
-        fda.append('estado_profesion',this.perfil.estado_profesion)
-        fda.append('descripcion',this.perfil.descripcion)
+        fda.append('titulo',this.noticia.titulo)
+        fda.append('descripcion',this.noticia.descripcion)
+        fda.append('enlace',this.noticia.enlace)
+        
        
       // delete this.perfil.fecha_publicacion;
 
     
-    this.registroArchivo.updateArchivo(this.perfil.id_publicacion, fda)
+    this.registroArchivo.updateArchivo(this.noticia.id_publicacion, fda)
       .subscribe(
         (res) => {
           this.alerts.showSuccess('Successfull Operation', 'publicación actualizado');
@@ -218,4 +223,5 @@ console.log(id)
     );
     }
   }
+
 }

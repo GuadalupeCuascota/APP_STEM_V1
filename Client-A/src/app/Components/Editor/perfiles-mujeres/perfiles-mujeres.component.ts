@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { RegistroArchivoService } from "../../../Editor/Services/registro-archivo.service";
-import {Publicacion} from '../../Models/publicacion'
+import { RegistroArchivoService } from "../../../Service/registro-archivo.service";
+import {Publicacion} from '../../../Models/publicacion'
 import{AlertsService} from '../../../Services/alerts/alerts.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import {Router,ActivatedRoute} from '@angular/router'
 
 @Component({
-  selector: 'app-noticias',
-  templateUrl: './noticias.component.html',
-  styleUrls: ['./noticias.component.css']
+  selector: 'app-perfiles-mujeres',
+  templateUrl: './perfiles-mujeres.component.html',
+  styleUrls: ['./perfiles-mujeres.component.css']
 })
-export class NoticiasComponent implements OnInit {
+export class PerfilesMujeresComponent implements OnInit {
   id='';
   datos: any = {};
-  noticias: any|Publicacion=[];
+  perfiles: any|Publicacion=[];
   
   
-  noticia: any|Publicacion= {
+  perfil: any|Publicacion= {
     id_publicacion:0,
-    tiulo:'',
+    titulo :'',
     fecha_publicacion: new Date(),
     descripcion:'',
     enlace:'',
@@ -77,12 +77,10 @@ export class NoticiasComponent implements OnInit {
 
   clear() {
     console.log("clear clicked")
-    this.noticia.titulo=null
-    this.noticia.descripcion=null
-    this.noticia.estado_profesion=null
-    this.noticia.profesion=null
+    this.perfil.descripcion=null
+    this.perfil.estado_profesion=null
+    this.perfil.profesion=null
     this.leerArchivo=null
-    this.archivosSeleccionado=null
     this.API_URI=null
     
 
@@ -107,25 +105,24 @@ export class NoticiasComponent implements OnInit {
   }
  
   saveArchivo(){
-   console.log(this.noticia)
+   console.log(this.perfil)
    
     try{
       const fd =new FormData(); //objeto que almacena datos de un formulario
       // for( let i=0; i<this.archivosSeleccionado.length; i++){
         fd.append('ruta_archivo',this.archivosSeleccionado)
-        fd.append('titulo',this.noticia.titulo)
-        fd.append('descripcion',this.noticia.descripcion)
-        fd.append('enlace',this.noticia.enlace)
+        fd.append('profesion',this.perfil.profesion)
+        fd.append('estado_profesion',this.perfil.estado_profesion)
+        fd.append('descripcion',this.perfil.descripcion)
         fd.append('id_usuario',this.datos.id_usuario)
         fd.append('id_tipo_publicacion',this.id)
-        fd.append('id_estado_publicacion',this.noticia.id_estado_publicacion)
+        fd.append('id_estado_publicacion',this.perfil.id_estado_publicacion)
       
       this.registroArchivo.saveArchivo(fd).subscribe(
         (res)=>{
           console.log(res)
           this.getpublicaciones();
-          this.alerts.showSuccess('Successfull Operation', 'Noticia guardado')
-         
+          this.alerts.showSuccess('Successfull Operation', 'Archivo guardado')
         },
     
          (err)=>
@@ -133,26 +130,25 @@ export class NoticiasComponent implements OnInit {
         
       );
      }catch{
-       console.log("error")
+       console.log("No se ha seleccionado el archivo")
      }
-     this.clear();
-    
   }
 
   getpublicaciones() {
-    var not = [];
+    var per = [];
+    
     this.registroArchivo.getArchivos().subscribe(
-      
       (res:any) => {
-        for (let n of res) {
-          if (n.id_tipo_publicacion == 2 ) {
-            not.push(n);
-            console.log(not);
+        for (let per1 of res) {
+          if (per1.id_tipo_publicacion == 1 ) {
+            per.push(per1);
+            console.log(per);
           }
         }
-   
+      
+        
 
-        this.noticias = not;
+        this.perfiles = per;
         
       },
       /*  res=> console.log(res), */
@@ -167,8 +163,8 @@ export class NoticiasComponent implements OnInit {
       this.registroArchivo.getArchivo(id).subscribe(
         res => {
           console.log(res);
-          this.noticia=res;
-          this.API_URI='http://localhost:3000/'+this.noticia.ruta_archivo;
+          this.perfil=res;
+          this.API_URI='http://localhost:3000/'+this.perfil.ruta_archivo;
           this.edit=true 
          
           
@@ -179,20 +175,19 @@ export class NoticiasComponent implements OnInit {
     
   }
   updatepublicacion() {
-    
+    console.log("hola",this.perfil.ruta_archivo)
     try {
       const fda =new FormData(); //objeto que almacena datos de un formulario
       // for( let i=0; i<this.archivosSeleccionado.length; i++){
         fda.append('ruta_archivo',this.archivosSeleccionado)
-        fda.append('titulo',this.noticia.titulo)
-        fda.append('descripcion',this.noticia.descripcion)
-        fda.append('enlace',this.noticia.enlace)
-        
+        fda.append('profesion',this.perfil.profesion)
+        fda.append('estado_profesion',this.perfil.estado_profesion)
+        fda.append('descripcion',this.perfil.descripcion)
        
       // delete this.perfil.fecha_publicacion;
 
     
-    this.registroArchivo.updateArchivo(this.noticia.id_publicacion, fda)
+    this.registroArchivo.updateArchivo(this.perfil.id_publicacion, fda)
       .subscribe(
         (res) => {
           this.alerts.showSuccess('Successfull Operation', 'publicación actualizado');
@@ -223,5 +218,4 @@ console.log(id)
     );
     }
   }
-
 }
