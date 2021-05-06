@@ -7,7 +7,7 @@ import { NavController } from '@ionic/angular';
 import { MensajesService } from 'src/app/Services/mensajes.service';
 import { LoadingService } from 'src/app/Services/loading.service';
 import {RegistroPublicacionService} from '../../Services/registro-publicacion.service'
-import { StreamingMedia,StreamingAudioOptions,StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
+// import { StreamingMedia,StreamingAudioOptions,StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
 
 
 @Component({
@@ -18,7 +18,7 @@ import { StreamingMedia,StreamingAudioOptions,StreamingVideoOptions } from '@ion
 export class PerfilesPage implements OnInit {
 
 
-  constructor(private regitroPublicacion: RegistroPublicacionService,private streamingMedia:StreamingMedia) { }//inyecto el servicio importado
+  constructor(private regitroPublicacion: RegistroPublicacionService) { }//inyecto el servicio importado
 
   ngOnInit() {
     this.getPerfiles();
@@ -37,17 +37,17 @@ export class PerfilesPage implements OnInit {
  console.log(err)
    })
  }
- startVideo(){
-  console.log("pasa")
-  let options: StreamingVideoOptions = {
-    successCallback: () => { console.log('Video played') },
-    errorCallback: (e) => { console.log('Error streaming') },
-    orientation: 'landscape',
-    shouldAutoClose: true,
-    controls: false
-  };
-  this.streamingMedia.playVideo('http://localhost:3000/uploads//pregunta%20a.mp4', options);
- }
+//  startVideo(){
+//   console.log("pasa")
+//   let options: StreamingVideoOptions = {
+//     successCallback: () => { console.log('Video played') },
+//     errorCallback: (e) => { console.log('Error streaming') },
+//     orientation: 'landscape',
+//     shouldAutoClose: true,
+//     controls: false
+//   };
+//   this.streamingMedia.playVideo('http://localhost:3000/uploads//pregunta%20a.mp4', options);
+//  }
 startAudio(){
 
 }

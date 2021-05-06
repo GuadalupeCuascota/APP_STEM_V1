@@ -16,9 +16,9 @@ class AutentificacionController {
             const {correo_electronico, contrasenia}=req.body;
            
     
-            if(!(correo_electronico && contrasenia)){
-                return res.status(404).json({text: 'correo y contraseña son requeridos'})
-            }else{
+            // if(!(correo_electronico && contrasenia)){
+            //     return res.status(404).json({text: 'correo y contraseña son requeridos'})
+            // }else{
               const usuario=await pool.query(
                 "SELECT * FROM usuario WHERE correo_electronico=?",
                 [correo_electronico]);
@@ -51,7 +51,7 @@ class AutentificacionController {
                 }
                
               
-            }
+            
           
 
        

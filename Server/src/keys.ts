@@ -1,6 +1,6 @@
 export default{
     database: {
-        host: '192.168.100.10',
+        host: 'localhost',
         user:  'root',
         password:'',
         database: 'appstem'

@@ -13,5 +13,9 @@ export class MenuPrincipalPage implements OnInit {
   ngOnInit() {
     
   }
+  onClick(){
+    this.menuCtrl.enable(true,'menu-content');
+    this.menuCtrl.open('menu-content')
+  }
   
 }

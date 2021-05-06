@@ -67,16 +67,18 @@ export class LoginPage implements OnInit {
           const id_rol = this.resp.payload.id_rol;
           const nivel_academico = this.resp.payload.nivel_academico;
           if (id_rol == 3 && nivel_academico=="secundaria"){
-            console.log("pASA ")
+            console.log("estudiante secundaria")
             this.router.navigate(['/menu-principal']);
-          }else{
+          }
             if (id_rol == 3 && nivel_academico=="superior"){
               
               this.router.navigate(['/menu-principal-u']);
           }
+          
+  
+        }
 
-        }
-        }
+        
       },
       (err) => {
         this.mensajeServices.presentAlert('Error', err.error.text)

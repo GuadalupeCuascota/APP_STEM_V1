@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import {MenuPrincipalPageModule} from './Pages/Estudiante-secundaria/menu-principal/menu-principal.module'
 
-import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
+// import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
 
 
 @NgModule({
@@ -20,7 +20,7 @@ import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-m
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), HttpClientModule, AppRoutingModule, FormsModule, ReactiveFormsModule,  IonicStorageModule.forRoot()
    ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy},Storage,IonicStorageModule,StreamingMedia],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy},Storage,IonicStorageModule],
   exports:[
   MenuPrincipalPageModule,
   ],
