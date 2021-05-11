@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {AutenticacionService} from './Services/autenticacion.service'
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  datos: any = {};
+
   constructor() {}
+ 
+
+  ngOnInit(): void {
+   
+    
+  }
+
 }

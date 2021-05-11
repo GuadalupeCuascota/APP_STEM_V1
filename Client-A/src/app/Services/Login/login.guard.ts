@@ -7,7 +7,8 @@ import {Router} from '@angular/router'
   providedIn: 'root'
 })
 export class LoginGuard implements CanActivate {
-  constructor( private loginService: LoginService,
+  constructor( 
+    private loginService: LoginService,
     private router:Router){
 
   }

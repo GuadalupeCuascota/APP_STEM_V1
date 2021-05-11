@@ -20,7 +20,6 @@ export class LoginService {
   loggedIn(){ //metodo que devuelve un tipo boleano en caso de existir o no un token almacenado en el localstorage
     if(localStorage.getItem('token')){
       
-      
     }
      return  !!localStorage.getItem('token');
 

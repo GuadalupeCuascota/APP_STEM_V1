@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-principal',
@@ -8,14 +9,27 @@ import { MenuController } from '@ionic/angular';
 })
 export class MenuPrincipalPage implements OnInit {
 
-  constructor(private menuCtrl: MenuController) { }
+  constructor(private menuCtrl: MenuController,
+    private router: Router) { }
+  datos: any = {};
+  errorstatus: boolean = true;
 
   ngOnInit() {
-    
+  
   }
-  onClick(){
-    this.menuCtrl.enable(true,'menu-content');
-    this.menuCtrl.open('menu-content')
+ 
+  openMenu(){
+ this.errorstatus = true;
+ this.datos=JSON.parse(localStorage.getItem('payload'));
+ console.log("pasa aqui el usuario",this.datos)
+ console.log("Openmenu ")
+ 
+
+//  this.menuCtrl.enable(true);
+ this.menuCtrl.toggle("first")
+ 
+ 
   }
   
+ 
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {AuthGuard} from './Services/auth.guard'
 
 const routes: Routes = [
  
@@ -8,6 +9,7 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  
   {
     path: 'login',
     loadChildren: () => import('./Pages/login/login.module').then( m => m.LoginPageModule)
@@ -15,6 +17,7 @@ const routes: Routes = [
   {
     path: 'registro-usuario',
     loadChildren: () => import('./Pages/registro-usuario/registro-usuario.module').then( m => m.RegistroUsuarioPageModule)
+   
   },
   {
     path: 'home',
@@ -22,19 +25,24 @@ const routes: Routes = [
   },
   {
     path: 'menu-principal',
-    loadChildren: () => import('./Pages/Estudiante-secundaria/menu-principal/menu-principal.module').then( m => m.MenuPrincipalPageModule)
+    loadChildren: () => import('./Pages/Estudiante-secundaria/menu-principal/menu-principal.module').then( m => m.MenuPrincipalPageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'menu-principal-u',
-    loadChildren: () => import('./Pages/Estudiante-superior/menu-principal-u/menu-principal-u.module').then( m => m.MenuPrincipalUPageModule)
+    loadChildren: () => import('./Pages/Estudiante-superior/menu-principal-u/menu-principal-u.module').then( m => m.MenuPrincipalUPageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'menu-opciones-se',
-    loadChildren: () => import('./Pages/Estudiante-secundaria/menu-opciones-se/menu-opciones-se.module').then( m => m.MenuOpcionesSePageModule)
+    loadChildren: () => import('./Pages/Estudiante-secundaria/menu-opciones-se/menu-opciones-se.module').then( m => m.MenuOpcionesSePageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'perfiles',
-    loadChildren: () => import('./Pages/perfiles/perfiles.module').then( m => m.PerfilesPageModule)
+    loadChildren: () => import('./Pages/perfiles/perfiles.module').then( m => m.PerfilesPageModule),
+    canActivate:[AuthGuard]
+
   },
   
   {
@@ -43,7 +51,8 @@ const routes: Routes = [
   },
   {
     path: 'inicio',
-    loadChildren: () => import('./Pages/inicio/inicio.module').then( m => m.InicioPageModule)
+    loadChildren: () => import('./Pages/inicio/inicio.module').then( m => m.InicioPageModule),
+    canActivate:[AuthGuard]
   },
   
 ];

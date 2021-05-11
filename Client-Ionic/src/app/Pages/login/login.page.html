@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
@@ -28,15 +28,17 @@
           (click)="toggleShow()"
         ></ion-icon>
       </ion-item>
-      <a routerLink="/registro-usuario"  >Olvidaste tu contraseña?</a>
-      <ion-button type="submit"  [disabled]="!formLogin.valid" expand="block" >ENTRAR</ion-button>
-      <ion-button
-        color="secondary"
+     
+  
+      <a routerLink="/registro-usuario" style="text-align:center" >Olvidaste tu contraseña?</a>
+      <ion-button type="submit" color="tertiary"  [disabled]="!formLogin.valid" expand="block" >ENTRAR</ion-button>
+      <!-- <ion-button
+      color="tertiary"
         type="submit"
         routerLink="/registro-usuario"
         expand="block"
-        >Registarse</ion-button
-      >
+        >Registarse</ion-button -->
+      
     </ion-card>
   </form>
 </ion-content>

@@ -14,10 +14,18 @@ export class AutenticacionService {
   login (usuario:Usuario){
     return this.http.post(`${this.API_URI}`,usuario); 
   }
+  
   logOut(){
     localStorage.clear();
    
     this.router.navigate(['/login'])
+  }
+  loggedIn(){ //metodo que devuelve un tipo boleano en caso de existir o no un token almacenado en el localstorage
+    if(localStorage.getItem('Token')){
+      
+    }
+     return  !!localStorage.getItem('Token');
+    
   }
  
 }

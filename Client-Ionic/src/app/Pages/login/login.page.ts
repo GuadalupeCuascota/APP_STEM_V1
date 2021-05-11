@@ -7,6 +7,8 @@ import { MensajesService } from 'src/app/Services/mensajes.service';
 import {StorageService}from '../../Services/storage.service'
 import { Router } from '@angular/router';
 import { LoadingService } from 'src/app/Services/loading.service';
+import { MenuController } from '@ionic/angular';
+
 
 
 
@@ -20,6 +22,8 @@ export class LoginPage implements OnInit {
   passwordIcon = 'eye-off';
   formLogin: FormGroup;
   resp: any = {};
+  errorstatus: boolean = true;
+
   constructor(
     private authServices: AutenticacionService,
     private formBuilder:FormBuilder,
@@ -27,12 +31,15 @@ export class LoginPage implements OnInit {
     
     private storage:StorageService,
     private router: Router,
-    private loadinServices: LoadingService
+    private loadinServices: LoadingService,
+    private menuCtrl: MenuController
    
   ) {}
   usuario: Usuario;
+  
   async ngOnInit() {
-     
+    
+  
     this.formLogin=this.formBuilder.group({
       correo_electronico: new FormControl('', Validators.required),
       contrasenia: new FormControl('', Validators.required),
@@ -69,6 +76,8 @@ export class LoginPage implements OnInit {
           if (id_rol == 3 && nivel_academico=="secundaria"){
             console.log("estudiante secundaria")
             this.router.navigate(['/menu-principal']);
+         
+           
           }
             if (id_rol == 3 && nivel_academico=="superior"){
               
