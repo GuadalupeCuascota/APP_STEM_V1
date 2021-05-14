@@ -11,30 +11,20 @@ const routes: Routes = [
     component: MenuPrincipalPage,
     children:[
       {
-        path: '',
-        redirectTo: 'principal',
-        pathMatch: 'full'
-      },
-      
-      {
         path:'inicio',
-        loadChildren:()=>import ('../../inicio/inicio.module').then(m=>m.InicioPageModule)
-      },
-      {
-        path:'perfiles',
-        loadChildren:()=>import ('../../perfiles/perfiles.module').then(m=>m.PerfilesPageModule)
-      },
-      
-      {
-        path:'noticias',
-        loadChildren:()=>import ('../../noticias/noticias.module').then(m=>m.NoticiasPageModule)
-      },
-      {
-        path:'menu',
-        loadChildren:()=>import ('../menu-opciones-se/menu-opciones-se.module').then(m=>m.MenuOpcionesSePageModule)
-      },
-      
-    ]
+            loadChildren:()=>import ('../../inicio/inicio.module').then(m=>m.InicioPageModule)
+    },
+    {
+          path:'perfiles',
+          loadChildren:()=>import ('../../perfiles/perfiles.module').then(m=>m.PerfilesPageModule)
+        },
+        
+        {
+          path:'noticias',
+          loadChildren:()=>import ('../../noticias/noticias.module').then(m=>m.NoticiasPageModule)
+        },
+  ]
+    
   }
 ];
 

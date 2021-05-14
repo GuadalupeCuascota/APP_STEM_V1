@@ -15,11 +15,13 @@ export class MenuPrincipalPage implements OnInit {
   errorstatus: boolean = true;
 
   ngOnInit() {
+    this.datos=JSON.parse(localStorage.getItem('payload'));
+    console.log("pasa aqui el usuario",this.datos)
   
   }
  
   openMenu(){
- this.errorstatus = true;
+
  this.datos=JSON.parse(localStorage.getItem('payload'));
  console.log("pasa aqui el usuario",this.datos)
  console.log("Openmenu ")

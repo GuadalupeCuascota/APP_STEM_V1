@@ -3,19 +3,30 @@
     <ion-title>Perfiles</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-card *ngFor="let perfil of perfiles">
+<ion-content>
+  <ion-card *ngFor="let perfil of perfiles">
   
-  <ion-img src="http://localhost:3000/{{perfil.ruta_archivo}}" width="350" height="150"></ion-img>
-  <ion-card-header>
-    <ion-card-subtitle>{{perfil.profesion }}   {{perfil.estado_profesion}}</ion-card-subtitle>
-    
-  </ion-card-header>
+    <ion-img src="http://localhost:3000/{{perfil.ruta_archivo}}" width="350" height="150"></ion-img>
+    <ion-card-header>
+      <ion-card-subtitle>{{perfil.profesion }}   {{perfil.estado_profesion}}</ion-card-subtitle>
+      
+    </ion-card-header>
+  
+    <ion-card-content>
+     {{perfil.descripcion}}
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="lines-small"
+      loadingText="Cargando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
 
-  <ion-card-content>
-   {{perfil.descripcion}}
-  </ion-card-content>
-</ion-card>
+
+
 <!-- <ion-content padding>
   <ion-button (click)="startVideo()">INICIO</ion-button>
 <button (click)="startVideo()">start</button>

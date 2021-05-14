@@ -27,10 +27,29 @@ export class PerfilesPage implements OnInit {
  perfiles: Publicacion[] = [];
  perfil: Publicacion;
 
- 
+ loadData(event) {
+   console.log(event,"el evento")
+  setTimeout(() => {
+    console.log('Done');
+    event.target.complete();
+
+  
+    if (this.perfiles.length ==9) {
+      event.target.disabled = true;
+      console.log("es igual")
+    }
+  }, 500);
+}
  getPerfiles(){
+   var auxper=[];
    this.regitroPublicacion.getUsuarios().subscribe(res=>{
-    this.perfiles=res;
+     for(let aux of res){
+       if(aux.id_tipo_publicacion==1){
+         auxper.push(aux);
+       }
+     }
+   
+    this.perfiles=auxper;
     console.log("perfiles",this.perfiles)
    },
    err=>{

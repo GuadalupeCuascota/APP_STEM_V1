@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MenuPrincipalUPageRoutingModule } from './menu-principal-u-routing.module';
+import { MallaCurricularPageRoutingModule } from './malla-curricular-routing.module';
 
-import { MenuPrincipalUPage } from './menu-principal-u.page';
+import { MallaCurricularPage } from './malla-curricular.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MenuPrincipalUPageRoutingModule
+    MallaCurricularPageRoutingModule
   ],
-  declarations: [MenuPrincipalUPage]
+  declarations: [MallaCurricularPage]
 })
-export class MenuPrincipalUPageModule {}
+export class MallaCurricularPageModule {}

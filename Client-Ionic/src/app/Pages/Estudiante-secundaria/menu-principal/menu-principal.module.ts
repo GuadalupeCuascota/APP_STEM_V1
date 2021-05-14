@@ -8,15 +8,20 @@ import { IonicModule } from '@ionic/angular';
 import { MenuPrincipalPageRoutingModule } from './menu-principal-routing.module';
 
 import { MenuPrincipalPage } from './menu-principal.page';
+import { OfertaAcademicaPage } from '../oferta-academica/oferta-academica.page';
 
 
 @NgModule({
   imports: [
+    
     CommonModule,
     FormsModule,
     IonicModule,
     MenuPrincipalPageRoutingModule
   ],
-  declarations: [MenuPrincipalPage]
+ 
+  declarations: [
+    MenuPrincipalPage
+  ]
 })
 export class MenuPrincipalPageModule {}

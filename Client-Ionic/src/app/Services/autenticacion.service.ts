@@ -17,7 +17,7 @@ export class AutenticacionService {
   
   logOut(){
     localStorage.clear();
-   
+    
     this.router.navigate(['/login'])
   }
   loggedIn(){ //metodo que devuelve un tipo boleano en caso de existir o no un token almacenado en el localstorage

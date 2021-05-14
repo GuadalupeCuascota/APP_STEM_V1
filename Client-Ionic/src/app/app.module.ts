@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import {MenuPrincipalPageModule} from './Pages/Estudiante-secundaria/menu-principal/menu-principal.module'
+import { PagesModule } from './Pages/pages.module';
 
 // import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
 
@@ -18,7 +19,7 @@ import {MenuPrincipalPageModule} from './Pages/Estudiante-secundaria/menu-princi
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), HttpClientModule, AppRoutingModule, FormsModule, ReactiveFormsModule,  IonicStorageModule.forRoot()
+  imports: [BrowserModule, IonicModule.forRoot(), HttpClientModule, AppRoutingModule, FormsModule, ReactiveFormsModule,  IonicStorageModule.forRoot(),PagesModule
    ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy},Storage,IonicStorageModule],
   exports:[

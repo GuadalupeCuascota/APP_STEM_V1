@@ -75,13 +75,13 @@ export class LoginPage implements OnInit {
           const nivel_academico = this.resp.payload.nivel_academico;
           if (id_rol == 3 && nivel_academico=="secundaria"){
             console.log("estudiante secundaria")
-            this.router.navigate(['/menu-principal']);
+            this.router.navigate(['/menu-opciones-se/menu-principal']);
          
            
           }
             if (id_rol == 3 && nivel_academico=="superior"){
               
-              this.router.navigate(['/menu-principal-u']);
+              this.router.navigate(['/menu-opciones-u/menu-principal']);
           }
           
   

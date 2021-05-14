@@ -10,7 +10,7 @@ export class LoadingService {
   async presentLoading(message: string='Cargando...') {
     const loading = await this.loadingController.create({
       message: message,
-      duration: 2000
+      duration: 1500
     });
     return loading;
     

@@ -12,7 +12,7 @@ import{RegistroUsuarioService} from './Services/registro-usuario.service';
 import { RegistroArchivoService } from "./Services/registro-archivo.service";
 import { RolesListComponent } from './Componets/Administrador/roles-list/roles-list.component';
 
-
+ 
 //imporar modulo para animacion de mensajes de alterta 
 import{BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import{ToastrModule} from 'ngx-toastr';
