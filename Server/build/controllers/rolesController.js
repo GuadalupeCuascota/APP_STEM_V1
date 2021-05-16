@@ -26,7 +26,7 @@ class RolesController {
                 }
                 else {
                     res.json(rows);
-                    console.log("Datos seleccionados");
+                    console.log("Datos seleccionados probando1");
                 }
             });
         });

@@ -20,30 +20,28 @@ const bcryptjs_1 = __importDefault(require("bcryptjs"));
 class AutentificacionController {
     login(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("PASAA");
+            console.log("PASA LOGIN");
             const { correo_electronico, contrasenia } = req.body;
-            // if(!(correo_electronico && contrasenia)){
-            //     return res.status(404).json({text: 'correo y contraseña son requeridos'})
-            // }else{
-            const usuario = yield database_1.default.query("SELECT * FROM usuario WHERE correo_electronico=?", [correo_electronico]);
-            if (usuario.length > 0) {
-                if (usuario[0].contrasenia !== contrasenia) {
-                    return res.status(404).json({ text: 'contraseña es incorrecta' });
-                }
-                const payload = {
-                    id_usuario: usuario[0].id_usuario,
-                    nombre: usuario[0].nombre,
-                    apellido: usuario[0].apellido,
-                    id_rol: usuario[0].id_rol,
-                    nivel_academico: usuario[0].nivel_academico,
-                };
-                const Token = jsonwebtoken_1.default.sign({ payload }, 'SCRET', { expiresIn: '1h' });
-                console.log(Token);
-                return res.json({ message: "ok", Token, payload });
+            if (!(correo_electronico && contrasenia)) {
+                return res.status(404).json({ text: 'correo y contraseña son requeridos' });
             }
             else {
-                console.log("pasa");
-                return res.status(412).json({ text: 'correo es incorrecto' });
+                const usuario = yield database_1.default.query("SELECT * FROM usuario WHERE correo_electronico=? and contrasenia=?", [correo_electronico, contrasenia]);
+                if (usuario.length > 0) {
+                    const payload = {
+                        id_usuario: usuario[0].id_usuario,
+                        nombre: usuario[0].nombre,
+                        apellido: usuario[0].apellido,
+                        id_rol: usuario[0].id_rol,
+                        nivel_academico: usuario[0].nivel_academico,
+                    };
+                    const Token = jsonwebtoken_1.default.sign({ payload }, 'SCRET', { expiresIn: '1h' });
+                    console.log(Token);
+                    return res.json({ message: "ok", Token, payload });
+                }
+                else {
+                    return res.status(412).json({ text: 'usuario o contraseña incorrecto' });
+                }
             }
         });
     }

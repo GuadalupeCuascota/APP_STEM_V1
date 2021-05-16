@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     private loginServices: LoginService, 
     private router: Router,
     private formBuilder:FormBuilder,
+    private alerts: AlertsService
     ) { }
 
     
@@ -76,6 +77,7 @@ export class LoginComponent implements OnInit {
         console.log('el error', err);
         this.errorstatus = true;
         this.errorMsj = err.error;
+         this.alerts.showError(this.errorMsj.text,'Ha ocurrido un error')
 
         this.msj = this.errorMsj.text;
       }

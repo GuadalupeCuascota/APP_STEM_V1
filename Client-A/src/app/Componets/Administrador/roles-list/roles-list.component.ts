@@ -50,7 +50,7 @@ export class RolesListComponent implements OnInit {
       (res) => {
         console.log(res);
         this.getRoles();
-        this.alerts.showSuccess('Successfull Operation', 'Rol guardado')
+        this.alerts.showSuccess('Rol guardado', 'Operación exitosa')
       },
       (err) => console.error(err)
     );
@@ -61,7 +61,7 @@ export class RolesListComponent implements OnInit {
       (res) => {
         console.log(res);
         this.getRoles();
-        this.alerts.showSuccess('Successfull Operation', 'Rol eliminado');
+        this.alerts.showSuccess('Rol eliminado','Operación exitosa', );
       },
       (err) => console.log(err)
     );
