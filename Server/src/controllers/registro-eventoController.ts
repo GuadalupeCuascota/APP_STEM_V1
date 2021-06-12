@@ -3,9 +3,9 @@ import pool from "../database";
 import path from "path";
 import fs from "fs-extra";
 
-class ArchivosController {
+class EventosController {
   public async list(req: Request, res: Response): Promise<void> {
-    await pool.query("SELECT * FROM publicacion", (err: any, rows: any) => {
+    await pool.query("SELECT * FROM evento", (err: any, rows: any) => {
       if (err) {
         res.status(404).json("error al cargar");
         console.log(err);
@@ -34,63 +34,22 @@ class ArchivosController {
     console.log("CREAR");
     try {
       const {
-        titulo,
-        descripcion,
-        enlace,
-        profesion,
-        estado_profesion,
-        id_tipo_publicacion,
-        id_usuario,
-        id_estado_publicacion,
+       id_tipo_evento,
+       id_publicacion,
+       id_usuario,
       } = req.body;
-      console.log(req.file);
-      console.log("titulo:" + req.body.estado_profesion);
-      console.log("descripcion", req.body.descripcion);
-      console.log("enlace", req.body.enlace);
-      console.log("profeion", req.body.profesion);
-      console.log("estado profesion", req.body.estado_profesion);
-      console.log("id_tipo_publicacion:" + req.body.id_tipo_publicacion);
-      console.log("usuario:" + req.body.id_usuario);
-      console.log("id_estado_publicación:" + req.body.id_estado_publicacion);
+   console.log("id_tipo_evento"+req.body.id_tipo_evento)
+   console.log("id_publicación"+req.body.id_publicacion)
+   console.log("id_publicación"+req.body.id_usuario)
       const query =
-        "INSERT INTO publicacion (titulo,descripcion,enlace,profesion,estado_profesion,ruta_archivo,id_tipo_publicacion,id_usuario,id_estado_publicacion) VALUES (?,?,?,?,?,?,?,?,?)";
-
-      if (req.file) {
-        console.log("pasa");
-        const ruta_archivo = req.file.path;
-        console.log(req.file.path);
-        await pool.query(query, [
-          titulo,
-          descripcion,
-          enlace,
-          profesion,
-          estado_profesion,
-          ruta_archivo,
-          id_tipo_publicacion,
-          id_usuario,
-          id_estado_publicacion,
-        ]);
-        res.status(201).json({ text: "Archivo guardado" });
-      } else {
-        const ruta_archivo = null;
-        await pool.query(query, [
-          titulo,
-          descripcion,
-          enlace,
-          profesion,
-          estado_profesion,
-          ruta_archivo,
-          id_tipo_publicacion,
-          id_usuario,
-          id_estado_publicacion,
-        ]);
-        res.status(201).json({ text: "Archivo guardado" });
+        "INSERT INTO evento (id_tipo_evento,id_publicacion,id_usuario) VALUES (?,?,?)";
+        await pool.query(query,[id_tipo_evento,id_publicacion,id_usuario]);
+        res.json({ text: "evento guardado" });
+        }catch(err){
+          res.json({ text: "Hubo un error " });
+          console.log("hubo un errro"+ err)
+        }
       }
-    } catch (err) {
-      console.log("hubo un error" + err);
-      res.status(404).json({ text: "error" });
-    }
-  }
 
   public async delete(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
@@ -168,4 +127,4 @@ class ArchivosController {
     }
   }
 }
-export const archivosController = new ArchivosController(); //instanciar la clase
+export const eventosController = new EventosController(); //instanciar la clase

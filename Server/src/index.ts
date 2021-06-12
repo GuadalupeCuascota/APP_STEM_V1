@@ -10,6 +10,9 @@ import usuariosRoutes from './routes/usuariosRoutes';
 import publicacionRoutes from './routes/publicacionRoutes';
 import  tipoPublicacionRoutes from './routes/tipo-publicaciónRoute';
 import autenticacionRoutes from "./routes/autentificacionRoutes";
+import eventoRoutes from './routes/registro-eventoRoutes'
+
+
 class Server {
     public app: Application
     constructor(){ //crear el método constructor 
@@ -34,7 +37,7 @@ class Server {
      this.app.use('/uploads',express.static(path.resolve('uploads')));
      //carpeta para almacenar archivos publicos
 
-    
+    this.app.use('/api/registro-evento',eventoRoutes)
     
     }
     start(): void{//método para inicializar el servidor

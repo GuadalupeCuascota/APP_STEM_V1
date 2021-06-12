@@ -30,7 +30,9 @@ import { MenuPrincipalEditorComponent } from './Componets/Editor/menu-principal-
 import { PerfilesMujeresComponent } from './Componets/Editor/perfiles-mujeres/perfiles-mujeres.component'
 import {LoginGuard} from './Services/Login/login.guard';
 import { NoticiasComponent } from './Componets/Editor/noticias/noticias.component';
-import { MenuPublicacionComponent } from './Componets/Editor/menu-publicacion/menu-publicacion.component'
+import { MenuPublicacionComponent } from './Componets/Editor/menu-publicacion/menu-publicacion.component';
+import {RegistroEditorComponent} from './Componets/Administrador/registro-editor/registro-editor.component'
+
 
 // import {TokenInterceptorService} from './Login/Services/token-interceptor.service'
 
@@ -44,7 +46,9 @@ import { MenuPublicacionComponent } from './Componets/Editor/menu-publicacion/me
     LoginComponent,
     PerfilesMujeresComponent,
     NoticiasComponent,
-    MenuPublicacionComponent
+    MenuPublicacionComponent,
+    RegistroEditorComponent
+  
    
   ],
   imports: [

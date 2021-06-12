@@ -12,14 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.archivosController = void 0;
+exports.eventosController = void 0;
 const database_1 = __importDefault(require("../database"));
 const path_1 = __importDefault(require("path"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
-class ArchivosController {
+class EventosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query("SELECT * FROM publicacion", (err, rows) => {
+            yield database_1.default.query("SELECT * FROM evento", (err, rows) => {
                 if (err) {
                     res.status(404).json("error al cargar");
                     console.log(err);
@@ -46,53 +46,17 @@ class ArchivosController {
         return __awaiter(this, void 0, void 0, function* () {
             console.log("CREAR");
             try {
-                const { titulo, descripcion, enlace, profesion, estado_profesion, id_tipo_publicacion, id_usuario, id_estado_publicacion, } = req.body;
-                console.log(req.file);
-                console.log("titulo:" + req.body.estado_profesion);
-                console.log("descripcion", req.body.descripcion);
-                console.log("enlace", req.body.enlace);
-                console.log("profeion", req.body.profesion);
-                console.log("estado profesion", req.body.estado_profesion);
-                console.log("id_tipo_publicacion:" + req.body.id_tipo_publicacion);
-                console.log("usuario:" + req.body.id_usuario);
-                console.log("id_estado_publicación:" + req.body.id_estado_publicacion);
-                const query = "INSERT INTO publicacion (titulo,descripcion,enlace,profesion,estado_profesion,ruta_archivo,id_tipo_publicacion,id_usuario,id_estado_publicacion) VALUES (?,?,?,?,?,?,?,?,?)";
-                if (req.file) {
-                    console.log("pasa");
-                    const ruta_archivo = req.file.path;
-                    console.log(req.file.path);
-                    yield database_1.default.query(query, [
-                        titulo,
-                        descripcion,
-                        enlace,
-                        profesion,
-                        estado_profesion,
-                        ruta_archivo,
-                        id_tipo_publicacion,
-                        id_usuario,
-                        id_estado_publicacion,
-                    ]);
-                    res.status(201).json({ text: "Archivo guardado" });
-                }
-                else {
-                    const ruta_archivo = null;
-                    yield database_1.default.query(query, [
-                        titulo,
-                        descripcion,
-                        enlace,
-                        profesion,
-                        estado_profesion,
-                        ruta_archivo,
-                        id_tipo_publicacion,
-                        id_usuario,
-                        id_estado_publicacion,
-                    ]);
-                    res.status(201).json({ text: "Archivo guardado" });
-                }
+                const { id_tipo_evento, id_publicacion, id_usuario, } = req.body;
+                console.log("id_tipo_evento" + req.body.id_tipo_evento);
+                console.log("id_publicación" + req.body.id_publicacion);
+                console.log("id_publicación" + req.body.id_usuario);
+                const query = "INSERT INTO evento (id_tipo_evento,id_publicacion,id_usuario) VALUES (?,?,?)";
+                yield database_1.default.query(query, [id_tipo_evento, id_publicacion, id_usuario]);
+                res.json({ text: "evento guardado" });
             }
             catch (err) {
-                console.log("hubo un error" + err);
-                res.status(404).json({ text: "error" });
+                res.json({ text: "Hubo un error " });
+                console.log("hubo un errro" + err);
             }
         });
     }
@@ -159,4 +123,4 @@ class ArchivosController {
         });
     }
 }
-exports.archivosController = new ArchivosController(); //instanciar la clase
+exports.eventosController = new EventosController(); //instanciar la clase

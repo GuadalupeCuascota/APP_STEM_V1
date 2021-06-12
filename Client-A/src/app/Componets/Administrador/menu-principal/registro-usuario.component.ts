@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router'
+import {Router,Routes} from '@angular/router'
 import {LoginService} from '../../../Services/Login/login.service'
 
 
@@ -12,7 +12,8 @@ export class RegistroUsuarioComponent implements OnInit {
   datos: any = {};
   collapsed = true;
   constructor( private router: Router,
-    private loginServices: LoginService
+    private loginServices: LoginService,
+    
  ) { }
   logOut(){
     this.loginServices.logOut();

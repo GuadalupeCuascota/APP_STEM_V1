@@ -14,6 +14,7 @@ const usuariosRoutes_1 = __importDefault(require("./routes/usuariosRoutes"));
 const publicacionRoutes_1 = __importDefault(require("./routes/publicacionRoutes"));
 const tipo_publicaci_nRoute_1 = __importDefault(require("./routes/tipo-publicaci\u00F3nRoute"));
 const autentificacionRoutes_1 = __importDefault(require("./routes/autentificacionRoutes"));
+const registro_eventoRoutes_1 = __importDefault(require("./routes/registro-eventoRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default(); // inicializamos express
@@ -36,6 +37,7 @@ class Server {
         this.app.use('/login', autentificacionRoutes_1.default);
         this.app.use('/uploads', express_1.default.static(path_1.default.resolve('uploads')));
         //carpeta para almacenar archivos publicos
+        this.app.use('/api/registro-evento', registro_eventoRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

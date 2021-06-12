@@ -56,8 +56,8 @@ export class LoginComponent implements OnInit {
         this.resp = res;
         console.log("datos usuario", this.resp.payload)
         localStorage.setItem('token', this.resp.Token);
-        localStorage.setItem('payload', JSON.stringify(this.resp.payload));
-
+        localStorage.setItem('payload', JSON.stringify(this.resp.payload));// stringity convierte un json a string
+       
 
 
         const id_rol = this.resp.payload.id_rol;
