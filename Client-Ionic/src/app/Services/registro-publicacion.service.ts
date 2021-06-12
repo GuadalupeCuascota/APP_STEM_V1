@@ -13,4 +13,5 @@ export class RegistroPublicacionService {
   getUsuarios(){
     return this.httpClient.get<Array<Publicacion>>(environment.baseUrl+"/publicaciones");
     }
+    
 }

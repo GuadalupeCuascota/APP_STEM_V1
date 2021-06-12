@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { OfertaAcademicaPageRoutingModule } from './oferta-academica-routing.module';
 
 import { OfertaAcademicaPage } from './oferta-academica.page';
-import { PagesModule } from '../../pages.module';
+// import { PagesModule } from '../../pages.module';
 
 
 @NgModule({

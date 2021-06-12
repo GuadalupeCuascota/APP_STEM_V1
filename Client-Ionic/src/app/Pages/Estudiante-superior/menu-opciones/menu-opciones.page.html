@@ -1,9 +1,9 @@
 <ion-split-pane contentId="main">
-  <ion-menu side="end" menuId="first" contentId="main" color="primary">
+  <ion-menu side="start" menuId="first" contentId="main" color="primary">
     <ion-header>
       <ion-toolbar>
         <ion-icon name="person-circle" style="zoom:3.0;" slot="start"></ion-icon>
-        <ion-label  color="dark" >{{datos.nombre}} {{datos.apellido}} </ion-label>
+        <ion-label  color="dark" >{{datos.nombre}} {{datos.apellido}}</ion-label>
         <ion-label ></ion-label>
         <ion-label></ion-label>
       </ion-toolbar>
@@ -13,13 +13,10 @@
       <ion-menu-toggle>
         <ion-item routerLink="test-aptitud">
           <ion-icon name="newspaper" slot="start"></ion-icon>
-          <label>Registro tutorias académicas</label>
+          <label>Mi perfil</label>
           
         </ion-item>
-        <ion-item routerLink="oferta-academica">
-          <ion-icon name="school" slot="start"></ion-icon>
-          <label>Malla Curricular</label>
-        </ion-item>
+      
         <ion-item (click)="logout()" routerDirection="login">
           <ion-icon name="exit-outline" slot="start"></ion-icon>
           Cerrar sesión

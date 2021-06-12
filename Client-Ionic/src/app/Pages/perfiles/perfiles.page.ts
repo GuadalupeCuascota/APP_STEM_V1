@@ -7,7 +7,9 @@ import { NavController } from '@ionic/angular';
 import { MensajesService } from 'src/app/Services/mensajes.service';
 import { LoadingService } from 'src/app/Services/loading.service';
 import {RegistroPublicacionService} from '../../Services/registro-publicacion.service'
-// import { StreamingMedia,StreamingAudioOptions,StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
+import { StreamingMedia, StreamingVideoOptions,StreamingAudioOptions } from '@ionic-native/streaming-media/ngx';
+
+
 
 
 @Component({
@@ -16,15 +18,60 @@ import {RegistroPublicacionService} from '../../Services/registro-publicacion.se
   styleUrls: ['./perfiles.page.scss'],
 })
 export class PerfilesPage implements OnInit {
+  perfiles: Publicacion[] = [];
+  textoBuscar=""
+  constructor(private regitroPublicacion: RegistroPublicacionService, private streamingMedia: StreamingMedia) { }//inyecto el servicio importado
 
-
-  constructor(private regitroPublicacion: RegistroPublicacionService) { }//inyecto el servicio importado
+  
 
   ngOnInit() {
     this.getPerfiles();
     
+    this.doRefresh();
   }
- perfiles: Publicacion[] = [];
+  buscar(event){
+    this.textoBuscar=event.detail.value;
+     console.log(event)
+  }
+  doRefresh($event?:any){ //envia un evento opcional de tipo any
+    this.getPerfiles();
+    if($event){
+      $event.target.complete();
+    }
+
+  }
+  public playVideo(url){ 
+
+console.log("PASS")
+    var options: StreamingVideoOptions={
+      successCallback: () => { console.log('Video played') },
+      errorCallback: (e) => { console.log('Error streaming') },
+      orientation:"portrait", //fuerza una orientacion del video
+      controls:true, //el video debe tener controles 
+      shouldAutoClose:true, //cierra el video despues de que termine
+    
+    }
+    
+    this.streamingMedia.playVideo("http://192.168.100.10:3000/"+url,options)
+   console.log("LA URL","http://192.168.100.10:3000/"+url)
+}
+public start(){
+  
+  var optionsA: StreamingAudioOptions={
+    successCallback: () => { console.log('Video played') },
+      errorCallback: (e) => { console.log('Error streaming') },
+    bgColor: "#F39C12",
+    initFullscreen:true
+    
+
+  }
+  this.streamingMedia.playAudio('http://192.168.100.10:3000/uploads/0cc4e65d-0997-40ae-918f-dd4a6668aa85.mp4',optionsA)
+}
+ 
+stopPlayingVideo(){
+  this.streamingMedia.pauseAudio();
+}
+ 
  perfil: Publicacion;
 
  loadData(event) {
@@ -47,8 +94,9 @@ export class PerfilesPage implements OnInit {
        if(aux.id_tipo_publicacion==1){
          auxper.push(aux);
        }
+       console.log("la ruta",aux.ruta_archivo)
      }
-   
+     
     this.perfiles=auxper;
     console.log("perfiles",this.perfiles)
    },

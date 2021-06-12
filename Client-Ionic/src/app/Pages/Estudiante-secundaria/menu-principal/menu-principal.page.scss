@@ -5,4 +5,12 @@
    ion-icon{
      color: #3e145a;
    } 
+   ion-header {
+    background: var(--ion-color-light);
   
+    ion-list {
+      background: var(--ion-color-tertiary);
+      border-radius: 0 0 20px 20px;
+      padding-bottom: 7vh;
+    }
+  }  

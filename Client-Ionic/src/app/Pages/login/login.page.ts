@@ -48,6 +48,7 @@ export class LoginPage implements OnInit {
     this.usuario = new Usuario();
     
   }
+  
   toggleShow(): void {
     this.showPassword = !this.showPassword;
     if (this.passwordIcon == 'eye-off') {
@@ -56,6 +57,7 @@ export class LoginPage implements OnInit {
       this.passwordIcon = 'eye-off';
     }
   }
+  
  async login() {
     const loading = await this.loadinServices.presentLoading("Cargando...");
     await loading.present();
@@ -68,20 +70,19 @@ export class LoginPage implements OnInit {
           this.resp = res;
           localStorage.setItem('Token',this.resp.Token)
           localStorage.setItem('payload',JSON.stringify(this.resp.payload))
-          // // this.storage.set('Token',this.resp.Token);
-          // // this.storage.set('payload',JSON.stringify(this.resp.payload));
-       
+         
           const id_rol = this.resp.payload.id_rol;
           const nivel_academico = this.resp.payload.nivel_academico;
           if (id_rol == 3 && nivel_academico=="secundaria"){
             console.log("estudiante secundaria")
-            this.router.navigate(['/menu-opciones-se/menu-principal']);
+            this.router.navigate(['/menu-opciones-se/home-secundaria']);
+           
          
            
           }
             if (id_rol == 3 && nivel_academico=="superior"){
               
-              this.router.navigate(['/menu-opciones-u/menu-principal']);
+              this.router.navigate(['/menu-opciones/home-superior']);
           }
           
   
@@ -90,6 +91,7 @@ export class LoginPage implements OnInit {
         
       },
       (err) => {
+        
         this.mensajeServices.presentAlert('Error', err.error.text)
       }
     );

@@ -13,8 +13,9 @@ export class MenuOpcionesSePage implements OnInit {
     private loadinServices: LoadingService) { }
 
   ngOnInit() {
+    console.log("PRIMERO")
     this.datos=JSON.parse(localStorage.getItem('payload'));
-    console.log("hola admin",this.datos)
+    
   }
   async logout(){
     const loading = await this.loadinServices.presentLoading("Cargando...");

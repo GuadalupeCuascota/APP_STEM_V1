@@ -1,5 +1,5 @@
-import { Component, OnInit ,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { Component, OnInit ,ViewChild } from '@angular/core';
+import { IonTabs, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu-principal.page.scss'],
 })
 export class MenuPrincipalPage implements OnInit {
+  selectedTab: any;
+  @ViewChild('tab',{static: false}) tab: IonTabs;
 
   constructor(private menuCtrl: MenuController,
     private router: Router) { }
@@ -18,6 +20,10 @@ export class MenuPrincipalPage implements OnInit {
     this.datos=JSON.parse(localStorage.getItem('payload'));
     console.log("pasa aqui el usuario",this.datos)
   
+  }
+  setCurrentTab(){
+    this.selectedTab=this.tab.getSelected();
+    console.log("ES",this.selectedTab)
   }
  
   openMenu(){

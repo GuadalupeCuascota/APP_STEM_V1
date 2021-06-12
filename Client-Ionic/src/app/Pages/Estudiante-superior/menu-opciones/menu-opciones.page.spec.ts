@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { MenuOpcionesUPage } from './menu-opciones-u.page';
+import { MenuOpcionesPage } from './menu-opciones.page';
 
-describe('MenuOpcionesUPage', () => {
-  let component: MenuOpcionesUPage;
-  let fixture: ComponentFixture<MenuOpcionesUPage>;
+describe('MenuOpcionesPage', () => {
+  let component: MenuOpcionesPage;
+  let fixture: ComponentFixture<MenuOpcionesPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MenuOpcionesUPage ],
+      declarations: [ MenuOpcionesPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MenuOpcionesUPage);
+    fixture = TestBed.createComponent(MenuOpcionesPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

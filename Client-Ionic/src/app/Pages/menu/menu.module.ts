@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MenuOpcionesUPageRoutingModule } from './menu-opciones-u-routing.module';
+import { MenuPageRoutingModule } from './menu-routing.module';
 
-import { MenuOpcionesUPage } from './menu-opciones-u.page';
+import { MenuPage } from './menu.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MenuOpcionesUPageRoutingModule
+    MenuPageRoutingModule
   ],
-  declarations: [MenuOpcionesUPage]
+  declarations: [MenuPage]
 })
-export class MenuOpcionesUPageModule {}
+export class MenuPageModule {}

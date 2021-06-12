@@ -29,22 +29,26 @@
         ></ion-icon>
       </ion-item>
      
-    <br>
+  
+    <p  class="message"><a href="/registro-editor">Olvidaste tu contraseña?</a></p>
 
       <ion-button type="submit" color="tertiary"  [disabled]="!formLogin.valid" expand="block" >ENTRAR</ion-button>
-      <br>
-      <a routerLink="/registro-usuario">Olvidaste tu contraseña?</a>
-     
-      
-    
-      
-    </ion-card>
-    <br>
-   <ion-button
+      <ion-button
       color="tertiary"
         type="submit"
         routerLink="/registro-usuario"
         expand="block"
         >Registarse</ion-button>
+        <!-- <p  class="message"><a href="/registro-usuario">No tienes cuenta aún? Registrates</a></p> -->
+        <!-- <span>No tienes cuenta aún?</span><button class="ion-no-padding">Registrate</button> -->
+      
+      <!-- <p class="message">Not registered? <a href="">Admin</a></p> -->
+      
+    
+      
+    </ion-card>
+    <br>
+    
   </form>
+
 </ion-content>

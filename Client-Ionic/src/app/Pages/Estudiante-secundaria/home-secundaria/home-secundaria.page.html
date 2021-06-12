@@ -1,0 +1,78 @@
+<ion-header class="ion-no-border">
+  <ion-list lines="none">
+    <ion-item color="tertiary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-item>
+   
+    <ion-item color="tertiary ">
+    
+      <ion-label>Bienvenida, {{datos.nombre}} {{datos.apellido}}</ion-label> 
+     
+    </ion-item>
+  
+     
+     
+   
+    
+  </ion-list>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+       
+        <ion-card routerLink="/perfiles">
+         
+            <!-- <img width="100px" src="../../../../assets/mujeresstem.jpg" /> -->
+          
+         <ion-icon name="people"></ion-icon> 
+          <ion-card-content>
+            <ion-label>Mujeres en STEM </ion-label>
+          </ion-card-content>
+         
+
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card routerLink="/noticias">
+       
+         <ion-icon name="newspaper"></ion-icon> 
+
+          <ion-card-content>
+            <ion-label>Noticias </ion-label>
+          </ion-card-content>
+        
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 >
+        <ion-card routerLink="/oferta-academica" >
+          <ion-icon name="school"></ion-icon>
+          <ion-card-content > 
+            <ion-label>Oferta Académica FICA-UTN </ion-label>
+          </ion-card-content>
+
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card >
+          <ion-icon name="receipt"></ion-icon>
+          <ion-card-content> 
+            <ion-label>Test de aptitud vocacional</ion-label>
+          </ion-card-content>
+          
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+  
+</ion-content>

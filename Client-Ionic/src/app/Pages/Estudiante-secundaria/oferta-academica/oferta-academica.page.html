@@ -1,11 +1,28 @@
 
 <ion-header>
-  <ion-toolbar>
-   
-    <ion-title>oferta-academica</ion-title>
-  </ion-toolbar>
+  <ion-list lines="none">
+    <ion-item color="tertiary ">
+      <ion-label>Bienvenida, {{datos.nombre}} {{datos.apellido}}</ion-label> 
+    </ion-item>
+  </ion-list>
 </ion-header>
 
 <ion-content>
- 
+  <ion-content>
+    <ion-tabs #tab (ionTabsDidChange)="setCurrentTab()">
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home-secundaria">
+          <ion-icon [name]="selectedTab =='rose'? 'home': 'home-outline'"></ion-icon>
+          <ion-label>Principal</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="">
+          <ion-icon name="people-outline"></ion-icon>
+          <ion-label>Perfiles</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="">
+          <ion-icon name="newspaper-outline"></ion-icon>
+          <ion-label>Noticias</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
 </ion-content>

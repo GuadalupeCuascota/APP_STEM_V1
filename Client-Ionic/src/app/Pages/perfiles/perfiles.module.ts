@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { PerfilesPageRoutingModule } from './perfiles-routing.module';
 
 import { PerfilesPage } from './perfiles.page';
+import { PipesModule } from 'src/app/pipes/pipes.module';
+
 
 
 @NgModule({
@@ -15,6 +17,8 @@ import { PerfilesPage } from './perfiles.page';
     FormsModule,
     IonicModule,
     PerfilesPageRoutingModule,
+     PipesModule
+
    
   ],
   declarations: [PerfilesPage]

@@ -1,26 +1,59 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Perfiles</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar >
+   
+    <div class="popover">
+      <ion-searchbar (ionChange)="buscar($event)"></ion-searchbar>
+    </div>
   </ion-toolbar>
 </ion-header>
+<!-- <div>
+  <ion-button (click)="playVideo()" color="primary">PLAY VIDEO</ion-button>
+  <ion-button (click)="start()" color="primary">START</ion-button>
+</div> -->
+
+
 <ion-content>
-  <ion-card *ngFor="let perfil of perfiles">
-  
-    <ion-img src="http://192.168.100.10:3000/{{perfil.ruta_archivo}}" width="350" height="150"></ion-img>
-    <ion-card-header>
-      <ion-card-subtitle>{{perfil.profesion }}   {{perfil.estado_profesion}}</ion-card-subtitle>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+ 
+  <ion-card *ngFor="let perfil of perfiles | filtros: textoBuscar">
+
+
+
+    <ion-img (click)="playVideo(perfil.ruta_archivo)" src="http://192.168.100.10:3000/{{perfil.ruta_archivo}}"
+      width="350" height="150"></ion-img>
+        <ion-grid>
+         
+          <ion-row>
+            <ion-col>
+              <ion-icon name="person-circle"></ion-icon> {{perfil.nombre_perfil}}
+            </ion-col>
+            <ion-col>
+              <ion-icon name="school"></ion-icon> {{perfil.profesion }}
+            </ion-col>
+            <ion-col>
+              <ion-icon name="ribbon"></ion-icon> {{perfil.estado_profesion}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              {{perfil.descripcion}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       
-    </ion-card-header>
-  
-    <ion-card-content>
-     {{perfil.descripcion}}
-    </ion-card-content>
   </ion-card>
-  
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="tertiary" size="25px">
+      <ion-icon color="light" name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="lines-small"
-      loadingText="Cargando...">
+    <ion-infinite-scroll-content loadingSpinner="lines-small" loadingText="Cargando...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
@@ -33,4 +66,3 @@
 <button (click)="startAudio">start</button>
 <button (click)="stopAudio" color="danger">start</button>
 </ion-content> -->
-
