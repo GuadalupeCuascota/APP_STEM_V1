@@ -13,5 +13,9 @@ export class RegistroPublicacionService {
   getUsuarios(){
     return this.httpClient.get<Array<Publicacion>>(environment.baseUrl+"/publicaciones");
     }
+    getPublicacionesCarrera(idCarrera:number){
+      return this.httpClient.get<Publicacion>(environment.baseUrl+"/publicacionesCarrera/"+idCarrera);
+    }
+
     
 }

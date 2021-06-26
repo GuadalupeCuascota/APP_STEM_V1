@@ -1,9 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import{HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
-
+import{HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistroUsuarioComponent } from './Componets/Administrador/menu-principal/registro-usuario.component';
@@ -11,29 +8,21 @@ import { UsuarioListComponent } from './Componets/Administrador/usuario-list/usu
 import{RegistroUsuarioService} from './Services/registro-usuario.service';
 import { RegistroArchivoService } from "./Services/registro-archivo.service";
 import { RolesListComponent } from './Componets/Administrador/roles-list/roles-list.component';
-
- 
-//imporar modulo para animacion de mensajes de alterta 
-import{BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import{BrowserAnimationsModule} from '@angular/platform-browser/animations';//imporar modulo para animacion de mensajes de alterta 
 import{ToastrModule} from 'ngx-toastr';
-import {NgxPaginationModule} from 'ngx-pagination';
-
-
-// importar el módulo para enlazar el formulario con los datos
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { from } from 'rxjs';
-//importan el formulario modal
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
+import {NgxPaginationModule} from 'ngx-pagination'; //modulo para la paginacion
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';// importar el módulo para enlazar el formulario con los datos
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';//importan el formulario modal
 import { MenuPrincipalEditorComponent } from './Componets/Editor/menu-principal-editor/menu-principal-editor.component';
  import { LoginComponent } from './Componets/Login/login.component';
 import { PerfilesMujeresComponent } from './Componets/Editor/perfiles-mujeres/perfiles-mujeres.component'
 import {LoginGuard} from './Services/Login/login.guard';
 import { NoticiasComponent } from './Componets/Editor/noticias/noticias.component';
+import { OfertaAcademicaComponent } from './Componets/Editor/oferta-academica/oferta-academica.component';
 import { MenuPublicacionComponent } from './Componets/Editor/menu-publicacion/menu-publicacion.component';
-import {RegistroEditorComponent} from './Componets/Administrador/registro-editor/registro-editor.component'
-
-
+import {RegistroEditorComponent} from './Componets/Administrador/registro-editor/registro-editor.component';
+import { FiltroUsuariosPipe } from './pipes/filtro-usuarios.pipe';
+import { FiltroPerfilesPipe } from './pipes/filtro-perfiles.pipe'; //módulo para el filtrado de información
 // import {TokenInterceptorService} from './Login/Services/token-interceptor.service'
 
 @NgModule({
@@ -47,9 +36,10 @@ import {RegistroEditorComponent} from './Componets/Administrador/registro-editor
     PerfilesMujeresComponent,
     NoticiasComponent,
     MenuPublicacionComponent,
-    RegistroEditorComponent
-  
-   
+    RegistroEditorComponent,
+    FiltroUsuariosPipe,
+    OfertaAcademicaComponent,
+    FiltroPerfilesPipe
   ],
   imports: [
     BrowserModule,
@@ -57,7 +47,6 @@ import {RegistroEditorComponent} from './Componets/Administrador/registro-editor
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgxPaginationModule,

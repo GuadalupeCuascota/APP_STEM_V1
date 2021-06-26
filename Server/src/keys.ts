@@ -4,7 +4,7 @@ export default{
         user:  'root',
         password:'',
         database: 'appstem'
-
+          
     }
 
 }

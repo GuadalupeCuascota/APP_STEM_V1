@@ -5,60 +5,41 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
     </ion-item>
-   
     <ion-item color="tertiary ">
-    
       <ion-label>Bienvenida, {{datos.nombre}} {{datos.apellido}}</ion-label> 
-     
-    </ion-item>
-  
-     
-     
-   
-    
+    </ion-item> 
   </ion-list>
-
 </ion-header>
 
 <ion-content>
-
-  <ion-grid>
+<ion-grid>
     <ion-row>
       <ion-col col-6>
-       
-        <ion-card routerLink="/perfiles">
-         
-            <!-- <img width="100px" src="../../../../assets/mujeresstem.jpg" /> -->
-          
+       <ion-card routerLink="/perfiles">
          <ion-icon name="people"></ion-icon> 
           <ion-card-content>
             <ion-label>Mujeres en STEM </ion-label>
           </ion-card-content>
-         
-
         </ion-card>
       </ion-col>
+
       <ion-col col-6>
         <ion-card routerLink="/noticias">
-       
-         <ion-icon name="newspaper"></ion-icon> 
-
+         <ion-icon name="newspaper"></ion-icon>
           <ion-card-content>
             <ion-label>Noticias </ion-label>
           </ion-card-content>
-        
-
         </ion-card>
       </ion-col>
     </ion-row>
+    
     <ion-row>
       <ion-col col-6 >
-        <ion-card routerLink="/oferta-academica" >
+        <ion-card routerLink="/carreras-fica" >
           <ion-icon name="school"></ion-icon>
           <ion-card-content > 
             <ion-label>Oferta Académica FICA-UTN </ion-label>
           </ion-card-content>
-
         </ion-card>
       </ion-col>
       <ion-col col-6>

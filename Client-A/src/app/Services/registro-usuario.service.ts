@@ -11,6 +11,7 @@ import {Usuario} from '../Models/usuario'
 })
 export class RegistroUsuarioService {
   API_URI='http://localhost:3000/api';
+  filtroUsuario: "";
   
 
   constructor(private http: HttpClient) { }

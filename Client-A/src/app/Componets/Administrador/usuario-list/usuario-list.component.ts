@@ -22,7 +22,7 @@ export class UsuarioListComponent implements OnInit {
   usuarios: any = [];
   usuario1: any = {};
   usuario: Usuario = {
-    nombre: 'hola',
+    nombre: '',
     apellido: '',
     nivel_academico: '',
     carrera: '',
@@ -31,7 +31,12 @@ export class UsuarioListComponent implements OnInit {
     contrasenia: '',
     id_rol: 0,
   };
+  textoBuscar='';
+  //  form=new FormGroup({
+  //   nombre: new FormControl('', Validators.required),
+    
 
+  //  })
   
   constructor(
     private registroUsuarioService: RegistroUsuarioService,
@@ -39,7 +44,7 @@ export class UsuarioListComponent implements OnInit {
     private alerts: AlertsService,
     private modalService: NgbModal
   ) {}
-  p: number = 1;
+  p: number = 0;
   ngOnInit(): void {
     this.getUsuarios();
     this.ObtenerRoles();
@@ -49,6 +54,7 @@ export class UsuarioListComponent implements OnInit {
     this.show_eye = !this.show_eye;
 
   }
+ 
   ///////////////////////METODOS DEL MODAL///////////////////////////
 
   open(content) {
@@ -81,6 +87,7 @@ export class UsuarioListComponent implements OnInit {
   ////////////////////////////////////////////////////
 
   getUsuarios() {
+    console.log("hol")
     var usuAE = [];
     this.registroUsuarioService.getUsuarios().subscribe(
       
@@ -89,10 +96,10 @@ export class UsuarioListComponent implements OnInit {
         for (let usu1 of res) {
           if (usu1.tipo_rol == "Admin" || usu1.tipo_rol == "Editor") {
             usuAE.push(usu1);
-            console.log(usuAE);
+            
         }
       }
-        // console.log(res);
+        console.log(res);
          this.usuarios = usuAE  ;
 
       },
@@ -132,7 +139,7 @@ export class UsuarioListComponent implements OnInit {
   }
 
   saveUsuario() {
-    console.log(this.usuario);
+    console.log("el usuario2",this.usuario);
     this.registroUsuarioService.saveUsuario(this.usuario).subscribe(
       (res) => {
         
@@ -173,4 +180,5 @@ export class UsuarioListComponent implements OnInit {
         (err) => console.log(err)
       );
   }
+  
 }

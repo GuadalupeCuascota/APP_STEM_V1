@@ -12,9 +12,12 @@ const helmet_1 = __importDefault(require("helmet"));
 const rolesRoutes_1 = __importDefault(require("./routes/rolesRoutes"));
 const usuariosRoutes_1 = __importDefault(require("./routes/usuariosRoutes"));
 const publicacionRoutes_1 = __importDefault(require("./routes/publicacionRoutes"));
+const publicacionesCarreraRoutes_1 = __importDefault(require("./routes/publicacionesCarreraRoutes"));
+'./routes/publicacionesCarreraRoutes';
 const tipo_publicaci_nRoute_1 = __importDefault(require("./routes/tipo-publicaci\u00F3nRoute"));
 const autentificacionRoutes_1 = __importDefault(require("./routes/autentificacionRoutes"));
 const registro_eventoRoutes_1 = __importDefault(require("./routes/registro-eventoRoutes"));
+const carrerasficaRoutes_1 = __importDefault(require("./routes/carrerasficaRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default(); // inicializamos express
@@ -36,6 +39,8 @@ class Server {
         this.app.use('/api/publicaciones', publicacionRoutes_1.default);
         this.app.use('/login', autentificacionRoutes_1.default);
         this.app.use('/uploads', express_1.default.static(path_1.default.resolve('uploads')));
+        this.app.use('/api/carrerasFica', carrerasficaRoutes_1.default);
+        this.app.use('/api/publicacionesCarrera', publicacionesCarreraRoutes_1.default);
         //carpeta para almacenar archivos publicos
         this.app.use('/api/registro-evento', registro_eventoRoutes_1.default);
     }

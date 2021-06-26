@@ -3,123 +3,134 @@
 
 <ng-template #contenido let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">
-       Mujeres en STEM
+    <h4 *ngIf="!edit"ng class="modal-title" id="modal-basic-title">
+      Mujeres en STEM
     </h4>
-    <button
-      class="close"
-      aria-label="close"
-      type="button"
-      (click)="modal.dismiss()"
-    >
+    <h4 *ngIf="edit">Actualizar información del perfil</h4>
+   
+    
+    <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+  
   <div class="modal-body">
     <div class="form-group">
+      <label>Nombre: </label>
+      <input type="text" class="form-control" name="" placeholder="Ingrese nombre"
+        [(ngModel)]="perfil.nombre_perfil" required />
+
       <label>Campo de trabajo/estudio: </label>
-      <input
-        type="text"
-        class="form-control"
-        name=""
-        placeholder="Ingrese campo de trabajo o estudio"
-        [(ngModel)]="perfil.profesion"
-        required
-      />
+      <input type="text" class="form-control" name="" placeholder="Ingrese campo de trabajo o estudio"
+        [(ngModel)]="perfil.profesion" required />
       <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          value="graduada"
-          name="estado_profesion"
-          [(ngModel)]="perfil.estado_profesion"
-        />
+        <input class="form-check-input" type="radio" value="graduada" name="estado_profesion"
+          [(ngModel)]="perfil.estado_profesion" />
         <label class="form-check-label">graduada</label>
       </div>
       <div class="form-check form-check-inline">
-        <input
-          class="form-check-input"
-          type="radio"
-          value="estudiante"
-          name="estado_profesion"
-          [(ngModel)]="perfil.estado_profesion"
-        />
+        <input class="form-check-input" type="radio" value="estudiante" name="estado_profesion"
+          [(ngModel)]="perfil.estado_profesion" />
         <label class="form-check-label" for="inlineRadio2">estudiante</label>
       </div>
     </div>
-   
+
 
     <div class="form-group">
       <label>Descripción:</label>
-      <textarea
-        rows="2"
-        class="form-control"
-        [(ngModel)]="perfil.descripcion"
-        placeholder="Ingrese descripción"
-        required
-      ></textarea>
+      <textarea rows="2" class="form-control" [(ngModel)]="perfil.descripcion" placeholder="Ingrese descripción"
+        required></textarea>
     </div>
     <div class="form-group">
-      <input
-        type="file"
-        name=""
-        placeholder=""
-        (change)="onFileSelect($event)"
-        #photo
-      />
-       
-        <img [src]="leerArchivo || API_URI || '../../../../assets/noimage.png'" class="img-fluid" alt="no-image" >
-     
-     
-      <!-- <class="d-none"<img [src]="../../../../assets/noimage.png" class="img-fluid" alt="no-image" (click)="photo.click()"> -->
+      <input type="file" name="" placeholder="" (change)="onFileSelect($event)" #photo />
+
+      <img *ngIf="tipo" max-width="250px"[src]="leerArchivo || API_URI " class="img-fluid" alt="no-image">
+      <video  max-width="250px"[src]="leerArchivo || API_URI " class="img-fluid" alt="no-image"></video>
+      
     </div>
   </div>
 
   <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-secondary"
-      data-dismiss="modal"
-      (click)="close(contenido)"
-    >
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close(contenido)">
       Cerrar
     </button>
-    <button type="button" class="btn btn-primary" (click)=" edit ? updatepublicacion():saveArchivo()">
-      PUBLICAR
-    </button>
+    <button *ngIf="!edit" type="button" class="btn btn-primary" (click)=" edit ? updatepublicacion():saveArchivo()">
+      PUBLICAR <i class="fas fa-save"></i>
+    </button> 
+    <button *ngIf="edit" type="button" class="btn btn-primary" (click)=" edit ? updatepublicacion():saveArchivo()">
+      GUARDAR <i class="fas fa-save"></i>
+    </button> 
+    
   </div>
 </ng-template>
 <br />
 
 <div class="row">
+  
   <div class="col-md-8 offset-md-3">
-    <button type="reset" class="btn btn-primary" (click)="open(contenido);clear()">
-      CREAR PERFIL <i class="fas fa-plus-square"></i>
-    </button>
-    <br />
+    <h5 class="text-center" style="color: #161515">Listado de Perfiles de Mujeres en STEM</h5>
+    <div class="form-group row">
+      <div class="col">
+        <button type="reset" class="btn btn-primary" (click)="open(contenido);clear()">
+          CREAR PERFIL <i class="fas fa-plus-square"></i>
+        </button>
+      </div>
+      <div class="col">
+
+        <div class="col-md-8 offset-md-4">
+          <div class="form-group row">
+
+            <div class="input-group">
+
+              <input type="text" class="form-control" name="textoBuscar" placeholder="Buscar perfil">
+              <div class="input-group-text bg-white">
+                <i class="fas fa-search"></i>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- [(ngModel)]="textoBuscar" -->
+
     <table class="table table-hover">
       <thead>
         <tr class="table-active">
-          <th scope="col">Profesion</th>
-          
+          <th scope="col">Nombre</th>
+          <th scope="col">Profesionn</th>
+
           <th scope="col">Descripción</th>
-          
+          <th scope="col">Imagen</th>
+
           <th scope="col">acciones</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr  *ngFor="
-        let perfil of perfiles | paginate: { itemsPerPage: 3, currentPage: p }">
+        <tr *ngFor="let perfil of perfiles | paginate: { itemsPerPage: 3, currentPage: p }">
+        <td>{{ perfil.nombre_perfil}}</td>
           <td>{{ perfil.profesion }}</td>
-          
+
           <td>{{ perfil.descripcion}}</td>
-          <!-- <td><img [src]="'http://localhost:3000/'+ perfil.ruta_archivo" class="img-card-top w-100"  alt="no-image"></td> -->
+          
+          
+           <td ><img *ngIf="perfil.tipo_archivo=='image/jpeg'" width="100px"  heigh="100px" [src]="'http://localhost:3000/'+ perfil.ruta_archivo"   alt="no-image" >
+            <video *ngIf="perfil.tipo_archivo=='video/mp4'"width="100px"  heigh="100px"  [src]="'http://localhost:3000/'+ perfil.ruta_archivo " class="img-fluid" alt="no-image"></video>
+          </td> 
+           
+          
+            
+           
+            
+          
           <td>
-            <button class="btn btn-primary"  (click)="getpublicacion(perfil.id_publicacion); open(contenido)" >
+            <button class="btn btn-primary" (click)="getpublicacion(perfil.id_publicacion); open(contenido)">
               <i class="fas fa-edit"></i>
-            </button>
-            <button class="btn btn-danger"  (click)="deletePublicacion(perfil.id_publicacion )">
+            </button> |
+            <button class="btn btn-danger" (click)="deletePublicacion(perfil.id_publicacion )">
               <i class="far fa-trash-alt"></i>
             </button>
           </td>
@@ -127,11 +138,9 @@
       </tbody>
     </table>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
-  
+
     <!-- <video src="../../../../assets/Pregunta a.mp4" width="300" controls> -->
     <!-- </video> -->
-  
+
   </div>
 </div>
-
-

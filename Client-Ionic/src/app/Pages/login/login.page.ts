@@ -75,7 +75,7 @@ export class LoginPage implements OnInit {
           const nivel_academico = this.resp.payload.nivel_academico;
           if (id_rol == 3 && nivel_academico=="secundaria"){
             console.log("estudiante secundaria")
-            this.router.navigate(['/menu-opciones-se/home-secundaria']);
+            this.router.navigate(['/home-secundaria']);
            
          
            
@@ -87,8 +87,6 @@ export class LoginPage implements OnInit {
           
   
         }
-
-        
       },
       (err) => {
         

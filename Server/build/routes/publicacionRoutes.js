@@ -12,7 +12,7 @@ class PublicacionRoutes {
         this.config();
     }
     config() {
-        this.router.get("/", publicacionController_1.archivosController.list);
+        this.router.get("/", publicacionController_1.archivosController.listP);
         this.router.get("/:id", publicacionController_1.archivosController.getOne);
         this.router.post("/", multer_1.default.single('ruta_archivo'), publicacionController_1.archivosController.create); //antes de procesar pasa por multer para saber si hay un archivo 
         this.router.delete("/:id", publicacionController_1.archivosController.delete);

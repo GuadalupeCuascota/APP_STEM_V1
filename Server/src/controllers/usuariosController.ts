@@ -11,7 +11,7 @@ class UsuariosController {
 
     await pool.query("SELECT u.id_usuario, u.nombre, u.apellido,u.nivel_academico,u.carrera,u.unidad_educativa,u.correo_electronico,u.contrasenia, r.tipo_rol from usuario u, rol r WHERE r.id_rol=u.id_rol", (err: any, rows: any) => {
       if (err) {
-        res.status(404).json("error al cargari");
+        res.status(404).json("error al cargar");
         console.log(err)
       } else {
         res.status(200).json(rows);
@@ -31,12 +31,8 @@ class UsuariosController {
     }
     res.status(404).json({ text: "el usuario no existe" });
   }
-  // public async create(req: Request, res: Response) {
- 
-  //   await pool.query("INSERT INTO usuario set ?",[req.body]);
-  //   res.json({text: "usuario guardado"});
-  //   console.log([req.body]);
-  // }
+  
+  
 
   public async create(req: Request, res: Response) {
     

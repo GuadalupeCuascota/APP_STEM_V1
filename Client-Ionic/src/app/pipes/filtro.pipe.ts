@@ -25,15 +25,7 @@ export class FiltroPipe implements PipeTransform {
 
     }
     
-    // texto=texto.toLowerCase();
-    // console.log("el texto",texto)
-
-    // return arreglo.filter(item=>item.nombre_perfil=="a");
-     
-
-      // return item.profesion.toLowerCase().include(texto)
-    
-    return  arreglo
+   
   }
 
 }

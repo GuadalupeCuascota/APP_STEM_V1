@@ -28,6 +28,7 @@ export class NoticiasComponent implements OnInit {
     id_tipo_publicacion: '',
     id_estado_publicacion :'1',
     id_usuario : '',
+    id_carrera : 'sin asignar',
   };
   API_URI:string;
   edit: boolean=false;
@@ -119,7 +120,7 @@ export class NoticiasComponent implements OnInit {
         fd.append('id_usuario',this.datos.id_usuario)
         fd.append('id_tipo_publicacion',this.id)
         fd.append('id_estado_publicacion',this.noticia.id_estado_publicacion)
-      
+        fd.append('id_carrera',this.noticia.id_carrera)
       this.registroArchivo.saveArchivo(fd).subscribe(
         (res)=>{
           console.log(res)
