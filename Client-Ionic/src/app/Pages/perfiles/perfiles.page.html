@@ -1,6 +1,6 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar >
-   
+  <ion-toolbar>
+
     <div class="popover">
       <ion-searchbar (ionChange)="buscar($event)"></ion-searchbar>
     </div>
@@ -17,33 +17,31 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
- 
+
   <ion-card *ngFor="let perfil of perfiles | filtros: textoBuscar">
-
-
-
-    <ion-img (click)="playVideo(perfil.ruta_archivo)" src="http://192.168.100.10:3000/{{perfil.ruta_archivo}}"
-      width="350" height="150"></ion-img>
-        <ion-grid>
-         
-          <ion-row>
-            <ion-col>
-              <ion-icon name="person-circle"></ion-icon> {{perfil.nombre_perfil}}
-            </ion-col>
-            <ion-col>
-              <ion-icon name="school"></ion-icon> {{perfil.profesion }}
-            </ion-col>
-            <ion-col>
-              <ion-icon name="ribbon"></ion-icon> {{perfil.estado_profesion}}
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              {{perfil.descripcion}}
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      
+    
+   <video  width="350" height="150" src="http://192.168.100.10:3000/{{perfil.ruta_archivo}}"></video>
+    <ion-img *ngIf="perfil.tipo_archivo=='image/png'" (click)="playVideo(perfil.ruta_archivo)" src="http://192.168.100.10:3000/{{perfil.ruta_archivo}}"
+      width="350" height="150"></ion-img> 
+     
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-icon name="person-circle"></ion-icon> {{perfil.nombre_perfil}}
+        </ion-col>
+        <ion-col>
+          <ion-icon name="school"></ion-icon> {{perfil.profesion }}
+        </ion-col>
+        <ion-col>
+          <ion-icon name="ribbon"></ion-icon> {{perfil.estado_profesion}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          {{perfil.descripcion}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

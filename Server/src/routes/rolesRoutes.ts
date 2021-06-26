@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import {rolesController} from '../controllers/rolesController';
-import {checkjwt}from '../midleware/jwt'
-import {checkRol1} from '../midleware/roles'
+
 class RolesRoutes
 {
 public router: Router= Router();

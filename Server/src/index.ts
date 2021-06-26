@@ -8,9 +8,11 @@ import helmet from "helmet";
 import rolesRoutes from './routes/rolesRoutes';
 import usuariosRoutes from './routes/usuariosRoutes';
 import publicacionRoutes from './routes/publicacionRoutes';
+import publicacionesCarreraRoutes from './routes/publicacionesCarreraRoutes'; './routes/publicacionesCarreraRoutes';
 import  tipoPublicacionRoutes from './routes/tipo-publicaciónRoute';
 import autenticacionRoutes from "./routes/autentificacionRoutes";
 import eventoRoutes from './routes/registro-eventoRoutes'
+import carrerasficaRoutes from './routes/carrerasficaRoutes'; 
 
 
 class Server {
@@ -35,7 +37,10 @@ class Server {
      this.app.use('/api/publicaciones',publicacionRoutes);
      this.app.use('/login',autenticacionRoutes);
      this.app.use('/uploads',express.static(path.resolve('uploads')));
+     this.app.use('/api/carrerasFica',carrerasficaRoutes);
+     this.app.use('/api/publicacionesCarrera',publicacionesCarreraRoutes);
      //carpeta para almacenar archivos publicos
+
 
     this.app.use('/api/registro-evento',eventoRoutes)
     

@@ -8,6 +8,7 @@ import { RegistroUsuarioComponent } from './Componets/Administrador/menu-princip
 import { LoginComponent } from './Componets/Login/login.component';
 import { PerfilesMujeresComponent } from './Componets/Editor/perfiles-mujeres/perfiles-mujeres.component';
 import { NoticiasComponent } from './Componets/Editor/noticias/noticias.component';
+import {OfertaAcademicaComponent } from './Componets/Editor/oferta-academica/oferta-academica.component';
 import { LoginGuard } from './Services/Login/login.guard';
 import {RolesGuard} from './Services/Login/roles.guard';
 import {IsEditorGuard} from './Services/Login/is-editor.guard'
@@ -34,11 +35,17 @@ const routes: Routes = [
     canActivate: [LoginGuard,IsEditorGuard],
   },
   {
+    path: 'oferta-academica/:id',
+    component: OfertaAcademicaComponent,
+    canActivate: [LoginGuard,IsEditorGuard],
+   
+  },
+
+  {
     path: 'menu-publicacion',
     component: MenuPublicacionComponent,
     canActivate: [LoginGuard,IsEditorGuard],
-   
-    // children: [{ path: 'noticias/:id', component: NoticiasComponent }],
+  
   },
 
   {

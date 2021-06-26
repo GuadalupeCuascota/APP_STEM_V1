@@ -1,0 +1,24 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="tertiary">
+    <ion-title>OFERTA ACADÉMICA FICA</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ng-container *ngIf="!isLoaded; else showList">
+  <ion-spinner> </ion-spinner>
+</ng-container>
+<ng-template #showList>
+  <ion-content>
+    <ion-list>
+      <ion-item
+        button
+        *ngFor="let carrera of carreras" routerLink="/oferta-academica/{{carrera.id_carrera}}"
+       >
+        <ion-label>{{carrera.nombre_carrera}}</ion-label>
+     
+      </ion-item>
+    </ion-list> 
+</ion-content>
+  </ng-template>
+
+
+

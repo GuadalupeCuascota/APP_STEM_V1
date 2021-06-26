@@ -52,6 +52,7 @@ export class NoticiasPage implements OnInit {
  getNoticias(){
   var auxnot=[];
   this.regitroPublicacion.getUsuarios().subscribe(res=>{
+    console.log("el arreglo",res)
     for(let aux of res){
       if(aux.id_tipo_publicacion==2){
         auxnot.push(aux);

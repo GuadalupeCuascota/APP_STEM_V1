@@ -1,28 +1,22 @@
 
-<ion-header>
-  <ion-list lines="none">
-    <ion-item color="tertiary ">
-      <ion-label>Bienvenida, {{datos.nombre}} {{datos.apellido}}</ion-label> 
-    </ion-item>
-  </ion-list>
+<ion-header class="ion-no-border">
+ 
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="carreras-fica"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{Carrera}}</ion-title>
+  </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <ion-content>
-    <ion-tabs #tab (ionTabsDidChange)="setCurrentTab()">
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="home-secundaria">
-          <ion-icon [name]="selectedTab =='rose'? 'home': 'home-outline'"></ion-icon>
-          <ion-label>Principal</ion-label>
-        </ion-tab-button>
-        <ion-tab-button tab="">
-          <ion-icon name="people-outline"></ion-icon>
-          <ion-label>Perfiles</ion-label>
-        </ion-tab-button>
-        <ion-tab-button tab="">
-          <ion-icon name="newspaper-outline"></ion-icon>
-          <ion-label>Noticias</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
-</ion-content>
+  <ion-card *ngFor="let oferta of ofertaAcademica">
+    <ion-card-header>
+      <ion-card-title>{{oferta.titulo}}</ion-card-title>
+      <ion-card-subtitle>{{oferta.descripcion}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-img src="http://192.168.100.10:3000/{{oferta.ruta_archivo}}" width="350" height="150"></ion-img>
+  </ion-card>
+  </ion-content>
+
+  
+ 

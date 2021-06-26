@@ -7,15 +7,15 @@ const routes: Routes = [
   {
     path: '',
     component: MenuOpcionesSePage,
-    children:[
-      {
-      path: 'home-secundaria',
-      loadChildren: () => import('../../Estudiante-secundaria/home-secundaria/home-secundaria.module').then( m => m.HomeSecundariaPageModule),
+  //   children:[
+  //     {
+  //     path: 'home-secundaria',
+  //     loadChildren: () => import('../../Estudiante-secundaria/home-secundaria/home-secundaria.module').then( m => m.HomeSecundariaPageModule),
       
-    },
+  //   },
    
     
-  ]
+  // ]
   }
 ];
 

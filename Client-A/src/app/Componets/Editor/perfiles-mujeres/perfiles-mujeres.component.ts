@@ -15,10 +15,10 @@ export class PerfilesMujeresComponent implements OnInit {
   datos: any = {};
   perfiles: any|Publicacion=[];
   
-  
   perfil: any|Publicacion= {
     id_publicacion:0,
     titulo :'',
+    nombre_perfil:'',
     fecha_publicacion: new Date(),
     descripcion:'',
     enlace:'',
@@ -28,26 +28,26 @@ export class PerfilesMujeresComponent implements OnInit {
     id_tipo_publicacion: '',
     id_estado_publicacion :'1',
     id_usuario : '',
+    id_carrera:'sin asignar'
+   
   };
+  tipo: boolean=false;
   API_URI:string;
   edit: boolean=false;
   closeResult = '';
-  //file: Array<File>
   archivosSeleccionado :File
   leerArchivo:string| ArrayBuffer 
   constructor(private registroArchivo: RegistroArchivoService, private alerts : AlertsService,
   private modalService: NgbModal,private router:ActivatedRoute ) { }
   p: number = 1;
   ngOnInit(): void {
-    
-    this.id=this.router.snapshot.paramMap.get('id');
-    console.log("el id de la ruta",this.id)
-
-    this.datos=JSON.parse(localStorage.getItem('payload'));
+    this.id=this.router.snapshot.paramMap.get('id'); //obtener el valor de la ruta 
+    this.datos=JSON.parse(localStorage.getItem('payload'));//obtener los datos  almacenados 
     this.getpublicaciones();
   }
   ///////////////////////METODOS DEL MODAL///////////////////////////
   open(content) {
+    
     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then(
@@ -62,39 +62,58 @@ export class PerfilesMujeresComponent implements OnInit {
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
+      this.edit=false
+      this.tipo=false
       return 'by pressing ESC';
+      
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      this.edit=false
+      this.tipo=false
       return 'by clicking on a backdrop';
     } else {
+      this.edit=false
+      this.tipo=false
       return `with: ${reason}`;
     }
   }
   close(content) {
+    this.edit=false
+    this.tipo=false
     this.modalService.dismissAll(content);
-   
+    
   }
   ///////////////////////////////////////////////////////
 
   clear() {
     console.log("clear clicked")
     this.perfil.descripcion=null
+    this.perfil.nombre_perfil=null
     this.perfil.estado_profesion=null
     this.perfil.profesion=null
     this.leerArchivo=null
     this.API_URI=null
-    
+    this
 
   }
   onFileSelect  (event){
-   console.log(event)
+   console.log("el evento",event)
     if(event.target.files.length>0){
 
       this.archivosSeleccionado= <File> event.target.files[0];
       console.log("Archivo cargado", this.archivosSeleccionado)
+     console.log("el",event.target.files[0].type)
+     if(event.target.files[0].type=='image/jpeg'||'image/png'){
+      this.tipo=true
+     }else{
+      if(event.target.files[0].type=='image/jpeg'||'image/png'){
+        this.tipo=true
+      }
+     }
 
       const reader= new FileReader(); //Crear un objeto de tipo FileReader  para leer la imagen
       reader.readAsDataURL(this.archivosSeleccionado); //leemos la imagen pasado por parametro
       reader.onload =e=>this.leerArchivo=reader.result //Comprobamos la carga del archivo y enviamos el resultado
+      
       
     }else {
       console.log("seleccione imagen")
@@ -110,6 +129,7 @@ export class PerfilesMujeresComponent implements OnInit {
     try{
       const fd =new FormData(); //objeto que almacena datos de un formulario
       // for( let i=0; i<this.archivosSeleccionado.length; i++){
+        fd.append('nombre_perfil',this.perfil.nombre_perfil)
         fd.append('ruta_archivo',this.archivosSeleccionado)
         fd.append('profesion',this.perfil.profesion)
         fd.append('estado_profesion',this.perfil.estado_profesion)
@@ -117,6 +137,7 @@ export class PerfilesMujeresComponent implements OnInit {
         fd.append('id_usuario',this.datos.id_usuario)
         fd.append('id_tipo_publicacion',this.id)
         fd.append('id_estado_publicacion',this.perfil.id_estado_publicacion)
+        fd.append('id_carrera',this.perfil.id_carrera)
       
       this.registroArchivo.saveArchivo(fd).subscribe(
         (res)=>{
@@ -136,18 +157,17 @@ export class PerfilesMujeresComponent implements OnInit {
 
   getpublicaciones() {
     var per = [];
-    
+    console.log("pasa obter")
     this.registroArchivo.getArchivos().subscribe(
       (res:any) => {
         for (let per1 of res) {
-          if (per1.id_tipo_publicacion == 1 ) {
+          if (per1.id_tipo_publicacion== 1) {
+            console.log("es perfil")
             per.push(per1);
             console.log(per);
           }
         }
-      
         
-
         this.perfiles = per;
         
       },
@@ -165,6 +185,7 @@ export class PerfilesMujeresComponent implements OnInit {
           console.log(res);
           this.perfil=res;
           this.API_URI='http://localhost:3000/'+this.perfil.ruta_archivo;
+          console.log("enlace",this.API_URI)
           this.edit=true 
          
           
@@ -175,6 +196,7 @@ export class PerfilesMujeresComponent implements OnInit {
     
   }
   updatepublicacion() {
+    this.edit=true;
     console.log("hola",this.perfil.ruta_archivo)
     try {
       const fda =new FormData(); //objeto que almacena datos de un formulario
