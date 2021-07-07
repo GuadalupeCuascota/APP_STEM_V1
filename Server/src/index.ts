@@ -13,6 +13,8 @@ import  tipoPublicacionRoutes from './routes/tipo-publicaciónRoute';
 import autenticacionRoutes from "./routes/autentificacionRoutes";
 import eventoRoutes from './routes/registro-eventoRoutes'
 import carrerasficaRoutes from './routes/carrerasficaRoutes'; 
+import mentoriasRegistroRoutes from './routes/mentorias-registroRoutes'; './routes/mentorias-registroRoutes'
+
 
 
 class Server {
@@ -40,7 +42,7 @@ class Server {
      this.app.use('/api/carrerasFica',carrerasficaRoutes);
      this.app.use('/api/publicacionesCarrera',publicacionesCarreraRoutes);
      //carpeta para almacenar archivos publicos
-
+     this.app.use('/api/registro-mentorias',mentoriasRegistroRoutes)
 
     this.app.use('/api/registro-evento',eventoRoutes)
     

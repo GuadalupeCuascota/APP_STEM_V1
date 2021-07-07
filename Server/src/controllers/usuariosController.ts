@@ -48,7 +48,7 @@ class UsuariosController {
       console.log("ES ESTUDANTE")
         const newId_rol="Estudiante"
         try {
-          
+        
         await pool.query(query,[ nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia,newId_rol]);
         res.status(201).json({text: "usuario guardado"});
      

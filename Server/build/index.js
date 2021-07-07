@@ -18,6 +18,8 @@ const tipo_publicaci_nRoute_1 = __importDefault(require("./routes/tipo-publicaci
 const autentificacionRoutes_1 = __importDefault(require("./routes/autentificacionRoutes"));
 const registro_eventoRoutes_1 = __importDefault(require("./routes/registro-eventoRoutes"));
 const carrerasficaRoutes_1 = __importDefault(require("./routes/carrerasficaRoutes"));
+const mentorias_registroRoutes_1 = __importDefault(require("./routes/mentorias-registroRoutes"));
+'./routes/mentorias-registroRoutes';
 class Server {
     constructor() {
         this.app = express_1.default(); // inicializamos express
@@ -42,6 +44,7 @@ class Server {
         this.app.use('/api/carrerasFica', carrerasficaRoutes_1.default);
         this.app.use('/api/publicacionesCarrera', publicacionesCarreraRoutes_1.default);
         //carpeta para almacenar archivos publicos
+        this.app.use('/api/registro-mentorias', mentorias_registroRoutes_1.default);
         this.app.use('/api/registro-evento', registro_eventoRoutes_1.default);
     }
     start() {

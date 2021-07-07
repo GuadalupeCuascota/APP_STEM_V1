@@ -1,0 +1,313 @@
+
+/*//////////////encabezado////////////////*/
+* {
+  /* padding: 0; */
+  margin: 0;
+}
+  
+p {
+  margin-bottom: 20px;
+}
+
+
+header {
+ 
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+ 
+}
+/*//////////////menu publicacion////////////////*/
+.content {
+  margin-left: 360px;
+  padding-left: 20px;
+  margin-right: 130px;
+  
+}
+/*//////////////menu publicacion////////////////*/
+.side-navbar {
+  width: 220px;
+  height: 100%;
+  position: fixed;
+  margin-left: -300px;
+  background-color: #f5f4f3;
+  transition: 0.5s;
+  top: 83px;
+}
+
+.nav-link:active,
+.nav-link:focus,
+.nav-link:hover {
+  background-color: #6508fa26;
+}
+
+.my-container {
+  transition: 0.4s;
+}
+
+.active-nav {
+  margin-left: 0;
+}
+
+/* for main section */
+.active-cont {
+  margin-left: 180px;
+}
+
+#menu-btn {
+  background-color: #141413;
+  color: rgb(146, 16, 16);
+  margin-left: -62px;
+}
+.side-navbar span {
+  color: rgb(10, 10, 10);
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+  
+
+}
+
+
+
+
+
+
+.list-group {
+  float: left;
+  height: 100%;
+  width: 230px;
+  margin: auto;
+  position: fixed; 
+  z-index: 1;
+  top: 100px;
+  left: 0;
+  background-color: rgb(235, 232, 232);
+  overflow-x: hidden;
+}
+
+.list-group-item {
+
+ background-color: rgb(235, 232, 232);
+ width: 100%;
+ color:rgb(66, 65, 68);
+  
+}
+
+
+/* .lead {
+
+  margin: auto;
+  left: 0;
+  right: 0;
+  padding-top: 40%;
+} */
+
+/* body {
+  position: relative
+  
+} */
+
+/* .overlay,
+.sideMenu {
+  position: fixed;
+  bottom: 0
+  
+} */
+
+/* .overlay {
+  top: 0;
+  left: -100%;
+  right: 100%;
+  margin: auto;
+  background-color: rgba(176, 88, 248, 0.5);
+  z-index: 998;
+  transition: all ease 0.2s
+} */
+
+/* .overlay.open {
+  left: 0;
+  right: 0
+} */
+
+/* .sidebarNavigation {
+  margin-bottom: 0;
+  z-index: 999;
+  justify-content: flex-start
+} */
+
+/* .sidebarNavigation .leftNavbarToggler {
+  margin-right: 10px;
+  order: -1
+} */
+
+/* .sideMenu {
+  left: -100%;
+  top: 52px;
+  transition: all ease 0.5s;
+  overflow: hidden;
+  width: 100%;
+  z-index: 999;
+  max-width: 80%;
+  margin-bottom: 0;
+  padding: 1rem
+} */
+
+.sideMenu.open {
+  left: 0;
+  display: block;
+  overflow-y: auto
+}
+
+.sideMenu ul {
+  margin: 0;
+  padding: 0 15px
+} 
+
+
+
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  /* padding: 0; */
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-top: 20px;
+   
+}
+
+/* Style the side navigation */
+.sidenav { 
+  float: left;
+  height: 100%;
+  width: 200px;
+  margin: auto;
+  position: fixed; 
+  z-index: 1;
+  top: 84px;
+  left: 0;
+  background-color: rgb(235, 232, 232);
+  overflow-x: hidden;
+  padding-top: 20px;
+  padding: 0;
+  
+  
+}
+.sidenav ul li a:hover{
+ color:rgb(231, 61, 61);
+ border-left-color: cyan;
+}
+/* .sidenav ul ul li a{
+  padding-left: 80px;
+} */
+/* Side navigation links */
+.sidenav a {
+  color: rgb(10, 10, 10);
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+  
+
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+  background-color: rgb(230, 224, 235);
+  color: rgb(17, 16, 17);
+ 
+}
+
+/* Style the content */
+
+
+
+
+
+/*//////////////////////////////*/
+a {
+  cursor: pointer;
+}
+a:hover, a:focus {
+  text-decoration: none;
+  outline: 0;
+}
+
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.two-col-layout {
+  padding-top: 51.38px;
+  padding-left: 250px;
+  transition: padding-left 0.5s;
+}
+.two-col-layout .top-navbar #search-box {
+  width: 15%;
+  padding: 8px;
+  margin-left: 5%;
+}
+.two-col-layout .top-navbar #search-box .form-control {
+  border-radius: 0;
+  box-shadow: none;
+}
+.two-col-layout .top-navbar #search-box .form-control:focus {
+  border-color: #ccc;
+  outline: 0;
+}
+.two-col-layout .top-navbar .badge {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 8px;
+  left: 23px;
+  line-height: 10px;
+  padding: 5px;
+  vertical-align: middle;
+  text-align: center;
+}
+.two-col-layout .sidenav {
+  position: fixed;
+  top: 51px;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  z-index: 10;
+  background: #262626;
+  transition: all 0.5s;
+}
+.two-col-layout .sidenav .sidenav-items ul {
+  list-style: none;
+  margin-left: 30px;
+  padding: 15px 0;
+}
+.two-col-layout .sidenav .sidenav-items ul li {
+  margin-bottom: 15px;
+  background-color: transparent;
+}
+.two-col-layout .sidenav .sidenav-items ul li a {
+  color: #9d9d9d;
+  font-size: 16px;
+  font-weight: 600;
+  transition: color 0.5s;
+}
+.two-col-layout .sidenav .sidenav-items ul li a:hover {
+  color: #fff;
+}
+.two-col-layout .sidenav .sidenav-items ul li #accordion-sub a {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.toggle-content {
+  padding-left: 0;
+}
+.toggle-content .sidenav {
+  width: 0;
+  left: -300px;
+}

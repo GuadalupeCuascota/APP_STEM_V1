@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Publicacion } from 'src/app/Models/publicacion';
 import { UsuarioService } from 'src/app/Services/usuario.service';
 import { ActivatedRoute } from '@angular/router';
+
 import {
   FormBuilder,
   FormControl,
@@ -27,7 +28,8 @@ export class PerfilesPage implements OnInit {
   perfiles: Publicacion[] = [];
   textoBuscar = '';
   tipoarchivo=false;
-
+  tipovideo='video/mp4'
+  tipoimagen='imagen/jpeg' 
   constructor(
     private regitroPublicacion: RegistroPublicacionService,
     private streamingMedia: StreamingMedia
@@ -37,6 +39,8 @@ export class PerfilesPage implements OnInit {
     this.getPerfiles();
 
     this.doRefresh();
+  
+    
   }
   buscar(event) {
     this.textoBuscar = event.detail.value;
@@ -101,6 +105,7 @@ export class PerfilesPage implements OnInit {
     var auxper = [];
     this.regitroPublicacion.getUsuarios().subscribe(
       (res) => {
+        console.log(res)
         for (let aux of res) {
           
         
