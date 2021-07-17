@@ -1,29 +1,45 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
-
-    <div class="popover">
-      <ion-searchbar (ionChange)="buscar($event)"></ion-searchbar>
-    </div>
-  </ion-toolbar>
+  <ion-list lines="none">
+    <ion-item color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="home-secundaria"></ion-back-button>
+      </ion-buttons>
+      <ion-label>Mujeres en STEM</ion-label>
+    </ion-item>
+    <ion-item color="primary"> </ion-item>
+  </ion-list>
+  <div class="popover">
+    <ion-searchbar (ionChange)="buscar($event)"></ion-searchbar>
+  </div>
 </ion-header>
 <!-- <div>
   <ion-button (click)="playVideo()" color="primary">PLAY VIDEO</ion-button>
   <ion-button (click)="start()" color="primary">START</ion-button>
 </div> -->
 
-
 <ion-content>
-
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
   <ion-card *ngFor="let perfil of perfiles | filtros: textoBuscar">
-    
-   <video  *ngIf="perfil.tipo_archivo=='video/mp4'"  width="100%"  preload="auto" autoplay="true" muted="false" src="http://192.168.100.10:3000/{{perfil.ruta_archivo}} " (click)="playVideo(perfil.ruta_archivo)" controls ></video>
-    <ion-img *ngIf="perfil.tipo_archivo=='image/jpeg'|" (click)="playVideo(perfil.ruta_archivo)" src="http://192.168.100.10:3000/{{perfil.ruta_archivo}}"
-      width="350" height="150"></ion-img> 
-     
+    <video
+      *ngIf="perfil.tipo_archivo=='video/mp4'"
+      width="100%"
+      preload="auto"
+      
+      muted="false"
+      src="http://192.168.100.45:3000/{{perfil.ruta_archivo}} "
+      (click)="playVideo(perfil.ruta_archivo)"
+      controls
+    ></video>
+    <ion-img
+      *ngIf="perfil.tipo_archivo=='image/png'"
+      src="http://192.168.100.45:3000/{{perfil.ruta_archivo}}"
+      width="100%"
+      height="100%"
+    ></ion-img>
+
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -37,30 +53,24 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col>
-          {{perfil.descripcion}}
-        </ion-col>
+        <ion-col> {{perfil.descripcion}} </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="tertiary" size="25px">
+    <ion-fab-button color="secondary" size="25px">
       <ion-icon color="light" name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
   <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content loadingSpinner="lines-small" loadingText="Cargando...">
+    <ion-infinite-scroll-content
+      loadingSpinner="lines-small"
+      loadingText="Cargando..."
+    >
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
 
 
-
-<!-- <ion-content padding>
-  <ion-button (click)="startVideo()">INICIO</ion-button>
-<button (click)="startVideo()">start</button>
-<button (click)="startAudio">start</button>
-<button (click)="stopAudio" color="danger">start</button>
-</ion-content> -->

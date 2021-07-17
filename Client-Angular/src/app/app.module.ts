@@ -18,11 +18,14 @@ import { MenuPrincipalEditorComponent } from './Componets/Editor/menu-principal-
 import { PerfilesMujeresComponent } from './Componets/Editor/perfiles-mujeres/perfiles-mujeres.component'
 import {LoginGuard} from './Services/Login/login.guard';
 import { NoticiasComponent } from './Componets/Editor/noticias/noticias.component';
+import {RegistroMentoriasComponent } from './Componets/Editor/registro-mentorias/registro-mentorias.component';
 import { OfertaAcademicaComponent } from './Componets/Editor/oferta-academica/oferta-academica.component';
 import { MenuPublicacionComponent } from './Componets/Editor/menu-publicacion/menu-publicacion.component';
+
 import {RegistroEditorComponent} from './Componets/Administrador/registro-editor/registro-editor.component';
 import { FiltroUsuariosPipe } from './pipes/filtro-usuarios.pipe';
-import { FiltroPerfilesPipe } from './pipes/filtro-perfiles.pipe'; //módulo para el filtrado de información
+import { FiltroPerfilesPipe } from './pipes/filtro-perfiles.pipe';
+ //módulo para el filtrado de información
 // import {TokenInterceptorService} from './Login/Services/token-interceptor.service'
 
 @NgModule({
@@ -35,11 +38,13 @@ import { FiltroPerfilesPipe } from './pipes/filtro-perfiles.pipe'; //módulo par
     LoginComponent,
     PerfilesMujeresComponent,
     NoticiasComponent,
+    RegistroMentoriasComponent,
     MenuPublicacionComponent,
     RegistroEditorComponent,
     FiltroUsuariosPipe,
     OfertaAcademicaComponent,
-    FiltroPerfilesPipe
+    FiltroPerfilesPipe,
+  
   ],
   imports: [
     BrowserModule,

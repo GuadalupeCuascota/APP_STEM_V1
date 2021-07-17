@@ -11,8 +11,8 @@ class MentoriasRegistradasRoutes {
     config() {
         this.router.get('/', mentorias_registroController_1.mentoriasController.list);
         this.router.get('/:id', mentorias_registroController_1.mentoriasController.getOne);
-        // this.router.post('/',mentoriasController.create);
-        // this.router.delete('/:id',mentoriasController.delete);
+        this.router.post('/', mentorias_registroController_1.mentoriasController.create);
+        this.router.delete('/:id', mentorias_registroController_1.mentoriasController.delete);
         this.router.put('/:id', mentorias_registroController_1.mentoriasController.update);
     }
 }

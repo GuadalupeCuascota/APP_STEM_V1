@@ -1,0 +1,29 @@
+ion-card {
+    border-radius: 10px;
+}
+ion-header {
+    background: var(--ion-color-light);
+  
+    ion-list {
+      background: var(--ion-color-primary);
+      border-radius: 0 0 20px 20px;
+  
+      //padding-bottom: 1vh; ancho del ion list
+      ion-label {
+        font-weight: bold; //negrita
+        font-size: 1.2rem; //tamaño letra
+        letter-spacing: 0.1px;
+      }
+    }
+    
+
+  }   
+  .img{
+    position:relative;
+    width: 100%;
+    height: 50%;
+    
+  }
+  ion-button{
+    outline:none;
+  }

@@ -1,19 +1,67 @@
-<ion-header>
-  <ion-toolbar color="tertiary">
+<ion-header class="ion-no-border">
+  <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="home"></ion-back-button>
+      <ion-button color="primary">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title class="ion-text-center"> Iniciar Sesión</ion-title>
+   
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="formLogin" (ngSubmit)="login()">
-    <img src="../../../assets/Fica Stem PNG.png" />
+  <div id="header">
+    <h1>Iniciar Sesión</h1>
+    <img src="../../../assets/utn.PNG" />
+  </div>
+  <form id="form" [formGroup]="formLogin" (ngSubmit)="login()">
+    <ion-item>
+      <ion-label color="secondary" position="floating"> Correo electrónico:</ion-label>
+      <ion-input   formControlName="correo_electronico" placeholder="Ingrese email"></ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label  color="secondary" position="floating"> Contraseña:</ion-label>
+      <ion-input formControlName="contrasenia" 
+        [type]="showPassword ? 'text': 'password'"
+        placeholder="Ingrese contraseña" 
+      ></ion-input>
+      <ion-icon 
+      color="dark"
+        slot="end"
+        [name]="passwordIcon"
+        (click)="toggleShow()"
+      ></ion-icon>
+    </ion-item>
+    <br>
+    <div class="head">
+      <ion-text color="medium"  class="ion-text-right">Recuerdame</ion-text>
+      <ion-text color="medium"  class="ion-text-right"> Olvidaste tu contraseña?</ion-text>
+    </div>
+    
+   <br>
+   
+    <!-- <p class="message"><a href="/registro-editor">Olvidaste tu contraseña?</a></p> -->
+    <ion-button type="submit" color="primary"  [disabled]="!formLogin.valid" shape="round" expand="block" >Iniciar Sesión</ion-button>
+    <p>
+      <ion-text  color="medium"  class="ion-text-right">¿Todavía no tienes cuenta? <a href="/registro-usuario">Registrate</a></ion-text>
+    </p>
+  </form>
+</ion-content>
 
-    <ion-card>
-      <ion-item>
-        <ion-label position="floating"> Usuario:</ion-label>
+
+
+
+
+
+<!-- <ion-content>
+
+  <form [formGroup]="formLogin" (ngSubmit)="login()">
+   
+  
+    
+      <ion-item class="ion-margin-bottom">
+        <ion-label position="floating"> Correo electrónico:</ion-label>
         <ion-input   formControlName="correo_electronico" placeholder="Ingrese email"></ion-input>
       </ion-item>
       <ion-item>
@@ -39,11 +87,7 @@
         routerLink="/registro-usuario"
         expand="block"
         >Registarse</ion-button>
-        <!-- <p  class="message"><a href="/registro-usuario">No tienes cuenta aún? Registrates</a></p> -->
-        <!-- <span>No tienes cuenta aún?</span><button class="ion-no-padding">Registrate</button> -->
-      
-      <!-- <p class="message">Not registered? <a href="">Admin</a></p> -->
-      
+       
     
       
     </ion-card>
@@ -51,4 +95,4 @@
     
   </form>
 
-</ion-content>
+</ion-content> -->

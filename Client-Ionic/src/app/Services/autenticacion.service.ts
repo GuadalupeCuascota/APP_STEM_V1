@@ -7,7 +7,7 @@ import {Router} from '@angular/router'
   providedIn: 'root'
 })
 export class AutenticacionService {
-  API_URI='http://192.168.100.10:3000/login';
+  API_URI='http://192.168.100.45:3000/login';
 
   constructor(private http: HttpClient,
     private router: Router) { }

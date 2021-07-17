@@ -3,6 +3,7 @@ import {Router,Routes} from '@angular/router'
 import {LoginService} from '../../../Services/Login/login.service'
 
 
+
 @Component({
   selector: 'app-registro-usuario',
   templateUrl: './registro-usuario.component.html',

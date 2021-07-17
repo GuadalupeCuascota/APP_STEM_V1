@@ -10,12 +10,14 @@ import {Publicacion} from '../Models/publicacion'
 export class RegistroPublicacionService {
 
   constructor(private httpClient: HttpClient) { }
-  getUsuarios(){
+  getpublicaciones(){
     return this.httpClient.get<Array<Publicacion>>(environment.baseUrl+"/publicaciones");
     }
-    getPublicacionesCarrera(idCarrera:number){
+  getPublicacionesCarrera(idCarrera:number){
       return this.httpClient.get<Publicacion>(environment.baseUrl+"/publicacionesCarrera/"+idCarrera);
-    }
+  }
 
-    
+  getPublicacion(idCarrera:number){
+    return this.httpClient.get<Publicacion>(environment.baseUrl+"/publicaciones/"+idCarrera);
+  }
 }

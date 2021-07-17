@@ -11,8 +11,8 @@ this.config();
 config(): void{
 this.router.get('/',mentoriasController.list);
 this.router.get('/:id',mentoriasController.getOne);
-// this.router.post('/',mentoriasController.create);
-// this.router.delete('/:id',mentoriasController.delete);
+this.router.post('/',mentoriasController.create);
+this.router.delete('/:id',mentoriasController.delete);
 this.router.put('/:id',mentoriasController.update);
 
 }

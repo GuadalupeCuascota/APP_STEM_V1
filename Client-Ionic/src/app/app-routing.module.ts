@@ -5,7 +5,7 @@ import {AuthGuard} from './Services/auth.guard'
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   
@@ -45,10 +45,10 @@ const routes: Routes = [
     path: 'oferta-academica/:id',
     loadChildren: () => import('./Pages/Estudiante-secundaria/oferta-academica/oferta-academica.module').then( m => m.OfertaAcademicaPageModule)
   },
-  {
+  /* {
     path: 'home-secundaria',
     loadChildren: () => import('./Pages/Estudiante-secundaria/home-secundaria/home-secundaria.module').then( m => m.HomeSecundariaPageModule)
-  },
+  }, */
 
   
   // {
@@ -56,11 +56,12 @@ const routes: Routes = [
   //   loadChildren: () => import('./Pages/Estudiante-superior/malla-curricular/malla-curricular.module').then( m => m.MallaCurricularPageModule)
   // },
   
-  //  {
-  //   path: 'menu-principal',
-  //   loadChildren: () => import('./Pages/Estudiante-secundaria/menu-principal/menu-principal.module').then( m => m.MenuPrincipalPageModule),
+  {
+    path: 'menu-principal',
+    loadChildren: () => import('./Pages/Estudiante-secundaria/menu-principal/menu-principal.module').then( m => m.MenuPrincipalPageModule),
+    canActivate:[AuthGuard]
    
-  // },
+  },
 
   // {
   //   path: 'oferta-academica',
@@ -82,6 +83,12 @@ const routes: Routes = [
     path: 'carreras-fica',
     loadChildren: () => import('./Pages/Estudiante-secundaria/carreras-fica/carreras-fica.module').then( m => m.CarrerasFicaPageModule)
   },
+  
+  {
+    path: 'detalle-noticia/:id',
+    loadChildren: () => import('./Pages/detalle-noticia/detalle-noticia.module').then( m => m.DetalleNoticiaPageModule)
+  },
+
 
 
 ];

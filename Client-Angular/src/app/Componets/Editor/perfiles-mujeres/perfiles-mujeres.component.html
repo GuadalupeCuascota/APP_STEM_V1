@@ -1,4 +1,4 @@
-<app-menu-principal-editor></app-menu-principal-editor>
+<app-menu-publicacion></app-menu-publicacion>
 <br />
 
 <ng-template #contenido let-modal>
@@ -118,7 +118,7 @@
           <td>{{ perfil.descripcion}}</td>
           
           
-           <td ><img *ngIf="perfil.tipo_archivo=='image/jpeg'" width="100px"  heigh="100px" [src]="'http://localhost:3000/'+ perfil.ruta_archivo"   alt="no-image" >
+           <td ><img *ngIf="perfil.tipo_archivo=='image/png'" width="100px"  heigh="100px" [src]="'http://localhost:3000/'+ perfil.ruta_archivo"   alt="no-image" >
             <video *ngIf="perfil.tipo_archivo=='video/mp4'"width="100px"  heigh="100px"  [src]="'http://localhost:3000/'+ perfil.ruta_archivo " class="img-fluid" alt="no-image"></video>
           </td> 
            

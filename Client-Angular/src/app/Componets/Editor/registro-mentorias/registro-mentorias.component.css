@@ -1,0 +1,17 @@
+.content {
+    margin-left: 360px;
+    padding-left: 20px;
+    margin-right: 130px;
+    padding-top: 120px;
+  }
+  .list-group-item{
+    background: rgba(248, 246, 248, 0.952);
+
+}
+.iconoInput {
+ color: #1a1818;
+ font-size: 15px;
+  position: absolute;
+  right: 30px;
+  top: 40px;
+  }

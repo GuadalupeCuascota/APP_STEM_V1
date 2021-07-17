@@ -1,8 +1,12 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>noticias</ion-title>
-  </ion-toolbar>
-  
+<ion-header class="ion-no-border">
+  <ion-list lines="none">
+    <ion-item color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="home-secundaria"></ion-back-button>
+      </ion-buttons>
+      <ion-label>Noticias STEM</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-header>
 
 <ion-content>
@@ -10,24 +14,28 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   
-  <ion-card *ngFor="let noticia of noticias">
+  <ion-card *ngFor="let noticia of noticias" >
 
     <ion-card-header>
       <ion-card-title>{{noticia.titulo}}</ion-card-title>
       <ion-card-subtitle>{{noticia.descripcion}}</ion-card-subtitle>
     </ion-card-header>
-    <ion-img src="http://192.168.100.10:3000/{{noticia.ruta_archivo}}" width="350" height="150"></ion-img>
+    <div class="img">
+      <ion-img src="http://192.168.100.45:3000/{{noticia.ruta_archivo}}"  (click)="detalle(noticia.id_publicacion)"></ion-img>
+    </div>
+    
     <ion-card-content>
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-button (click)="Meinteresa(noticia.id_publicacion)" color="medium">
-              <ion-icon name="heart-outline"></ion-icon>
+            
+            <ion-button  color="tertiary">
+              <ion-icon  [name]="selectedTab"></ion-icon>
             </ion-button>
             <!-- <ion-icon name="heart-outline"></ion-icon> -->
           </ion-col>
           <ion-col>
-            <ion-button color="medium">
+            <ion-button color="tertiary"  >
               <ion-icon name="share-social-outline"></ion-icon>
             </ion-button>
   
@@ -49,5 +57,8 @@
     <ion-infinite-scroll-content loadingSpinner="lines-small" loadingText="Cargando...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
+
+  <!--jquery-->
+  
 
 </ion-content>

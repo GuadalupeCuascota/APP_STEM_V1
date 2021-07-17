@@ -5,6 +5,6 @@ exports.default = {
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'appstem'
+        database: 'bdd_appstem'
     }
 };

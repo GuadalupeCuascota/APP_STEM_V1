@@ -3,6 +3,8 @@ import { Publicacion } from 'src/app/Models/publicacion';
 import {RegistroPublicacionService} from '../../Services/registro-publicacion.service'
 import {RegistroEventoService} from '../../Services/registro-evento.service'
 import { Evento } from 'src/app/Models/evento';
+import { Router } from '@angular/router';
+// import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-noticias',
@@ -20,14 +22,24 @@ export class NoticiasPage implements OnInit {
   }
   id_tipo_evento= 2;
   datos: any = {};
- 
-  constructor(private regitroPublicacion: RegistroPublicacionService, private registroEvento:RegistroEventoService) { }
+  selectedTab= "";
+  constructor(private regitroPublicacion: RegistroPublicacionService, private registroEvento:RegistroEventoService,private router: Router) { }
 
   ngOnInit() {
+    this.selectedTab="heart-outline"
     this.getNoticias();
     this.doRefresh();
     this.datos=JSON.parse(localStorage.getItem('payload'));
   }
+  // sShare(){
+  //   var options={
+  //     message:'Ionic shre',
+  //     url:'https://ionicframework.com/docs/v3/native/social-sharing/#shareViaWhatsAppToReceiver'
+      
+  //   };
+  //   this.socialSharing.shareWithOptions(options)
+
+  // }
   doRefresh($event?:any){ //envia un evento opcional de tipo any
     this.getNoticias();
     if($event){
@@ -49,9 +61,13 @@ export class NoticiasPage implements OnInit {
      }
    }, 500);
  }
+ detalle(id: number){
+   console.log("la publicacion",id)
+  this.router.navigate(['/detalle-noticia/',id]);
+ }
  getNoticias(){
   var auxnot=[];
-  this.regitroPublicacion.getUsuarios().subscribe(res=>{
+  this.regitroPublicacion.getpublicaciones().subscribe(res=>{
     console.log("el arreglo",res)
     for(let aux of res){
       if(aux.id_tipo_publicacion==2){
@@ -67,6 +83,7 @@ console.log(err)
   })
 }
 Meinteresa(id_publicacio){
+this.selectedTab="heart"
 console.log("el id",id_publicacio)
  this.evento.id_tipo_evento=1
  this.evento.id_publicacion=id_publicacio

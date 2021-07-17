@@ -12,6 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuPrincipalPageModule } from './Pages/Estudiante-secundaria/menu-principal/menu-principal.module';
 // import { PagesModule } from './Pages/pages.module';
+
+// import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import {
   StreamingMedia,
   StreamingVideoOptions,
@@ -27,9 +29,9 @@ import { PipesModule } from './pipes/pipes.module';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    MenuPrincipalPageModule,
     ReactiveFormsModule,
     IonicStorageModule.forRoot(),
- 
     PipesModule,
   ],
   providers: [
@@ -37,6 +39,7 @@ import { PipesModule } from './pipes/pipes.module';
     Storage,
     IonicStorageModule,
     StreamingMedia,
+    // SocialSharing
   ],
   exports: [MenuPrincipalPageModule],
   bootstrap: [AppComponent],

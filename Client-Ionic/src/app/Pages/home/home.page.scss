@@ -1,7 +1,11 @@
-.slide-1 {
-height: 100%;
+// .slide-1 {
+// height: 100%;
 
-}
+// }
 ion-slides{
-height: 50%;
+height: 100%;
+ion-slide{
+    background-position: center;
+    background-size: cover;
+}
 }

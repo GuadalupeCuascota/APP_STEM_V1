@@ -138,8 +138,9 @@ export class PerfilesMujeresComponent implements OnInit {
         fd.append('id_tipo_publicacion',this.id)
         fd.append('id_estado_publicacion',this.perfil.id_estado_publicacion)
         fd.append('id_carrera',this.perfil.id_carrera)
-      
+        console.log("el archivo es",fd)
       this.registroArchivo.saveArchivo(fd).subscribe(
+       
         (res)=>{
           console.log(res)
           this.getpublicaciones();

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Publicacion } from 'src/app/Models/publicacion';
-import { UsuarioService } from 'src/app/Services/usuario.service';
-import { ActivatedRoute } from '@angular/router';
 
 import {
   FormBuilder,
@@ -27,9 +25,9 @@ import {
 export class PerfilesPage implements OnInit {
   perfiles: Publicacion[] = [];
   textoBuscar = '';
-  tipoarchivo=false;
-  tipovideo='video/mp4'
-  tipoimagen='imagen/jpeg' 
+  tipoarchivo = false;
+  tipovideo = 'video/mp4';
+  tipoimagen = 'imagen/jpeg';
   constructor(
     private regitroPublicacion: RegistroPublicacionService,
     private streamingMedia: StreamingMedia
@@ -39,8 +37,6 @@ export class PerfilesPage implements OnInit {
     this.getPerfiles();
 
     this.doRefresh();
-  
-    
   }
   buscar(event) {
     this.textoBuscar = event.detail.value;
@@ -53,11 +49,10 @@ export class PerfilesPage implements OnInit {
       $event.target.complete();
     }
   }
- 
- async playVideo(url:any) {
 
+   playVideo(url: any) {
     console.log('PASS');
-    var options:StreamingVideoOptions = {
+    var options: StreamingVideoOptions = {
       successCallback: () => {
         console.log('Video played');
       },
@@ -69,8 +64,8 @@ export class PerfilesPage implements OnInit {
       shouldAutoClose: true, //cierra el video despues de que termine
     };
 
-    this.streamingMedia.playVideo('http://192.168.100.10:3000/' + url, options);
-    console.log('LA URL', 'http://192.168.100.10:3000/' + url);
+    this.streamingMedia.playVideo('http://192.168.100.45:3000/' + url, options);
+    console.log('LA URL', 'http://192.168.100.45:3000/' + url);
   }
   // public start(){
 
@@ -103,12 +98,10 @@ export class PerfilesPage implements OnInit {
   }
   getPerfiles() {
     var auxper = [];
-    this.regitroPublicacion.getUsuarios().subscribe(
+    this.regitroPublicacion.getpublicaciones().subscribe(
       (res) => {
-        console.log(res)
+        console.log(res);
         for (let aux of res) {
-          
-        
           // console.log('tipo', tipo, aux.id_tipo_publicacion);
           if (aux.id_tipo_publicacion == 1) {
             auxper.push(aux);
@@ -122,17 +115,7 @@ export class PerfilesPage implements OnInit {
       }
     );
   }
-  //  startVideo(){
-  //   console.log("pasa")
-  //   let options: StreamingVideoOptions = {
-  //     successCallback: () => { console.log('Video played') },
-  //     errorCallback: (e) => { console.log('Error streaming') },
-  //     orientation: 'landscape',
-  //     shouldAutoClose: true,
-  //     controls: false
-  //   };
-  //   this.streamingMedia.playVideo('http://localhost:3000/uploads//pregunta%20a.mp4', options);
-  //  }
+
   startAudio() {}
   stopAudio() {}
 }

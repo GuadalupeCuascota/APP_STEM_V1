@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class MenuPrincipalPage implements OnInit {
   selectedTab: any;
-  @ViewChild('tab',{static: false}) tab: IonTabs;
+  @ViewChild('tabs',{static: false}) tabs: IonTabs;
 
   constructor(private menuCtrl: MenuController,
     private router: Router) { }
@@ -22,7 +22,7 @@ export class MenuPrincipalPage implements OnInit {
   
   }
   setCurrentTab(){
-    this.selectedTab=this.tab.getSelected();
+    this.selectedTab=this.tabs.getSelected();
     console.log("ES",this.selectedTab)
   }
  

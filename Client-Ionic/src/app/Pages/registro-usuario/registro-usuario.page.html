@@ -1,15 +1,16 @@
-<ion-header>
-  <ion-toolbar color="tertiary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="login"></ion-back-button>
-    </ion-buttons>
-    <ion-title class="ion-text-center"> Crear cuenta</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-buttons  slot="start">
+        <ion-back-button  color="primary" defaultHref="login"></ion-back-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="formUsuario" (ngSubmit)="saveUsuarios()">
-    <ion-list>
+  <div id="header">
+    <h1>Registro</h1>
+  </div>
+  <form id="form" [formGroup]="formUsuario" (ngSubmit)="saveUsuarios()">
       <ion-item>
         <ion-label position="floating"> Nombre:</ion-label>
         <ion-input
@@ -17,6 +18,7 @@
           placeholder="Ingrese nombre"
         ></ion-input>
       </ion-item>
+      <br>
 
       <ion-item>
         <ion-label position="floating"> Apellido:</ion-label>
@@ -25,13 +27,15 @@
           placeholder="Ingrese apellido"
         ></ion-input>
       </ion-item>
+      <br>
       <ion-item>
-        <ion-label position="floating"> Usuario:</ion-label>
+        <ion-label position="floating"> Correo electrónico:</ion-label>
         <ion-input
           formControlName="correo_electronico"
           placeholder="Ingrese email"
         ></ion-input>
       </ion-item>
+      <br>
       <ion-item>
         <ion-label position="floating"> Contraseña:</ion-label>
         <ion-input
@@ -45,6 +49,7 @@
           (click)="toggleShow()"
         ></ion-icon>
       </ion-item>
+      <br>
       <ion-item>
         <ion-label>Nivel académico:</ion-label>
         <ion-select
@@ -58,7 +63,7 @@
           >
         </ion-select>
       </ion-item>
-      
+      <br>
         <ion-item *ngIf="estado==false">
           <ion-label> Carrera: </ion-label>
           <ion-select placeholder="Seleccione" formControlName="carrera">
@@ -74,6 +79,7 @@
             <ion-select-option value="Textil">Ing.Textil</ion-select-option>
           </ion-select>
         </ion-item>
+        <br>
         <ion-item *ngIf="estado">
           <ion-label position="floating"> Unidad Educativa:</ion-label>
           <ion-input
@@ -81,10 +87,10 @@
             placeholder="Ingrese unidad educativa"
           ></ion-input>
         </ion-item>
-    
-    </ion-list>
-    <ion-button color="tertiary" type="submit" [disabled]="!formUsuario.valid" expand="block"
-      >Suscribirse</ion-button
-  >
+        
+        <ion-button type="submit" color="primary"  [disabled]="!formUsuario.valid" shape="round" expand="block" >Registrarse</ion-button>
+        <p>
+          <ion-text  color="medium"  class="ion-text-right">¿Ya tienes una cuenta?<a href="/login">Iniciar Sesión</a></ion-text>
+        </p>
   </form>
 </ion-content>
