@@ -15,8 +15,8 @@ import { MenuPrincipalPageModule } from './Pages/Estudiante-secundaria/menu-prin
 
 // import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import {
-  StreamingMedia,
-  StreamingVideoOptions,
+  StreamingMedia
+ 
 } from '@ionic-native/streaming-media/ngx';
 import { PipesModule } from './pipes/pipes.module';
 
