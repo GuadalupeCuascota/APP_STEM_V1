@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Publicacion } from 'src/app/Models/publicacion';
 import { Carreras } from 'src/app/Models/carreras-fica';
 import { RegistroPublicacionService } from '../../../Services/registro-publicacion.service';
+import { RegistroCarrerasService } from 'src/app/Services/registro-carreras.service';
 
 @Component({
   selector: 'app-oferta-academica',
@@ -16,7 +17,8 @@ export class OfertaAcademicaPage implements OnInit {
   datos: any = {};
   constructor(
     private resgitroPublicacion: RegistroPublicacionService,
-    private actRoute: ActivatedRoute // recibir parametros en la ruta
+    private actRoute: ActivatedRoute ,// recibir parametros en la ruta,
+    private registroCarreras: RegistroCarrerasService
   ) {}
 
   ngOnInit() {
@@ -28,6 +30,7 @@ export class OfertaAcademicaPage implements OnInit {
 
     this.getPublicacionesCarrera();
   }
+  
   getPublicacionesCarrera() {
     if (this.params && this.params.id) {
       this.resgitroPublicacion

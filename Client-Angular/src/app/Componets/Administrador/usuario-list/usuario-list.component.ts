@@ -94,7 +94,7 @@ export class UsuarioListComponent implements OnInit {
       (res:any) => {
         console.log(res)
         for (let usu1 of res) {
-          if (usu1.tipo_rol == "Admin" || usu1.tipo_rol == "Editor") {
+          if (usu1.tipo_rol == "Admin" || usu1.tipo_rol == "Editor"  || usu1.tipo_rol == "Mentor") {
             usuAE.push(usu1);
             
         }
@@ -127,7 +127,7 @@ export class UsuarioListComponent implements OnInit {
     this.registroRolService.getRoles().subscribe(
       (res: any) => {
         for (let rol1 of res) {
-          if (rol1.id_rol == 1 || rol1.id_rol == 2) {
+          if (rol1.id_rol == 1 || rol1.id_rol == 2 ||rol1.id_rol==3) {
             rol.push(rol1);
             console.log(rol);
           }

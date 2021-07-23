@@ -8,6 +8,7 @@ const routes: Routes = [
     path: '',
     component: MenuPrincipalPage,
     children: [
+    
       {
         path: 'home-secundaria',
         loadChildren: () =>
@@ -16,13 +17,6 @@ const routes: Routes = [
           ).then((m) => m.HomeSecundariaPageModule),
       },
 
-      {
-        path: 'mi-perfil',
-        loadChildren: () =>
-          import('../../mi-perfil/mi-perfil.module').then(
-            (m) => m.MiPerfilPageModule
-          ),
-      },
       {
         path: 'perfiles',
         loadChildren: () =>
@@ -38,10 +32,18 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'carreras-fica',
+        loadChildren: () =>
+          import('../../Estudiante-secundaria/carreras-fica/carreras-fica.module').then(
+            (m) => m.CarrerasFicaPageModule
+          ),
+      },
+      {
         path: '',
-        redirectTo:'/menu-principal/home-secundaria',
+        redirectTo:'home-secundaria',
         pathMatch: 'full'
       },
+     
     ],
   },
 ];

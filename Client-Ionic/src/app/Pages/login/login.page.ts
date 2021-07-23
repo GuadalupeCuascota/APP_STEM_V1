@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AutenticacionService } from '../../Services/autenticacion.service';
 import { Usuario } from '../../Models/usuario';
-import { FormBuilder, FormControl, FormGroup, Validators,ReactiveFormsModule} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MensajesService } from 'src/app/Services/mensajes.service';
 
 import {StorageService}from '../../Services/storage.service'
@@ -73,16 +73,16 @@ export class LoginPage implements OnInit {
          
           const id_rol = this.resp.payload.id_rol;
           const nivel_academico = this.resp.payload.nivel_academico;
-          if (id_rol == 3 && nivel_academico=="secundaria"){
+          if (id_rol == 4 && nivel_academico=="secundaria"){
             console.log("estudiante secundaria")
-            this.router.navigate(['/menu-principal']);
+            this.router.navigate(['/menu-opciones-se/menu-principal']);
            
          
            
           }
-            if (id_rol == 3 && nivel_academico=="superior"){
-              
-              this.router.navigate(['/menu-opciones/home-superior']);
+            if (id_rol == 4 && nivel_academico=="superior"){
+              console.log("pasa aqui estudiante superior")
+              this.router.navigate(['/menu-opciones/tabs']);
           }
           
   

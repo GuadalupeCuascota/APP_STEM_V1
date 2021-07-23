@@ -28,6 +28,7 @@ export class PerfilesPage implements OnInit {
   tipoarchivo = false;
   tipovideo = 'video/mp4';
   tipoimagen = 'imagen/jpeg';
+  datos: any = {};
   constructor(
     private regitroPublicacion: RegistroPublicacionService,
     private streamingMedia: StreamingMedia
@@ -35,8 +36,9 @@ export class PerfilesPage implements OnInit {
 
   ngOnInit() {
     this.getPerfiles();
-
     this.doRefresh();
+    this.datos=JSON.parse(localStorage.getItem('payload'));
+    console.log(this.datos.nivel_academico)
   }
   buscar(event) {
     this.textoBuscar = event.detail.value;

@@ -1,14 +1,45 @@
-ion-header {
-    ion-toolbar{
-        background: var(--ion-color-dark);
-        border-radius: 0 0 20px 20px;
-      
-        ion-title{
-            font-weight: bold;
-            font-size: 1,5rem;
-            text-align: center;
-            color: rgb(253, 250, 250);
-            
-        }
+ion-toolbar{
+    ion-buttons{
+      text-transform: initial;
     }
-}
+  }
+  ion-content {
+   
+    #header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  
+      h1 {
+        font-weight: 700;
+        font-size: 26px;
+        color: #010101;
+      }
+    }
+  
+    #form {
+      margin-top: 15px;
+      padding-left: 30px;
+      padding-right: 30px;
+  
+      ion-item {
+        border-radius: 40px;
+        height: 50px;
+        box-shadow: 1px 1px 1px 1px rgb(83, 83, 83);
+        --highlight-height: 0px;
+        ion-label{
+          color: rgb(83, 83, 83);
+        }
+      }
+      ion-text{
+       font-size:0.9rem;
+       
+      }
+      p {
+        text-align: center;
+      }
+      ion-button {
+        height: 50px;
+      }
+    }
+  }

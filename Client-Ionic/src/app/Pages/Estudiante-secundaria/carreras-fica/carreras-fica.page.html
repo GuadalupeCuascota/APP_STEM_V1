@@ -1,9 +1,14 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar color="tertiary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="home-secundaria"></ion-back-button>
+  <ion-toolbar color="primary">
+    <ion-buttons *ngIf="datos.nivel_academico=='secundaria'" slot="start">
+      <ion-back-button defaultHref="menu-opciones-se/menu-principal/home-secundaria"></ion-back-button>
     </ion-buttons>
-    <ion-title>OFERTA ACADÉMICA FICA</ion-title>
+
+    <ion-buttons *ngIf="datos.nivel_academico=='superior'"slot="start">
+      <ion-back-button defaultHref="menu-opciones/menu-tabs1/home-superior"></ion-back-button>
+    </ion-buttons>
+   
+    <ion-title>Carreras de Grado</ion-title>
   </ion-toolbar>
 </ion-header>
 <ng-container *ngIf="!isLoaded; else showList">

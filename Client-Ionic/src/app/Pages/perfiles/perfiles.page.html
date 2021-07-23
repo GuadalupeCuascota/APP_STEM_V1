@@ -1,8 +1,12 @@
 <ion-header class="ion-no-border">
   <ion-list lines="none">
     <ion-item color="primary">
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="home-secundaria"></ion-back-button>
+      <ion-buttons *ngIf="datos.nivel_academico=='secundaria'" slot="start">
+        <ion-back-button defaultHref="menu-opciones-se/menu-principal/home-secundaria"></ion-back-button>
+      </ion-buttons>
+
+      <ion-buttons *ngIf="datos.nivel_academico=='superior'"slot="start">
+        <ion-back-button defaultHref="menu-opciones/tabs/home-superior"></ion-back-button>
       </ion-buttons>
       <ion-label>Mujeres en STEM</ion-label>
     </ion-item>
@@ -24,7 +28,7 @@
 
   <ion-card *ngFor="let perfil of perfiles | filtros: textoBuscar">
     <video
-      *ngIf="perfil.tipo_archivo=='video/mp4'"
+      *ngIf="perfil.tipo_archivo=='video/mp4' || perfil.tipo_archivo=='video/mov'"
       width="100%"
       preload="auto"
       
@@ -34,11 +38,12 @@
       controls
     ></video>
     <ion-img
-      *ngIf="perfil.tipo_archivo=='image/png'"
+      *ngIf="perfil.tipo_archivo=='image/png' ||perfil.tipo_archivo=='image/jpeg'"
       src="http://192.168.100.45:3000/{{perfil.ruta_archivo}}"
       width="100%"
       height="100%"
     ></ion-img>
+
 
     <ion-grid>
       <ion-row>

@@ -62,6 +62,7 @@ class UsuariosController {
                 }
             }
             else {
+                console.log("pasa el usuario 2");
                 try {
                     const query = "INSERT INTO usuario ( nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,(select id_rol from rol where tipo_rol=?))";
                     const query1 = "INSERT INTO usuario ( nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,?)";
@@ -70,8 +71,12 @@ class UsuariosController {
                         yield database_1.default.query(query, [nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, id_rol]);
                         res.status(201).json({ text: "usuario guardado" });
                     }
-                    if (id_rol == 2) {
+                    if (id_rol == "Editor") {
                         yield database_1.default.query(query1, [nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, id_rol]);
+                        res.status(201).json({ text: "usuario guardado" });
+                    }
+                    if (id_rol == "Mentor") {
+                        yield database_1.default.query(query, [nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, id_rol]);
                         res.status(201).json({ text: "usuario guardado" });
                     }
                 }
@@ -115,7 +120,7 @@ class UsuariosController {
                 const tipo_rol = req.body.tipo_rol;
                 console.log("rol:" + req.body.tipo_rol);
                 console.log("id_usuario:" + req.body.id_usuario);
-                console.log("nombre:" + req.body.nombre);
+                console.log("nombre new:" + req.body.nombre);
                 console.log("correo:" + req.body.correo_electronico);
                 const query = "UPDATE usuario set nombre=?,apellido=?,nivel_academico=?,carrera=?,unidad_educativa=?,correo_electronico=?,contrasenia=?, id_rol=(select id_rol from rol where tipo_rol=?) WHERE id_usuario=?";
                 database_1.default.query(query, [nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, tipo_rol, id]);

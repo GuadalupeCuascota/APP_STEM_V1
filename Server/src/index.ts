@@ -6,6 +6,7 @@ import helmet from "helmet";
 
 //importar las rutas
 import rolesRoutes from './routes/rolesRoutes';
+import mentoriasUsuarioRoutes from './routes/mentoriasUsuarioRoutes';
 import usuariosRoutes from './routes/usuariosRoutes';
 import publicacionRoutes from './routes/publicacionRoutes';
 import publicacionesCarreraRoutes from './routes/publicacionesCarreraRoutes'; './routes/publicacionesCarreraRoutes';
@@ -13,8 +14,9 @@ import  tipoPublicacionRoutes from './routes/tipo-publicaciónRoute';
 import autenticacionRoutes from "./routes/autentificacionRoutes";
 import eventoRoutes from './routes/registro-eventoRoutes'
 import carrerasficaRoutes from './routes/carrerasficaRoutes'; 
-import mentoriasRegistroRoutes from './routes/mentorias-registroRoutes';import { CLIENT_RENEG_LIMIT } from 'tls';
+import mentoriasRegistroRoutes from './routes/mentorias-registroRoutes';
  './routes/mentorias-registroRoutes'
+ 
 
 
 class Server {
@@ -45,6 +47,7 @@ class Server {
      this.app.use('/api/registro-mentorias',mentoriasRegistroRoutes)
 
     this.app.use('/api/registro-evento',eventoRoutes)
+    this.app.use('/api/mentoriaUsuario',mentoriasUsuarioRoutes)
 
     }
     start(): void{//método para inicializar el servidor

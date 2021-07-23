@@ -21,5 +21,8 @@ export class UsuarioService {
   deleteUsuario(idUsuario:number){
     return this.httpClient.delete<Usuario>(environment.baseUrl+"/usuarios/"+idUsuario);
   }
+  updateUsuario(idUsuario:number,usuario:Usuario){
+    return this.httpClient.put<Usuario>(environment.baseUrl+"/usuarios/"+idUsuario,usuario);
+  }
   
 }

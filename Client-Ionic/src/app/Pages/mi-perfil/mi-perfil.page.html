@@ -1,10 +1,60 @@
 <ion-header class="ion-no-border">
- 
-  <ion-toolbar color="tertiary">
-    <ion-title>Mi perfil</ion-title>
+  <ion-toolbar>
+      <ion-buttons *ngIf="datos.nivel_academico=='secundaria'" slot="start">
+        <ion-back-button  color="primary" defaultHref="menu-opciones-se/menu-principal/home-secundaria"></ion-back-button>
+      </ion-buttons>
+      <ion-buttons *ngIf="datos.nivel_academico=='superior'" slot="start">
+        <ion-back-button  color="primary" defaultHref="/menu-opciones/tabs/home-superior"></ion-back-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div id="header">
+    <h1>Editar perfil</h1>
+  </div>
 
+  <form id="form" [formGroup]="formGroup" (ngSubmit)="updateUsuarios()">
+    <ion-item>
+      <ion-label position="floating"> Nombre:</ion-label>
+      
+      <ion-input
+        formControlName="nombre"
+        placeholder="Ingrese nombre"
+      ></ion-input>
+    </ion-item>
+    <br>
+
+    <ion-item>
+      <ion-label position="floating"> Apellido:</ion-label>
+      <ion-input
+        formControlName="apellido"
+        placeholder="Ingrese apellido"
+      ></ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label position="floating"> Correo electrónico:</ion-label>
+      <ion-input 
+        formControlName="correo_electronico"
+        placeholder="Ingrese email"
+      ></ion-input>
+    </ion-item>
+     <br>
+    <ion-item>
+      <ion-label position="floating"> Contraseña:</ion-label>
+      <ion-input
+        [type]="showPassword ? 'text': 'password'"
+        formControlName="contrasenia"
+        placeholder="Ingrese contraseña"
+      ></ion-input>
+      <ion-icon
+        slot="end"
+        [name]="passwordIcon"
+        (click)="toggleShow()"
+      ></ion-icon>
+    </ion-item>
+    <br>
+    <ion-button type="submit" color="primary"  [disabled]="!formGroup.valid" shape="round" expand="block" >Actualizar</ion-button>
+  </form>
 </ion-content>

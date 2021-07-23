@@ -100,6 +100,7 @@ export class RegistroUsuarioPage implements OnInit {
       if (res) {
         this.mensajeServices.presentToast("Usuario registrado");
         console.log("usuario guardado")
+        this.navController.back();
       }
 
     },

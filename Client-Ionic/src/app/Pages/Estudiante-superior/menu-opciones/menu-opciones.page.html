@@ -1,29 +1,31 @@
 <ion-split-pane contentId="main">
-  <ion-menu side="start" menuId="first" contentId="main" color="primary">
-    <ion-header>
-      <ion-toolbar>
-        <ion-icon name="person-circle" style="zoom:3.0;" slot="start"></ion-icon>
-        <ion-label  color="dark" >{{datos.nombre}} {{datos.apellido}}</ion-label>
-        <ion-label ></ion-label>
-        <ion-label></ion-label>
+  <ion-menu side="start" menuId="first" contentId="main" >
+    <!-- <ion-header >
+      <ion-toolbar color="primary">
+        <ion-title>Menú</ion-title>
       </ion-toolbar>
-    </ion-header>
-    <ion-content auto-hide="false">
-      <ion-list>
-      <ion-menu-toggle>
-        <ion-item routerLink="test-aptitud">
-          <ion-icon name="newspaper" slot="start"></ion-icon>
-          <label>Mi perfil</label>
-          
-        </ion-item>
-      
-        <ion-item (click)="logout()" routerDirection="login">
-          <ion-icon name="exit-outline" slot="start"></ion-icon>
-          Cerrar sesión
-        </ion-item>
-      </ion-menu-toggle>
+    </ion-header> -->
+    <ion-content auto-hide="false" >
+      <div class="menu-header-bg">
 
-      </ion-list>
+      </div>
+      <div class="menu-content">
+        <ion-list>
+          <ion-menu-toggle auto-hide="true">
+            <ion-item routerLink="/mi-perfil/{{datos.id_usuario}}">
+              <ion-icon name="person" slot="start"></ion-icon>
+              <label>Mi perfil</label>
+            </ion-item>
+          
+            <ion-item  (click)="logout()" routerDirection="login">
+              <ion-icon name="exit-outline" slot="start"></ion-icon>
+              Cerrar sesión
+            </ion-item>
+          </ion-menu-toggle>
+    
+          </ion-list>
+      </div>
+      
     </ion-content>
   </ion-menu>
 

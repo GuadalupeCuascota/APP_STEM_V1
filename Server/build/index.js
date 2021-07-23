@@ -10,6 +10,7 @@ const path_1 = __importDefault(require("path"));
 const helmet_1 = __importDefault(require("helmet"));
 //importar las rutas
 const rolesRoutes_1 = __importDefault(require("./routes/rolesRoutes"));
+const mentoriasUsuarioRoutes_1 = __importDefault(require("./routes/mentoriasUsuarioRoutes"));
 const usuariosRoutes_1 = __importDefault(require("./routes/usuariosRoutes"));
 const publicacionRoutes_1 = __importDefault(require("./routes/publicacionRoutes"));
 const publicacionesCarreraRoutes_1 = __importDefault(require("./routes/publicacionesCarreraRoutes"));
@@ -46,6 +47,7 @@ class Server {
         //carpeta para almacenar archivos publicos
         this.app.use('/api/registro-mentorias', mentorias_registroRoutes_1.default);
         this.app.use('/api/registro-evento', registro_eventoRoutes_1.default);
+        this.app.use('/api/mentoriaUsuario', mentoriasUsuarioRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

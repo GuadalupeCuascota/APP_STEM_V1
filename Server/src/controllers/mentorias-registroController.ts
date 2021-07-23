@@ -1,3 +1,4 @@
+import { Console } from "console";
 import {  Request, Response } from "express";
 import pool from "../database";
 
@@ -9,7 +10,7 @@ class MentoriasController {
   public async list(req: Request, res: Response) {
     
 
-    await pool.query("SELECT m.id_registro_mentoria,m.fecha, m.hora_inicio, m.hora_fin, m.tipo_mentoria,t.nombre_estado_mentoria,u.id_usuario from registro_mentoria m, tipo_estado_mentoria t, usuario u WHERE m.id_usuario=u.id_usuario and m.id_estado_mentoria=t.id_estado_mentoria", (err: any, rows: any) => {
+    await pool.query("SELECT m.id_registro_mentoria,m.fecha, m.hora_inicio, m.hora_fin, m.tipo_mentoria,t.nombre_estado_mentoria,u.nombre,u.apellido from registro_mentoria m, tipo_estado_mentoria t, usuario u WHERE m.id_usuario=u.id_usuario and m.id_estado_mentoria=t.id_estado_mentoria", (err: any, rows: any) => {
       
       if (err) {
         res.status(404).json("error al cargar");
@@ -21,6 +22,20 @@ class MentoriasController {
     });
                          
   }
+  public async getMentoriasUsuario(req: Request, res: Response) {
+    console.log("pasa usuario")
+    const {id} =  req.params;
+    const registroMentoriasporUsuario = await pool.query("SELECT fecha, hora_inicio, hora_fin,tipo_mentoria from registro_mentoria WHERE id_usuario=?" , [id]);
+    
+    console.log(registroMentoriasporUsuario);
+    if (registroMentoriasporUsuario.length > 0) {
+      return res.status(200).json(registroMentoriasporUsuario);
+    }
+    res.status(404).json({ text: "En este momento no existe mentorias disponibles"});
+  }
+  
+
+  
   public async getOne(req: Request, res: Response) {
 
     const {id} =  req.params;

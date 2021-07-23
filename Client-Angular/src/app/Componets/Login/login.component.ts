@@ -58,20 +58,23 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', this.resp.Token);
         localStorage.setItem('payload', JSON.stringify(this.resp.payload));// stringity convierte un json a string
        
-
-
         const id_rol = this.resp.payload.id_rol;
-
 
         if (id_rol == 1) {
           console.log('Admin');
           this.router.navigate(['/admin']);
-        } else {
+        }
           if (id_rol == 2) {
             console.log('Editor');
             this.router.navigate(['/editor']);
-          }
-        }
+          
+          
+        } if (id_rol == 3) {
+          console.log('Mentor');
+          this.router.navigate(['/mentor']);
+      
+      }
+        
       },
       (err) => {
         console.log('el error', err);

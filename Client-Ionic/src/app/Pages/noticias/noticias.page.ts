@@ -4,6 +4,7 @@ import {RegistroPublicacionService} from '../../Services/registro-publicacion.se
 import {RegistroEventoService} from '../../Services/registro-evento.service'
 import { Evento } from 'src/app/Models/evento';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 // import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
@@ -23,7 +24,8 @@ export class NoticiasPage implements OnInit {
   id_tipo_evento= 2;
   datos: any = {};
   selectedTab= "";
-  constructor(private regitroPublicacion: RegistroPublicacionService, private registroEvento:RegistroEventoService,private router: Router) { }
+  constructor(private regitroPublicacion: RegistroPublicacionService, private registroEvento:RegistroEventoService,private router: Router,
+    private navCtrl:NavController) { }
 
   ngOnInit() {
     this.selectedTab="heart-outline"
@@ -64,6 +66,7 @@ export class NoticiasPage implements OnInit {
  detalle(id: number){
    console.log("la publicacion",id)
   this.router.navigate(['/detalle-noticia/',id]);
+  this.navCtrl.navigateForward('/detalle-noticia/,id')
  }
  getNoticias(){
   var auxnot=[];

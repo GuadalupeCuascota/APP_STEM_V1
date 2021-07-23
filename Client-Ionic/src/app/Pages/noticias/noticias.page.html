@@ -1,12 +1,18 @@
 <ion-header class="ion-no-border">
   <ion-list lines="none">
     <ion-item color="primary">
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="home-secundaria"></ion-back-button>
+      <ion-buttons *ngIf="datos.nivel_academico=='secundaria'" slot="start">
+        <ion-back-button defaultHref="menu-opciones-se/menu-principal/home-secundaria"></ion-back-button>
+      </ion-buttons>
+
+      <ion-buttons *ngIf="datos.nivel_academico=='superior'"slot="start">
+        <ion-back-button defaultHref="menu-opciones/tabs/home-superior"></ion-back-button>
       </ion-buttons>
       <ion-label>Noticias STEM</ion-label>
     </ion-item>
+    <ion-item color="primary"> </ion-item>
   </ion-list>
+ 
 </ion-header>
 
 <ion-content>
@@ -20,8 +26,21 @@
       <ion-card-title>{{noticia.titulo}}</ion-card-title>
       <ion-card-subtitle>{{noticia.descripcion}}</ion-card-subtitle>
     </ion-card-header>
+    <video
+      *ngIf="noticia.tipo_archivo=='video/mp4' || noticia.tipo_archivo=='video/mov'"
+      width="100%"
+      preload="auto"
+      muted="false"
+      src="http://192.168.100.45:3000/{{noticia.ruta_archivo}} "
+      
+      controls
+    ></video>
     <div class="img">
-      <ion-img src="http://192.168.100.45:3000/{{noticia.ruta_archivo}}"  (click)="detalle(noticia.id_publicacion)"></ion-img>
+      <ion-img
+      *ngIf="noticia.tipo_archivo=='image/png' || noticia.tipo_archivo=='image/jpeg' "
+        src="http://192.168.100.45:3000/{{noticia.ruta_archivo}}"
+        (click)="detalle(noticia.id_publicacion)"
+      ></ion-img>
     </div>
     
     <ion-card-content>
@@ -48,7 +67,7 @@
   </ion-card>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="tertiary" size="25px">
+    <ion-fab-button color="secondary" size="25px">
       <ion-icon color="light" name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

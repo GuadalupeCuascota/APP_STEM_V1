@@ -1,19 +1,22 @@
 
  <ion-split-pane contentId="main">
     <ion-menu side="start" menuId="first" contentId="main" color="primary">
-      <ion-header>
+      <!-- <ion-header>
         <ion-toolbar>
           <ion-icon name="person-circle" style="zoom:3.0;" slot="start"></ion-icon>
           <ion-label  color="dark" >{{datos.nombre}} {{datos.apellido}}</ion-label>
           <ion-label ></ion-label>
           <ion-label></ion-label>
         </ion-toolbar>
-      </ion-header>
+      </ion-header> -->
       <ion-content auto-hide="false">
+        <div class="menu-header-bg">
+
+        </div>
         <ion-list>
         <ion-menu-toggle>
-          <ion-item routerLink="test-aptitud">
-            <ion-icon name="newspaper" slot="start"></ion-icon>
+          <ion-item routerLink="/mi-perfil/{{datos.id_usuario}}">
+            <ion-icon name="person" slot="start"></ion-icon>
             <label>Mi perfil</label>
             
           </ion-item>

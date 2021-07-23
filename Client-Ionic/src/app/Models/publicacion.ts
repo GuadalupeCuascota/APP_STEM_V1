@@ -7,9 +7,8 @@ export class Publicacion{
     profesion:string;
     estado_profesion: string;
     ruta_archivo:string;
+    tipo_archivo: string;
     id_tipo_publicacion: number;
     id_usuario: number;
     id_estado_publicacion: number;
-
-
 }

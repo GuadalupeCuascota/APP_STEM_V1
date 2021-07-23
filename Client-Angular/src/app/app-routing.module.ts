@@ -8,13 +8,13 @@ import { RegistroUsuarioComponent } from './Componets/Administrador/menu-princip
 import { LoginComponent } from './Componets/Login/login.component';
 import { PerfilesMujeresComponent } from './Componets/Editor/perfiles-mujeres/perfiles-mujeres.component';
 import { NoticiasComponent } from './Componets/Editor/noticias/noticias.component';
-import { RegistroMentoriasComponent } from './Componets/Editor/registro-mentorias/registro-mentorias.component';
+import { RegistroMentoriasComponent } from './Componets/Mentor/registro-mentorias/registro-mentorias.component';
 import {OfertaAcademicaComponent } from './Componets/Editor/oferta-academica/oferta-academica.component';
 import { LoginGuard } from './Services/Login/login.guard';
 import {RolesGuard} from './Services/Login/roles.guard';
 import {IsEditorGuard} from './Services/Login/is-editor.guard'
 import { RegistroEditorComponent } from './Componets/Administrador/registro-editor/registro-editor.component';
-
+import { MenuPrincipalMComponent } from './Componets/Mentor/menu-principal-m/menu-principal-m.component';
 
 const routes: Routes = [
   {
@@ -39,7 +39,7 @@ const routes: Routes = [
   {
     path: 'registro-mentorias',
     component: RegistroMentoriasComponent,
-    canActivate: [LoginGuard,IsEditorGuard],
+    
   },
   {
     path: 'oferta-academica/:id',
@@ -54,7 +54,7 @@ const routes: Routes = [
     canActivate: [LoginGuard,IsEditorGuard],
   
   },
-
+  
   {
     path: 'admin',
     component: RegistroUsuarioComponent,
@@ -79,6 +79,11 @@ const routes: Routes = [
   {
     path: 'registro-editor',
     component: RegistroEditorComponent,
+    
+  },
+  {
+    path: 'mentor',
+    component: MenuPrincipalMComponent,
     
   },
 ];

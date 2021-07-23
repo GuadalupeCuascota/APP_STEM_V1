@@ -1,8 +1,11 @@
 <ion-header class="ion-no-border">
   <ion-list lines="none">
     <ion-item color="primary">
-      <ion-buttons slot="start">
+      <!-- <ion-buttons slot="start">
         <ion-back-button defaultHref="login"></ion-back-button>
+      </ion-buttons> -->
+      <ion-buttons slot="start">
+        <ion-menu-button auto-hide="false"></ion-menu-button>
       </ion-buttons>
     </ion-item>
     <ion-item color="primary ">
@@ -15,7 +18,7 @@
 <ion-grid>
     <ion-row>
       <ion-col col-6>
-       <ion-card routerLink="/perfiles">
+       <ion-card routerLink="/menu-principal/perfiles">
          <ion-icon color="secondary" name="people"></ion-icon> 
          <ion-badge>8</ion-badge>
           <ion-card-content>
@@ -25,7 +28,7 @@
       </ion-col>
 
       <ion-col col-6>
-        <ion-card routerLink="/noticias">
+        <ion-card routerLink="/menu-principal/noticias">
          <ion-icon color="secondary" name="newspaper"></ion-icon>
           <ion-card-content>
             <ion-label>Noticias </ion-label>
@@ -36,7 +39,7 @@
     
     <ion-row>
       <ion-col col-6 >
-        <ion-card routerLink="/carreras-fica" >
+        <ion-card routerLink="/menu-principal/carreras-fica" >
           <ion-icon  color="secondary" name="school"></ion-icon>
           <ion-card-content > 
             <ion-label>Oferta Académica FICA-UTN </ion-label>

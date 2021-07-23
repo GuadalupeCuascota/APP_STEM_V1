@@ -18,11 +18,12 @@ export class CarrerasFicaPage implements OnInit {
   textoBuscar = '';
   tipoarchivo=false;
   isLoaded=false;
+  datos: any = {};
   constructor(private registroCarreras: RegistroCarrerasService, private streamingMedia: StreamingMedia) { }
 
   ngOnInit() {
+    this.datos=JSON.parse(localStorage.getItem('payload'));
     this.getCarreras();
-
     this.doRefresh();
   }
   buscar(event) {

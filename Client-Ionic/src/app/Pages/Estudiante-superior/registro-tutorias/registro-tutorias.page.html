@@ -1,9 +1,42 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>registro-tutorias</ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border">
+  <ion-list lines="none">
+    <ion-item color="primary">
+      <ion-buttons *ngIf="datos.nivel_academico=='secundaria'" slot="start">
+        <ion-back-button defaultHref="menu-opciones-se/menu-principal/home-secundaria"></ion-back-button>
+      </ion-buttons>
+
+      <ion-buttons *ngIf="datos.nivel_academico=='superior'"slot="start">
+        <ion-back-button defaultHref="menu-opciones/tabs/home-superior"></ion-back-button>
+      </ion-buttons>
+      <ion-label>Seleccione mentor</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-header>
 
 <ion-content>
 
+  <!-- <ion-item *ngFor="let usuarioM of usuariosM">
+    <ion-avatar slot="start">
+      <img src="../../../../assets/avatar1.png">
+    </ion-avatar>
+    <ion-label>
+      <h2>{{usuarioM.nombre}}  {{usuarioM.apellido}}</h2>
+      <p>{{usuarioM.carrera}}</p>
+    </ion-label>
+    <ion-button  (click)="detalle(usuarioM.id_usuario)"slot="end" expand="block">Buscar</ion-button>
+  </ion-item> -->
+
+  <ion-item *ngFor="let regis of registroMentorias">
+    <ion-avatar slot="start">
+      <img src="../../../../assets/avatar1.png">
+    </ion-avatar>
+    <ion-label>
+      <h3>{{regis.nombre}}</h3>
+      <h2>{{regis.fecha}}</h2>
+      <h2>{{regis.hora_inicio}}</h2>
+      <h2>{{regis.hora_fin}}</h2>
+    </ion-label>
+   
+  </ion-item>
+  
 </ion-content>

@@ -1,95 +1,96 @@
 <app-registro-usuario></app-registro-usuario>
-<br />
-
-<div class="col-md-10 offset-md-1">
-  <div class="list-group-item">
-    <h5 class="text-center" style="color: #161515">Registro de Usuarios</h5>
-    
-    <div class="form-group row">
-      <div class="col">
-        <label style="color: #161515">Nombre</label>
-        <input
-          type="text" 
-          class="form-control"
-          [(ngModel)]="usuario.nombre"
-         
-          placeholder="Ingrese nombre"
-        
-        />
-        <!-- <div class="invalid-feedback">
-          <div>nombre es requerido</div>
-
-           </div> -->
-
-      </div>
-
-      <div class="col">
-        <label style="color: #161515">Apellido</label>
-        <input
-          type="text"
-          class="form-control"
-          name=""
-          placeholder="Ingrese apellido"
-          [(ngModel)]="usuario.apellido"
-        />
-      </div>
+<div class="content">
+  <div class="col-md-10 offset-md-1">
+    <div class="list-group-item">
+      <h5 class="text-center" style="color: #161515">Registro de Usuarios</h5>
       
-    </div>
-
-    <div class="form-group row">
-      <div class="col">
-        <label style="color: #161515">Correo</label>
-        <input
-          type="text"
-          class="form-control"
-          name="cedula"
-          [(ngModel)]="usuario.correo_electronico"
-          placeholder="Ingrese correo electrónico"
-        />
-      </div>
-      <div class="col">
-        
-        <label style="color: #161515">Contraseña</label>
-        
-        <input
-        [type]="showPassword ? 'text': 'password'" 
-          class="form-control"
-          name=""
-          placeholder="Ingrese contraseña"
-          [(ngModel)]="usuario.contrasenia"
-        
+      <div class="form-group row">
+        <div class="col">
+          <label style="color: #161515">Nombre:</label>
+          <input
+            type="text" 
+            class="form-control"
+            [(ngModel)]="usuario.nombre"
+           
+            placeholder="Ingrese nombre"
           
-        />
-     
-        <i  [class]=" show_eye ? 'fa fa-eye iconoInput' : 'fa fa-eye-slash iconoInput' " (click)="toggleShow()"></i>
+          />
+          
+        </div>
+  
+        <div class="col">
+          <label style="color: #161515">Apellido:</label>
+          <input
+            type="text"
+            class="form-control"
+            name=""
+            placeholder="Ingrese apellido"
+            [(ngModel)]="usuario.apellido"
+          />
+        </div>
+        <div class="col">
+          <label style="color: #161515">Correo:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="cedula"
+            [(ngModel)]="usuario.correo_electronico"
+            placeholder="Ingrese correo electrónico"
+          />
+        </div>
+      </div>
+  
+      <div class="form-group row">
+       
+        <div class="col">
+          
+          <label style="color: #161515">Contraseña:</label>
+          
+          <input
+          [type]="showPassword ? 'text': 'password'" 
+            class="form-control"
+            name=""
+            placeholder="Ingrese contraseña"
+            [(ngModel)]="usuario.contrasenia"
+          />
+          <i  [class]=" show_eye ? 'fa fa-eye iconoInput' : 'fa fa-eye-slash iconoInput' " (click)="toggleShow()"></i>
+          
+        </div>
         
+        <div class="col">
+          <label style="color: #161515">Tipo rol:</label>
+          <select
+            class="form-control"
+            name="miselect"
+            [(ngModel)]="usuario.id_rol"
+          >
+            <!-- <option value="0">Selecciona una opción</option> -->
+            <option *ngFor="let rol of roles">{{rol.tipo_rol}}</option>
+          </select>
+        </div>
+        <div class="col">
+          <label style="color: #161515">Carrera:</label>
+          <select
+            class="form-control"
+            name="miselect"
+            [(ngModel)]="usuario.carrera"
+          >
+            <!-- <option value="0">Selecciona una opción</option> -->
+            <option >Ingeniería en Software</option>
+            <option >Ingeniería Mecatronica</option>
+          </select>
+        </div>
       </div>
-      
-      <div class="col">
-        <label style="color: #161515">Tipo rol</label>
-        <select
-          class="form-control"
-          name="miselect"
-          [(ngModel)]="usuario.id_rol"
-        >
-          <!-- <option value="0">Selecciona una opción</option> -->
-          <option *ngFor="let rol of roles">{{rol.tipo_rol}}</option>
-        </select>
-      </div>
+      <button class="btn btn-primary" (click)="saveUsuario(); getUsuarios()">
+        Agregar
+        <i class="fas fa-plus-square"></i>
+      </button>
+  
     </div>
-    <button class="btn btn-primary" (click)="saveUsuario(); getUsuarios()">
-      Agregar
-      <i class="fas fa-plus-square"></i>
-    </button>
-
   </div>
-</div>
+  <br />
 
-<br />
 
-<!-- <div class="col-md-8 offset-md-4">
-
-</div> -->
 
   <div class="col-md-10 offset-md-1">
     <div class="col">
@@ -129,13 +130,13 @@
       <tr
         *ngFor="
           let usuario of usuarios 
-            | paginate: { itemsPerPage: 3, currentPage: p } | filtroUsuarios: textoBuscar 
+            | paginate: { itemsPerPage: 4, currentPage: p } | filtroUsuarios: textoBuscar 
         "
       >
-        <td>{{ usuario.nombre }}</td>
-        <td>{{ usuario.apellido }}</td>
-        <td>{{ usuario.correo_electronico }}</td>
-        <td>{{ usuario.tipo_rol }}</td>
+        <td >{{ usuario.nombre }}</td>
+        <td >{{ usuario.apellido }}</td>
+        <td >{{ usuario.correo_electronico }}</td>
+        <td >{{ usuario.tipo_rol }}</td>
         <td>
           <button
             class="btn btn-primary"
@@ -155,6 +156,10 @@
   </table>
   <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
+</div>
+
+
+
 
 
 
