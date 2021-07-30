@@ -19,11 +19,15 @@ export class RegistroMentoriasComponent implements OnInit {
   datos: any = {};
   closeResult = '';
   localTime = moment().format('YYYY-MM-DD')
+  // time1 = moment('20:00:00').format('HH:mm');
+  // time = moment().format('H:mm ');
   mentorias: any = [];
   mentoria1: any = {
     
   };
-  
+  horas=['7:00','7:30','8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:00','13:30','14:00'];
+
+
   mentoria: Mentoria = {
     fecha: this.localTime,
     hora_inicio: '',
@@ -91,7 +95,13 @@ export class RegistroMentoriasComponent implements OnInit {
         console.log(res);
         for (let usu1 of res) {
           if (usu1.id_usuario == this.datos.id_usuario) {
+            this.localTime = moment(usu1.fecha).format('YYYY-MM-DD');
+            // this.time = moment(usu1.hora_inicio).format('HH:mm');
+            // this.time1 = moment(usu1.hora_fin).format('HH:mm');
+            
             usu1.fecha = this.localTime ;
+            // usu1.hora_inicio=this.time
+            // usu1.hora_fin=this.time1
             UsuMentoria.push(usu1);
           }
         }
@@ -110,9 +120,17 @@ export class RegistroMentoriasComponent implements OnInit {
       this.registroMentoriaService.getMentoria(id_mentoria).subscribe(
         (res) => {
           console.log(res);
-         
           this.mentoria1 = res;
-          this.mentoria1.fecha=this.localTime
+          this.localTime = moment(this.mentoria1.fecha).format('YYYY-MM-DD');
+            // this.time = moment(this.mentoria1.hora_inicio).format('HH:mm:ss.SSS');
+            // this.time1 = moment(this.mentoria1.hora_fin).format('HH:mm:ss.SSS');
+            
+            this.mentoria1.fecha = this.localTime ;
+            // this.mentoria1.hora_inicio=this.time
+            // this.mentoria1.hora_fin=this.time1
+          
+         
+         
           
         },
         (err) => console.error(err)

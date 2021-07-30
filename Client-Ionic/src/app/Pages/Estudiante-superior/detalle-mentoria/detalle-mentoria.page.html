@@ -1,10 +1,61 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Horarios disponibles</ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border">
+  <ion-list lines="none">
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="/registro-tutorias"></ion-back-button>
+    </ion-buttons>
+  </ion-list>
+  
 </ion-header>
 
 <ion-content>
-
-
-</ion-content>
+  <div style="text-align: center;">
+  <ion-label >  Agendamiento de la mentoría</ion-label>
+</div>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col  style=" font-weight: bold;">
+          Fecha mentoría:
+        </ion-col>
+        <ion-col>
+         {{localTime}}
+        </ion-col>
+        
+      </ion-row>
+      <ion-row>
+        <ion-col  style=" font-weight: bold;">
+          Mentor:
+        </ion-col>
+        <ion-col>
+         {{nombre}} {{apellido}}
+        </ion-col>
+        
+      </ion-row>
+      <ion-row>
+        <ion-col  style=" font-weight: bold;">
+          Tipo Mentoría:
+        </ion-col>
+        <ion-col>
+          {{tipo}}
+        </ion-col>
+        
+      </ion-row>
+      <ion-row>
+        <ion-col style=" font-weight: bold;">
+          Horario disponible:
+        </ion-col>
+        <ion-col>
+         {{hora_inicio}}-{{hora_fin}}
+        </ion-col>
+        
+      </ion-row>
+    </ion-grid>
+  
+  </ion-card>
+  <div class="botton">
+    <ion-button (click)="presentAlert()" shape="round">AGENDAR MENTORÍA</ion-button>
+  </div>
+  
+<!-- <ion-button color="primary" (click)="detalle(id_registro_mentoria)">
+mostrar
+</ion-button> -->

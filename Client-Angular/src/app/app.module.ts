@@ -26,6 +26,8 @@ import {RegistroEditorComponent} from './Componets/Administrador/registro-editor
 import { FiltroUsuariosPipe } from './pipes/filtro-usuarios.pipe';
 import { FiltroPerfilesPipe } from './pipes/filtro-perfiles.pipe';
 import { MenuPrincipalMComponent } from './Componets/Mentor/menu-principal-m/menu-principal-m.component';
+import { MentoriasAgendadasComponent } from './Componets/Mentor/mentorias-agendadas/mentorias-agendadas.component';
+
  //módulo para el filtrado de información
 // import {TokenInterceptorService} from './Login/Services/token-interceptor.service'
 
@@ -46,6 +48,8 @@ import { MenuPrincipalMComponent } from './Componets/Mentor/menu-principal-m/men
     OfertaAcademicaComponent,
     FiltroPerfilesPipe,
     MenuPrincipalMComponent,
+    MentoriasAgendadasComponent,
+   
   
   ],
   imports: [

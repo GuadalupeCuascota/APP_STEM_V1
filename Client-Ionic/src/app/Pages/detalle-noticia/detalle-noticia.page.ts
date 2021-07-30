@@ -17,7 +17,9 @@ export class DetalleNoticiaPage implements OnInit {
   API_URI=''
   descripcion=''
   noticia:Publicacion;
-  enlace=''
+  enlace='';
+  tipo_archivo='';
+    
   ngOnInit() {
     // this.regitroPublicacion.getPublicacion()
    const params=this.actRoute.snapshot.params;
@@ -28,6 +30,8 @@ export class DetalleNoticiaPage implements OnInit {
       this.API_URI='http://192.168.100.45:3000/'+this.noticia.ruta_archivo;
       this.descripcion=this.noticia.descripcion;
       this.enlace=this.noticia.enlace;
+      this.tipo_archivo=this.noticia.tipo_archivo
+
       console.log(this.noticia)
     });
   }

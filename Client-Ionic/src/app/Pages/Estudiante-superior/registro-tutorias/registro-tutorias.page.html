@@ -2,41 +2,37 @@
   <ion-list lines="none">
     <ion-item color="primary">
       <ion-buttons *ngIf="datos.nivel_academico=='secundaria'" slot="start">
-        <ion-back-button defaultHref="menu-opciones-se/menu-principal/home-secundaria"></ion-back-button>
+        <ion-back-button
+          defaultHref="menu-opciones-se/menu-principal/home-secundaria"
+        ></ion-back-button>
       </ion-buttons>
 
-      <ion-buttons *ngIf="datos.nivel_academico=='superior'"slot="start">
-        <ion-back-button defaultHref="menu-opciones/tabs/home-superior"></ion-back-button>
+      <ion-buttons *ngIf="datos.nivel_academico=='superior'" slot="start">
+        <ion-back-button
+          defaultHref="menu-opciones/tabs/home-superior"
+        ></ion-back-button>
       </ion-buttons>
-      <ion-label>Seleccione mentor</ion-label>
+      <ion-label>Disponibilidad de mentorias</ion-label>
     </ion-item>
   </ion-list>
 </ion-header>
 
 <ion-content>
+  <ion-card *ngFor="let registro of registroMentorias">
+    <ion-item>
+      <ion-label> Fecha:{{registro.fecha}}</ion-label>
+      <ion-button
+        fill="outline"
+        slot="end"
+        (click)="detalle(registro.id_registro_mentoria)"
+        >Ver</ion-button
+      >
+    </ion-item>
 
-  <!-- <ion-item *ngFor="let usuarioM of usuariosM">
-    <ion-avatar slot="start">
-      <img src="../../../../assets/avatar1.png">
-    </ion-avatar>
-    <ion-label>
-      <h2>{{usuarioM.nombre}}  {{usuarioM.apellido}}</h2>
-      <p>{{usuarioM.carrera}}</p>
-    </ion-label>
-    <ion-button  (click)="detalle(usuarioM.id_usuario)"slot="end" expand="block">Buscar</ion-button>
-  </ion-item> -->
-
-  <ion-item *ngFor="let regis of registroMentorias">
-    <ion-avatar slot="start">
-      <img src="../../../../assets/avatar1.png">
-    </ion-avatar>
-    <ion-label>
-      <h3>{{regis.nombre}}</h3>
-      <h2>{{regis.fecha}}</h2>
-      <h2>{{regis.hora_inicio}}</h2>
-      <h2>{{regis.hora_fin}}</h2>
-    </ion-label>
-   
-  </ion-item>
-  
+    <ion-card-content>
+      <ion-card-title>{{registro.nombre}} {{registro.apellido}}</ion-card-title>
+      <ion-card-subtitle>Mentoría {{registro.tipo_mentoria}}</ion-card-subtitle>
+      <ion-card-subtitle>{{registro.carrera}}</ion-card-subtitle>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

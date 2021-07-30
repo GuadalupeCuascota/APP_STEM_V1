@@ -113,6 +113,15 @@ const routes: Routes = [
     path: 'detalle-mentoria/:id',
     loadChildren: () => import('./Pages/Estudiante-superior/detalle-mentoria/detalle-mentoria.module').then( m => m.DetalleMentoriaPageModule)
   },
+  {
+    path: 'agendar-mentoria/:id',
+    loadChildren: () => import('./Pages/Estudiante-superior/agendar-mentoria/agendar-mentoria.module').then( m => m.AgendarMentoriaPageModule)
+  },  {
+    path: 'mis-mentorias',
+    loadChildren: () => import('./Pages/Estudiante-superior/mis-mentorias/mis-mentorias.module').then( m => m.MisMentoriasPageModule)
+  },
+
+
 
 
 
