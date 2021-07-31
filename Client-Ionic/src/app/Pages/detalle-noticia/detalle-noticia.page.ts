@@ -39,7 +39,7 @@ export class DetalleNoticiaPage implements OnInit {
   }
  hola(){
    console.log("holaaa")
-   console.log("probando")
+   
  }
  
 }
