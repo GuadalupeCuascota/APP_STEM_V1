@@ -4,7 +4,7 @@ import { ActivatedRoute} from '@angular/router';
 import { Publicacion } from 'src/app/Models/publicacion';
 
 import {RegistroPublicacionService} from '../../Services/registro-publicacion.service'
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+// import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 @Component({
   selector: 'app-detalle-noticia',
   templateUrl: './detalle-noticia.page.html',
@@ -40,4 +40,5 @@ export class DetalleNoticiaPage implements OnInit {
  hola(){
    console.log("holaaa")
  }
+ 
 }
