@@ -14,6 +14,7 @@ import { MenuPrincipalPageModule } from './Pages/Estudiante-secundaria/menu-prin
 // import { PagesModule } from './Pages/pages.module';
 
 // import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import {
   StreamingMedia
  
@@ -39,7 +40,7 @@ import { PipesModule } from './pipes/pipes.module';
     Storage,
     IonicStorageModule,
     StreamingMedia,
-    // SocialSharing
+    SocialSharing
   ],
   exports: [MenuPrincipalPageModule],
   bootstrap: [AppComponent],

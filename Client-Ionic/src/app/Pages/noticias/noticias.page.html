@@ -2,26 +2,30 @@
   <ion-list lines="none">
     <ion-item color="primary">
       <ion-buttons *ngIf="datos.nivel_academico=='secundaria'" slot="start">
-        <ion-back-button defaultHref="menu-opciones-se/menu-principal/home-secundaria"></ion-back-button>
+        <ion-back-button
+          defaultHref="menu-opciones-se/menu-principal/home-secundaria"
+        ></ion-back-button>
       </ion-buttons>
 
-      <ion-buttons *ngIf="datos.nivel_academico=='superior'"slot="start">
-        <ion-back-button defaultHref="menu-opciones/tabs/home-superior"></ion-back-button>
+      <ion-buttons *ngIf="datos.nivel_academico=='superior'" slot="start">
+        <ion-back-button
+          defaultHref="menu-opciones/tabs/home-superior"
+        ></ion-back-button>
       </ion-buttons>
-      <ion-label>Noticias STEM</ion-label>
+      <ion-label>Noticias STEM1</ion-label>
     </ion-item>
-    <ion-item color="primary"> </ion-item>
   </ion-list>
- 
 </ion-header>
 
 <ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  
-  <ion-card *ngFor="let noticia of noticias" >
 
+  <ion-card
+    (click)="detalle(noticia.id_publicacion)"
+    *ngFor="let noticia of noticias"
+  >
     <ion-card-header>
       <ion-card-title>{{noticia.titulo}}</ion-card-title>
       <ion-card-subtitle>{{noticia.descripcion}}</ion-card-subtitle>
@@ -32,38 +36,33 @@
       preload="auto"
       muted="false"
       src="http://192.168.100.45:3000/{{noticia.ruta_archivo}} "
-      
       controls
     ></video>
     <div class="img">
       <ion-img
-      *ngIf="noticia.tipo_archivo=='image/png' || noticia.tipo_archivo=='image/jpeg' "
+        *ngIf="noticia.tipo_archivo=='image/png' || noticia.tipo_archivo=='image/jpeg' "
         src="http://192.168.100.45:3000/{{noticia.ruta_archivo}}"
-        (click)="detalle(noticia.id_publicacion)"
       ></ion-img>
     </div>
-    
+
     <ion-card-content>
       <ion-grid>
         <ion-row>
           <ion-col>
-            
-            <ion-button  color="tertiary">
-              <ion-icon  [name]="selectedTab"></ion-icon>
+            <ion-button color="tertiary">
+              <ion-icon [name]="selectedTab"></ion-icon>
             </ion-button>
             <!-- <ion-icon name="heart-outline"></ion-icon> -->
           </ion-col>
           <ion-col>
-            <ion-button color="tertiary"  >
+           
+            <ion-button color="tertiary">
               <ion-icon name="share-social-outline"></ion-icon>
             </ion-button>
-  
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
-    
-
   </ion-card>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
@@ -73,11 +72,12 @@
   </ion-fab>
 
   <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content loadingSpinner="lines-small" loadingText="Cargando...">
+    <ion-infinite-scroll-content
+      loadingSpinner="lines-small"
+      loadingText="Cargando..."
+    >
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
   <!--jquery-->
-  
-
 </ion-content>

@@ -1,6 +1,44 @@
-
-
 <ion-content>
+  <div class="image-slider">
+    <div class="header">
+      <ion-buttons slot="start">
+        <ion-back-button
+          color="primary"
+          defaultHref="noticias"
+        ></ion-back-button>
+      </ion-buttons>
+      <div class="icon">
+        
+        <button  (click)="hola()">
+          <ion-icon color="primary" name="share-social-outline"></ion-icon>
+        </button>
+       
+      </div>
+      <!-- <ion-buttons slot="start">
+          
+        </ion-buttons> -->
+    </div>
+
+    <img [src]="API_URI" />
+  </div>
+  <div class="profile-info">
+    <div class="user-info">
+      <div class="basic-info">
+        <h1>{{titulo}}
+        </h1>
+        <p>
+          <!-- <ion-icon name="share-social-outline"></ion-icon> -->
+        </p>
+        <p>
+          {{descripcion}}
+        </p>
+       <a>{{enlace}}</a>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- <ion-content>
   <div class="header">
     <ion-buttons slot="start">
       <ion-back-button color="tertiary" defaultHref="noticias"></ion-back-button>
@@ -24,4 +62,4 @@
     </div>
   </div>
   
-</ion-content>
+</ion-content> -->

@@ -4,6 +4,7 @@ import { ActivatedRoute} from '@angular/router';
 import { Publicacion } from 'src/app/Models/publicacion';
 
 import {RegistroPublicacionService} from '../../Services/registro-publicacion.service'
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 @Component({
   selector: 'app-detalle-noticia',
   templateUrl: './detalle-noticia.page.html',
@@ -19,6 +20,7 @@ export class DetalleNoticiaPage implements OnInit {
   noticia:Publicacion;
   enlace='';
   tipo_archivo='';
+  titulo='';
     
   ngOnInit() {
     // this.regitroPublicacion.getPublicacion()
@@ -31,9 +33,11 @@ export class DetalleNoticiaPage implements OnInit {
       this.descripcion=this.noticia.descripcion;
       this.enlace=this.noticia.enlace;
       this.tipo_archivo=this.noticia.tipo_archivo
-
+     this.titulo=this.noticia.titulo;
       console.log(this.noticia)
     });
   }
- 
+ hola(){
+   console.log("holaaa")
+ }
 }
