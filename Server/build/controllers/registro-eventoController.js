@@ -14,12 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.eventosController = void 0;
 const database_1 = __importDefault(require("../database"));
-const path_1 = __importDefault(require("path"));
-const fs_extra_1 = __importDefault(require("fs-extra"));
 class EventosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query("SELECT * FROM evento", (err, rows) => {
+            yield database_1.default.query("SELECT e.id_publicacion,p.titulo,u.nombre,u.apellido, t.nombre_tipo_evento FROM evento e,publicacion p, usuario u, tipo_evento t WHERE e.id_publicacion=p.id_publicacion and u.id_usuario=e.id_usuario and t.id_tipo_evento=e.id_tipo_evento", (err, rows) => {
                 if (err) {
                     res.status(404).json("error al cargar");
                     console.log(err);
@@ -31,95 +29,46 @@ class EventosController {
             });
         });
     }
-    getOne(req, res) {
+    verificar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const publicacion = yield database_1.default.query("SELECT * FROM publicacion WHERE id_publicacion=?", [id]);
-            if (publicacion.length > 0) {
-                return res.status(200).json(publicacion[0]);
+            const { idP, idU } = req.params;
+            console.log("1", idU);
+            console.log("2", idP);
+            const verificar = yield database_1.default.query("SELECT * FROM evento WHERE id_publicacion=? and id_usuario=?", [idP, idU]);
+            if (verificar.length > 0) {
+                console.log("ya existe");
+                res.status(201).json({ text: "ya existe" });
             }
-            res.status(404).json({ text: "publicación no existe" });
-        });
-    }
-    //res.json({ text: "rol encontrado" +req.params.id});
-    create(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            console.log("CREAR");
-            try {
-                const { id_tipo_evento, id_publicacion, id_usuario, } = req.body;
-                console.log("id_tipo_evento" + req.body.id_tipo_evento);
-                console.log("id_publicación" + req.body.id_publicacion);
-                console.log("id_publicación" + req.body.id_usuario);
-                const query = "INSERT INTO evento (id_tipo_evento,id_publicacion,id_usuario) VALUES (?,?,?)";
-                yield database_1.default.query(query, [id_tipo_evento, id_publicacion, id_usuario]);
-                res.json({ text: "evento guardado" });
-            }
-            catch (err) {
-                res.json({ text: "Hubo un error " });
-                console.log("hubo un errro" + err);
+            else {
+                res.status(201).json({ text: "No existe" });
+                console.log("no existe");
             }
         });
     }
-    delete(req, res) {
+    createEvento(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const publicacion = yield database_1.default.query("SELECT * FROM publicacion WHERE id_publicacion=?", [id]);
-            if (publicacion.length > 0) {
-                console.log("pasa");
-                const archivo = yield database_1.default.query(" DELETE FROM publicacion WHERE id_publicacion=?", [id]);
-                if (publicacion[0].ruta_archivo != null) {
-                    console.log("si hay ruta");
-                    if (!path_1.default.resolve(publicacion[0].ruta_archivo)) {
-                        console.log("segundo pasa");
-                        yield fs_extra_1.default.unlink(path_1.default.resolve(publicacion[0].ruta_archivo));
-                    }
-                    else {
-                        return res.json({ message: "No existe archivo en el servidor" });
-                    }
-                }
-                return res.status(204).json({ message: "el archivo fue eliminado" });
-            }
-            return res.status(404).json({ text: "el archivo no existe" });
+            console.log("pasa like");
+            const { id_tipo_evento, id_publicacion, id_usuario, } = req.body;
+            const query = "INSERT INTO evento (id_tipo_evento,id_publicacion,id_usuario) VALUES (?,?,?)";
+            yield database_1.default.query(query, [id_tipo_evento, id_publicacion, id_usuario]);
+            res.json({ text: "evento guardado" });
         });
     }
-    update(req, res) {
+    deleteEvento(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const { id } = req.params;
-                console.log("id: " + id);
-                const { titulo, descripcion, enlace, profesion, estado_profesion, } = req.body;
-                const query = "UPDATE publicacion set titulo=?,descripcion=?,enlace=?, profesion=?,estado_profesion=?, ruta_archivo=? WHERE id_publicacion=?";
-                if (req.file) {
-                    const ruta_archivo = req.file.path;
-                    database_1.default.query(query, [
-                        titulo,
-                        descripcion,
-                        enlace,
-                        profesion,
-                        estado_profesion,
-                        ruta_archivo,
-                        id,
-                    ]);
-                    return res.status(204).json({ text: "publicación actualizado" });
-                }
-                else {
-                    const ruta_archivo = null;
-                    database_1.default.query(query, [
-                        titulo,
-                        descripcion,
-                        enlace,
-                        profesion,
-                        estado_profesion,
-                        ruta_archivo,
-                        id,
-                    ]);
-                    return res.status(204).json({ text: "publicación actualizado" });
-                }
+            // try {
+            const { idP, idU } = req.params;
+            const verificar = yield database_1.default.query("SELECT * FROM evento WHERE id_publicacion=? and id_usuario=?", [idP, idU]);
+            if (verificar.length > 0) {
+                yield database_1.default.query("DELETE FROM evento WHERE id_usuario=? and  id_publicacion=?", [idU, idP]);
+                res.status(204).json({ text: "evento eliminado" });
             }
-            catch (err) {
-                console.log("no se puede actualizar" + err);
-                return res.status(404).json({ text: "Hubo un error " });
+            else {
+                res.status(404).json({ text: "Hubo un error " });
             }
+            //  } catch (error) {
+            //   console.log("no se puede eliminar"+ error)
+            //  }
         });
     }
 }

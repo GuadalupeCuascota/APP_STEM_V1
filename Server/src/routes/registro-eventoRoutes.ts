@@ -10,10 +10,12 @@ class EventosRoutes {
   config(): void {
   
     this.router.get("/",eventosController.list);
-    this.router.get("/:id", eventosController.getOne);
-    this.router.post("/", eventosController.create ); 
-    this.router.delete("/:id",eventosController.delete);
-    this.router.put("/:id",eventosController.update );
+    this.router.get("/:idP/:idU",eventosController.verificar);
+    this.router.post("/:idP/:idU",eventosController.createEvento)
+    this.router.delete("/:idP/:idU",eventosController.deleteEvento); 
+   
+    // this.router.delete("/:id",eventosController.delete);
+    // this.router.put("/:id",eventosController.update );
   }
 }
 const eventoRoutes=new EventosRoutes();

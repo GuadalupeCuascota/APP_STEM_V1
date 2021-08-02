@@ -14,7 +14,7 @@ import { LoadingService } from 'src/app/Services/loading.service';
   styleUrls: ['./registro-usuario.page.scss'],
 })
 export class RegistroUsuarioPage implements OnInit {
-  usuarios: Usuario[] = [];
+  usuarios: Usuario[]=[];
   usuario: Usuario
   formUsuario: FormGroup;
   formnivel: FormGroup;

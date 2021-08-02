@@ -90,21 +90,22 @@ export class NoticiasPage implements OnInit {
       }
     );
   }
-  Meinteresa(id_publicacio) {
-    this.selectedTab = 'heart';
-    console.log('el id', id_publicacio);
-    this.evento.id_tipo_evento = 1;
-    this.evento.id_publicacion = id_publicacio;
-    this.evento.id_usuario = this.datos.id_usuario;
-    this.registroEvento.saveEvento(this.evento).subscribe(
-      (res) => {
-        if (res) {
-          console.log('usuario guardado');
-        }
-      },
-      () => {
-        console.log('erro');
-      }
-    );
-  }
+  // Meinteresa(id_publicacio) {
+  //   this.selectedTab = 'heart';
+  //   console.log('el id de la not', id_publicacio);
+  //   this.evento.id_tipo_evento = 1;
+  //   this.evento.id_publicacion = id_publicacio;
+  //   this.evento.id_usuario = this.datos.id_usuario;
+  //   this.registroEvento.saveEvento(this.evento).subscribe(
+  //     (res) => {
+  //       if (res) {
+  //         console.log('usuario guardado');
+  //       }
+  //     },
+  //     () => {
+  //       console.log('erro');
+
+  //     }
+  //   );
+  // }
 }

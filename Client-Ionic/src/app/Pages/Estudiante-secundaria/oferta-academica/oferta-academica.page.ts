@@ -12,37 +12,38 @@ import { RegistroCarrerasService } from 'src/app/Services/registro-carreras.serv
 })
 export class OfertaAcademicaPage implements OnInit {
   params: any = {};
-  Carrera='';
+  Carrera = '';
   ofertaAcademica: Publicacion | any = [];
   datos: any = {};
   constructor(
     private resgitroPublicacion: RegistroPublicacionService,
-    private actRoute: ActivatedRoute ,// recibir parametros en la ruta,
+    private actRoute: ActivatedRoute, // recibir parametros en la ruta,
     private registroCarreras: RegistroCarrerasService
   ) {}
 
   ngOnInit() {
     const id = this.actRoute.snapshot.params;
-    console.log('el id', id);
+    console.log('el id es', id);
     this.params = this.actRoute.snapshot.params;
     console.log('el parametro', this.params);
     this.datos = JSON.parse(localStorage.getItem('payload'));
 
     this.getPublicacionesCarrera();
   }
-  
+  getcarrera() {}
+
   getPublicacionesCarrera() {
     if (this.params && this.params.id) {
+      console.log("pasa c")
       this.resgitroPublicacion
         .getPublicacionesCarrera(this.params.id)
-        .subscribe((res:any) => {
-          console.log(res)
+        .subscribe((res: any) => {
+          console.log(res);
           for (let n of res) {
-            this.Carrera=n.nombre_carrera
-          console.log(this.Carrera)
+            this.Carrera = n.nombre_carrera;
+            console.log("la carrera",this.Carrera);
           }
-         this.ofertaAcademica = res;
-          
+          this.ofertaAcademica = res;
         });
     }
   }

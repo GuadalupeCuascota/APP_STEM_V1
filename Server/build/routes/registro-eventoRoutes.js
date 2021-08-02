@@ -9,10 +9,11 @@ class EventosRoutes {
     }
     config() {
         this.router.get("/", registro_eventoController_1.eventosController.list);
-        this.router.get("/:id", registro_eventoController_1.eventosController.getOne);
-        this.router.post("/", registro_eventoController_1.eventosController.create);
-        this.router.delete("/:id", registro_eventoController_1.eventosController.delete);
-        this.router.put("/:id", registro_eventoController_1.eventosController.update);
+        this.router.get("/:idP/:idU", registro_eventoController_1.eventosController.verificar);
+        this.router.post("/:idP/:idU", registro_eventoController_1.eventosController.createEvento);
+        this.router.delete("/:idP/:idU", registro_eventoController_1.eventosController.deleteEvento);
+        // this.router.delete("/:id",eventosController.delete);
+        // this.router.put("/:id",eventosController.update );
     }
 }
 const eventoRoutes = new EventosRoutes();

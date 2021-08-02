@@ -12,7 +12,7 @@
           defaultHref="menu-opciones/tabs/home-superior"
         ></ion-back-button>
       </ion-buttons>
-      <ion-label>Noticias STEM1</ion-label>
+      <ion-label>Noticias STEM</ion-label>
     </ion-item>
   </ion-list>
 </ion-header>
@@ -27,7 +27,7 @@
     *ngFor="let noticia of noticias"
   >
     <ion-card-header>
-      <ion-card-title>{{noticia.titulo}}</ion-card-title>
+      <ion-card-title   style="font-weight: 700">{{noticia.titulo}}</ion-card-title>
       <ion-card-subtitle>{{noticia.descripcion}}</ion-card-subtitle>
     </ion-card-header>
     <video
@@ -45,14 +45,14 @@
       ></ion-img>
     </div>
 
-    <ion-card-content>
+    <!-- <ion-card-content>
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-button color="tertiary">
               <ion-icon [name]="selectedTab"></ion-icon>
             </ion-button>
-            <!-- <ion-icon name="heart-outline"></ion-icon> -->
+            
           </ion-col>
           <ion-col>
            
@@ -62,7 +62,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-card-content>
+    </ion-card-content> -->
   </ion-card>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
