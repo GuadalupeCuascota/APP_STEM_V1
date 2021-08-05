@@ -15,6 +15,7 @@ export class CambioContraseniaComponent implements OnInit {
   datos: any = {};
   errorMsj: any = {};
   msj: any = '';
+  
   constructor(
     private registroUsuarioService: RegistroUsuarioService,
     private alerts: AlertsService,
@@ -23,6 +24,7 @@ export class CambioContraseniaComponent implements OnInit {
 
   ngOnInit(): void {
     this.datos=JSON.parse(localStorage.getItem('payload'));
+    
   }
 
 

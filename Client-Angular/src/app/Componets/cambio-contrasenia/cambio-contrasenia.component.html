@@ -1,4 +1,13 @@
-<app-registro-usuario></app-registro-usuario>
+<div *ngIf="datos.id_rol==1">
+    <app-registro-usuario></app-registro-usuario>
+</div>
+<div *ngIf="datos.id_rol==2">
+  <app-menu-principal-editor></app-menu-principal-editor>  
+</div>
+<div *ngIf="datos.id_rol==3">
+    <app-menu-principal-m></app-menu-principal-m>
+  </div>
+
 <div class="content">
     <div class="col-md-6 offset-md-3">
         <div class="list-group-item">
