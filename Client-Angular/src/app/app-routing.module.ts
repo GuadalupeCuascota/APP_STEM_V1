@@ -16,6 +16,9 @@ import {IsEditorGuard} from './Services/Login/is-editor.guard'
 import { RegistroEditorComponent } from './Componets/Administrador/registro-editor/registro-editor.component';
 import { MenuPrincipalMComponent } from './Componets/Mentor/menu-principal-m/menu-principal-m.component';
 import { MentoriasAgendadasComponent } from './Componets/Mentor/mentorias-agendadas/mentorias-agendadas.component';
+import {DashboardComponent} from './Componets/Administrador/dashboard/dashboard.component';
+import {CambioContraseniaComponent} from './Componets/cambio-contrasenia/cambio-contrasenia.component'
+
 const routes: Routes = [
   {
     path: '',
@@ -26,6 +29,12 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
+  {
+    path: 'cambiarContraseña',
+    component:CambioContraseniaComponent,
+    canActivate: [LoginGuard]
+  },
+
   {
     path: 'perfiles/:id',
     component: PerfilesMujeresComponent,
@@ -90,6 +99,11 @@ const routes: Routes = [
   {
     path: 'mentorias-agendadas',
     component: MentoriasAgendadasComponent,
+    
+  },
+  {
+    path: 'dashboard',
+    component:DashboardComponent,
     
   },
 

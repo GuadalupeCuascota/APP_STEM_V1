@@ -25,7 +25,7 @@ export class RegistroEditorComponent implements OnInit {
   constructor(
     private registroUsuarioService: RegistroUsuarioService,
     private alerts: AlertsService,
-    private router: Router,) { }
+    private router: Router) { }
 
   ngOnInit(): void {
   }

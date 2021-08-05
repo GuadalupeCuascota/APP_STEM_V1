@@ -1,0 +1,30 @@
+<app-registro-usuario></app-registro-usuario>
+<div class="content">
+    <div class="col-md-6 offset-md-3">
+        <div class="list-group-item">
+            <h5 class="text-center" style="color: #161515">Editar contraseña</h5>
+
+            <div class="form-group">
+                <div class="col">
+                    <label style="color: #161515">Contraseña actual:</label>
+                    <input type="password" class="form-control"  [(ngModel)]="contraN.contrasenia" />
+                </div>
+
+                <div class="col">
+                    <label style="color: #161515">Nueva contraseña:</label>
+                    <input type="password" class="form-control" [(ngModel)]="contraN.contraseniaN" />
+                </div>
+                <div class="col">
+                    <label style="color: #161515">Confirmar contraseña:</label>
+                    <input type="password" class="form-control"  [(ngModel)]="contraN.contraseniaN1" />
+                </div>
+                
+            </div>
+            <div class="col">
+                <button class="btn btn-primary" (click)="CambioContrasenia()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

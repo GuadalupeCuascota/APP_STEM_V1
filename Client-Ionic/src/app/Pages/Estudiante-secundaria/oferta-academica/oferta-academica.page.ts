@@ -11,10 +11,10 @@ import { RegistroCarrerasService } from 'src/app/Services/registro-carreras.serv
   styleUrls: ['./oferta-academica.page.scss'],
 })
 export class OfertaAcademicaPage implements OnInit {
-  params: any = {};
   Carrera = '';
   ofertaAcademica: Publicacion | any = [];
   datos: any = {};
+  id = 0;
   constructor(
     private resgitroPublicacion: RegistroPublicacionService,
     private actRoute: ActivatedRoute, // recibir parametros en la ruta,
@@ -22,30 +22,34 @@ export class OfertaAcademicaPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    const id = this.actRoute.snapshot.params;
-    console.log('el id es', id);
-    this.params = this.actRoute.snapshot.params;
-    console.log('el parametro', this.params);
+    const params = this.actRoute.snapshot.params;
+    this.id = params.id;
+    console.log('el id es', this.id);
     this.datos = JSON.parse(localStorage.getItem('payload'));
+    // this.getPublicacionesCarrera();
+    this.getCarrera();
 
-    this.getPublicacionesCarrera();
   }
-  getcarrera() {}
-
+   getCarrera(){
+     this.registroCarreras.getCarrera(this.id).subscribe(
+       (res)=>{
+console.log("la res",res)
+       }
+     )
+   }
   getPublicacionesCarrera() {
-    if (this.params && this.params.id) {
-      console.log("pasa c")
-      this.resgitroPublicacion
-        .getPublicacionesCarrera(this.params.id)
-        .subscribe((res: any) => {
-          console.log(res);
-          for (let n of res) {
-            this.Carrera = n.nombre_carrera;
-            console.log("la carrera",this.Carrera);
-          }
-          this.ofertaAcademica = res;
-        });
-    }
+    console.log('pasa c');
+    this.resgitroPublicacion
+      .getPublicacionesCarrera(this.id)
+      .subscribe((res: any) => {
+        console.log(res);
+
+        for (let n of res) {
+          this.Carrera = n.nombre_carrera;
+          console.log('la carrera', this.Carrera);
+        }
+        this.ofertaAcademica = res;
+      });
   }
   doRefresh($event?: any) {
     //envia un evento opcional de tipo any

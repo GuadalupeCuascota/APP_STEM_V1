@@ -27,6 +27,10 @@ import { FiltroUsuariosPipe } from './pipes/filtro-usuarios.pipe';
 import { FiltroPerfilesPipe } from './pipes/filtro-perfiles.pipe';
 import { MenuPrincipalMComponent } from './Componets/Mentor/menu-principal-m/menu-principal-m.component';
 import { MentoriasAgendadasComponent } from './Componets/Mentor/mentorias-agendadas/mentorias-agendadas.component';
+import { DashboardComponent } from './Componets/Administrador/dashboard/dashboard.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { CambioContraseniaComponent } from './Componets/cambio-contrasenia/cambio-contrasenia.component';
+
 
  //módulo para el filtrado de información
 // import {TokenInterceptorService} from './Login/Services/token-interceptor.service'
@@ -49,6 +53,8 @@ import { MentoriasAgendadasComponent } from './Componets/Mentor/mentorias-agenda
     FiltroPerfilesPipe,
     MenuPrincipalMComponent,
     MentoriasAgendadasComponent,
+    DashboardComponent,
+    CambioContraseniaComponent,
    
   
   ],
@@ -61,7 +67,10 @@ import { MentoriasAgendadasComponent } from './Componets/Mentor/mentorias-agenda
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgxPaginationModule,
-    NgbModule
+    NgbModule,
+    NgxChartsModule,
+    BrowserAnimationsModule
+
 
   ],
   //agreagr un proveedor para utilizar en cualquier clase

@@ -30,7 +30,7 @@
             {{datos.nombre}} {{datos.apellido}}
           </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
-            <a ngbDropdownItem href="#" (click)="$event.preventDefault()"><i class="fas fa-key"></i> Cambiar
+          <a ngbDropdownItem routerLink="/cambiarContraseña" (click)="$event.preventDefault()"><i class="fas fa-key"></i> Cambiar
               contraseña</a>
             <a ngbDropdownItem (click)="logOut()"><i class="far fa-arrow-alt-circle-left"></i> Cerrar Sesión</a>
 

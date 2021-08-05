@@ -12,10 +12,10 @@ export class MisMentoriasPage implements OnInit {
   constructor(private regitroAgendarMentoriaService: AgendarMentoriaService) {}
   datos: any = {};
   localTime = moment().format();
-  time1 = moment().format('h:mm a');
-  time = moment().format('h:mm a');
+  // time1 = moment().format('h:mm a');
+  // time = moment().format('h:mm a');
   ngOnInit() {
-    console.log('el tiempo', this.time1);
+    
     this.datos = JSON.parse(localStorage.getItem('payload'));
     console.log('listado registro');
     var UsuMentoria = [];
@@ -26,10 +26,10 @@ export class MisMentoriasPage implements OnInit {
         
           if (aux.id_usuario == this.datos.id_usuario ) {
             this.localTime = moment(aux.fecha).format('DD/MM/YYYY');
-            this.time = moment(aux.hora_inicio).format('h:mm a');
-            this.time1 = moment(aux.hora_fin).format('h:mm a');
-            aux.hora_inicio=this.time;
-            aux.hora_fin=this.time1;
+            // this.time = moment(aux.hora_inicio).format('h:mm a');
+            // this.time1 = moment(aux.hora_fin).format('h:mm a');
+            // aux.hora_inicio=this.time;
+            // aux.hora_fin=this.time1;
             aux.fecha=this.localTime;
             UsuMentoria.push(aux);
           }

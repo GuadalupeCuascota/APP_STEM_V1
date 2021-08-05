@@ -124,7 +124,33 @@ class UsuariosController {
                 console.log("correo:" + req.body.correo_electronico);
                 const query = "UPDATE usuario set nombre=?,apellido=?,nivel_academico=?,carrera=?,unidad_educativa=?,correo_electronico=?,contrasenia=?, id_rol=(select id_rol from rol where tipo_rol=?) WHERE id_usuario=?";
                 database_1.default.query(query, [nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, tipo_rol, id]);
-                res.status(204).json({ text: "usuario actualizado" });
+                res.status(201).json({ text: "usuario actualizado" });
+            }
+            catch (error) {
+                res.status(404).json({ text: "Hubo un error " });
+                console.log("no se puede actualizar" + error);
+            }
+        });
+    }
+    updatePass(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { id } = req.params;
+                const contrasenia = req.body.contrasenia;
+                const contraseniaN = req.body.contraseniaN;
+                console.log("el id", id);
+                console.log("contra", contrasenia);
+                const contra = yield database_1.default.query("SELECT contrasenia FROM usuario where contrasenia=? and id_usuario=?", [contrasenia, id]);
+                console.log("la consul", contra);
+                if (contra.length > 0) {
+                    const query = "UPDATE usuario set contrasenia=? where id_usuario=?";
+                    database_1.default.query(query, [contraseniaN, id]);
+                    res.status(201).json({ text: "contraseña actualizada" });
+                }
+                else {
+                    res.status(404).json({ text: "La contraseña no es correcta" });
+                }
+                // res.status(204).json({text: "usuario actualizado"});
             }
             catch (error) {
                 res.status(404).json({ text: "Hubo un error " });

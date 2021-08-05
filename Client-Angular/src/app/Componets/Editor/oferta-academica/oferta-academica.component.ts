@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ResgitroCarrerasService } from '../../../Services/resgitro-carreras.service';
 import { Publicacion } from '../../../Models/publicacion';
-import { Carrera } from '../../../Models/carreras';
-
 import { AlertsService } from '../../../Services/alerts/alerts.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';

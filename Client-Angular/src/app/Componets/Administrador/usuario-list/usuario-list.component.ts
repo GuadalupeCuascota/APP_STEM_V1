@@ -31,6 +31,7 @@ export class UsuarioListComponent implements OnInit {
     contrasenia: '',
     id_rol: 0,
   };
+  count=0;
   textoBuscar='';
   //  form=new FormGroup({
   //   nombre: new FormControl('', Validators.required),
@@ -89,6 +90,7 @@ export class UsuarioListComponent implements OnInit {
   getUsuarios() {
     console.log("hol")
     var usuAE = [];
+    var c=0;
     this.registroUsuarioService.getUsuarios().subscribe(
       
       (res:any) => {
@@ -96,9 +98,10 @@ export class UsuarioListComponent implements OnInit {
         for (let usu1 of res) {
           if (usu1.tipo_rol == "Admin" || usu1.tipo_rol == "Editor"  || usu1.tipo_rol == "Mentor") {
             usuAE.push(usu1);
-            
+            c=c+1;
         }
       }
+      console.log("NUMERO DE PERSONAS",c)
         console.log(res);
          this.usuarios = usuAE  ;
 
@@ -117,6 +120,7 @@ export class UsuarioListComponent implements OnInit {
 
           this.usuario1 = res;
           console.log('este es:' + this.usuario1.tipo_rol);
+
         },
         (err) => console.error(err)
       );

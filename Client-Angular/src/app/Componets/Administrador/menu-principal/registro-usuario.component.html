@@ -18,7 +18,7 @@
           <a class="nav-link" routerLink="/usuarios" routerLinkActive="active"><i class="fas fa-user-plus"></i> Usuarios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/usuarios" routerLinkActive="active"><i class="fas fa-chart-bar"></i> Dashboard</a>
+          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active"><i class="fas fa-chart-bar"></i> Dashboard</a>
         </li>
       </ul>
       
@@ -32,7 +32,7 @@
             {{datos.nombre}} {{datos.apellido}}
           </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
-            <a ngbDropdownItem href="#" (click)="$event.preventDefault()"><i class="fas fa-key"></i>  Cambiar contraseña</a>
+            <a ngbDropdownItem routerLink="/cambiarContraseña" (click)="$event.preventDefault()"><i class="fas fa-key"></i>  Cambiar contraseña</a>
             <a ngbDropdownItem  (click)="logOut()"><i class="far fa-arrow-alt-circle-left"></i>     Cerrar Sesión</a>
             
           </div>

@@ -17,7 +17,9 @@ import carrerasficaRoutes from "./routes/carrerasficaRoutes";
 import mentoriasRegistroRoutes from "./routes/mentorias-registroRoutes";
 import agendarMentoriaRoutes from "./routes/agendarMentoriaRoute";
 import solicitudesMentoriaRoutes from "./routes/solicitud-agendamiento";
-
+import consultasDashboardRoute from "./routes/consultasDashboardRoute";
+import cambiarPassRoute from "./routes/cambiarPassRoute";
+import consultaMentoriasMesRoutes from "./routes/consultaMentoriasMesRoutes";
 
 class Server {
   public app: Application;
@@ -51,6 +53,11 @@ class Server {
     this.app.use("/api/mentoriaUsuario", mentoriasUsuarioRoutes);
     this.app.use("/api/agendarMentoria", agendarMentoriaRoutes);
     this.app.use("/api/solicitudMentoria", solicitudesMentoriaRoutes);
+    this.app.use("/api/nroEstudiantesMes", consultasDashboardRoute);
+    this.app.use("/api/nroMentoriasMes",consultaMentoriasMesRoutes);
+    this.app.use("/api/cambiarPass",cambiarPassRoute);
+
+
   }
   start(): void {
     //método para inicializar el servidor
