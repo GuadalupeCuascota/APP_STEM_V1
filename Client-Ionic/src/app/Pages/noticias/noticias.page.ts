@@ -90,6 +90,11 @@ export class NoticiasPage implements OnInit {
       }
     );
   }
+
+
+  onclick(){
+    this.router.navigate(['/publicar-contenido']);
+  }
   // Meinteresa(id_publicacio) {
   //   this.selectedTab = 'heart';
   //   console.log('el id de la not', id_publicacio);

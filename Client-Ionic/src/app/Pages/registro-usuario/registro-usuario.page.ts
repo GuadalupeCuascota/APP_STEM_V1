@@ -38,10 +38,11 @@ export class RegistroUsuarioPage implements OnInit {
       apellido: new FormControl('', Validators.required),
       nivel_academico: new FormControl('', Validators.required),
 
-      correo_electronico: new FormControl('', Validators.compose([
-        Validators.required,
+      correo_electronico: new FormControl('', 
+     [ Validators.required, Validators.email]
+       
         // Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-      ])),
+    ),
       contrasenia: new FormControl('', Validators.required),
       unidad_educativa: new FormControl(),
       carrera: new FormControl(),

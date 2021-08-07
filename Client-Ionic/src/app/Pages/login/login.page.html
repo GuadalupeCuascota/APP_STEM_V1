@@ -17,14 +17,14 @@
   <form id="form" [formGroup]="formLogin" (ngSubmit)="login()">
     <ion-item>
       <ion-label color="secondary" position="floating"> Correo electrónico:</ion-label>
-      <ion-input   formControlName="correo_electronico" placeholder="Ingrese email"></ion-input>
+      <ion-input   formControlName="correo_electronico" ></ion-input>
     </ion-item>
     <br>
     <ion-item>
       <ion-label  color="secondary" position="floating"> Contraseña:</ion-label>
       <ion-input formControlName="contrasenia" 
         [type]="showPassword ? 'text': 'password'"
-        placeholder="Ingrese contraseña" 
+        
       ></ion-input>
       <ion-icon 
       color="dark"
@@ -36,7 +36,9 @@
     <br>
     <div class="head">
       <ion-text color="medium"  class="ion-text-right">Recuerdame</ion-text>
-      <ion-text color="medium"  class="ion-text-right"> Olvidaste tu contraseña?</ion-text>
+    
+       <a color="secondary" href="/recuperar-contrasenia">Olvidaste tu contraseña?</a>
+      
     </div>
     
    <br>

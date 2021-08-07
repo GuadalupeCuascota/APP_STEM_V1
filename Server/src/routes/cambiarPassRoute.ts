@@ -11,7 +11,7 @@ this.config();
 config(): void{
 
 this.router.put('/:id',usuariosController.updatePass);
-
+this.router.get('/:correo_electronico',usuariosController.RecuperarPass)
 }
 }
 const cambiarPassRoutes=new CambiarPassRoutes();

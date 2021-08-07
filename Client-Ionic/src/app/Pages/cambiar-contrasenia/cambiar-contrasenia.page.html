@@ -1,0 +1,32 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button  color="primary" defaultHref="/recuperar-contrasenia"></ion-back-button>
+      </ion-buttons>
+     
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="header">
+    <h1>Restablecer</h1>
+  </div>
+  
+  <form id="form" [formGroup]="formGroup" (ngSubmit)="guardarCambios()">
+    <ion-item>
+      <ion-label position="floating"> Nueva contraseña:</ion-label>
+
+      <ion-input type="password" formControlName="contrasenia"></ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label position="floating"> confirmar contraseña:</ion-label>
+
+      <ion-input type="password" formControlName="contraseniaConf"></ion-input>
+    </ion-item>
+    <br>
+
+
+    <ion-button type="submit" color="primary" shape="round"  [disabled]="!formGroup.valid" expand="block">GUARDAR</ion-button>
+  </form>
+</ion-content>

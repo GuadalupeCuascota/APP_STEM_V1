@@ -46,14 +46,23 @@ class UsuariosController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, id_rol } = req.body;
+            const { nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, id_rol, } = req.body;
             console.log("cedula:" + req.body.id_rol);
             if (!id_rol) {
                 const query = "INSERT INTO usuario ( nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,(select id_rol from rol where tipo_rol=?) )";
                 console.log("ES ESTUDANTE");
                 const newId_rol = "Estudiante";
                 try {
-                    yield database_1.default.query(query, [nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, newId_rol]);
+                    yield database_1.default.query(query, [
+                        nombre,
+                        apellido,
+                        nivel_academico,
+                        carrera,
+                        unidad_educativa,
+                        correo_electronico,
+                        contrasenia,
+                        newId_rol,
+                    ]);
                     res.status(201).json({ text: "usuario guardado" });
                 }
                 catch (error) {
@@ -68,15 +77,42 @@ class UsuariosController {
                     const query1 = "INSERT INTO usuario ( nombre,apellido,nivel_academico,carrera,unidad_educativa,correo_electronico,contrasenia, id_rol) VALUES (?,?,?,?,?,?,?,?)";
                     console.log("EL ROL es:", id_rol);
                     if (id_rol == "Admin") {
-                        yield database_1.default.query(query, [nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, id_rol]);
+                        yield database_1.default.query(query, [
+                            nombre,
+                            apellido,
+                            nivel_academico,
+                            carrera,
+                            unidad_educativa,
+                            correo_electronico,
+                            contrasenia,
+                            id_rol,
+                        ]);
                         res.status(201).json({ text: "usuario guardado" });
                     }
                     if (id_rol == "Editor") {
-                        yield database_1.default.query(query1, [nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, id_rol]);
+                        yield database_1.default.query(query1, [
+                            nombre,
+                            apellido,
+                            nivel_academico,
+                            carrera,
+                            unidad_educativa,
+                            correo_electronico,
+                            contrasenia,
+                            id_rol,
+                        ]);
                         res.status(201).json({ text: "usuario guardado" });
                     }
                     if (id_rol == "Mentor") {
-                        yield database_1.default.query(query, [nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, id_rol]);
+                        yield database_1.default.query(query, [
+                            nombre,
+                            apellido,
+                            nivel_academico,
+                            carrera,
+                            unidad_educativa,
+                            correo_electronico,
+                            contrasenia,
+                            id_rol,
+                        ]);
                         res.status(201).json({ text: "usuario guardado" });
                     }
                 }
@@ -85,7 +121,7 @@ class UsuariosController {
                     console.log("no se puede guardar el" + error);
                 }
             }
-            // 
+            //
         });
     }
     delete(req, res) {
@@ -123,7 +159,17 @@ class UsuariosController {
                 console.log("nombre new:" + req.body.nombre);
                 console.log("correo:" + req.body.correo_electronico);
                 const query = "UPDATE usuario set nombre=?,apellido=?,nivel_academico=?,carrera=?,unidad_educativa=?,correo_electronico=?,contrasenia=?, id_rol=(select id_rol from rol where tipo_rol=?) WHERE id_usuario=?";
-                database_1.default.query(query, [nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, tipo_rol, id]);
+                database_1.default.query(query, [
+                    nombre,
+                    apellido,
+                    nivel_academico,
+                    carrera,
+                    unidad_educativa,
+                    correo_electronico,
+                    contrasenia,
+                    tipo_rol,
+                    id,
+                ]);
                 res.status(201).json({ text: "usuario actualizado" });
             }
             catch (error) {
@@ -151,6 +197,42 @@ class UsuariosController {
                     res.status(404).json({ text: "La contraseña no es correcta" });
                 }
                 // res.status(204).json({text: "usuario actualizado"});
+            }
+            catch (error) {
+                res.status(404).json({ text: "Hubo un error " });
+                console.log("no se puede actualizar" + error);
+            }
+        });
+    }
+    RecuperarPass(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { correo_electronico } = req.params;
+                console.log("contra", correo_electronico);
+                const correo = yield database_1.default.query("SELECT correo_electronico FROM usuario where correo_electronico=? and id_rol=4 ", [correo_electronico]);
+                if (correo.length > 0) {
+                    res.status(201).json({ text: "Dato encontrado" });
+                }
+                else {
+                    res.status(404).json({ text: "el usuario no existe" });
+                }
+            }
+            catch (error) {
+                res.status(404).json({ text: "Hubo un error " });
+                console.log("no se puede actualizar" + error);
+            }
+        });
+    }
+    RestablecerPass(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("pasa restablecer");
+            try {
+                const { id } = req.params;
+                const contrasenia = req.body.contrasenia;
+                console.log("la consul", contrasenia);
+                const query = "UPDATE usuario set contrasenia=? where correo_electronico=?";
+                database_1.default.query(query, [contrasenia, id]);
+                res.status(201).json({ text: "contraseña restablecida" });
             }
             catch (error) {
                 res.status(404).json({ text: "Hubo un error " });

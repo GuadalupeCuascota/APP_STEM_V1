@@ -1,0 +1,44 @@
+
+<form [formGroup]="formGroup" (ngSubmit)="savePublicacion()">
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="/tabs/noticias"></ion-back-button>
+    </ion-buttons>
+    <ion-button [disabled]="!formGroup.valid" size="small" slot="end" type="submit" color="primary" shape="round" expand="block">Publicar</ion-button>
+
+  </ion-toolbar>
+</ion-header>
+
+  
+
+    <ion-item>
+      <ion-label position="floating"> Titulo:</ion-label>
+
+      <ion-input formControlName="titulo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Description:</ion-label>
+      <ion-textarea formControlName="descripcion" rows="6" cols="20" placeholder="Escribe algo aqui..."></ion-textarea>
+
+      
+    </ion-item>
+    <ion-toolbar>
+      <ion-buttons slot="secondary">
+        <ion-button fill="solid" color="secondary" >
+          <ion-icon color="primary" name="image-outline"></ion-icon>
+           Foto/video
+        </ion-button>
+      </ion-buttons>
+     
+    </ion-toolbar>
+  </form>
+  <!-- <ion-item> -->
+  <!-- <ion-textarea placeholder="Enter more information here..."></ion-textarea>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label>Notes</ion-label>
+    <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..."></ion-textarea>
+  </ion-item> -->

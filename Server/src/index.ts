@@ -20,6 +20,7 @@ import solicitudesMentoriaRoutes from "./routes/solicitud-agendamiento";
 import consultasDashboardRoute from "./routes/consultasDashboardRoute";
 import cambiarPassRoute from "./routes/cambiarPassRoute";
 import consultaMentoriasMesRoutes from "./routes/consultaMentoriasMesRoutes";
+import restablacerPassRoutes from "./routes/RestablecerPassRoute";
 
 class Server {
   public app: Application;
@@ -56,7 +57,7 @@ class Server {
     this.app.use("/api/nroEstudiantesMes", consultasDashboardRoute);
     this.app.use("/api/nroMentoriasMes",consultaMentoriasMesRoutes);
     this.app.use("/api/cambiarPass",cambiarPassRoute);
-
+    this.app.use("/api/restablecerPass",restablacerPassRoutes);
 
   }
   start(): void {

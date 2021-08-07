@@ -116,15 +116,26 @@ const routes: Routes = [
   {
     path: 'agendar-mentoria/:id',
     loadChildren: () => import('./Pages/Estudiante-superior/agendar-mentoria/agendar-mentoria.module').then( m => m.AgendarMentoriaPageModule)
-  },  {
+  },
+  {
     path: 'mis-mentorias',
     loadChildren: () => import('./Pages/Estudiante-superior/mis-mentorias/mis-mentorias.module').then( m => m.MisMentoriasPageModule)
+  },
+  {
+    path: 'recuperar-contrasenia',
+    loadChildren: () => import('./Pages/recuperar-contrasenia/recuperar-contrasenia.module').then( m => m.RecuperarContraseniaPageModule)
+  },
+  {
+    path: 'cambiar-contrasenia/:id',
+    loadChildren: () => import('./Pages/cambiar-contrasenia/cambiar-contrasenia.module').then( m => m.CambiarContraseniaPageModule)
+  },  {
+    path: 'publicar-contenido',
+    loadChildren: () => import('./Pages/publicar-contenido/publicar-contenido.module').then( m => m.PublicarContenidoPageModule)
   },
 
 
 
-
-
+  
 ];
 
 @NgModule({

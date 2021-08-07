@@ -24,5 +24,11 @@ export class UsuarioService {
   updateUsuario(idUsuario:number,usuario:Usuario){
     return this.httpClient.put<Usuario>(environment.baseUrl+"/usuarios/"+idUsuario,usuario);
   }
+  RecuperarPass(correo_electronico:string){
+    return this.httpClient.get<Usuario>(environment.baseUrl+"/cambiarPass/"+correo_electronico);
+  }
+  RestablecerPass(correo_electronico:string,usuario:any){
+    return this.httpClient.put(environment.baseUrl+"/restablecerPass/"+correo_electronico,usuario);
+  }
   
 }
