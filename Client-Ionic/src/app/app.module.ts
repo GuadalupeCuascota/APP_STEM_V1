@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuPrincipalPageModule } from './Pages/Estudiante-secundaria/menu-principal/menu-principal.module';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 // import { PagesModule } from './Pages/pages.module';
 
 // import { SocialSharing } from '@ionic-native/social-sharing/ngx';
@@ -35,7 +36,7 @@ import { PipesModule } from './pipes/pipes.module';
     IonicStorageModule.forRoot(),
     PipesModule,
   ],
-  providers: [
+  providers: [ ImagePicker,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Storage,
     IonicStorageModule,

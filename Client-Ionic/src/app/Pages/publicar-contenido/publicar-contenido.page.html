@@ -23,16 +23,44 @@
 
       
     </ion-item>
+    <div id="loadedImages" >
+      <ion-item  *ngFor="let image of fotos"> hola
+        <ion-icon color="tertiary" name="close-circle"></ion-icon>
+        <ion-img [src]="image" class="imagenes"></ion-img>
+      </ion-item>
+    </div>
     <ion-toolbar>
       <ion-buttons slot="secondary">
-        <ion-button fill="solid" color="secondary" >
-          <ion-icon color="primary" name="image-outline"></ion-icon>
+        <ion-button (click)="imagePicker()" fill="solid" color="primary" >
+          <ion-icon name="image-outline" slot="end"></ion-icon>
            Foto/video
         </ion-button>
       </ion-buttons>
-     
     </ion-toolbar>
   </form>
+
+
+
+  <!-- <ion-content [fullscreen]="true">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="images-wrapper">
+            <div  *ngFor="let image of imgRes">
+              <img src="{{image}}" alt="" >
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content> -->
+
+
+
+
+
+
+
   <!-- <ion-item> -->
   <!-- <ion-textarea placeholder="Enter more information here..."></ion-textarea>
   </ion-item>
