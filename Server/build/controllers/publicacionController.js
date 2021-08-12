@@ -68,8 +68,8 @@ class ArchivosController {
             console.log("CREAR");
             try {
                 const { titulo, nombre_perfil, descripcion, enlace, profesion, estado_profesion, id_tipo_publicacion, id_usuario, id_estado_publicacion, id_carrera } = req.body;
-                console.log(req.file);
-                console.log("titulo:" + req.body.estado_profesion);
+                console.log("el archivo", req.file);
+                console.log("titulo:" + req.body.titulo);
                 console.log("descripcion", req.body.descripcion);
                 console.log("enlace", req.body.enlace);
                 console.log("profeion", req.body.profesion);
@@ -103,24 +103,26 @@ class ArchivosController {
                     res.status(201).json({ text: "Archivo guardado" });
                 }
                 else {
-                    const ruta_archivo = null;
-                    yield database_1.default.query(query, [
+                    const query1 = "INSERT INTO publicacion (titulo,nombre_perfil,descripcion,enlace,profesion,estado_profesion,id_tipo_publicacion,id_usuario,id_estado_publicacion,id_carrera) VALUES (?,?,?,?,?,?,?,?,?,(select id_carrera from carreras_fica where nombre_carrera=?))";
+                    console.log("no tiene archivo");
+                    yield database_1.default.query(query1, [
                         titulo,
+                        nombre_perfil,
                         descripcion,
                         enlace,
                         profesion,
                         estado_profesion,
-                        ruta_archivo,
                         id_tipo_publicacion,
                         id_usuario,
                         id_estado_publicacion,
+                        id_carrera
                     ]);
                     res.status(201).json({ text: "Archivo guardado" });
                 }
             }
             catch (err) {
                 console.log("hubo un error" + err);
-                res.status(404).json({ text: "error" });
+                res.status(404).json({ text: "error no se puede guardar" });
             }
         });
     }

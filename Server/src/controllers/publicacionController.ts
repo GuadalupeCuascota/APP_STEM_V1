@@ -40,6 +40,7 @@ class ArchivosController {
     }
     res.status(404).json({ text: "publicación no existe" });
   }
+
   public async getPublicacionC(req: Request, res: Response) {
     const { id } = req.params;
     console.log(id)
@@ -71,8 +72,8 @@ class ArchivosController {
         id_carrera
         
       } = req.body;
-      console.log(req.file);
-      console.log("titulo:" + req.body.estado_profesion);
+      console.log("el archivo",req.file);
+      console.log("titulo:" + req.body.titulo);
       console.log("descripcion", req.body.descripcion);
       console.log("enlace", req.body.enlace);
       console.log("profeion", req.body.profesion);
@@ -85,6 +86,7 @@ class ArchivosController {
       
       const query =
         "INSERT INTO publicacion (titulo,nombre_perfil,descripcion,enlace,profesion,estado_profesion,ruta_archivo,tipo_archivo,id_tipo_publicacion,id_usuario,id_estado_publicacion,id_carrera) VALUES (?,?,?,?,?,?,?,?,?,?,?,(select id_carrera from carreras_fica where nombre_carrera=?))";
+        
 
       if (req.file) { 
         console.log("pasa1");
@@ -108,23 +110,27 @@ class ArchivosController {
         ]);
         res.status(201).json({ text: "Archivo guardado" });
       } else {
-        const ruta_archivo = null;
-        await pool.query(query, [
+        const query1 =
+        "INSERT INTO publicacion (titulo,nombre_perfil,descripcion,enlace,profesion,estado_profesion,id_tipo_publicacion,id_usuario,id_estado_publicacion,id_carrera) VALUES (?,?,?,?,?,?,?,?,?,(select id_carrera from carreras_fica where nombre_carrera=?))";
+        console.log("no tiene archivo")
+        
+        await pool.query(query1, [
           titulo,
+          nombre_perfil,
           descripcion,
           enlace,
           profesion,
           estado_profesion,
-          ruta_archivo,
           id_tipo_publicacion,
           id_usuario,
           id_estado_publicacion,
+          id_carrera
         ]);
         res.status(201).json({ text: "Archivo guardado" });
       }
     } catch (err) {
       console.log("hubo un error" + err);
-      res.status(404).json({ text: "error" });
+      res.status(404).json({ text: "error no se puede guardar" });
     }
   }
 

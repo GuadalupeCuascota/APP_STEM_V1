@@ -1,72 +1,88 @@
-
-<form [formGroup]="formGroup" (ngSubmit)="savePublicacion()">
-<ion-header class="ion-no-border">
+<!-- <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button color="primary" defaultHref="/tabs/noticias"></ion-back-button>
+      <ion-back-button
+        color="primary"
+        defaultHref="/tabs/noticias"
+      ></ion-back-button>
     </ion-buttons>
-    <ion-button [disabled]="!formGroup.valid" size="small" slot="end" type="submit" color="primary" shape="round" expand="block">Publicar</ion-button>
-
   </ion-toolbar>
 </ion-header>
 
-  
+<ion-content>
+  <div class="ion-padding">
+    <ion-button (click)="open()">seleccionatr</ion-button>
+    <p>{{url}}</p>
+   <ion-img  [src]="url"></ion-img>
+    
+  </div>
+</ion-content> -->
 
-    <ion-item>
-      <ion-label position="floating"> Titulo:</ion-label>
+<!-- <div class="ion-padding">
+    <ion-button (click)="pickerimg()">imgin</ion-button>
+    <ion-list *ngFor="let image of imagenes">
+      <ion-item>
+        <img src="{{image}}" />
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content> -->
 
-      <ion-input formControlName="titulo"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Description:</ion-label>
-      <ion-textarea formControlName="descripcion" rows="6" cols="20" placeholder="Escribe algo aqui..."></ion-textarea>
 
-      
-    </ion-item>
-    <div id="loadedImages" >
+<!--SEGUNDO METODO-->
+<form [formGroup]="formGroup" (ngSubmit)="savePublicacion()">
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="primary" defaultHref="/tabs/noticias"></ion-back-button>
+      </ion-buttons>
+      <ion-button [disabled]="!formGroup.valid" size="small" slot="end" type="submit" color="primary" shape="round"
+        expand="block">Publicar</ion-button>
+
+    </ion-toolbar>
+  </ion-header>
+
+
+
+  <ion-item>
+    <ion-label position="floating"> Titulo:</ion-label>
+
+    <ion-input formControlName="titulo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Description:</ion-label>
+    <ion-textarea formControlName="descripcion" rows="6" cols="20" placeholder="Escribe algo aqui..."></ion-textarea>
+
+  </ion-item>
+  <!-- <div id="loadedImages" >
       <ion-item  *ngFor="let image of fotos"> hola
         <ion-icon color="tertiary" name="close-circle"></ion-icon>
         <ion-img [src]="image" class="imagenes"></ion-img>
       </ion-item>
-    </div>
-    <ion-toolbar>
-      <ion-buttons slot="secondary">
-        <ion-button (click)="imagePicker()" fill="solid" color="primary" >
-          <ion-icon name="image-outline" slot="end"></ion-icon>
-           Foto/video
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </form>
+    </div> -->
+  <ion-toolbar>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="open()" fill="solid" color="primary">
+        <ion-icon name="image-outline" slot="end"></ion-icon>
+        Foto/video
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="getImage()" fill="solid" color="primary">
+        <ion-icon name="image-outline" slot="end"></ion-icon>
+        IMAGEN
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="getFormData()" fill="solid" color="primary">
+        <ion-icon name="image-outline" slot="end"></ion-icon>
+        IMAG
+      </ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+  <img  src="{{fileUrl}}"/>
+  
+</form>
 
 
-
-  <!-- <ion-content [fullscreen]="true">
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <div class="images-wrapper">
-            <div  *ngFor="let image of imgRes">
-              <img src="{{image}}" alt="" >
-            </div>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-content> -->
-
-
-
-
-
-
-
-  <!-- <ion-item> -->
-  <!-- <ion-textarea placeholder="Enter more information here..."></ion-textarea>
-  </ion-item>
-
-
-  <ion-item>
-    <ion-label>Notes</ion-label>
-    <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..."></ion-textarea>
-  </ion-item> -->

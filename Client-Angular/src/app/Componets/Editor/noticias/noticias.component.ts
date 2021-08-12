@@ -97,8 +97,9 @@ export class NoticiasComponent implements OnInit {
 
       const reader= new FileReader(); //Crear un objeto de tipo FileReader  para leer la imagen
       reader.readAsDataURL(this.archivosSeleccionado); //leemos la imagen pasado por parametro
-      reader.onload =e=>this.leerArchivo=reader.result //Comprobamos la carga del archivo y enviamos el resultado
       
+      reader.onload =e=>this.leerArchivo=reader.result //Comprobamos la carga del archivo y enviamos el resultado
+      console.log("el archivo leer",this.leerArchivo)
     }else {
       console.log("seleccione imagen")
       this.alerts.showError('Error Operation', 'Seleccione imagen')

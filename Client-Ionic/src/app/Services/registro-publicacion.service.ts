@@ -20,4 +20,7 @@ export class RegistroPublicacionService {
   getPublicacion(idCarrera:number){
     return this.httpClient.get<Publicacion>(environment.baseUrl+"/publicaciones/"+idCarrera);
   }
+  savePublicacion (formData){
+    return this.httpClient.post<Publicacion>(environment.baseUrl+"/publicaciones",formData)
+  }
 }

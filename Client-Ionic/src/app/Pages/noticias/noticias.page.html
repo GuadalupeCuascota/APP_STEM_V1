@@ -23,7 +23,7 @@
   </ion-refresher>
 
   <ion-card
-    (click)="detalle(noticia.id_publicacion)"
+    
     *ngFor="let noticia of noticias"
   >
     <ion-card-header>
@@ -39,7 +39,7 @@
       controls
     ></video>
     <div class="img">
-      <ion-img
+      <ion-img (click)="detalle(noticia.id_publicacion)"
         *ngIf="noticia.tipo_archivo=='image/png' || noticia.tipo_archivo=='image/jpeg' "
         src="http://192.168.100.45:3000/{{noticia.ruta_archivo}}"
       ></ion-img>
