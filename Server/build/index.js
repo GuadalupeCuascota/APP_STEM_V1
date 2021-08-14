@@ -25,6 +25,7 @@ const consultasDashboardRoute_1 = __importDefault(require("./routes/consultasDas
 const cambiarPassRoute_1 = __importDefault(require("./routes/cambiarPassRoute"));
 const consultaMentoriasMesRoutes_1 = __importDefault(require("./routes/consultaMentoriasMesRoutes"));
 const RestablecerPassRoute_1 = __importDefault(require("./routes/RestablecerPassRoute"));
+const testAptitudRoute_1 = __importDefault(require("./routes/testAptitudRoute"));
 class Server {
     constructor() {
         //crear el método constructor
@@ -60,6 +61,7 @@ class Server {
         this.app.use("/api/nroMentoriasMes", consultaMentoriasMesRoutes_1.default);
         this.app.use("/api/cambiarPass", cambiarPassRoute_1.default);
         this.app.use("/api/restablecerPass", RestablecerPassRoute_1.default);
+        this.app.use("/api/testAptitud", testAptitudRoute_1.default);
     }
     start() {
         //método para inicializar el servidor

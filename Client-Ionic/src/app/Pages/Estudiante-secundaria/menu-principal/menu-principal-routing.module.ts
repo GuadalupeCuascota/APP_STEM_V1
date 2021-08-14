@@ -39,6 +39,17 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'carreras-fica',
+        loadChildren: () =>
+          import('../../Estudiante-secundaria/carreras-fica/carreras-fica.module').then(
+            (m) => m.CarrerasFicaPageModule
+          ),
+      },
+      {
+        path: 'test-aptitud',
+        loadChildren: () => import('../../Estudiante-secundaria/test-aptitud/test-aptitud.module').then( m => m.TestAptitudPageModule)
+      },
+      {
         path: '',
         redirectTo:'home-secundaria',
         pathMatch: 'full'

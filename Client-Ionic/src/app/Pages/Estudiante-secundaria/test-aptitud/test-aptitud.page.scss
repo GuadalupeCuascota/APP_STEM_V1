@@ -1,0 +1,27 @@
+// ion-slides{
+//     height: 100%;
+//     ion-slide{
+//         background-position: center;
+//         background-size: cover;
+//     }
+//     }
+
+ion-slide {
+  display: block;
+  align-items: flex-start;
+  // background-position: center;
+
+}
+// .list-item{
+//     padding:40px
+// }
+
+h3 {
+  font-weight: 700;
+  font-size: 26px;
+  color: #010101;
+}
+
+ion-button {
+  margin-top: 190px
+}

@@ -6,6 +6,11 @@ export const environment = {
   production: false,
   baseUrl: 'http://192.168.100.45:3000/api'
 };
+export const environmentLogin = {
+  production: false,
+  baseUrl: 'http://192.168.100.45:3000/login'
+};
+
 
 /*
  * For easier debugging in development mode, you can import the following file

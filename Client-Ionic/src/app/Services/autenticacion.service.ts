@@ -2,17 +2,16 @@ import { Injectable } from '@angular/core';
 import{HttpClient} from '@angular/common/http'
 import {Usuario} from '../Models/usuario'
 import {Router} from '@angular/router'
-
+import { environmentLogin } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticacionService {
-  API_URI='http://192.168.100.45:3000/login';
 
   constructor(private http: HttpClient,
     private router: Router) { }
   login (usuario:Usuario){
-    return this.http.post(`${this.API_URI}`,usuario); 
+    return this.http.post(environmentLogin.baseUrl,usuario); 
   }
   
   logOut(){

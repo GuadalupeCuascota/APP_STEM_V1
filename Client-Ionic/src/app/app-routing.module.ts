@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {AuthGuard} from './Services/auth.guard'
 
+
 const routes: Routes = [
   {
     path: '',
@@ -34,7 +35,12 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./Pages/home/home.module').then( m => m.HomePageModule)
   },
+  {
+    path: 'test-aptitud',
+    loadChildren: () => import('./Pages/Estudiante-secundaria/test-aptitud/test-aptitud.module').then( m => m.TestAptitudPageModule)
+  },
  
+  
 
   {
     path: 'menu-opciones-se',
@@ -128,7 +134,8 @@ const routes: Routes = [
   {
     path: 'cambiar-contrasenia/:id',
     loadChildren: () => import('./Pages/cambiar-contrasenia/cambiar-contrasenia.module').then( m => m.CambiarContraseniaPageModule)
-  },  {
+  },
+  {
     path: 'publicar-contenido',
     loadChildren: () => import('./Pages/publicar-contenido/publicar-contenido.module').then( m => m.PublicarContenidoPageModule)
   },
