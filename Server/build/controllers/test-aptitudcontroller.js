@@ -15,17 +15,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.testAptitudController = void 0;
 const database_1 = __importDefault(require("../database"));
 class TestAptitudController {
+    constructor() {
+        this.test = [];
+        this.r = '';
+    }
+    list1(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const roles = yield database_1.default.query("SELECT p.pregunta, o.opcion, o.id_pregunta from test_aptitud t, pregunta p, opciones o where t.id_test_aptitud=p.id_test_aptitud and o.id_pregunta=p.id_pregunta");
+            console.log(roles);
+        });
+    }
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             // const roles = await pool.query("SELECT * FROM rol");
             // res.json(roles);
-            yield database_1.default.query("SELECT p.pregunta, o.opcion from test_aptitud t, pregunta p, opciones o where t.id_test_aptitud=p.id_test_aptitud and o.id_pregunta=p.id_pregunta", (err, rows) => {
+            yield database_1.default.query("SELECT o.opcion, o.opcion2,o.opcion3, p.pregunta from opciones o, pregunta p where o.id_pregunta=p.id_pregunta", (err, rows) => {
                 if (err) {
                     res.json("error al cargar");
                     console.log(err);
                 }
                 else {
                     res.json(rows);
+                    console.log(rows);
                     console.log("Datos seleccionados probando1");
                 }
             });

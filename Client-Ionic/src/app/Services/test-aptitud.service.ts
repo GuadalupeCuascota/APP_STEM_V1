@@ -13,8 +13,9 @@ export class TestAptitudService {
   constructor(private httpClient: HttpClient) { }
   gettest(){
     return this.httpClient.get<Array<testAptitud>>(environment.baseUrl+"/testAptitud")
+  
     }
-
+  
     
    
     test: testAptitud[]=[

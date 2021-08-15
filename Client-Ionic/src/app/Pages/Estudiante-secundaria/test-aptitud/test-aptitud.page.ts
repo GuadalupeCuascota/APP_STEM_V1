@@ -10,6 +10,12 @@ export class TestAptitudPage implements OnInit {
   @ViewChild('slides') slides: any;
   test:testAptitud[]=[];
   pregunta:testAptitud[]=[];
+  opciones = [
+    {
+      opcion: '',
+     
+    },
+  ];
 preguntas=""
 const=0;
 
@@ -25,10 +31,22 @@ const=0;
 
   }
   getTestAptitud() {
+    var con = [];
     console.log('pasa test');
     this.testAptitud.gettest()
       .subscribe((res: any) => {
+        for (let c of res) {
+          
+          const op = c.opcion;
+
+          let opciones = {
+           opcion:op
+          };
+          con.push(opciones);
         
+        }
+        this.opciones=con
+      console.log("op",this.opciones)
         this.pregunta=res;
         console.log("las opciones" ,this.pregunta)
         
