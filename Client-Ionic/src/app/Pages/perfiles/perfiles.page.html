@@ -58,16 +58,21 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col> {{perfil.descripcion}} </ion-col>
+        <ion-col *ngIf="!isSeeMore"> {{perfil.descripcion.substring(0,105)}} <span (click)="mostrar(perfil.id_publicacion)">...Ver más</span>
+          
+        </ion-col>
+       
+       
+
       </ion-row>
     </ion-grid>
   </ion-card>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="secondary" size="25px">
       <ion-icon color="light" name="add"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
 
   <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content

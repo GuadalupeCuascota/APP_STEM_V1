@@ -1,14 +1,15 @@
 ion-header {
-    ion-toolbar{
-        background: var(--ion-color-dark);
-        border-radius: 0 0 20px 20px;
-      
-        ion-title{
-            font-weight: bold;
-            font-size: 1,5rem;
-            text-align: center;
-            color: rgb(253, 250, 250);
-            
-        }
+  ion-toolbar {
+    background: var(--ion-color-dark);
+    border-radius: 0 0 20px 20px;
+
+    ion-label {
+      font-weight: bold;
+      font-size: 1, 5rem;
+      text-align: center;
+      color: rgb(253, 250, 250);
+      margin-top: -20px;
+
     }
+  }
 }

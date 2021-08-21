@@ -8,7 +8,7 @@ import * as moment from 'moment';
   styleUrls: ['./mis-mentorias.page.scss'],
 })
 export class MisMentoriasPage implements OnInit {
-  mentoriasAgendadas: AgendarMentoria[] = [];
+  mentoriasAgendadas:any[] = [];
   constructor(private regitroAgendarMentoriaService: AgendarMentoriaService) {}
   datos: any = {};
   localTime = moment().format();
@@ -22,6 +22,7 @@ export class MisMentoriasPage implements OnInit {
     this.regitroAgendarMentoriaService.getAgendarMentorias().subscribe(
       (res) => {
         console.log('las mentorias', res);
+        
         for (let aux of res) {
         
           if (aux.id_usuario == this.datos.id_usuario ) {
@@ -31,7 +32,10 @@ export class MisMentoriasPage implements OnInit {
             // aux.hora_inicio=this.time;
             // aux.hora_fin=this.time1;
             aux.fecha=this.localTime;
+         
             UsuMentoria.push(aux);
+          
+            
           }
         }
         this.mentoriasAgendadas = UsuMentoria;

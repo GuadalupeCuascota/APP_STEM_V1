@@ -13,6 +13,7 @@ import { RegistroCarrerasService } from 'src/app/Services/registro-carreras.serv
 export class OfertaAcademicaPage implements OnInit {
   Carrera = '';
   ofertaAcademica: Publicacion | any = [];
+  carrera:Carreras
   datos: any = {};
   id = 0;
   constructor(
@@ -24,19 +25,20 @@ export class OfertaAcademicaPage implements OnInit {
   ngOnInit() {
     const params = this.actRoute.snapshot.params;
     this.id = params.id;
+    this.Carrera=params.nombre_carrera;
     console.log('el id es', this.id);
     this.datos = JSON.parse(localStorage.getItem('payload'));
     // this.getPublicacionesCarrera();
-    this.getCarrera();
-
+    
+    this.getPublicacionesCarrera();
   }
-   getCarrera(){
-     this.registroCarreras.getCarrera(this.id).subscribe(
-       (res)=>{
-console.log("la res",res)
-       }
-     )
-   }
+  // getCarrera() {
+  //   this.registroCarreras.getCarrera(this.id).subscribe((res) => {
+      
+  //     console.log('la res', res);
+  //   });
+  // }
+  
   getPublicacionesCarrera() {
     console.log('pasa c');
     this.resgitroPublicacion

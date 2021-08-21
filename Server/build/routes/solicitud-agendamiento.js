@@ -10,6 +10,7 @@ class SolicitudesMentoriaRoutes {
     }
     config() {
         this.router.get('/', AgendarMentoriaController_1.agendarMentoriaController.listsolicitudes);
+        this.router.put('/:id', AgendarMentoriaController_1.agendarMentoriaController.update);
     }
 }
 const solicitudesMentoriaRoutes = new SolicitudesMentoriaRoutes;

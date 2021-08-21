@@ -114,7 +114,7 @@
                 <td>{{ noticia.descripcion}}</td>
               
                 <td>
-                  <img *ngIf="noticia.tipo_archivo == 'image/png' || noticia.tipo_archivo=='image/jpeg'" width="100px" heigh="100px"width="100px" heigh="100px"
+                  <img *ngIf="noticia.tipo_archivo == 'image/png' || noticia.tipo_archivo=='image/jpeg'  || noticia.tipo_archivo=='image/jpg'" width="100px" heigh="100px"width="100px" heigh="100px"
                     [src]="'http://localhost:3000/' + noticia.ruta_archivo" alt="no-image" width="100px" heigh="100px"/>
                   <video *ngIf="noticia.tipo_archivo == 'video/mp4' || noticia.tipo_archivo=='video/mov'"  width="100px" heigh="100px"
                     [src]="'http://localhost:3000/' + noticia.ruta_archivo" class="img-fluid" alt="no-image"></video>

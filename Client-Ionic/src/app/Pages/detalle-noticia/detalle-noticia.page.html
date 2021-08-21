@@ -24,31 +24,20 @@
   <div class="profile-info">
     <div class="user-info">
       <div class="basic-info">
-         <div class="icon" >
-          <ion-grid >
-            <ion-row >
-              <ion-col >
-                <ion-buttons >
-                  <ion-button>
-                    <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-              </ion-col>
-              <ion-col>
-                
-              </ion-col>
-              <ion-col >
-                <ion-buttons >
-                  <ion-button (click)="buscar(id)">
-                    <ion-icon slot="icon-only"  [name]="selectedTab" name="heart-outline"></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-              </ion-col>
-            
-            </ion-row>
-          </ion-grid>
-  
-         </div>
+         
+          <ion-footer class="buttons">
+            <ion-buttons>
+              <ion-button (click)="showShareOptions()">
+                <ion-icon color="primary" slot="icon-only" name="share-social-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            <ion-buttons >
+              <ion-button (click)="buscar(id)">
+                <ion-icon color="primary" slot="icon-only"  [name]="selectedTab" name="heart-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-footer>
+        
         <h1>{{titulo}}
         </h1>
         <p>
@@ -58,8 +47,8 @@
       </div>
     </div>
   </div>
+ 
 </ion-content>
-
 
 
 

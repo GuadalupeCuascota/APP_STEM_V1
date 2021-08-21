@@ -46,6 +46,7 @@ class UsuariosController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log("pasa el servidor save");
             const { nombre, apellido, nivel_academico, carrera, unidad_educativa, correo_electronico, contrasenia, id_rol, } = req.body;
             console.log("cedula:" + req.body.id_rol);
             if (!id_rol) {
@@ -102,7 +103,7 @@ class UsuariosController {
                         ]);
                         res.status(201).json({ text: "usuario guardado" });
                     }
-                    if (id_rol == "Mentor") {
+                    if (id_rol == "Mentora") {
                         yield database_1.default.query(query, [
                             nombre,
                             apellido,

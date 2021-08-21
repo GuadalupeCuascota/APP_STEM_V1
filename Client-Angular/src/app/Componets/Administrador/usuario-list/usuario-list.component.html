@@ -60,6 +60,7 @@
         <div class="col">
           <label style="color: #161515">Tipo rol:</label>
           <select
+          (change)="optionsFn($event)"
             class="form-control"
             name="miselect"
             [(ngModel)]="usuario.id_rol"
@@ -68,16 +69,17 @@
             <option *ngFor="let rol of roles">{{rol.tipo_rol}}</option>
           </select>
         </div>
-        <div class="col">
+        <div class="col" *ngIf="estado">
           <label style="color: #161515">Carrera:</label>
-          <select
+          <select 
             class="form-control"
+           
             name="miselect"
             [(ngModel)]="usuario.carrera"
           >
             <!-- <option value="0">Selecciona una opción</option> -->
-            <option >Ingeniería en Software</option>
-            <option >Ingeniería Mecatronica</option>
+            <option  *ngFor="let carrera of carreras">{{carrera}}</option>
+           
           </select>
         </div>
       </div>
@@ -241,7 +243,7 @@
     >
       Cerrar
     </button>
-    <button type="button" class="btn btn-primary" (click)="updateUsuario()">
+    <button type="button" class="btn btn-primary" (click)="updateUsuario();close(contenido)">
       GUARDAR
     </button>
   </div>

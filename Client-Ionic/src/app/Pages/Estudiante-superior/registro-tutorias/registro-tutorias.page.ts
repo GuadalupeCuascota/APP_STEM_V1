@@ -17,7 +17,8 @@ export class RegistroTutoriasPage implements OnInit {
   localTime = moment().format();
   time = moment().format();
   time1 = moment().format('h:mm a');
-
+  mensaje = '';
+altert:boolean=false
   constructor(
     private regitroMentoriasService: RegistroMentoriasService,
     private router: Router,
@@ -28,6 +29,7 @@ export class RegistroTutoriasPage implements OnInit {
     this.doRefresh();
     this.getRegistroMentorias();
     this.datos = JSON.parse(localStorage.getItem('payload'));
+    console.log('el dato', this.datos);
     console.log('el tiempo', this.time);
   }
 
@@ -52,25 +54,29 @@ export class RegistroTutoriasPage implements OnInit {
   }
 
   getRegistroMentorias() {
-    console.log('pasa get registro');
-    console.log('los datos',this.datos)
     var UsuMentoria = [];
     this.regitroMentoriasService.getRegistroMentorias().subscribe(
       (res) => {
         console.log('las mentorias', res);
         for (let usu1 of res) {
-          
           this.localTime = moment(usu1.fecha).format('DD/MM/YYYY');
-          usu1.fecha = this.localTime;
-          UsuMentoria.push(usu1);
+          if (usu1.carrera == this.datos.carrera) {
+            usu1.fecha = this.localTime;
+            UsuMentoria.push(usu1);
+          }
+          
         }
-          // this.time = moment(usu1.hora_inicio).format('h:mm a');
-          // this.time1 = moment(usu1.hora_fin).format('h:mm a');
-          
-          // usu1.hora_inicio = this.time;
-          // usu1.hora_fin = this.time1;
-          
-        this.registroMentorias = UsuMentoria;
+      console.log("el tamaño",UsuMentoria)
+      if(UsuMentoria.length>0)
+        {
+          this.registroMentorias = UsuMentoria;
+        }else{
+          this.mensaje="No existe mentorias disponibles"
+          this.altert=true
+          console.log("alert",this.altert)
+        }
+       
+
         console.log('segundo', (this.registroMentorias = UsuMentoria));
       },
       (err) => {
@@ -83,5 +89,4 @@ export class RegistroTutoriasPage implements OnInit {
     console.log('la publicacion', id);
     this.router.navigate(['/detalle-mentoria/', id]);
   }
- 
 }

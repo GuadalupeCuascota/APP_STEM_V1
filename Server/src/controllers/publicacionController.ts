@@ -81,14 +81,14 @@ class ArchivosController {
       console.log("id_tipo_publicacion:" + req.body.id_tipo_publicacion);
       console.log("usuario:" + req.body.id_usuario);
       console.log("id_estado_publicación:" + req.body.id_estado_publicacion);
-      console.log("id_carrera",req.body.id_carrera)
-      console.log("nombre_perfil",req.body.nombre_perfil)
+      console.log("id_carrera",req.body.id_carrera);
+      console.log("nombre_perfil",req.body.nombre_perfil);
       
       const query =
         "INSERT INTO publicacion (titulo,nombre_perfil,descripcion,enlace,profesion,estado_profesion,ruta_archivo,tipo_archivo,id_tipo_publicacion,id_usuario,id_estado_publicacion,id_carrera) VALUES (?,?,?,?,?,?,?,?,?,?,?,(select id_carrera from carreras_fica where nombre_carrera=?))";
         
 
-      if (req.file) { 
+      if (req.file){ 
         console.log("pasa1");
         const ruta_archivo = req.file.path;
         const tipo_archivo=req.file.mimetype

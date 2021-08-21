@@ -21,7 +21,7 @@ export class RegistroUsuarioPage implements OnInit {
   estado: boolean;
   showPassword = false;
   passwordIcon = 'eye';
-
+  carreras= ['Ingeniería en Mecatrónica', 'Ingeniería en Telecomunicaciones','Ingeniería en Software','Ingeniería Industrial','Ingeniería Textil','Ingeniería Automotriz', 'Ingeniería en Electricidad'];
 
   constructor(private usuarioService: UsuarioService,
     private actRoute: ActivatedRoute,
@@ -32,21 +32,16 @@ export class RegistroUsuarioPage implements OnInit {
   ) { }
 
   ngOnInit() {
-
+//Validators.email
     this.formUsuario = this.formBuilder.group({
       nombre: new FormControl('', Validators.required),
       apellido: new FormControl('', Validators.required),
       nivel_academico: new FormControl('', Validators.required),
-
-      correo_electronico: new FormControl('', 
-     [ Validators.required, Validators.email]
-       
-        // Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-    ),
+      correo_electronico: new FormControl('', Validators.required),
       contrasenia: new FormControl('', Validators.required),
       unidad_educativa: new FormControl(),
       carrera: new FormControl(),
-
+ // Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
     })
 
 

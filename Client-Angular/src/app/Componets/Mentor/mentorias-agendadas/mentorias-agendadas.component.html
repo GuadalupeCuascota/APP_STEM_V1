@@ -9,25 +9,28 @@
               <thead>
                 <tr class="table-active">
                   <th scope="col">Estudiante</th>
+                  <th scope="col">Correo </th>
                   <th scope="col">Fecha</th>
                   <th scope="col">Hora inicio</th>
                   <th scope="col">Hora fin</th>
                   <th scope="col">Estado</th>
-                  <th scope="col">acciones</th>
+                  <th scope="col">Acciones</th>
                 </tr>
               </thead>
     
               <tbody>
-                <tr *ngFor="
-                let mentoriaAgen of mentoriasAgen  | paginate: { itemsPerPage: 5, currentPage: p }" >
+                <tr *ngFor="let mentoriaAgen of mentoriasAgen  | paginate: { itemsPerPage: 5, currentPage: p }" >
                   <td>{{mentoriaAgen.nombre}} {{mentoriaAgen.apellido}}</td>
+                  <td>{{mentoriaAgen.correo_electronico}}</td>
                   <td>{{mentoriaAgen.fecha}}</td>
                   <td>{{mentoriaAgen.hora_inicio}}</td>
                   <td>{{mentoriaAgen.hora_fin}}</td>
-                  <td>{{mentoriaAgen.estado}}</td>
+                  <!-- <td>{{mentoriaAgen.nombre_estado_agen_mentoria}}</td> -->
+                  <td>{{mentoriaAgen.nombre_estado_agen_mentoria}}</td>
                   <td>
-                    <button class="btn btn-primary">
-                      <i class="fas fa-check-circle"> Confirmar solicitud</i>
+ 
+                    <button class="btn btn-primary" (click)="updateEstadoMentoria(mentoriaAgen.id_agendamiento_mentoria)">
+                      <i class="fas fa-check-circle" > Confirmar</i>
                     </button>
                     |
                     <button class="btn btn-danger">

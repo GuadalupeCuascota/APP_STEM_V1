@@ -41,7 +41,9 @@ class MentoriasController {
             if (registroMentoriasporUsuario.length > 0) {
                 return res.status(200).json(registroMentoriasporUsuario);
             }
-            res.status(404).json({ text: "En este momento no existe mentorias disponibles" });
+            res
+                .status(404)
+                .json({ text: "En este momento no existe mentorias disponibles" });
         });
     }
     getOne(req, res) {
@@ -60,12 +62,27 @@ class MentoriasController {
         return __awaiter(this, void 0, void 0, function* () {
             console.log("pasa crear");
             try {
-                const { fecha, hora_inicio, hora_fin, tipo_mentoria, id_estado_mentoria, id_usuario } = req.body;
+                const { fecha, hora_inicio, hora_fin, tipo_mentoria, id_estado_mentoria, id_usuario, } = req.body;
                 console.log("fecha:" + req.body.fecha);
                 console.log("fecha:" + req.body.hora_inicio);
-                const query = "INSERT INTO registro_mentoria(fecha, hora_inicio, hora_fin, tipo_mentoria, id_estado_mentoria, id_usuario) VALUES (?,?,?,?,?,?)";
-                yield database_1.default.query(query, [fecha, hora_inicio, hora_fin, tipo_mentoria, id_estado_mentoria, id_usuario]);
-                res.status(201).json({ text: "mentoria registrada" });
+                console.log("oid estado mentoria", id_estado_mentoria);
+                const findRegistro = yield database_1.default.query("SELECT * FROM registro_mentoria WHERE id_usuario=? and hora_inicio=? and fecha= ?", [id_usuario, hora_inicio, fecha]);
+                if (findRegistro.length > 0) {
+                    res.status(404).json({ text: "La mentoria ya existe" });
+                }
+                else {
+                    console.log("no existe mentoria");
+                    const query = "INSERT INTO registro_mentoria(fecha, hora_inicio, hora_fin, tipo_mentoria, id_estado_mentoria, id_usuario) VALUES (?,?,?,?,?,?)";
+                    yield database_1.default.query(query, [
+                        fecha,
+                        hora_inicio,
+                        hora_fin,
+                        tipo_mentoria,
+                        id_estado_mentoria,
+                        id_usuario,
+                    ]);
+                    res.status(201).json({ text: "mentoria registrada" });
+                }
             }
             catch (err) {
                 res.json({ text: "Hubo un error " });
@@ -105,7 +122,15 @@ class MentoriasController {
                 console.log("hora_estado: " + req.body.id_estado_mentoria);
                 console.log("hora_usuario: " + req.body.id_usuario);
                 const query = "UPDATE registro_mentoria set fecha=?,hora_inicio=?,hora_fin=?,tipo_mentoria=?,id_estado_mentoria=?, id_usuario=? where id_registro_mentoria=?";
-                database_1.default.query(query, [fecha, hora_inicio, hora_fin, tipo_mentoria, id_estado_mentoria, id_usuario, id]);
+                database_1.default.query(query, [
+                    fecha,
+                    hora_inicio,
+                    hora_fin,
+                    tipo_mentoria,
+                    id_estado_mentoria,
+                    id_usuario,
+                    id,
+                ]);
                 res.status(200).json({ text: "registro actualizado" });
             }
             catch (error) {

@@ -16,8 +16,8 @@ export class AgendarMentoriaPage implements OnInit {
   datos: any = {};
   agendarMentoria:AgendarMentoria={
     id_registro_mentoria:0,
+    id_estado_agen_mentoria:2,
     observacion:'',
-    estado:'',
     id_usuario:0,
     fecha:'',
     nombre:'',
@@ -41,7 +41,9 @@ export class AgendarMentoriaPage implements OnInit {
     console.log(this.params.id)
     this.agendarMentoria.id_registro_mentoria=this.params.id;
     this.agendarMentoria.id_usuario=this.datos.id_usuario;
-    this.agendarMentoria.estado="sin agendar"
+   
+    
+    
      console.log("el registro",this.agendarMentoria)
     this.regitroAgendarMentoriaService.saveAgendarMentoria(this.agendarMentoria).subscribe(res=>{
       this.mensajeServices.presentToast("Mentoria Agendada correctamente");

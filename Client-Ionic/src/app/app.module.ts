@@ -12,6 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuPrincipalPageModule } from './Pages/Estudiante-secundaria/menu-principal/menu-principal.module';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
 ///complementos file///
 import { File } from "@ionic-native/file/ngx";
 import { FileTransfer } from "@ionic-native/file-transfer/ngx";
@@ -25,7 +27,6 @@ import {
  
 } from '@ionic-native/streaming-media/ngx';
 import { PipesModule } from './pipes/pipes.module';
-
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,12 +43,11 @@ import { PipesModule } from './pipes/pipes.module';
     PipesModule,
   ],
   providers: [ ImagePicker,File,Camera,
-    FileTransfer,FileChooser, FilePath,PhotoLibrary,
+    FileTransfer,FileChooser, FilePath,PhotoLibrary,SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Storage,
     IonicStorageModule,
     StreamingMedia,
-    
   ],
   exports: [MenuPrincipalPageModule],
   bootstrap: [AppComponent],

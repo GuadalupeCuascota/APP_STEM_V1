@@ -1,0 +1,32 @@
+<div padding class="mainContent">
+  <div no-margin margin-top class="feedbackCard">
+    <ion-row class="textCenter">
+      <div>
+        Comparte contenido
+      </div>
+    </ion-row>
+    <div class="logoList">
+      <ion-row class="ion-align-items-center">
+               
+        <ion-col size="2">
+            <ion-button color="danger" (click)="SendEmail()"><ion-icon name="mail-outline"></ion-icon></ion-button>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button color="new" (click)="ShareFacebook()"><ion-icon name="logo-facebook"></ion-icon></ion-button>
+        </ion-col>
+        <ion-col size="2">
+            <ion-button color="medium-shade" (click)="ShareWhatsapp()"><ion-icon name="logo-whatsapp"></ion-icon></ion-button>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button  color="edium-contrast" (click)="SendTwitter()"><ion-icon name="logo-twitter"></ion-icon></ion-button>
+        </ion-col>   
+        <ion-col size="2">
+          <ion-button color="warning" (click)="SendInstagram()"><ion-icon name="logo-instagram"></ion-icon></ion-button>
+        </ion-col>    
+      </ion-row>
+    </div>
+    <ion-button class="btn" (click)="closeModal()" fill="clear">
+      Cerrar
+    </ion-button>
+  </div>
+</div>

@@ -21,6 +21,7 @@ export class UsuarioListComponent implements OnInit {
   roles: any = [];
   usuarios: any = [];
   usuario1: any = {};
+  estado: boolean;
   usuario: Usuario = {
     nombre: '',
     apellido: '',
@@ -55,6 +56,7 @@ export class UsuarioListComponent implements OnInit {
     this.show_eye = !this.show_eye;
 
   }
+  carreras= ['Ingeniería en Mecatrónica', 'Ingeniería en Telecomunicaciones','Ingeniería de Software','Ingeniería Industrial','Ingeniería Textil','Ingeniería Automotriz', 'Ingeniería en Electricidad'];
  
   ///////////////////////METODOS DEL MODAL///////////////////////////
 
@@ -96,7 +98,7 @@ export class UsuarioListComponent implements OnInit {
       (res:any) => {
         console.log(res)
         for (let usu1 of res) {
-          if (usu1.tipo_rol == "Admin" || usu1.tipo_rol == "Editor"  || usu1.tipo_rol == "Mentor") {
+          if (usu1.tipo_rol == "Admin" || usu1.tipo_rol == "Editor"  || usu1.tipo_rol == "Mentora") {
             usuAE.push(usu1);
             c=c+1;
         }
@@ -110,6 +112,19 @@ export class UsuarioListComponent implements OnInit {
       (err) => console.error(err)
     );
   
+  }
+  public optionsFn(event) { //here item is an object 
+    console.log("pasa chage")
+    console.log("el evento",event.target.value);
+    if (event.target.value =="Mentora") {
+      this.estado = true
+
+    }
+    else {
+      this.estado = false
+    }
+
+
   }
   getUsuario(id_usuario: String) {
     console.log("este es el id"+id_usuario);
@@ -143,6 +158,7 @@ export class UsuarioListComponent implements OnInit {
   }
 
   saveUsuario() {
+    console.log("GUARDAR")
     console.log("el usuario2",this.usuario);
     this.registroUsuarioService.saveUsuario(this.usuario).subscribe(
       (res) => {

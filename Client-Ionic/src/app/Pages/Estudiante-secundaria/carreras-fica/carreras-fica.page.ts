@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   StreamingMedia,
   StreamingVideoOptions,
-  StreamingAudioOptions,
+  
 } from '@ionic-native/streaming-media/ngx';
 
 import { Carreras } from 'src/app/Models/carreras-fica';
@@ -18,6 +18,7 @@ export class CarrerasFicaPage implements OnInit {
   textoBuscar = '';
   tipoarchivo=false;
   isLoaded=false;
+  carrera: Carreras;
   datos: any = {};
   constructor(private registroCarreras: RegistroCarrerasService, private streamingMedia: StreamingMedia) { }
 
@@ -57,12 +58,11 @@ export class CarrerasFicaPage implements OnInit {
     console.log('LA URL', 'http://192.168.100.10:3000/' + url);
   }
   
-
   stopPlayingVideo() {
     this.streamingMedia.pauseAudio();
   }
 
-  carrera: Carreras;
+ 
 
  
   getCarreras() {
@@ -72,8 +72,6 @@ export class CarrerasFicaPage implements OnInit {
         for (let aux of res) {
           if (aux.nombre_carrera != "sin asignar") {
             auxper.push(aux);
-            console.log(auxper)
-
           }
         }
         this.carreras =auxper;

@@ -38,6 +38,9 @@ updateMentoria (id:String, updateMentoria:Mentoria){
     return this.http.put(`${this.API_URI}/registro-mentorias/${id}`,updateMentoria);
   
   }
+  updateAgenMentoria(id:number, updateM:Mentoria){
+    return this.http.put(`${this.API_URI}/solicitudMentoria/${id}`,updateM);
+  }
   
   
 }

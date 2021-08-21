@@ -6,7 +6,12 @@ import { Evento } from 'src/app/Models/evento';
 
 import { RegistroPublicacionService } from '../../Services/registro-publicacion.service';
 import { RegistroEventoService } from 'src/app/Services/registro-evento.service';
-// import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { ModalController } from '@ionic/angular';
+import { ActionSheetController } from '@ionic/angular';
+import {SocialsharePage} from '../socialshare/socialshare.page'
+
 @Component({
   selector: 'app-detalle-noticia',
   templateUrl: './detalle-noticia.page.html',
@@ -16,7 +21,10 @@ export class DetalleNoticiaPage implements OnInit {
   constructor(
     private regitroPublicacion: RegistroPublicacionService,
     private actRoute: ActivatedRoute,
-    private registroEvento: RegistroEventoService
+    private registroEvento: RegistroEventoService,
+    private socialSharing: SocialSharing,
+    public modalCtrl: ModalController,
+    public actionSheetController: ActionSheetController
   ) {}
   id = 0;
   API_URI = '';
@@ -35,6 +43,12 @@ export class DetalleNoticiaPage implements OnInit {
   };
   datos: any = {};
   respuesta: any = {};
+   
+
+  ////SHARE//
+  link: string='https://link.medium.com/JA4amAHFJ5'
+  text: string='Flamenco'
+  imgurl:string= 'https://dametresminutos.files.wordpress.com/2018/11/nick-fewings-532590-unsplash.jpg?w=584'
   ngOnInit() {
     this.datos = JSON.parse(localStorage.getItem('payload'));
     // this.regitroPublicacion.getPublicacion()
@@ -70,6 +84,16 @@ export class DetalleNoticiaPage implements OnInit {
           }
         }
       });
+  }
+
+
+  async showShareOptions() {
+    const modal = await this.modalCtrl.create({
+      component: SocialsharePage,
+      cssClass: 'backTransparent',
+      backdropDismiss: true
+    });
+    return modal.present();
   }
 
   buscar(id_publicacion) {
@@ -119,5 +143,64 @@ export class DetalleNoticiaPage implements OnInit {
           console.log('hubo un error');
         }
       );
+  }
+  compartir (){
+    console.log(this.API_URI)
+  //   this.socialSharing.shareViaEmail('Body', 'Subject', ['jazygc4137@gmail.com']).then(() => {
+  //  console.log("exitosa")
+  //   }).catch(() => {
+  //   console.log("error")
+  //   });
+
+    this.socialSharing.shareViaWhatsApp(this.descripcion, this.API_URI)
+  }
+  
+
+
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Comparta contenido con personas cercanas',
+      cssClass: 'my-custom-class',
+
+      
+      buttons: [{
+        text: '',
+        role: 'destructive',
+        icon: 'logo-whatsapp',
+     
+        handler: () => {
+          console.log('Delete clicked');
+        }
+      }, {
+        text: 'Share',
+        icon: 'logo-facebook',
+        handler: () => {
+          console.log('Share clicked');
+        }
+      }, {
+        text: 'Play (open modal)',
+        icon: 'logo-twitter',
+        handler: () => {
+          console.log('Play clicked');
+        }
+      }, {
+        text: 'Favorite',
+        icon: 'heart',
+        handler: () => {
+          console.log('Favorite clicked');
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'logo-instagram',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
+
+    const { role } = await actionSheet.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
 }

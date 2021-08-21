@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button
         color="primary"
-        defaultHref="/menu-principal/test-aptitud"
+        defaultHref="menu-opciones-se/menu-principal/home-secundaria"
       ></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
@@ -19,33 +19,40 @@
         <h4>{{i+1}} of {{test.length}}</h4>
         <h3>{{preguntas.pregunta}}</h3>
       </div>
-<div class="list-item">
-  <ion-list no-lines radio-group>
-    <ion-item *ngFor="let answer of test[i].opciones; let i = index;">
+      <div class="list-item">
+        <ion-list no-lines radio-group>
+          <ion-item *ngFor="let answer of test[i].opciones; let i = index;">
+            <ion-label>{{i+1}}. {{answer.opcion}}</ion-label>
+            <ion-radio value="{{answer.id_opcion}}"></ion-radio>
+          </ion-item>
+        </ion-list>
 
-      <ion-label>{{i+1}}. {{answer.opcion}}</ion-label>
-      <ion-radio
-        
-      ></ion-radio>
-    </ion-item>
-  </ion-list>
+        <div>
+          <ion-button
+          *ngIf="i+1<test.length"
+            type="submit"
+            color="primary"
+            (click)="nextSlide()"
+            shape="round"
+            expand="block"
+            >Siguiente</ion-button
+          >
+          <ion-button
+            *ngIf="i+1==test.length"
+            type="submit"
+            color="primary"
+            shape="round"
+            expand="block"
+            routerLink="/resultado-test-aptitud"
 
-      
-
-      <div>
-        <ion-button
-          type="submit"
-          color="primary"
-          (click)="nextSlide()"
-          shape="round"
-          expand="block"
-          >Siguiente</ion-button
-        >
+            >FINALIZAR</ion-button
+          >
+        </div>
       </div>
-    </div>
     </ion-slide>
   </ion-slides>
 </ion-content>
+
 <!-- <ion-list>
   <ion-radio-group value="biff">
     <ion-list-header>

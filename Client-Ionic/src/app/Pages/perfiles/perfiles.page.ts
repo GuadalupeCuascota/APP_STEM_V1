@@ -16,6 +16,7 @@ import {
   StreamingVideoOptions,
   StreamingAudioOptions,
 } from '@ionic-native/streaming-media/ngx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfiles',
@@ -23,6 +24,8 @@ import {
   styleUrls: ['./perfiles.page.scss'],
 })
 export class PerfilesPage implements OnInit {
+  isSeeMore:boolean=false;
+  id_perfil=0
   perfiles: Publicacion[] = [];
   textoBuscar = '';
   tipoarchivo = false;
@@ -31,7 +34,8 @@ export class PerfilesPage implements OnInit {
   datos: any = {};
   constructor(
     private regitroPublicacion: RegistroPublicacionService,
-    private streamingMedia: StreamingMedia
+    private streamingMedia: StreamingMedia,
+    private router: Router,
   ) {} //inyecto el servicio importado
 
   ngOnInit() {
@@ -111,6 +115,7 @@ export class PerfilesPage implements OnInit {
         }
 
         this.perfiles = auxper;
+       
       },
       (err) => {
         console.log(err);
@@ -120,4 +125,9 @@ export class PerfilesPage implements OnInit {
 
   startAudio() {}
   stopAudio() {}
+  mostrar(id: number){
+    console.log('la publicacion', id);
+    this.router.navigate(['/detalle-perfil/', id]);
+     
+  }
 }

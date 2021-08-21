@@ -11,4 +11,5 @@ export class Publicacion{
     id_tipo_publicacion: number;
     id_usuario: number;
     id_estado_publicacion: number;
+    nombre_perfil:string;
 }

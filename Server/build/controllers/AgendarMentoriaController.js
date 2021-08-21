@@ -21,7 +21,7 @@ class AngerdarMentoriaController {
     // }
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query("select r.fecha,r.hora_inicio,r.hora_fin,a.id_usuario,u.nombre,u.apellido,a.estado from registro_mentoria r, agendamiento_mentorias a, usuario u where r.id_registro_mentoria=a.id_registro_mentoria and u.id_usuario=r.id_usuario", (err, rows) => {
+            yield database_1.default.query("select a.id_agendamiento_mentoria, r.fecha,r.hora_inicio,r.hora_fin,a.id_usuario,u.nombre,u.apellido,u.correo_electronico,t.nombre_estado_agen_mentoria from tipo_estado_agend_mentoria t,registro_mentoria r, agendamiento_mentorias a, usuario u where r.id_registro_mentoria=a.id_registro_mentoria and u.id_usuario=r.id_usuario and t.id_estado_agen_mentoria=a.id_estado_agen_mentoria", (err, rows) => {
                 if (err) {
                     res.status(404).json("error al cargar");
                     console.log(err);
@@ -35,7 +35,8 @@ class AngerdarMentoriaController {
     }
     listsolicitudes(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query("select r.fecha,r.hora_inicio,r.hora_fin,r.id_usuario,u.nombre,u.apellido,a.estado from registro_mentoria r, agendamiento_mentorias a, usuario u where r.id_registro_mentoria=a.id_registro_mentoria and u.id_usuario=a.id_usuario", (err, rows) => {
+            console.log("PASA AQUI");
+            yield database_1.default.query("select a.id_agendamiento_mentoria ,r.fecha,r.hora_inicio,r.hora_fin,r.id_usuario,u.nombre,u.apellido,u.correo_electronico,t.nombre_estado_agen_mentoria from tipo_estado_agend_mentoria t, registro_mentoria r, agendamiento_mentorias a, usuario u where r.id_registro_mentoria=a.id_registro_mentoria and u.id_usuario=a.id_usuario and t.id_estado_agen_mentoria=a.id_estado_agen_mentoria ", (err, rows) => {
                 if (err) {
                     res.status(404).json("error al cargar");
                     console.log(err);
@@ -56,14 +57,16 @@ class AngerdarMentoriaController {
             if (registroMentoriasporUsuario.length > 0) {
                 return res.status(200).json(registroMentoriasporUsuario);
             }
-            res.status(404).json({ text: "En este momento no existe mentorias disponibles" });
+            res
+                .status(404)
+                .json({ text: "En este momento no existe mentorias disponibles" });
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log("PASA AQUIII");
             const { id } = req.params;
-            const registroMentorias = yield database_1.default.query("SELECT m.id_registro_mentoria,m.fecha, m.hora_inicio, m.hora_fin, m.tipo_mentoria,m.id_estado_mentoria,u.nombre,u.apellido from registro_mentoria m, usuario u WHERE m.id_usuario=u.id_usuario and m.id_registro_mentoria=?", [id]);
+            const registroMentorias = yield database_1.default.query("SELECT m.id_registro_mentoria,m.fecha, m.hora_inicio, m.hora_fin, m.tipo_mentoria,m.,u.nombre,u.apellido from registro_mentoria m, usuario u WHERE m.id_usuario=u.id_usuario and m.id_registro_mentoria=?", [id]);
             console.log(registroMentorias);
             if (registroMentorias.length > 0) {
                 return res.status(200).json(registroMentorias[0]);
@@ -73,13 +76,20 @@ class AngerdarMentoriaController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("pasa crear");
+            console.log("pasa crear mentoria");
             try {
-                const { id_registro_mentoria, observacion, estado, id_usuario } = req.body;
+                const { id_registro_mentoria, observacion, id_estado_agen_mentoria, id_usuario, } = req.body;
                 console.log("registro:" + req.body.id_registro_mentoria);
                 console.log("usuario:" + req.body.id_usuario);
-                const query = "INSERT INTO agendamiento_mentorias(id_registro_mentoria,observacion,estado,id_usuario) VALUES (?,?,?,?)";
-                yield database_1.default.query(query, [id_registro_mentoria, observacion, estado, id_usuario]);
+                console.log("observacio" + req.body.observacion);
+                console.log("id_estado_agen_mentoria	", req.body.id_estado_agen_mentoria);
+                const query = "INSERT INTO agendamiento_mentorias(id_registro_mentoria,observacion,id_estado_agen_mentoria	,id_usuario) VALUES (?,?,?,?)";
+                yield database_1.default.query(query, [
+                    id_registro_mentoria,
+                    observacion,
+                    id_estado_agen_mentoria,
+                    id_usuario,
+                ]);
                 res.status(201).json({ text: "mentoria agendada" });
             }
             catch (err) {
@@ -104,29 +114,26 @@ class AngerdarMentoriaController {
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("pasa actualizar");
-            console.log("fecha:" + req.body.fecha);
             try {
                 const { id } = req.params;
-                console.log("id_mentoria: " + id);
-                const fecha = req.body.fecha;
-                const hora_inicio = req.body.hora_inicio;
-                const hora_fin = req.body.hora_fin;
-                const tipo_mentoria = req.body.tipo_mentoria;
-                const id_estado_mentoria = req.body.id_estado_mentoria;
-                const id_usuario = req.body.id_usuario;
-                console.log("hora_inicio: " + req.body.hora_inicio);
-                console.log("hora_inicio: " + req.body.hora_fin);
-                console.log("hora_estado: " + req.body.id_estado_mentoria);
-                console.log("hora_usuario: " + req.body.id_usuario);
-                const query = "UPDATE registro_mentoria set fecha=?,hora_inicio=?,hora_fin=?,tipo_mentoria=?,id_estado_mentoria=?, id_usuario=? where id_registro_mentoria=?";
-                database_1.default.query(query, [fecha, hora_inicio, hora_fin, tipo_mentoria, id_estado_mentoria, id_usuario, id]);
-                res.status(200).json({ text: "registro actualizado" });
+                console.log("id: " + id);
+                const nombre_estado_agen_mentoria = req.body.nombre_estado_agen_mentoria;
+                console.log(nombre_estado_agen_mentoria);
+                if (id) {
+                    const query = "UPDATE agendamiento_mentorias set id_estado_agen_mentoria=(SELECT id_estado_agen_mentoria from tipo_estado_agend_mentoria where nombre_estado_agen_mentoria=?) where id_agendamiento_mentoria=?";
+                    database_1.default.query(query, [
+                        nombre_estado_agen_mentoria, id
+                    ]);
+                    res.status(200).json({ text: "Mentoría confirmada" });
+                }
+                else {
+                    res.status(404).json({ text: "No existe mentoria agendada" });
+                }
             }
-            catch (error) {
+            catch (err) {
                 res.status(404).json({ text: "Hubo un error" });
             }
         });
     }
 }
-exports.agendarMentoriaController = new AngerdarMentoriaController(); //instanciar la clase
+exports.agendarMentoriaController = new AngerdarMentoriaController();

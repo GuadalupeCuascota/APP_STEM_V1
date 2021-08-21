@@ -67,16 +67,10 @@
         <ion-item *ngIf="estado==false">
           <ion-label> Carrera: </ion-label>
           <ion-select placeholder="Seleccione" formControlName="carrera">
-            <ion-select-option value="Mecatronica"
-              >Ing.Mecatronica</ion-select-option
+            <ion-select-option  *ngFor="let carrera of carreras"
+              >{{carrera}}</ion-select-option
             >
-            <ion-select-option value="Sistemas Computacionales"
-              >Ingeniería en Software</ion-select-option
-            >
-            <ion-select-option value="Telecomunicación"
-              >Ing.Telecomunicación</ion-select-option
-            >
-            <ion-select-option value="Textil">Ing.Textil</ion-select-option>
+           
           </ion-select>
         </ion-item>
         

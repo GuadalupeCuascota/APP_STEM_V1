@@ -18,12 +18,9 @@
   <ion-content>
     <ion-list>
       <ion-item
-        button
-        *ngFor="let carrera of carreras" routerLink="/oferta-academica/{{carrera.id_carrera}}"
-       >
+        button *ngFor="let carrera of carreras" routerLink="/oferta-academica/{{carrera.id_carrera}}/{{carrera.nombre_carrera}}">
         <ion-label>{{carrera.nombre_carrera}}</ion-label>
-     
-      </ion-item>
+     </ion-item>
     </ion-list> 
 </ion-content>
   </ng-template>

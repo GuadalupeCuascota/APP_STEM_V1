@@ -60,7 +60,11 @@ ion-content {
 
     .basic-info {
       
-
+      .buttons{
+        display: flex;
+        justify-content: space-between;
+        
+    }
       .icon{
         color: rgb(209, 10, 17);
         margin-top: -35px;
@@ -88,8 +92,7 @@ ion-content {
 
 
 
-
-
+///social share///
 
 
 // ion-content {

@@ -114,7 +114,7 @@ export class DashboardComponent implements OnInit {
           if (usu1.tipo_rol == 'Editor') {
             edit = edit + 1;
           }
-          if (usu1.tipo_rol == 'Mentor') {
+          if (usu1.tipo_rol == 'Mentora') {
             ment = ment + 1;
           }
         }

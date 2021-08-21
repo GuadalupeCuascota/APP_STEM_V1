@@ -37,7 +37,7 @@ export class DetalleMentoriaPage implements OnInit {
   agendarMentoria: AgendarMentoria = {
     id_registro_mentoria: 0,
     observacion: '',
-    estado: '',
+    id_estado_agen_mentoria: 1,
     id_usuario: 0,
     fecha: '',
     nombre: '',
@@ -95,9 +95,9 @@ export class DetalleMentoriaPage implements OnInit {
     if (params && params.id) {
       this.regitroMentoriasService.getRegistroMentoria(params.id).subscribe(
         (res) => {
-          console.log('el registro', res);
+          console.log('registro', res);
           this.registroM = res;
-          console.log('el registro', this.registroM);
+          
           this.localTime = moment(this.registroM.fecha).format('DD/MM/YYYY');
           //  this.time=moment(this.registroM.hora_inicio).format('h:mm a');
           //  this.time1=moment(this.registroM.hora_fin).format('h:mm a');
@@ -124,7 +124,7 @@ export class DetalleMentoriaPage implements OnInit {
     console.log(id);
     this.agendarMentoria.id_registro_mentoria = id;
     this.agendarMentoria.id_usuario = this.datos.id_usuario;
-    this.agendarMentoria.estado = 'sin agendar';
+    
     console.log('el registro', this.agendarMentoria);
     this.regitroAgendarMentoriaService
       .saveAgendarMentoria(this.agendarMentoria)

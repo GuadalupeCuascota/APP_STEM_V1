@@ -29,6 +29,7 @@
     "@ionic-native/file-transfer": "^5.35.0",
     "@ionic-native/image-picker": "^5.35.0",
     "@ionic-native/photo-library": "^5.35.0",
+    "@ionic-native/social-sharing": "^5.35.0",
     "@ionic-native/streaming-media": "^5.34.0",
     "@ionic-native/video-player": "^5.35.0",
     "@ionic/angular": "^5.5.2",

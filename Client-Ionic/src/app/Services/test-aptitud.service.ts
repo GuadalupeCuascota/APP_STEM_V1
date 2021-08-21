@@ -24,11 +24,13 @@ export class TestAptitudService {
         opciones:[
           {
             opcion:'Mejorar la vida de las personas ',
-            puntos:0
+            puntos:0,
+            id_opcion: 1
           },
           {
             opcion:'Construir un mundo mejor ',
-            puntos:0
+            puntos:0,
+            id_opcion: 2
           }
          
         ]
@@ -37,11 +39,17 @@ export class TestAptitudService {
         opciones:[
           {
             opcion:'Mi lógica ',
-            puntos:0
+            puntos:0,
+            id_opcion: 1
+
           },
           {
             opcion:'Construir un mundo mejor ',
-            puntos:0
+            puntos:0,
+            id_opcion: 2
+            
+
+
           }
          
         ]
@@ -50,11 +58,13 @@ export class TestAptitudService {
         opciones:[
           {
             opcion:'A ',
-            puntos:0
+            puntos:0,
+            id_opcion: 1
           },
           {
             opcion:'B',
-            puntos:0
+            puntos:0,
+            id_opcion: 2
           }
          
         ]

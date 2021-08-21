@@ -72,7 +72,7 @@ const routes: Routes = [
     loadChildren: () => import('./Pages/Estudiante-secundaria/oferta-academica/oferta-academica.module').then( m => m.OfertaAcademicaPageModule)
   },
   {
-    path: 'oferta-academica/:id',
+    path: 'oferta-academica/:id/:nombre_carrera',
     loadChildren: () => import('./Pages/Estudiante-secundaria/oferta-academica/oferta-academica.module').then( m => m.OfertaAcademicaPageModule)
   },
   //  {
@@ -139,6 +139,20 @@ const routes: Routes = [
     path: 'publicar-contenido',
     loadChildren: () => import('./Pages/publicar-contenido/publicar-contenido.module').then( m => m.PublicarContenidoPageModule)
   },
+  {
+    path: 'socialshare',
+    loadChildren: () => import('./Pages/socialshare/socialshare.module').then( m => m.SocialsharePageModule)
+  },
+  {
+    path: 'detalle-perfil/:id',
+    loadChildren: () => import('./Pages/detalle-perfil/detalle-perfil.module').then( m => m.DetallePerfilPageModule)
+  },  {
+    path: 'resultado-test-aptitud',
+    loadChildren: () => import('./Pages/Estudiante-secundaria/resultado-test-aptitud/resultado-test-aptitud.module').then( m => m.ResultadoTestAptitudPageModule)
+  },
+
+
+ 
 
 
 

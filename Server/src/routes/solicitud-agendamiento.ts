@@ -10,6 +10,7 @@ this.config();
 }
 config(): void{
 this.router.get('/',agendarMentoriaController.listsolicitudes);
+this.router.put('/:id',agendarMentoriaController.update);
 
 
 }
