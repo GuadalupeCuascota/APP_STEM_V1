@@ -1,10 +1,16 @@
+
 ion-icon{
   color:  rgb(167, 167, 167);
 }
 
 ion-header {
-  background: var(--ion-color-light);
+  img{
+    margin-top: 100px;
+    height: 200px;
+  }
 
+   background: var(--ion-color-light);
+  
   ion-list {
     background: var(--ion-color-primary);
     border-radius: 0 0 20px 20px;

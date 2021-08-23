@@ -15,6 +15,14 @@
   <div class="popover">
     <ion-searchbar (ionChange)="buscar($event)"></ion-searchbar>
   </div>
+  <ion-segment (ionChange)="segmenntChange($event)" [value]="valueSelected" >
+    <ion-segment-button value="perfiles">
+      <ion-label>Perfiles</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="entrevistas">
+      <ion-label>Entrevistas</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 <!-- <div>
   <ion-button (click)="playVideo()" color="primary">PLAY VIDEO</ion-button>
@@ -22,6 +30,7 @@
 </div> -->
 
 <ion-content>
+ <div *ngIf="valueSelected=='perfiles'">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -68,12 +77,6 @@
     </ion-grid>
   </ion-card>
 
-  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="secondary" size="25px">
-      <ion-icon color="light" name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab> -->
-
   <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content
       loadingSpinner="lines-small"
@@ -81,6 +84,11 @@
     >
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
+ </div>
+ <div *ngIf="valueSelected=='entrevistas'">
+<h3>he seleccionado</h3>
+ </div>
+
 </ion-content>
 
 

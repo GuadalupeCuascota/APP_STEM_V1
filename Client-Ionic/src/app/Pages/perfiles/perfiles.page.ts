@@ -32,6 +32,7 @@ export class PerfilesPage implements OnInit {
   tipovideo = 'video/mp4';
   tipoimagen = 'imagen/jpeg';
   datos: any = {};
+  valueSelected:string="perfiles"
   constructor(
     private regitroPublicacion: RegistroPublicacionService,
     private streamingMedia: StreamingMedia,
@@ -54,6 +55,10 @@ export class PerfilesPage implements OnInit {
     if ($event) {
       $event.target.complete();
     }
+  }
+  segmenntChange(event:any){
+    this.valueSelected=event.detail.value
+  console.log(this.valueSelected)
   }
 
    playVideo(url: any) {
