@@ -36,7 +36,7 @@
     <div class="user-info">
       <ion-footer class="buttons">
         <ion-buttons>
-          <ion-button >
+          <ion-button (click)="showShareOptions()" >
             <ion-icon color="primary" slot="icon-only" name="share-social-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -84,6 +84,14 @@
         <h3>Acerca de mi</h3>
          <p>{{descripcion}}</p>
       </div>
+      <ion-chip>
+        <ion-icon name="logo-twitter"></ion-icon>
+        <ion-label>Twitter</ion-label>
+      </ion-chip>
+      <ion-chip>
+        <ion-icon name="logo-linkedin"></ion-icon>
+        <ion-label>Linkedin</ion-label>
+      </ion-chip>
     </div>
     
   </div>

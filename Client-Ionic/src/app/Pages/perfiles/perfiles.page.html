@@ -2,11 +2,15 @@
   <ion-list lines="none">
     <ion-item color="primary">
       <ion-buttons *ngIf="datos.nivel_academico=='secundaria'" slot="start">
-        <ion-back-button defaultHref="menu-opciones-se/menu-principal/home-secundaria"></ion-back-button>
+        <ion-back-button
+          defaultHref="menu-opciones-se/menu-principal/home-secundaria"
+        ></ion-back-button>
       </ion-buttons>
 
-      <ion-buttons *ngIf="datos.nivel_academico=='superior'"slot="start">
-        <ion-back-button defaultHref="menu-opciones/tabs/home-superior"></ion-back-button>
+      <ion-buttons *ngIf="datos.nivel_academico=='superior'" slot="start">
+        <ion-back-button
+          defaultHref="menu-opciones/tabs/home-superior"
+        ></ion-back-button>
       </ion-buttons>
       <ion-label>Mujeres en STEM</ion-label>
     </ion-item>
@@ -15,7 +19,7 @@
   <div class="popover">
     <ion-searchbar (ionChange)="buscar($event)"></ion-searchbar>
   </div>
-  <ion-segment (ionChange)="segmenntChange($event)" [value]="valueSelected" >
+  <ion-segment (ionChange)="segmenntChange($event)" [value]="valueSelected">
     <ion-segment-button value="perfiles">
       <ion-label>Perfiles</ion-label>
     </ion-segment-button>
@@ -30,65 +34,87 @@
 </div> -->
 
 <ion-content>
- <div *ngIf="valueSelected=='perfiles'">
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
+  <div *ngIf="valueSelected=='perfiles'">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
-  <ion-card *ngFor="let perfil of perfiles | filtros: textoBuscar">
-    <video
-      *ngIf="perfil.tipo_archivo=='video/mp4' || perfil.tipo_archivo=='video/mov'"
-      width="100%"
-      preload="auto"
+    <ion-card *ngFor="let perfil of perfiles | filtros: textoBuscar">
+      <video
+        *ngIf="perfil.tipo_archivo=='video/mp4' || perfil.tipo_archivo=='video/mov'"
+        width="100%"
+        preload="auto"
+        muted="false"
+        src="http://192.168.100.45:3000/{{perfil.ruta_archivo}} "
+        (click)="playVideo(perfil.ruta_archivo)"
+        controls
+      ></video>
+      <ion-img
+        *ngIf="perfil.tipo_archivo=='image/png' ||perfil.tipo_archivo=='image/jpeg'"
+        src="http://192.168.100.45:3000/{{perfil.ruta_archivo}}"
+        width="100%"
+        height="100%"
+      ></ion-img>
+
+      <ion-grid>
+        
+        <ion-row>
+        
+          <ion-col col-auto col-md-2>
+            <ion-icon name="person-circle"> </ion-icon> 
+          </ion-col>
+          <ion-col col-auto  col-md-4>
+            <ion-label>{{perfil.nombre_perfil}}</ion-label>
+          </ion-col>
       
-      muted="false"
-      src="http://192.168.100.45:3000/{{perfil.ruta_archivo}} "
-      (click)="playVideo(perfil.ruta_archivo)"
-      controls
-    ></video>
-    <ion-img
-      *ngIf="perfil.tipo_archivo=='image/png' ||perfil.tipo_archivo=='image/jpeg'"
-      src="http://192.168.100.45:3000/{{perfil.ruta_archivo}}"
-      width="100%"
-      height="100%"
-    ></ion-img>
+          <ion-col col-auto col-md-2>
+            <ion-icon name="school"></ion-icon> 
+          </ion-col>
+          <ion-col col-auto col-md-4>
+            <ion-label>{{perfil.profesion}}</ion-label>
+          </ion-col>
+          <ion-col col-auto>
+            <ion-icon name="ribbon"></ion-icon> 
+          </ion-col>
+          <ion-col col-auto>
+            <ion-label>{{perfil.estado_profesion}}</ion-label>
+          </ion-col>
+        </ion-row>
 
+        <ion-row>
+          <ion-col *ngIf="!isSeeMore">
+            {{perfil.descripcion.substring(0,105)}}
+            <span (click)="mostrar(perfil.id_publicacion)">...Ver más</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
 
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-icon name="person-circle"></ion-icon> {{perfil.nombre_perfil}}
-        </ion-col>
-        <ion-col>
-          <ion-icon name="school"></ion-icon> {{perfil.profesion }}
-        </ion-col>
-        <ion-col>
-          <ion-icon name="ribbon"></ion-icon> {{perfil.estado_profesion}}
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col *ngIf="!isSeeMore"> {{perfil.descripcion.substring(0,105)}} <span (click)="mostrar(perfil.id_publicacion)">...Ver más</span>
-          
-        </ion-col>
-       
-       
+    <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="lines-small"
+        loadingText="Cargando..."
+      >
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
 
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-
-  <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="lines-small"
-      loadingText="Cargando..."
-    >
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
- </div>
- <div *ngIf="valueSelected=='entrevistas'">
-<h3>he seleccionado</h3>
- </div>
-
+  <div *ngIf="valueSelected=='entrevistas'">
+    <ion-card *ngFor="let item of posts">
+      <ion-card-header style="font-weight: bold">
+        {{item.snippet.title}}
+      </ion-card-header>
+      <ion-card-content>
+        <!-- <img [src]="item.snippet.thumbnails.high.url">  -->
+        <iframe
+          width="100%"
+          height="315"
+          [src]="item.id.videoId|youtube"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
-
-

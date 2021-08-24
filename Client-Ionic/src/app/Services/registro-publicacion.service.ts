@@ -23,4 +23,7 @@ export class RegistroPublicacionService {
   savePublicacion (formData){
     return this.httpClient.post<Publicacion>(environment.baseUrl+"/publicaciones",formData)
   }
+  getPost(url:string){
+    return this.httpClient.get<Publicacion>(url)
+  }
 }

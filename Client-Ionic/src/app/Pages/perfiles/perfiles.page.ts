@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Publicacion } from 'src/app/Models/publicacion';
+// import 'rxjs/add/operator/map';
+
 
 import {
   FormBuilder,
@@ -17,6 +19,7 @@ import {
   StreamingAudioOptions,
 } from '@ionic-native/streaming-media/ngx';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-perfiles',
@@ -33,11 +36,41 @@ export class PerfilesPage implements OnInit {
   tipoimagen = 'imagen/jpeg';
   datos: any = {};
   valueSelected:string="perfiles"
+
+  /////YOUTUBE-API/////
+  idcanal:string='UCS1EzRQqzi03AEYWSFMER_Q';
+  maxRes:string='6';
+  googleToken:string='AIzaSyAIyv-RhbPIbXTIZrhA-aMR-4OsRBgFRTk';
+  post:any=[];
+  posts:any=[];
+  search:string='Women in STEM'
+
+
   constructor(
+    
     private regitroPublicacion: RegistroPublicacionService,
     private streamingMedia: StreamingMedia,
     private router: Router,
-  ) {} //inyecto el servicio importado
+  ) {
+    let url="https://www.googleapis.com/youtube/v3/search?part=id,snippet&channelId="+this.idcanal+"&q="+this.search+"&type=video&order=date&maxResults="+this.maxRes+"&key="+this.googleToken;  
+    this.regitroPublicacion.getPost(url).subscribe(
+      (res) => {
+        this.post=res;
+        console.log("LA RESPUESTA",this.post.items);
+      this.posts=this.post.items
+        
+       
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+
+    // this.httpClient.get(url).subscribe(res=>res.subscribe(data=> {
+    //   this.post=this.post.concat(data.items);
+    //   console.log("el post")
+    
+  } //inyecto el servicio importado
 
   ngOnInit() {
     this.getPerfiles();

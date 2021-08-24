@@ -5,7 +5,7 @@ import { Evento } from 'src/app/Models/evento';
 import { Publicacion } from 'src/app/Models/publicacion';
 import { RegistroEventoService } from 'src/app/Services/registro-evento.service';
 import { RegistroPublicacionService } from 'src/app/Services/registro-publicacion.service';
-
+import {SocialsharePage} from '../socialshare/socialshare.page'
 @Component({
   selector: 'app-detalle-perfil',
   templateUrl: './detalle-perfil.page.html',
@@ -38,7 +38,9 @@ export class DetallePerfilPage implements OnInit {
     public modalCtrl: ModalController,
     public actionSheetController: ActionSheetController
   ) { }
-
+  link: string='https://link.medium.com/JA4amAHFJ5'
+  text: string='Flamenco'
+  imgurl:string= 'https://dametresminutos.files.wordpress.com/2018/11/nick-fewings-532590-unsplash.jpg?w=584'
   ngOnInit() {
     this.datos = JSON.parse(localStorage.getItem('payload'));
     // this.regitroPublicacion.getPublicacion()
@@ -57,7 +59,7 @@ export class DetallePerfilPage implements OnInit {
        this.nombre_perfil = this.perfil.nombre_perfil;
       console.log(this.perfil);
     });
-
+    
     this.evento.id_usuario = this.datos.id_usuario;
     this.registroEvento
       .getEvento(this.id, this.datos.id_usuario)
@@ -77,6 +79,17 @@ export class DetallePerfilPage implements OnInit {
         }
       });
   }
+  async showShareOptions() {
+    const modal = await this.modalCtrl.create({
+      component: SocialsharePage,
+      cssClass: 'backTransparent',
+      backdropDismiss: true
+    });
+    return modal.present();
+  }
+
+
+
   buscar(id_publicacion) {
     this.evento.id_tipo_evento = 1;
     this.evento.id_publicacion = id_publicacion;
@@ -124,5 +137,52 @@ export class DetallePerfilPage implements OnInit {
           console.log('hubo un error');
         }
       );
+  }
+
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Comparta contenido con personas cercanas',
+      cssClass: 'my-custom-class',
+
+      
+      buttons: [{
+        text: '',
+        role: 'destructive',
+        icon: 'logo-whatsapp',
+     
+        handler: () => {
+          console.log('Delete clicked');
+        }
+      }, {
+        text: 'Share',
+        icon: 'logo-facebook',
+        handler: () => {
+          console.log('Share clicked');
+        }
+      }, {
+        text: 'Play (open modal)',
+        icon: 'logo-twitter',
+        handler: () => {
+          console.log('Play clicked');
+        }
+      }, {
+        text: 'Favorite',
+        icon: 'heart',
+        handler: () => {
+          console.log('Favorite clicked');
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'logo-instagram',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
+
+    const { role } = await actionSheet.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
 }
