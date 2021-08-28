@@ -71,16 +71,21 @@
         </div>
         <div class="col" *ngIf="estado">
           <label style="color: #161515">Carrera:</label>
-          <select 
+          <select class="form-control" aria-label="Default select example" [(ngModel)]="usuario.carrera">
+            <option selected>Seleccione una opción</option>
+            <option  *ngFor="let carrera of carreras">{{carrera}}</option>
+          </select>
+          <!-- <select 
             class="form-control"
            
             name="miselect"
             [(ngModel)]="usuario.carrera"
           >
-            <!-- <option value="0">Selecciona una opción</option> -->
+           
+            <option selected>Open this select menu</option>
             <option  *ngFor="let carrera of carreras">{{carrera}}</option>
            
-          </select>
+          </select> -->
         </div>
       </div>
       <button class="btn btn-primary" (click)="saveUsuario(); getUsuarios()">
@@ -117,8 +122,8 @@
        </div>
   
        <div class="table-responsive">
-        <table class="table table-striped table-hover">
-          <thead>
+        <table class="table table-striped">
+          <thead >
             <tr class="table-active">
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>

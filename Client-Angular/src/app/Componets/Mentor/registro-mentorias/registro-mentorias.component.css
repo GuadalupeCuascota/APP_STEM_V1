@@ -1,12 +1,12 @@
 .content {
-  margin-left: 200px;
+  margin-left: 300px;
   padding-left: 20px;
-  margin-right: 200px;
-  padding-top: 70px;
+  margin-right: 300px;
+  padding-top: 120px;
 }
 
 .list-group-item {
-  background: rgba(248, 246, 248, 0.952);
+  background: rgba(255, 255, 255, 0.952);
 }
 .iconoInput {
   color: #1a1818;

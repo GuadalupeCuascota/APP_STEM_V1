@@ -88,7 +88,7 @@ export class DetalleMentoriaPage implements OnInit {
     console.log('onDidDismiss resolved with role', role);
   }
   async ngOnInit() {
-    var UsuMentoria = [];
+   
     const loading = await this.loadinServices.presentLoading('Cargando...');
     await loading.present();
     const params = this.actRoute.snapshot.params;

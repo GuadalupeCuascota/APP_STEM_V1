@@ -2,6 +2,12 @@
     background: rgba(255, 255, 255, 0.952);
 
 }
+label{
+  color: #646262;
+  font-size: 1rem;
+  margin: 0 0 10px 0;
+  font-weight: 500;
+}
 .iconoInput {
  color: #1a1818;
  font-size: 15px;

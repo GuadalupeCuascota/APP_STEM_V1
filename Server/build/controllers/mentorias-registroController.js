@@ -21,7 +21,8 @@ class MentoriasController {
     // }
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query("SELECT m.id_registro_mentoria,m.fecha, m.hora_inicio, m.hora_fin, m.tipo_mentoria,t.nombre_estado_mentoria,u.nombre,u.apellido,u.carrera,m.id_usuario from registro_mentoria m, tipo_estado_mentoria t, usuario u WHERE m.id_usuario=u.id_usuario and m.id_estado_mentoria=t.id_estado_mentoria", (err, rows) => {
+            console.log("pasa obtner mentorias registradas");
+            yield database_1.default.query("SELECT m.id_registro_mentoria,m.fecha, m.hora_inicio, m.hora_fin,u.nombre,u.apellido,u.carrera,m.id_usuario from registro_mentoria m, usuario u WHERE m.id_usuario=u.id_usuario", (err, rows) => {
                 if (err) {
                     res.status(404).json("error al cargar");
                     console.log(err);
@@ -35,6 +36,7 @@ class MentoriasController {
     }
     getMentoriasUsuario(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log("obtner");
             const { id } = req.params;
             const registroMentoriasporUsuario = yield database_1.default.query("SELECT fecha, hora_inicio, hora_fin,tipo_mentoria from registro_mentoria WHERE id_usuario=?", [id]);
             console.log(registroMentoriasporUsuario);
@@ -50,7 +52,7 @@ class MentoriasController {
         return __awaiter(this, void 0, void 0, function* () {
             console.log("obtener mentoria por id");
             const { id } = req.params;
-            const registroMentorias = yield database_1.default.query("SELECT m.id_registro_mentoria,m.fecha, m.hora_inicio, m.hora_fin, m.tipo_mentoria,m.id_estado_mentoria,u.nombre,u.apellido from registro_mentoria m, usuario u WHERE m.id_usuario=u.id_usuario and m.id_registro_mentoria=?", [id]);
+            const registroMentorias = yield database_1.default.query("SELECT m.id_registro_mentoria,m.fecha, m.hora_inicio, m.hora_fin,u.nombre,u.apellido from registro_mentoria m, usuario u WHERE m.id_usuario=u.id_usuario and m.id_registro_mentoria=?", [id]);
             console.log(registroMentorias);
             if (registroMentorias.length > 0) {
                 return res.status(200).json(registroMentorias[0]);
@@ -60,27 +62,19 @@ class MentoriasController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("pasa crear");
+            console.log("pasa crear registro mentoria");
             try {
-                const { fecha, hora_inicio, hora_fin, tipo_mentoria, id_estado_mentoria, id_usuario, } = req.body;
+                const { fecha, hora_inicio, hora_fin, id_usuario } = req.body;
                 console.log("fecha:" + req.body.fecha);
                 console.log("fecha:" + req.body.hora_inicio);
-                console.log("oid estado mentoria", id_estado_mentoria);
                 const findRegistro = yield database_1.default.query("SELECT * FROM registro_mentoria WHERE id_usuario=? and hora_inicio=? and fecha= ?", [id_usuario, hora_inicio, fecha]);
                 if (findRegistro.length > 0) {
-                    res.status(404).json({ text: "La mentoria ya existe" });
+                    res.status(404).json({ text: "Mentoria duplicada" });
                 }
                 else {
                     console.log("no existe mentoria");
-                    const query = "INSERT INTO registro_mentoria(fecha, hora_inicio, hora_fin, tipo_mentoria, id_estado_mentoria, id_usuario) VALUES (?,?,?,?,?,?)";
-                    yield database_1.default.query(query, [
-                        fecha,
-                        hora_inicio,
-                        hora_fin,
-                        tipo_mentoria,
-                        id_estado_mentoria,
-                        id_usuario,
-                    ]);
+                    const query = "INSERT INTO registro_mentoria(fecha, hora_inicio, hora_fin, id_usuario) VALUES (?,?,?,?)";
+                    yield database_1.default.query(query, [fecha, hora_inicio, hora_fin, id_usuario]);
                     res.status(201).json({ text: "mentoria registrada" });
                 }
             }
@@ -106,34 +100,20 @@ class MentoriasController {
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("pasa actualizar");
             console.log("fecha:" + req.body.fecha);
             try {
                 const { id } = req.params;
-                console.log("id_mentoria: " + id);
                 const fecha = req.body.fecha;
                 const hora_inicio = req.body.hora_inicio;
                 const hora_fin = req.body.hora_fin;
-                const tipo_mentoria = req.body.tipo_mentoria;
-                const id_estado_mentoria = req.body.id_estado_mentoria;
                 const id_usuario = req.body.id_usuario;
-                console.log("hora_inicio: " + req.body.hora_inicio);
-                console.log("hora_inicio: " + req.body.hora_fin);
-                console.log("hora_estado: " + req.body.id_estado_mentoria);
-                console.log("hora_usuario: " + req.body.id_usuario);
-                const query = "UPDATE registro_mentoria set fecha=?,hora_inicio=?,hora_fin=?,tipo_mentoria=?,id_estado_mentoria=?, id_usuario=? where id_registro_mentoria=?";
-                database_1.default.query(query, [
-                    fecha,
-                    hora_inicio,
-                    hora_fin,
-                    tipo_mentoria,
-                    id_estado_mentoria,
-                    id_usuario,
-                    id,
-                ]);
+                const query = "UPDATE registro_mentoria set fecha=?,hora_inicio=?,hora_fin=? where id_registro_mentoria=?";
+                database_1.default.query(query, [fecha, hora_inicio, hora_fin, id]);
                 res.status(200).json({ text: "registro actualizado" });
+                console.log("actualizado");
             }
             catch (error) {
+                console.log("error", error);
                 res.status(404).json({ text: "Hubo un error" });
             }
         });

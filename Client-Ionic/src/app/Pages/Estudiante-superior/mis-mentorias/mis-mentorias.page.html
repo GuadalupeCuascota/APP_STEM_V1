@@ -15,14 +15,22 @@
 
 <ion-content>
   <ion-card *ngFor="let mentorias of mentoriasAgendadas">
-    <ion-item>
-      <ion-label> {{mentorias.nombre}} {{mentorias.apellido}}</ion-label>
-    </ion-item>
-
     <ion-card-content>
-      <ion-card-subtitle>Fecha:{{mentorias.fecha}}</ion-card-subtitle>
-      <ion-card-subtitle>Horario:{{mentorias.hora_inicio}}-{{mentorias.hora_fin}}</ion-card-subtitle>
-      <ion-card-subtitle>Estado mentoria:{{mentorias.nombre_estado_agen_mentoria}}</ion-card-subtitle>
+      <ion-label> Mentora: </ion-label>{{mentorias.nombre}} {{mentorias.apellido}}
+  <br> 
+     <ion-label>
+
+       Día:
+     </ion-label>{{mentorias.fecha}}
+     <br>
+     <ion-label >
+      Hora:
+    </ion-label> Hora:{{mentorias.hora_inicio}}-{{mentorias.hora_fin}}
+    <br>
+    <ion-label >
+      Materia:
+    </ion-label>{{mentorias.nombre_estado_agen_mentoria}}
+  
     </ion-card-content>
   </ion-card>
 </ion-content>

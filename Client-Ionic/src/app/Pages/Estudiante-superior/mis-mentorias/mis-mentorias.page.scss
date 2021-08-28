@@ -1,6 +1,14 @@
 ion-card {
     border-radius: 10px;
 }
+ion-label{
+    
+    font-size: 1.1rem;
+    margin: 0 0 10px 0;
+    font-weight: 700; //negrita
+    // text-align: center;
+
+}
 ion-header {
     background: var(--ion-color-light);
   

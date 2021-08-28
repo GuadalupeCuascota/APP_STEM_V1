@@ -12,28 +12,73 @@
           defaultHref="menu-opciones/tabs/home-superior"
         ></ion-back-button>
       </ion-buttons>
-      <ion-label>Disponibilidad de mentorias</ion-label>
+      <ion-label>Mentorias</ion-label>
     </ion-item>
   </ion-list>
+
+  <ion-segment (ionChange)="segmenntChange($event)" [value]="valueSelected">
+    <ion-segment-button value="1">
+      <ion-label>Disponibles</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      <ion-label>Solicitar </ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let registro of registroMentorias">
-    <ion-item>
-      <ion-label> Fecha:{{registro.fecha}}</ion-label>
-      <ion-button
-        fill="outline"
-        slot="end"
-        (click)="detalle(registro.id_registro_mentoria)"
-        >Ver</ion-button
-      >
-    </ion-item>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-    <ion-card-content>
-      <ion-card-title>{{registro.nombre}} {{registro.apellido}}</ion-card-title>
-      <ion-card-subtitle>Mentoría {{registro.tipo_mentoria}}</ion-card-subtitle>
-      <ion-card-subtitle>{{registro.carrera}}</ion-card-subtitle>
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="valueSelected=='1'">
+    <ion-card *ngFor="let registro of registroMentorias">
+      <ion-item>
+        <ion-label>
+          Mentora: {{registro.nombre}} {{registro.apellido}}</ion-label
+        >
+        <ion-button
+          fill="outline"
+          slot="end"
+          (click)="getMentoria(registro.id_registro_mentoria)"
+          >AGENDAR</ion-button
+        >
+      </ion-item>
 
-<p>{{mensaje}}</p>
+      <ion-card-content>
+        <ion-card-subtitle>Día:{{registro.fecha}}</ion-card-subtitle>
+        <ion-card-subtitle
+          >Hora:{{registro.hora_inicio}}-{{registro.hora_fin}}</ion-card-subtitle
+        >
+        <ion-card-subtitle>Materia: Programación</ion-card-subtitle>
+      </ion-card-content>
+    </ion-card>
+
+    <p>{{mensaje}}</p>
+  </div>
+  <div *ngIf="valueSelected=='2'">
+   
+    <ion-card>
+      <ion-text>Selecciona la materia que decee apoyo académico</ion-text>
+    
+      <ion-item>
+        <ion-select placeholder="Seleccione">
+          <ion-select-option value="analisis matematico"
+            >Análisis Matemático</ion-select-option
+          >
+          <ion-select-option value="fisica">Fisica</ion-select-option>
+          <ion-select-option value="programacion"
+            >Programación</ion-select-option
+          >
+        </ion-select>
+        
+      </ion-item>
+      <ion-button type="submit" color="primary" shape="round" expand="block"
+      >Enviar</ion-button
+    >
+    </ion-card>
+        
+      
+    
+  </div>
+</ion-content>
