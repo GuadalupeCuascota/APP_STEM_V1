@@ -9,10 +9,10 @@ class CarrerasFicaController {
     // res.json(roles);
     await pool.query("SELECT * FROM carreras_fica", (err: any, rows: any) => {
       if (err) {
-        res.json("error al cargar");
+        res.status(404).json("error al cargar");
         console.log(err)
       } else {
-        res.json(rows);
+        res.status(200).json(rows);
         console.log("Datos seleccionados probando1");
       }
     });
@@ -35,9 +35,9 @@ class CarrerasFicaController {
     
     try{
    const nombre_carrera=req.body.nombre_carrera;
-   const  estado_carrera=req.body.estado_carrera
-   const query="INSERT INTO carreras_fica(nombre_carrera, estado_carrera)VALUES (?,?)";
-    await pool.query(query,[nombre_carrera,estado_carrera]);
+  
+   const query="INSERT INTO carreras_fica(nombre_carrera)VALUES (?)";
+    await pool.query(query,[nombre_carrera]);
     res.json({ text: "carrera guardado" });
     }catch(err){
       res.json({ text: "Hubo un error " });
@@ -51,12 +51,13 @@ class CarrerasFicaController {
    {
     try{
       const {id} = req.params;
-      await pool.query(" DELETE FROM rol WHERE id_rol=?", [id]);
-      res.json({message: "el rol fue eliminado"});
+      await pool.query(" DELETE FROM carreras_fica WHERE id_carrera=?", [id]);
+     
+      res.status(201).json({ text: "carrera guardado" });
 
     }catch (err){
-
-      res.json({ text: "Hubo un error " });
+      res.status(404).json({ text: err });
+      
       console.log("No se puede eliminar"+ err)
     }
     
@@ -66,14 +67,14 @@ class CarrerasFicaController {
    // res.json({ text: "eliminando" + req.params.id });
   
   public async update(req: Request, res: Response) {
-    
+    console.log("pasa actualizar")
       const {id} = req.params;
-      const{id_rol,tipo_rol}=req.body
+      const{id_carrera,nombre_carrera}=req.body
      
       
-     if(tipo_rol){
+     if(id_carrera){
        try {
-        const roles= await pool.query(" UPDATE rol set ? WHERE id_rol=?",[req.body,id]);
+        const roles= await pool.query(" UPDATE  carreras_fica set nombre_carrera=? WHERE id_carrera=?",[nombre_carrera,id]);
         res.json({ message: "actualizado"});
        } catch (error) {
         res.json({ text: "Hubo un error " ,error});

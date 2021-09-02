@@ -22,7 +22,10 @@ import cambiarPassRoute from "./routes/cambiarPassRoute";
 import consultaMentoriasMesRoutes from "./routes/consultaMentoriasMesRoutes";
 import restablacerPassRoutes from "./routes/RestablecerPassRoute";
 import  testAptitudRoutes from "./routes/testAptitudRoute";
-
+import  materiasRoutes from "./routes/materiasRoutes";
+import  materiasCarreraRoutes from "./routes/materiaCarreraRoute";
+import materiasEstudianteRoute from "./routes/materiasEstudianteRoute"; 
+import solicitudMentoriaRoute from "./routes/solicitudMentoriaRoute"; 
 
 
 class Server {
@@ -62,6 +65,10 @@ class Server {
     this.app.use("/api/cambiarPass",cambiarPassRoute);
     this.app.use("/api/restablecerPass",restablacerPassRoutes);
     this.app.use("/api/testAptitud",testAptitudRoutes);
+    this.app.use("/api/materias",materiasRoutes);
+    this.app.use("/api/materiasCarrera",materiasCarreraRoutes);
+    this.app.use("/api/materiasEstudiante",materiasEstudianteRoute);
+    this.app.use("/api/solicitudesMentoria",solicitudMentoriaRoute);
   }
   start(): void {
     //método para inicializar el servidor

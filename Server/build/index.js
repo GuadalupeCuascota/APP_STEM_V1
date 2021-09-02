@@ -26,6 +26,10 @@ const cambiarPassRoute_1 = __importDefault(require("./routes/cambiarPassRoute"))
 const consultaMentoriasMesRoutes_1 = __importDefault(require("./routes/consultaMentoriasMesRoutes"));
 const RestablecerPassRoute_1 = __importDefault(require("./routes/RestablecerPassRoute"));
 const testAptitudRoute_1 = __importDefault(require("./routes/testAptitudRoute"));
+const materiasRoutes_1 = __importDefault(require("./routes/materiasRoutes"));
+const materiaCarreraRoute_1 = __importDefault(require("./routes/materiaCarreraRoute"));
+const materiasEstudianteRoute_1 = __importDefault(require("./routes/materiasEstudianteRoute"));
+const solicitudMentoriaRoute_1 = __importDefault(require("./routes/solicitudMentoriaRoute"));
 class Server {
     constructor() {
         //crear el método constructor
@@ -62,6 +66,10 @@ class Server {
         this.app.use("/api/cambiarPass", cambiarPassRoute_1.default);
         this.app.use("/api/restablecerPass", RestablecerPassRoute_1.default);
         this.app.use("/api/testAptitud", testAptitudRoute_1.default);
+        this.app.use("/api/materias", materiasRoutes_1.default);
+        this.app.use("/api/materiasCarrera", materiaCarreraRoute_1.default);
+        this.app.use("/api/materiasEstudiante", materiasEstudianteRoute_1.default);
+        this.app.use("/api/solicitudesMentoria", solicitudMentoriaRoute_1.default);
     }
     start() {
         //método para inicializar el servidor

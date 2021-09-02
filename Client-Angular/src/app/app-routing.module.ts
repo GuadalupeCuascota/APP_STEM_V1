@@ -18,7 +18,10 @@ import { MenuPrincipalMComponent } from './Componets/Mentor/menu-principal-m/men
 import { MentoriasAgendadasComponent } from './Componets/Mentor/mentorias-agendadas/mentorias-agendadas.component';
 import {DashboardComponent} from './Componets/Administrador/dashboard/dashboard.component';
 import {CambioContraseniaComponent} from './Componets/cambio-contrasenia/cambio-contrasenia.component'
-
+import {CarreraComponent} from './Componets/Administrador/carrera/carrera.component'
+import {MateriaListComponent} from './Componets/Administrador/materia-list/materia-list.component';
+import {CrearMateriaComponent} from './Componets/Administrador/crear-materia/crear-materia.component';
+import {CrearUsuarioComponent} from './Componets/Administrador/crear-usuario/crear-usuario.component';
 const routes: Routes = [
   {
     path: '',
@@ -104,6 +107,26 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component:DashboardComponent,
+    
+  },
+  {
+    path: 'carrera',
+    component:CarreraComponent,
+    
+  },
+  {
+    path: 'materia',
+    component:MateriaListComponent,
+    
+  },
+  {
+    path: 'crear-materia',
+    component:CrearMateriaComponent,
+    
+  },
+  {
+    path: 'crear-usuario',
+    component:CrearUsuarioComponent,
     
   },
 

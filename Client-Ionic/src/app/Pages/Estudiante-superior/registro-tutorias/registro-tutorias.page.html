@@ -57,28 +57,74 @@
     <p>{{mensaje}}</p>
   </div>
   <div *ngIf="valueSelected=='2'">
-   
     <ion-card>
-      <ion-text>Selecciona la materia que decee apoyo académico</ion-text>
-    
-      <ion-item>
-        <ion-select placeholder="Seleccione">
-          <ion-select-option value="analisis matematico"
-            >Análisis Matemático</ion-select-option
+      <form
+        id="form"
+        [formGroup]="formSolicitudM"
+        (ngSubmit)="saveSolicitudMentoria()"
+      >
+        <ion-item>
+          <ion-label position="floating">
+            Selecciona la materia que decee apoyo académico:</ion-label
           >
-          <ion-select-option value="fisica">Fisica</ion-select-option>
-          <ion-select-option value="programacion"
-            >Programación</ion-select-option
-          >
-        </ion-select>
-        
-      </ion-item>
-      <ion-button type="submit" color="primary" shape="round" expand="block"
-      >Enviar</ion-button
-    >
+          <ion-select placeholder="Seleccione" formControlName="nombre_materia">
+            <ion-select-option *ngFor="let materia of materiasC"
+              >{{materia.nombre_materia}}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"> Tema de interés:</ion-label>
+          <ion-input
+            formControlName="tema"
+            placeholder="Ingrese tema"
+          ></ion-input>
+        </ion-item>
+
+        <br />
+
+        <ion-button
+          [disabled]="!formSolicitudM.valid"
+          type="submit"
+          color="primary"
+          shape="round"
+          expand="block"
+          >Enviar</ion-button
+        >
+      </form>
     </ion-card>
+<br>
+    <ion-card>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6> MATERIA </ion-col>
+          <ion-col col-6> TEMA </ion-col>
+          <ion-col col-1> ACCIÓN</ion-col>
+
+        </ion-row>
+        <ion-row *ngFor="let SolicitudesEst of solicitudesEst" >
+          <ion-col col-6>{{SolicitudesEst.nombre_materia}} </ion-col>
+          <ion-col col-6>{{SolicitudesEst.tema}} </ion-col>
+          <ion-col col-1> <ion-icon name="trash-sharp"></ion-icon></ion-col>
+
+        </ion-row>
+      </ion-grid>
+      <!-- <ion-item *ngFor="let SolicitudesEst of solicitudesEst">
+        <ion-label>
+          <h2>{{SolicitudesEst.nombre_materia}}</h2>
+          <h2>{{SolicitudesEst.tema}} </h2>
+
+      </ion-label>
         
-      
-    
+         
+        
+        <ion-button
+          fill="outline"
+          slot="end"
+         
+          >Eliminar</ion-button
+        >
+      </ion-item> -->
+    </ion-card>
   </div>
 </ion-content>

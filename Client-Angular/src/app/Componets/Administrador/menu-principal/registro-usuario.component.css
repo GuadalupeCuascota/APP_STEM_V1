@@ -1,25 +1,9 @@
-button{
-    background-color: #cc14c3;
-    width: 100px; height: 100px;
 
-}
-* {
-    /* padding: 0;  */
-    margin: 0;
-  }
-    
-  p {
-    margin-bottom: 20px;
-  }
-  /* .wrapper {
-    width: 80%;
-    margin: auto;
-    overflow:hidden;
-  } */
-  
+
+ 
   header {
-    /* background: rgba(0,0,0,0.9); */
+   
     width: 100%;
     position: fixed;
-    z-index: 20;
+    z-index: 10;
   }

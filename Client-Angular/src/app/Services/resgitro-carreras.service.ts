@@ -1,36 +1,39 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Carrera} from '../Models/carreras';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class ResgitroCarrerasService {
-  API_URI='http://localhost:3000/api';
+ 
   
   
 
   constructor(private http: HttpClient) { }
 
+ 
+  
   getCarreras (){
-    return this.http.get(`${this.API_URI}/carrerasFica`);
+    return this.http.get(`${environment.API_URI}/carrerasFica`);
   
   }
   
   getCarrera (id:String){
-    return this.http.get(`${this.API_URI}/carrerasFica/${id}`);
+    return this.http.get(`${environment.API_URI}/carrerasFica/${id}`);
   
   }
   saveCarrera (carrera:Carrera){
-    return this.http.post(`${this.API_URI}/usuarios`,carrera);
+    return this.http.post(`${environment.API_URI}/carrerasFica`,carrera);
   
   }
   deleteCarrera (id:String){
-    return this.http.delete(`${this.API_URI}/carrerasFica/${id}`);
+    return this.http.delete(`${environment.API_URI}/carrerasFica/${id}`);
   
   }
-updateCarrera (id:String, updateCarrera:Carrera){
-    return this.http.put(`${this.API_URI}/carrerasFica/${id}`,updateCarrera);
+updateCarrera(id:String, updateCarrera:Carrera){
+    return this.http.put(`${environment.API_URI}/carrerasFica/${id}`,updateCarrera);
   
   }
+  
 }

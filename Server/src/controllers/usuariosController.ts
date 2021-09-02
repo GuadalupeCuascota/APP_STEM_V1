@@ -94,7 +94,7 @@ class UsuariosController {
           res.status(201).json({ text: "usuario guardado" });
         }
         if (id_rol == "Editor") {
-          await pool.query(query1, [
+          await pool.query(query, [
             nombre,
             apellido,
             nivel_academico,

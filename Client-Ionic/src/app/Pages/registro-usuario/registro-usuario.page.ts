@@ -1,11 +1,15 @@
 import { Component, OnInit, ContentChild } from '@angular/core';
 import { Usuario } from 'src/app/Models/usuario';
+import { Carreras } from 'src/app/Models/carreras-fica';
 import { UsuarioService } from 'src/app/Services/usuario.service';
+import { RegistroCarrerasService } from 'src/app/Services/registro-carreras.service';
 import { ActivatedRoute } from '@angular/router'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { MensajesService } from 'src/app/Services/mensajes.service';
 import { LoadingService } from 'src/app/Services/loading.service';
+RegistroCarrerasService
+
 
 
 @Component({
@@ -15,23 +19,27 @@ import { LoadingService } from 'src/app/Services/loading.service';
 })
 export class RegistroUsuarioPage implements OnInit {
   usuarios: Usuario[]=[];
+  carreras: Carreras[]=[];
   usuario: Usuario
   formUsuario: FormGroup;
   formnivel: FormGroup;
   estado: boolean;
   showPassword = false;
   passwordIcon = 'eye';
-  carreras= ['Ingeniería en Mecatrónica', 'Ingeniería en Telecomunicaciones','Ingeniería en Software','Ingeniería Industrial','Ingeniería Textil','Ingeniería Automotriz', 'Ingeniería en Electricidad'];
+  isLoaded=false;
+  // carreras= ['Ingeniería en Mecatrónica', 'Ingeniería en Telecomunicaciones','Ingeniería en Software','Ingeniería Industrial','Ingeniería Textil','Ingeniería Automotriz', 'Ingeniería en Electricidad'];
 
   constructor(private usuarioService: UsuarioService,
     private actRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private navController: NavController,
     private mensajeServices: MensajesService,
-    private loadinServices: LoadingService
+    private loadinServices: LoadingService,
+    private  registroCarreraService: RegistroCarrerasService 
   ) { }
 
   ngOnInit() {
+    this.getCarreras();
 //Validators.email
     this.formUsuario = this.formBuilder.group({
       nombre: new FormControl('', Validators.required),
@@ -78,7 +86,25 @@ export class RegistroUsuarioPage implements OnInit {
 
 
   }
+  getCarreras() {
+    var auxper = [];
+    this.registroCarreraService.getCarreras().subscribe(
+      (res) => {
+        console.log("la ress",res)
+        for (let aux of res) {
+          if (aux.id_carrera !=1) {
+            auxper.push(aux);
+          }
+        }
+        this.carreras =auxper;
+        this.isLoaded=true;
 
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
   async saveUsuarios() {
 
     const loading = await this.loadinServices.presentLoading("Cargando...");

@@ -8,6 +8,7 @@ import { Rol } from '../../../Models/rol';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Usuario } from '../../../Models/usuario';
 import{AlertsService} from '../../../Services/alerts/alerts.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario-list',
@@ -34,22 +35,35 @@ export class UsuarioListComponent implements OnInit {
   };
   count=0;
   textoBuscar='';
-  //  form=new FormGroup({
-  //   nombre: new FormControl('', Validators.required),
-    
-
-  //  })
+   
+//////////
+exform:FormGroup
   
+
+
   constructor(
     private registroUsuarioService: RegistroUsuarioService,
     private registroRolService: RegistroRolService,
     private alerts: AlertsService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router
   ) {}
   p: number = 0;
   ngOnInit(): void {
     this.getUsuarios();
     this.ObtenerRoles();
+    /////////////
+    this.exform=new FormGroup({
+      nombre: new FormControl('', Validators.required),
+      apellido: new FormControl('', Validators.required),
+      correo_electronico: new FormControl('', Validators.required),
+      contrasenia: new FormControl('', Validators.required),
+      id_rol:new FormControl('', Validators.required),
+      carrera: new FormControl(),
+
+    })
+
+
   }
   toggleShow(): void {
     this.showPassword = !this.showPassword;
@@ -88,7 +102,10 @@ export class UsuarioListComponent implements OnInit {
   }
   
   ////////////////////////////////////////////////////
-
+  Crear(){
+    console.log("PASAA")
+    this.router.navigate(['/crear-usuario']);
+   }
   getUsuarios() {
     console.log("hol")
     var usuAE = [];
@@ -159,19 +176,27 @@ export class UsuarioListComponent implements OnInit {
 
   saveUsuario() {
     console.log("GUARDAR")
-    console.log("el usuario2",this.usuario);
+    console.log(this.exform.value);
+    this.usuario.nombre=this.exform.controls['nombre'].value;
+    this.usuario.apellido = this.exform.controls['apellido'].value;
+    this.usuario.correo_electronico = this.exform.controls['correo_electronico'].value;
+    this.usuario.contrasenia = this.exform.controls['contrasenia'].value;
+    this.usuario.id_rol = this.exform.controls['id_rol'].value;
+
     this.registroUsuarioService.saveUsuario(this.usuario).subscribe(
       (res) => {
         
        this.getUsuarios();
         console.log(res);
         this.alerts.showSuccess('Successfull Operation', 'Usuario guardado')
+        this.exform.reset();
       },
       (err) => {
         console.error(err)
       this.alerts.showError('Error Operation', 'No se puede guardar')
       }
     );
+    
   }
   deleteUsuario(id_usuario: string) {
     if(confirm('Esta seguro que desea eliminar esto?')){

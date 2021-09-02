@@ -30,6 +30,10 @@ import { MentoriasAgendadasComponent } from './Componets/Mentor/mentorias-agenda
 import { DashboardComponent } from './Componets/Administrador/dashboard/dashboard.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CambioContraseniaComponent } from './Componets/cambio-contrasenia/cambio-contrasenia.component';
+import { CarreraComponent } from './Componets/Administrador/carrera/carrera.component';
+import { MateriaListComponent } from './Componets/Administrador/materia-list/materia-list.component';
+import { CrearMateriaComponent } from './Componets/Administrador/crear-materia/crear-materia.component';
+import { CrearUsuarioComponent } from './Componets/Administrador/crear-usuario/crear-usuario.component';
 
 
  //módulo para el filtrado de información
@@ -55,6 +59,10 @@ import { CambioContraseniaComponent } from './Componets/cambio-contrasenia/cambi
     MentoriasAgendadasComponent,
     DashboardComponent,
     CambioContraseniaComponent,
+    CarreraComponent,
+    MateriaListComponent,
+    CrearMateriaComponent,
+    CrearUsuarioComponent,
    
   
   ],

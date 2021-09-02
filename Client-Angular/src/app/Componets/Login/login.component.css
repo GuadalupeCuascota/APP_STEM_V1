@@ -2,9 +2,11 @@
 
 .login-page {
   padding: 6% 0 0;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.5),rgba(71, 69, 69, 0.5)),url(../../../assets/wstem-utn6.jpg);
-  background-repeat: no-repeat;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.5),rgba(71, 69, 69, 0.5)),url(../../../assets/wstem-utn6.jpg );
+  background-repeat: no-repeat center center fixed;
   min-height: 100vh;
+  background-size:100% 100%;
+
   /* background-attachment: fixed; */
   /* width: 100%; */
 

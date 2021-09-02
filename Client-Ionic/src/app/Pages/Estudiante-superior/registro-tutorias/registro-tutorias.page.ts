@@ -4,11 +4,20 @@ import { RegistroMentorias } from 'src/app/Models/registro-mentorias';
 import { RegistroMentoriasService } from 'src/app/Services/registro-mentorias.service';
 import { UsuarioService } from '../../../Services/usuario.service';
 import * as moment from 'moment';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { AgendarMentoria } from 'src/app/Models/agendarMentoria';
 import { MensajesService } from 'src/app/Services/mensajes.service';
 import { AgendarMentoriaService } from 'src/app/Services/agendar-mentoria.service';
 import { LoadingService } from 'src/app/Services/loading.service';
+import { RegistroCarrerasService } from 'src/app/Services/registro-carreras.service';
+import {
+  FormBuilder,  
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { SolicitudMentoria } from 'src/app/Models/solicitudMentoria';
+import { SolicitudMentoriaService } from 'src/app/Services/solicitud-mentoria.service';
 
 @Component({
   selector: 'app-registro-tutorias',
@@ -16,11 +25,15 @@ import { LoadingService } from 'src/app/Services/loading.service';
   styleUrls: ['./registro-tutorias.page.scss'],
 })
 export class RegistroTutoriasPage implements OnInit {
-  valueSelected:string="1"
+  valueSelected: string = '1';
   registroMentorias: any[] = [];
   registroM: RegistroMentorias;
   usuariosM: any[] = [];
+  materiasC: any[] = [];
+  solicitudesEst: any[] = [];
+  solicitudM: SolicitudMentoria;
   datos: any = {};
+
   localTime = moment().format();
   mensaje = '';
   agendarMentoria: AgendarMentoria = {
@@ -36,6 +49,8 @@ export class RegistroTutoriasPage implements OnInit {
   };
   id_registro_mentoria = 0;
   altert: boolean = false;
+  formSolicitudM: FormGroup;
+  
   constructor(
     private regitroMentoriasService: RegistroMentoriasService,
     private router: Router,
@@ -43,18 +58,29 @@ export class RegistroTutoriasPage implements OnInit {
     public alertController: AlertController,
     private mensajeServices: MensajesService,
     private regitroAgendarMentoriaService: AgendarMentoriaService,
-    private loadinServices: LoadingService
+    private loadinServices: LoadingService,
+    private registroCarrera: RegistroCarrerasService,
+    private formBuilder: FormBuilder,
+    private solicitudMentoriaSerive: SolicitudMentoriaService,
+    private navController: NavController
   ) {}
 
   ngOnInit() {
     this.doRefresh();
     this.getRegistroMentorias();
+    this.getSolicitudesMentoria();
     this.datos = JSON.parse(localStorage.getItem('payload'));
-    console.log('el dato', this.datos);
+    this.getMateriasCarrera();
+    this.formSolicitudM= this.formBuilder.group({
+      nombre_materia: new FormControl('', Validators.required),
+      tema:new FormControl('', Validators.required),
+       
+    })
+    this.solicitudM= new SolicitudMentoria();
   }
-  segmenntChange(event:any){
-    this.valueSelected=event.detail.value
-  console.log(this.valueSelected)
+  segmenntChange(event: any) {
+    this.valueSelected = event.detail.value;
+    console.log(this.valueSelected);
   }
   doRefresh($event?: any) {
     //envia un evento opcional de tipo any
@@ -71,9 +97,21 @@ export class RegistroTutoriasPage implements OnInit {
       event.target.complete();
       if (this.registroMentorias.length == 9) {
         event.target.disabled = true;
-        console.log('es igual');
+        
       }
     }, 500);
+  }
+
+  getMateriasCarrera() {
+    this.registroCarrera.getMateriaEstudiante(this.datos.carrera).subscribe(
+      (res) => {
+        this.materiasC = res;
+      
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   getRegistroMentorias() {
@@ -88,16 +126,14 @@ export class RegistroTutoriasPage implements OnInit {
             UsuMentoria.push(usu1);
           }
         }
-        console.log('el tamaño', UsuMentoria);
+       
         if (UsuMentoria.length > 0) {
           this.registroMentorias = UsuMentoria;
         } else {
           this.mensaje = 'No existe mentorias disponibles';
           this.altert = true;
-          console.log('alert', this.altert);
         }
 
-        console.log('segundo', (this.registroMentorias = UsuMentoria));
       },
       (err) => {
         console.log(err);
@@ -110,7 +146,7 @@ export class RegistroTutoriasPage implements OnInit {
       cssClass: 'my-custom-class',
       header: 'Mentoria Seleccionada',
 
-      message:'¿Decea confirmar la solicitud?',
+      message: '¿Decea confirmar la solicitud?',
       buttons: [
         {
           text: 'Cancelar',
@@ -180,5 +216,52 @@ export class RegistroTutoriasPage implements OnInit {
         }
       );
     //  this.router.navigate(['/agendar-mentoria/',id]);
+  }
+
+
+
+  async saveSolicitudMentoria() {
+    this.solicitudM.nombre_materia=this.formSolicitudM.controls['nombre_materia'].value,
+   this.solicitudM.nombre_carrera=this.datos.carrera,
+   this.solicitudM.tema=this.formSolicitudM.controls['tema'].value,
+   this.solicitudM.id_usuario=this.datos.id_usuario
+  
+    const loading = await this.loadinServices.presentLoading('Cargando...');
+    await loading.present();
+
+
+    this.solicitudMentoriaSerive
+      .saveSolicitudMentoria(this.solicitudM)
+      .subscribe(
+        (res) => {
+          loading.dismiss();
+          if (res) {
+            this.getSolicitudesMentoria();
+            this.mensajeServices.presentToast('Solicitud enviada');
+            
+            
+          }
+        },
+        () => {
+          loading.dismiss();
+          this.mensajeServices.presentAlert(
+            'Error',
+            'Hubo un problema al guardar'
+          );
+        }
+      );
+  }
+  async getSolicitudesMentoria() {
+    const loading = await this.loadinServices.presentLoading('Cargando...');
+    await loading.present();
+   
+    this.solicitudMentoriaSerive.getSolicitudMentoria(this.datos.id_usuario).subscribe(
+      (res:any) => {
+      this.solicitudesEst=res;
+
+        console.log("res",res)
+      },
+      () => {}
+    );
   }
 }

@@ -91,7 +91,7 @@ class UsuariosController {
                         res.status(201).json({ text: "usuario guardado" });
                     }
                     if (id_rol == "Editor") {
-                        yield database_1.default.query(query1, [
+                        yield database_1.default.query(query, [
                             nombre,
                             apellido,
                             nivel_academico,

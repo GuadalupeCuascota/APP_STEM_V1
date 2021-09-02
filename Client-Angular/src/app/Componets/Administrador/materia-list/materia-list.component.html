@@ -1,0 +1,47 @@
+<app-registro-usuario></app-registro-usuario>
+
+<div class="content">
+
+
+  <div class="col"></div>
+
+  <div class="col">
+    
+      <button class="btn btn-primary" (click)="Crear()">
+        <i class="fas fa-plus-square"></i> Crear materia
+      </button>
+    
+  </div>
+
+  <br />
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr class="table-active">
+          <th scope="col">Carrera</th>
+          <th scope="col">Materia</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let materiaCarrera of materiasCarrera" >
+          <td>{{materiaCarrera.nombre_carrera}}</td>
+          <td>{{materiaCarrera.nombre_materia}}</td>
+
+          <td>
+            <button class="btn btn-primary">
+              <i class="fas fa-edit"></i>
+            </button>
+            |
+            <button class="btn btn-danger">
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+</div>
