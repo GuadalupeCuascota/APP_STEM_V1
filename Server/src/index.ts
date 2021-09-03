@@ -35,7 +35,10 @@ class Server {
     this.app = express(); // inicializamos express
     this.config();
     this.routes();
+   
   }
+
+  
   config(): void {
     //método para establecer el puerto
     this.app.set("port", process.env.PORT || 3000); //asignar el puerto de valor predetermnad o el valor fijo 3000
@@ -69,6 +72,7 @@ class Server {
     this.app.use("/api/materiasCarrera",materiasCarreraRoutes);
     this.app.use("/api/materiasEstudiante",materiasEstudianteRoute);
     this.app.use("/api/solicitudesMentoria",solicitudMentoriaRoute);
+    
   }
   start(): void {
     //método para inicializar el servidor

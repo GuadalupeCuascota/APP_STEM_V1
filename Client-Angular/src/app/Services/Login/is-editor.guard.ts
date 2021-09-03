@@ -15,12 +15,12 @@ export class IsEditorGuard implements CanActivate {
   }
   canActivate():boolean{
     if(this.loginService.IsAdmin()==2){
-      console.log("es editor")
+      console.log("es editor1")
       
       return true
 
     }else{
-     this.router.navigate(['/admin'])
+     this.router.navigate(['/dashboard'])
      return false 
     }
 

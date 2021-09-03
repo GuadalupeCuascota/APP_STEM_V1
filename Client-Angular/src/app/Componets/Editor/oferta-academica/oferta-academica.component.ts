@@ -213,7 +213,7 @@ export class OfertaAcademicaComponent implements OnInit {
     this.registroCarreras.getCarreras().subscribe(
       (res: any) => {
         for (let aux of res) {
-          if (aux.nombre_carrera != "sin asignar") {
+          if (aux.id_carrera != 1) {
             auxper.push(aux);
             console.log(auxper)
 

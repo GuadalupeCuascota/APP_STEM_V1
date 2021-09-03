@@ -9,10 +9,10 @@ class RolesController {
     // res.json(roles);
     await pool.query("SELECT * FROM rol", (err: any, rows: any) => {
       if (err) {
-        res.json("error al cargar");
+        res.status(404).json("error al cargar");
         console.log(err)
       } else {
-        res.json(rows);
+        res.status(200).json(rows);
         console.log("Datos seleccionados probando1");
       }
     });
@@ -37,9 +37,9 @@ class RolesController {
    const tipo_rol=req.body.tipo_rol;
    const query="INSERT INTO rol(tipo_rol)VALUES (?)";
     await pool.query(query,[tipo_rol]);
-    res.json({ text: "rol guardado" });
+    res.status(201).json({ text: "Guardado" });
     }catch(err){
-      res.json({ text: "Hubo un error " });
+      res.status(400).json({ text: "Hubo un error " });
       console.log("hubo un errro"+ err)
     }
   }
@@ -51,12 +51,12 @@ class RolesController {
     try{
       const {id} = req.params;
       await pool.query(" DELETE FROM rol WHERE id_rol=?", [id]);
-      res.json({message: "el rol fue eliminado"});
+      res.status(204).json({ message: "el dato fue eliminado" });
 
     }catch (err){
 
-      res.json({ text: "Hubo un error " });
-      console.log("No se puede eliminar"+ err)
+     
+      res.status(404).json({ text: "Hubo un error " });
     }
     
     

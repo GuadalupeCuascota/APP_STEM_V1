@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate,  RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginService } from './login.service';
 
@@ -19,7 +19,7 @@ export class IsMentorGuard implements CanActivate {
       return true
 
     }else{
-     this.router.navigate(['/admin'])
+     this.router.navigate(['/dashboard'])
      return false 
     }
 

@@ -6,6 +6,7 @@ import{AlertsService} from '../../../Services/alerts/alerts.service';
 
 //importar las rutas
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class RolesListComponent implements OnInit {
     id_rol: 0,
     tipo_rol: '',
   };
+  rolform:FormGroup
   edit: boolean=false;
   constructor( 
     private registroRolService: RegistroRolService,
@@ -30,7 +32,10 @@ export class RolesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRoles();
-   
+    this.rolform=new FormGroup({
+      tipo_rol: new FormControl('', Validators.required),
+      
+    })
   }
 
   getRoles() {
@@ -46,6 +51,7 @@ export class RolesListComponent implements OnInit {
 
   saveRol() {
     delete this.rol.id_rol;
+    this.rol.tipo_rol=this.rolform.controls['tipo_rol'].value;
     this.registroRolService.saveRol(this.rol).subscribe(
       (res) => {
         console.log(res);
@@ -63,7 +69,10 @@ export class RolesListComponent implements OnInit {
         this.getRoles();
         this.alerts.showSuccess('Rol eliminado','Operación exitosa', );
       },
-      (err) => console.log(err)
+      (err) => {
+        console.error(err)
+      this.alerts.showError('Error Operation', 'No se puede eliminar')
+      }
     );
     }
   }

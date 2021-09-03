@@ -34,6 +34,7 @@ import { CarreraComponent } from './Componets/Administrador/carrera/carrera.comp
 import { MateriaListComponent } from './Componets/Administrador/materia-list/materia-list.component';
 import { CrearMateriaComponent } from './Componets/Administrador/crear-materia/crear-materia.component';
 import { CrearUsuarioComponent } from './Componets/Administrador/crear-usuario/crear-usuario.component';
+import { FooterComponent } from './Componets/footer/footer.component';
 
 
  //módulo para el filtrado de información
@@ -63,6 +64,7 @@ import { CrearUsuarioComponent } from './Componets/Administrador/crear-usuario/c
     MateriaListComponent,
     CrearMateriaComponent,
     CrearUsuarioComponent,
+    FooterComponent,
    
   
   ],

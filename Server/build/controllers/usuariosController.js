@@ -21,7 +21,7 @@ class UsuariosController {
     // }
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query("SELECT u.id_usuario, u.nombre, u.apellido,u.nivel_academico,u.carrera,u.unidad_educativa,u.correo_electronico,u.contrasenia, r.tipo_rol from usuario u, rol r WHERE r.id_rol=u.id_rol", (err, rows) => {
+            yield database_1.default.query("SELECT u.id_usuario, u.nombre, u.apellido,u.nivel_academico,u.carrera,u.unidad_educativa,u.correo_electronico,u.contrasenia, r.tipo_rol from usuario u, rol r where u.id_rol=r.id_rol ORDER BY fecha_registro DESC ", (err, rows) => {
                 if (err) {
                     res.status(404).json("error al cargar");
                     console.log(err);

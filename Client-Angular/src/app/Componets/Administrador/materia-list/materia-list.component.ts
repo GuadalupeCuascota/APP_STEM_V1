@@ -10,7 +10,7 @@ import { RegistroMateriasCarreraService } from '../../../Services/registro-mater
 export class MateriaListComponent implements OnInit {
   materiasCarrera: any [] = [];
   constructor(private router: Router, private registroCarrerasMateria:RegistroMateriasCarreraService ) { }
-
+  p: number = 0;
   ngOnInit(): void {
     this.getMateriasCarrera()
   }

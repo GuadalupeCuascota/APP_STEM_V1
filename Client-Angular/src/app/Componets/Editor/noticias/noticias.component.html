@@ -1,6 +1,64 @@
-<app-menu-publicacion></app-menu-publicacion>
-<br />
-<ng-template #contenido let-modal>
+<app-menu-principal-editor></app-menu-principal-editor>
+<div class="contenido">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h5 class="text-center" style="color: #161515">Listado de Noticias en STEM</h5>
+        <button type="reset" class="btn btn-primary" (click)="open(contenido);clear()">
+      
+          CREAR NOTICIAS <i class="fas fa-plus-square"></i>
+        </button>
+      
+        <br>
+        <br>
+        <div class="table-responsive"> 
+          <table class="table align-middle">
+            <thead>
+              <tr class="table-active">
+                <th scope="col" >Titulo</th>
+                
+                <th scope="col">Descripción</th>
+                <th scope="col">Imagen</th>
+                
+                <th scope="col" >Acciones</th>
+              </tr>
+            </thead>
+      
+            <tbody>
+              <tr  *ngFor="
+              let noticia of noticias | paginate: { itemsPerPage: 3, currentPage: p }">
+                <td>{{ noticia.titulo }}</td>
+                
+                <td>{{ noticia.descripcion}}</td>
+              
+                <td>
+                  <img *ngIf="noticia.tipo_archivo == 'image/png' || noticia.tipo_archivo=='image/jpeg'  || noticia.tipo_archivo=='image/jpg'" width="100px" heigh="100px"width="100px" heigh="100px"
+                    [src]="'http://localhost:3000/' + noticia.ruta_archivo" alt="no-image" width="100px" heigh="100px"/>
+                  <video *ngIf="noticia.tipo_archivo == 'video/mp4' || noticia.tipo_archivo=='video/mov'"  width="100px" heigh="100px"
+                    [src]="'http://localhost:3000/' + noticia.ruta_archivo" class="img-fluid" alt="no-image"></video>
+                </td>
+                <!-- <td><img [src]="'http://localhost:3000/'+ perfil.ruta_archivo" class="img-card-top w-100"  alt="no-image"></td> -->
+                <td>
+                  <button class="btn btn-primary"  (click)="getpublicacion(noticia.id_publicacion); open(contenido)" >
+                    <i class="fas fa-edit"></i>
+                  </button> | 
+                  <button class="btn btn-danger"  (click)="deletePublicacion(noticia.id_publicacion )">
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+     
+    </div>
+  </div>
+   
+</div>
+
+  <ng-template #contenido let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">
        Noticias, iniciativas y eventos STEM
@@ -81,69 +139,15 @@
       </button>
     </div>
   </ng-template>
-  <br />
-  <div class="content">
-    <div class="row">
-      <div class="col-sm-12">
-        <h5 class="text-center" style="color: #161515">Listado de Noticias en STEM</h5>
-        <button type="reset" class="btn btn-primary" (click)="open(contenido);clear()">
-      
-          CREAR NOTICIAS <i class="fas fa-plus-square"></i>
-        </button>
-      
-        <br>
-        <br>
-        <div class="table-responsive"> 
-          <table class="table table-striped">
-            <thead>
-              <tr class="table-active">
-                <th scope="col" >Titulo</th>
-                
-                <th scope="col">Descripción</th>
-                <th scope="col">Imagen</th>
-                
-                <th scope="col" >Acciones</th>
-              </tr>
-            </thead>
-      
-            <tbody>
-              <tr  *ngFor="
-              let noticia of noticias | paginate: { itemsPerPage: 3, currentPage: p }">
-                <td>{{ noticia.titulo }}</td>
-                
-                <td>{{ noticia.descripcion}}</td>
-              
-                <td>
-                  <img *ngIf="noticia.tipo_archivo == 'image/png' || noticia.tipo_archivo=='image/jpeg'  || noticia.tipo_archivo=='image/jpg'" width="100px" heigh="100px"width="100px" heigh="100px"
-                    [src]="'http://localhost:3000/' + noticia.ruta_archivo" alt="no-image" width="100px" heigh="100px"/>
-                  <video *ngIf="noticia.tipo_archivo == 'video/mp4' || noticia.tipo_archivo=='video/mov'"  width="100px" heigh="100px"
-                    [src]="'http://localhost:3000/' + noticia.ruta_archivo" class="img-fluid" alt="no-image"></video>
-                </td>
-                <!-- <td><img [src]="'http://localhost:3000/'+ perfil.ruta_archivo" class="img-card-top w-100"  alt="no-image"></td> -->
-                <td>
-                  <button class="btn btn-primary"  (click)="getpublicacion(noticia.id_publicacion); open(contenido)" >
-                    <i class="fas fa-edit"></i>
-                  </button> | 
-                  <button class="btn btn-danger"  (click)="deletePublicacion(noticia.id_publicacion )">
-                    <i class="far fa-trash-alt"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <pagination-controls (pageChange)="p = $event"></pagination-controls>
-        </div>
-      </div>
-      <div class="col-md-8 offset-md-3">
-    
-        
-      
-        <!-- <video src="../../../../assets/Pregunta a.mp4" width="300" controls> -->
-        <!-- </video> -->
-      
-      </div>
-    </div>
-  </div>
- 
 
-  
+<br>
+<br>
+
+  <!-- <footer style="padding-top: 0.5%;" class="bg-light text-center text-lg-start">
+ 
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2021 Copyright: W-STEM UTN
+      
+    </div>
+   
+  </footer> -->

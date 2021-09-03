@@ -13,6 +13,7 @@ import {OfertaAcademicaComponent } from './Componets/Editor/oferta-academica/ofe
 import { LoginGuard } from './Services/Login/login.guard';
 import {RolesGuard} from './Services/Login/roles.guard';
 import {IsEditorGuard} from './Services/Login/is-editor.guard'
+import {IsMentorGuard} from './Services/Login/is-mentor.guard'
 import { RegistroEditorComponent } from './Componets/Administrador/registro-editor/registro-editor.component';
 import { MenuPrincipalMComponent } from './Componets/Mentor/menu-principal-m/menu-principal-m.component';
 import { MentoriasAgendadasComponent } from './Componets/Mentor/mentorias-agendadas/mentorias-agendadas.component';
@@ -22,6 +23,8 @@ import {CarreraComponent} from './Componets/Administrador/carrera/carrera.compon
 import {MateriaListComponent} from './Componets/Administrador/materia-list/materia-list.component';
 import {CrearMateriaComponent} from './Componets/Administrador/crear-materia/crear-materia.component';
 import {CrearUsuarioComponent} from './Componets/Administrador/crear-usuario/crear-usuario.component';
+
+
 const routes: Routes = [
   {
     path: '',
@@ -84,6 +87,12 @@ const routes: Routes = [
     component: MenuPublicacionComponent,
     canActivate: [LoginGuard,IsEditorGuard],
   },
+  // {
+  //   path: 'editor',
+  //   component: MenuPublicacionComponent,
+  //   canActivate: [LoginGuard,IsEditorGuard],
+  // },
+
   {
     path: 'registro-editor',
     component: RegistroEditorComponent,
@@ -92,42 +101,43 @@ const routes: Routes = [
   {
     path: 'mentor',
     component: MenuPrincipalMComponent,
-    
+    canActivate: [LoginGuard,IsMentorGuard]
   },
   {
     path: 'registro-mentorias',
     component: RegistroMentoriasComponent,
-    
+    canActivate: [LoginGuard,IsMentorGuard]
   },
   {
     path: 'mentorias-agendadas',
     component: MentoriasAgendadasComponent,
-    
+    canActivate: [LoginGuard,IsMentorGuard]
   },
   {
     path: 'dashboard',
     component:DashboardComponent,
+    canActivate: [LoginGuard,RolesGuard],
     
   },
   {
     path: 'carrera',
     component:CarreraComponent,
-    
+    canActivate: [LoginGuard,RolesGuard],
   },
   {
     path: 'materia',
     component:MateriaListComponent,
-    
+    canActivate: [LoginGuard,RolesGuard],
   },
   {
     path: 'crear-materia',
     component:CrearMateriaComponent,
-    
+    canActivate: [LoginGuard,RolesGuard],
   },
   {
     path: 'crear-usuario',
     component:CrearUsuarioComponent,
-    
+    canActivate: [LoginGuard,RolesGuard],
   },
 
 ];

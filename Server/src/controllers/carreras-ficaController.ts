@@ -7,7 +7,7 @@ class CarrerasFicaController {
   public async list(req: Request, res: Response) {
     // const roles = await pool.query("SELECT * FROM rol");
     // res.json(roles);
-    await pool.query("SELECT * FROM carreras_fica", (err: any, rows: any) => {
+    await pool.query("SELECT * FROM carreras_fica ORDER BY id_carrera DESC", (err: any, rows: any) => {
       if (err) {
         res.status(404).json("error al cargar");
         console.log(err)

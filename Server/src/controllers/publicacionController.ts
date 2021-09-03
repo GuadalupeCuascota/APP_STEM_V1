@@ -16,8 +16,9 @@ class ArchivosController {
   //     }
   //   });
   // }
+  
   public async listP(req: Request, res: Response){
-    await pool.query("SELECT u.id_publicacion, u.titulo, u.nombre_perfil, u.fecha_publicacion,u.descripcion,u.enlace,u.profesion,u.estado_profesion,u.ruta_archivo,u.tipo_archivo,u.id_tipo_publicacion,u.id_usuario, u.id_estado_publicacion, r.nombre_carrera from publicacion u, carreras_fica r WHERE r.id_carrera=u.id_carrera", (err: any, rows: any) => {
+    await pool.query("SELECT u.id_publicacion, u.titulo, u.nombre_perfil, u.fecha_publicacion,u.descripcion,u.enlace,u.profesion,u.estado_profesion,u.ruta_archivo,u.tipo_archivo,u.id_tipo_publicacion,u.id_usuario, u.id_estado_publicacion, r.nombre_carrera from publicacion u, carreras_fica r WHERE r.id_carrera=u.id_carrera ORDER BY fecha_publicacion DESC", (err: any, rows: any) => {
       if (err) {
         res.status(404).json("error al cargar");
         console.log(err)
@@ -72,7 +73,10 @@ class ArchivosController {
         id_carrera
         
       } = req.body;
+
+    
       console.log("el archivo",req.file);
+
       console.log("titulo:" + req.body.titulo);
       console.log("descripcion", req.body.descripcion);
       console.log("enlace", req.body.enlace);

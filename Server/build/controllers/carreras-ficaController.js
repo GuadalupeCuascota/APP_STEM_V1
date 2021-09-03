@@ -19,7 +19,7 @@ class CarrerasFicaController {
         return __awaiter(this, void 0, void 0, function* () {
             // const roles = await pool.query("SELECT * FROM rol");
             // res.json(roles);
-            yield database_1.default.query("SELECT * FROM carreras_fica", (err, rows) => {
+            yield database_1.default.query("SELECT * FROM carreras_fica ORDER BY id_carrera DESC", (err, rows) => {
                 if (err) {
                     res.status(404).json("error al cargar");
                     console.log(err);

@@ -10,7 +10,7 @@ class UsuariosController {
   public async list(req: Request, res: Response) {
  
     await pool.query(
-      "SELECT u.id_usuario, u.nombre, u.apellido,u.nivel_academico,u.carrera,u.unidad_educativa,u.correo_electronico,u.contrasenia, r.tipo_rol from usuario u, rol r WHERE r.id_rol=u.id_rol",
+      "SELECT u.id_usuario, u.nombre, u.apellido,u.nivel_academico,u.carrera,u.unidad_educativa,u.correo_electronico,u.contrasenia, r.tipo_rol from usuario u, rol r where u.id_rol=r.id_rol ORDER BY fecha_registro DESC ",
       (err: any, rows: any) => {
         if (err) {
           res.status(404).json("error al cargar");

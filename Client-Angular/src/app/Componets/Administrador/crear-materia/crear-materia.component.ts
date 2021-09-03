@@ -10,6 +10,7 @@ import { Materia } from '../../../Models/materias';
 import{AlertsService} from '../../../Services/alerts/alerts.service';
 import { Carrera } from '../../../Models/carreras';
 import { RegistroMateriasCarreraService } from '../../../Services/registro-materias-carrera.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-crear-materia',
   templateUrl: './crear-materia.component.html',
@@ -33,7 +34,8 @@ export class CrearMateriaComponent implements OnInit {
     private alerts: AlertsService,
     private modalService: NgbModal,
     private registroCarreraService:  ResgitroCarrerasService,
-    private registroMateriasCarreraService:RegistroMateriasCarreraService
+    private registroMateriasCarreraService:RegistroMateriasCarreraService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -108,6 +110,7 @@ export class CrearMateriaComponent implements OnInit {
        this.getMaterias();
         console.log(res);
         this.alerts.showSuccess('Successfull Operation', 'Guardado')
+        
         this.materiaform.reset();
       },
       (err) => {
@@ -203,7 +206,9 @@ export class CrearMateriaComponent implements OnInit {
       //  this.getMaterias();
         console.log(res);
         this.alerts.showSuccess('Successfull Operation', 'Guardado')
-        this.materiaCarreraform.reset();
+       
+        this.router.navigate(['/materia']);
+
       },
       (err) => {
         console.error(err)
