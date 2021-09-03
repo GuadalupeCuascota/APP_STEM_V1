@@ -34,8 +34,8 @@
 
         <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
           <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
-            <i class="fas fa-users-cog fa-1.5x"></i>
-            {{datos.nombre}} {{datos.apellido}}
+           
+            Mentora: {{datos.nombre}} {{datos.apellido}}  <i class="fas fa-users-cog fa-1.5x"></i>
           </a>
           <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
             <a ngbDropdownItem routerLink="/cambiarContraseña" (click)="$event.preventDefault()"><i
