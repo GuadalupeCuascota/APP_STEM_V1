@@ -1,7 +1,7 @@
 <app-menu-principal-m></app-menu-principal-m>
 <div class="content">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-9 offset-md-2">
       <div class="list-group-item">
         <h5 class="text-center" style="color: #161515">
           Registro de Mentorías
@@ -9,14 +9,14 @@
 
         <div class="form-group row">
           <div class="col">
-            <label style="color: #161515" style="font-weight: bold"
+            <label style="color: #161515" 
               >Fecha:</label
             >
             <input
               type="date"
               class="form-control"
               name=""
-              placeholder="Ingrese apellido"
+            
               [(ngModel)]="mentoria.fecha"
             />
           </div>
@@ -30,7 +30,7 @@
           </div> -->
 
           <div class="col">
-            <label style="font-weight: bold">Hora inicio:</label>
+            <label style="color: #161515">Hora inicio:</label>
             <select class="form-control" [(ngModel)]="mentoria.hora_inicio">
               <option *ngFor="let n of horas">{{ n }}</option>
             </select>
@@ -39,7 +39,7 @@
           </div>
 
           <div class="col">
-            <label style="font-weight: bold">Hora Fin:</label>
+            <label style="color: #161515">Hora Fin:</label>
             <select class="form-control" [(ngModel)]="mentoria.hora_fin">
               <option *ngFor="let n of horas">{{ n }}</option>
             </select>
@@ -167,11 +167,11 @@
     </button>
   </div>
 </ng-template>
-<footer class="bg-light text-center text-lg-start">
-  <!-- Copyright -->
+<!-- <footer class="bg-light text-center text-lg-start">
+
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2021 Copyright: W-STEM UTN
     
   </div>
-  <!-- Copyright -->
-</footer>
+
+</footer> -->

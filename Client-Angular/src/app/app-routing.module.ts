@@ -23,6 +23,8 @@ import {CarreraComponent} from './Componets/Administrador/carrera/carrera.compon
 import {MateriaListComponent} from './Componets/Administrador/materia-list/materia-list.component';
 import {CrearMateriaComponent} from './Componets/Administrador/crear-materia/crear-materia.component';
 import {CrearUsuarioComponent} from './Componets/Administrador/crear-usuario/crear-usuario.component';
+import { BienvenidaComponent} from './Componets/Mentor/bienvenida/bienvenida.component';
+
 
 
 const routes: Routes = [
@@ -99,10 +101,16 @@ const routes: Routes = [
     
   },
   {
-    path: 'mentor',
+    path: 'mentorMenu',
     component: MenuPrincipalMComponent,
     canActivate: [LoginGuard,IsMentorGuard]
   },
+  {
+    path: 'mentor',
+    component: BienvenidaComponent,
+    canActivate: [LoginGuard,IsMentorGuard]
+  },
+
   {
     path: 'registro-mentorias',
     component: RegistroMentoriasComponent,

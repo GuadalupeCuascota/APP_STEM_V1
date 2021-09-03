@@ -35,6 +35,7 @@ import { MateriaListComponent } from './Componets/Administrador/materia-list/mat
 import { CrearMateriaComponent } from './Componets/Administrador/crear-materia/crear-materia.component';
 import { CrearUsuarioComponent } from './Componets/Administrador/crear-usuario/crear-usuario.component';
 import { FooterComponent } from './Componets/footer/footer.component';
+import { BienvenidaComponent } from './Componets/Mentor/bienvenida/bienvenida.component';
 
 
  //módulo para el filtrado de información
@@ -65,6 +66,7 @@ import { FooterComponent } from './Componets/footer/footer.component';
     CrearMateriaComponent,
     CrearUsuarioComponent,
     FooterComponent,
+    BienvenidaComponent,
    
   
   ],

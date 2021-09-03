@@ -1,10 +1,11 @@
 .content {
-  margin-left: 300px;
+  
+  margin-left: 40px;
   padding-left: 20px;
-  margin-right: 300px;
-  padding-top: 120px;
-}
-
+  margin-right: 40px;
+  padding-top: 115px;
+  }
+    
 .list-group-item {
   background: rgba(255, 255, 255, 0.952);
 }
