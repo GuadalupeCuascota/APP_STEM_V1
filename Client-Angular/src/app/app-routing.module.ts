@@ -24,6 +24,9 @@ import {MateriaListComponent} from './Componets/Administrador/materia-list/mater
 import {CrearMateriaComponent} from './Componets/Administrador/crear-materia/crear-materia.component';
 import {CrearUsuarioComponent} from './Componets/Administrador/crear-usuario/crear-usuario.component';
 import { BienvenidaComponent} from './Componets/Mentor/bienvenida/bienvenida.component';
+import { BienvenidaAdminComponent} from './Componets/Administrador/bienvenida-admin/bienvenida-admin.component';
+
+
 
 
 
@@ -71,6 +74,12 @@ const routes: Routes = [
   {
     path: 'admin',
     component: RegistroUsuarioComponent,
+    canActivate: [LoginGuard,RolesGuard],
+    
+  },
+  {
+    path: 'administrador',
+    component: BienvenidaAdminComponent,
     canActivate: [LoginGuard,RolesGuard],
     
   },

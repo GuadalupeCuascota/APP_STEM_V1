@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
 
         if (id_rol == 1) {
           console.log('Admin');
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/administrador']);
         }
           if (id_rol == 2) {
             console.log('Editor');

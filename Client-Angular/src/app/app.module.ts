@@ -36,6 +36,7 @@ import { CrearMateriaComponent } from './Componets/Administrador/crear-materia/c
 import { CrearUsuarioComponent } from './Componets/Administrador/crear-usuario/crear-usuario.component';
 import { FooterComponent } from './Componets/footer/footer.component';
 import { BienvenidaComponent } from './Componets/Mentor/bienvenida/bienvenida.component';
+import { BienvenidaAdminComponent } from './Componets/Administrador/bienvenida-admin/bienvenida-admin.component';
 
 
  //módulo para el filtrado de información
@@ -67,6 +68,7 @@ import { BienvenidaComponent } from './Componets/Mentor/bienvenida/bienvenida.co
     CrearUsuarioComponent,
     FooterComponent,
     BienvenidaComponent,
+    BienvenidaAdminComponent,
    
   
   ],

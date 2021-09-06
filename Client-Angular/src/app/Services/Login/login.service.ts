@@ -3,6 +3,7 @@ import{HttpClient} from '@angular/common/http'
 import {Usuario} from '../../Models/usuario'
 import {Router} from '@angular/router'
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { environment } from 'src/environments/environment';
 const helper=new JwtHelperService
 
 @Injectable({
@@ -15,7 +16,7 @@ export class LoginService {
     private router: Router) { }
 
   login (usuario:Usuario){
-    return this.http.post(`${this.API_URI}`,usuario); 
+    return this.http.post(`${environment.API_URI1}`,usuario); 
   }
 
   loggedIn(){ //metodo que devuelve un tipo boleano en caso de existir o no un token almacenado en el localstorage

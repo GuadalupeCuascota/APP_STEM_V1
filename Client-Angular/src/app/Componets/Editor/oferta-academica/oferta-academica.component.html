@@ -1,6 +1,6 @@
 <app-menu-principal-editor></app-menu-principal-editor>
 
-
+<div class="contenido">
 <div class="content">
   <div class="row">
 
@@ -30,43 +30,46 @@
   
         </div>
       </div>
-      <table class="table table-hover">
-        <thead>
-          <tr class="table-active">
-            <th scope="col">Titulo</th>
-            <th scope="col">Descripción</th>
-  
-  
-            <th scope="col">Imagen</th>
-            <th scope="col">Carrera</th>
-  
-            <th scope="col">acciones</th>
-          </tr>
-        </thead>
-  
-        <tbody>
-          <tr *ngFor="
-            let oferta_academica of ofertas_academica | paginate: { itemsPerPage: 3, currentPage: p }">
-            <td>{{oferta_academica.titulo}}</td>
-            <td>{{oferta_academica.descripcion }}</td>
-  
-  
-  
-            <td><img width="100px" heigh="100px" [src]="'http://localhost:3000/'+ oferta_academica.ruta_archivo"
-                alt="no-image"></td>
-                <td>{{oferta_academica.nombre_carrera}}</td>
-  
-            <td>
-              <button class="btn btn-primary" (click)="getpublicacion(oferta_academica.id_publicacion); open(contenido)">
-                <i class="fas fa-edit"></i>
-              </button> |
-              <button class="btn btn-danger" (click)="deletePublicacion(oferta_academica.id_publicacion )">
-                <i class="far fa-trash-alt"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="card">
+        <table class="table table-hover">
+          <thead>
+            <tr class="table-active">
+              <th scope="col">Titulo</th>
+              <th scope="col">Descripción</th>
+    
+    
+              <th scope="col">Imagen</th>
+              <th scope="col">Carrera</th>
+    
+              <th scope="col">acciones</th>
+            </tr>
+          </thead>
+    
+          <tbody>
+            <tr *ngFor="
+              let oferta_academica of ofertas_academica | paginate: { itemsPerPage: 3, currentPage: p }">
+              <td>{{oferta_academica.titulo}}</td>
+              <td>{{oferta_academica.descripcion }}</td>
+    
+    
+    
+              <td><img width="100px" heigh="100px" [src]="'http://localhost:3000/'+ oferta_academica.ruta_archivo"
+                  alt="no-image"></td>
+                  <td>{{oferta_academica.nombre_carrera}}</td>
+    
+              <td>
+                <button class="btn btn-primary" (click)="getpublicacion(oferta_academica.id_publicacion); open(contenido)">
+                  <i class="fas fa-edit"></i>
+                </button> |
+                <button class="btn btn-danger" (click)="deletePublicacion(oferta_academica.id_publicacion )">
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
   
       <!-- [(ngModel)]="textoBuscar" -->
@@ -79,6 +82,8 @@
     </div>
   </div>
 </div>
+</div>
+
 <ng-template #contenido let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">

@@ -11,46 +11,49 @@
       
         <br>
         <br>
-        <div class="table-responsive"> 
-          <table class="table align-middle">
-            <thead>
-              <tr class="table-active">
-                <th scope="col" >Titulo</th>
+        <div class="card">
+          <div class="table-responsive"> 
+            <table class="table align-middle">
+              <thead>
+                <tr class="table-active">
+                  <th scope="col" >Titulo</th>
+                  
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Imagen</th>
+                  
+                  <th scope="col" >Acciones</th>
+                </tr>
+              </thead>
+        
+              <tbody>
+                <tr  *ngFor="
+                let noticia of noticias | paginate: { itemsPerPage: 3, currentPage: p }">
+                  <td>{{ noticia.titulo }}</td>
+                  
+                  <td>{{ noticia.descripcion}}</td>
                 
-                <th scope="col">Descripción</th>
-                <th scope="col">Imagen</th>
-                
-                <th scope="col" >Acciones</th>
-              </tr>
-            </thead>
-      
-            <tbody>
-              <tr  *ngFor="
-              let noticia of noticias | paginate: { itemsPerPage: 3, currentPage: p }">
-                <td>{{ noticia.titulo }}</td>
-                
-                <td>{{ noticia.descripcion}}</td>
-              
-                <td>
-                  <img *ngIf="noticia.tipo_archivo == 'image/png' || noticia.tipo_archivo=='image/jpeg'  || noticia.tipo_archivo=='image/jpg'" width="100px" heigh="100px"width="100px" heigh="100px"
-                    [src]="'http://localhost:3000/' + noticia.ruta_archivo" alt="no-image" width="100px" heigh="100px"/>
-                  <video *ngIf="noticia.tipo_archivo == 'video/mp4' || noticia.tipo_archivo=='video/mov'"  width="100px" heigh="100px"
-                    [src]="'http://localhost:3000/' + noticia.ruta_archivo" class="img-fluid" alt="no-image"></video>
-                </td>
-                <!-- <td><img [src]="'http://localhost:3000/'+ perfil.ruta_archivo" class="img-card-top w-100"  alt="no-image"></td> -->
-                <td>
-                  <button class="btn btn-primary"  (click)="getpublicacion(noticia.id_publicacion); open(contenido)" >
-                    <i class="fas fa-edit"></i>
-                  </button> | 
-                  <button class="btn btn-danger"  (click)="deletePublicacion(noticia.id_publicacion )">
-                    <i class="far fa-trash-alt"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  <td>
+                    <img *ngIf="noticia.tipo_archivo == 'image/png' || noticia.tipo_archivo=='image/jpeg'  || noticia.tipo_archivo=='image/jpg'" width="100px" heigh="100px"width="100px" heigh="100px"
+                      [src]="'http://localhost:3000/' + noticia.ruta_archivo" alt="no-image" width="100px" heigh="100px"/>
+                    <video *ngIf="noticia.tipo_archivo == 'video/mp4' || noticia.tipo_archivo=='video/mov'"  width="100px" heigh="100px"
+                      [src]="'http://localhost:3000/' + noticia.ruta_archivo" class="img-fluid" alt="no-image"></video>
+                  </td>
+                  <!-- <td><img [src]="'http://localhost:3000/'+ perfil.ruta_archivo" class="img-card-top w-100"  alt="no-image"></td> -->
+                  <td>
+                    <button class="btn btn-primary"  (click)="getpublicacion(noticia.id_publicacion); open(contenido)" >
+                      <i class="fas fa-edit"></i>
+                    </button> | 
+                    <button class="btn btn-danger"  (click)="deletePublicacion(noticia.id_publicacion )">
+                      <i class="far fa-trash-alt"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
         </div>
+        
       </div>
      
     </div>

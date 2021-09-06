@@ -20,7 +20,7 @@ export class IsEditorGuard implements CanActivate {
       return true
 
     }else{
-     this.router.navigate(['/dashboard'])
+     this.router.navigate(['/administrador'])
      return false 
     }
 

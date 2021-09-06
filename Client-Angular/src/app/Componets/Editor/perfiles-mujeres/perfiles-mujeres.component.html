@@ -1,83 +1,89 @@
 <app-menu-principal-editor></app-menu-principal-editor>
-<div class="content">
-  <div class="row">
-    <div class="col-md-10 offset-md-1" >
-      <h5 class="text-center" style="color: #161515">
-        Listado de Perfiles de Mujeres en STEM
-      </h5>
-      <div class="form-group row">
-        <div class="col">
-          <button type="reset" class="btn btn-primary" (click)="open(contenido); clear()">
-            CREAR PERFIL <i class="fas fa-plus-square"></i>
-          </button>
-        </div>
-        <div class="col">
-          <div class="col-md-8 offset-md-4">
-            <div class="form-group row">
-              <div class="input-group">
-                <input type="text" class="form-control" name="textoBuscar" placeholder="Buscar perfil" />
-                <div class="input-group-text bg-white">
-                  <i class="fas fa-search"></i>
+<div class="contenido">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-10 offset-md-1" >
+        <h5 class="text-center" style="color: #161515">
+          Listado de Perfiles de Mujeres en STEM
+        </h5>
+        <div class="form-group row">
+          <div class="col">
+            <button type="reset" class="btn btn-primary" (click)="open(contenido); clear()">
+              CREAR PERFIL <i class="fas fa-plus-square"></i>
+            </button>
+          </div>
+          <div class="col">
+            <div class="col-md-8 offset-md-4">
+              <div class="form-group row">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="textoBuscar" placeholder="Buscar perfil" />
+                  <div class="input-group-text bg-white">
+                    <i class="fas fa-search"></i>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- [(ngModel)]="textoBuscar" -->
-      <div class="table-responsive">
-        <table class="table align-middle">
-          <thead>
-            <tr class="table-active">
-              <th scope="col">Nombre</th>
-              <th scope="col">Profesión</th>
   
-              <th scope="col">Descripción</th>
-              <th scope="col">Imagen</th>
-  
-              <th scope="col">acciones</th>
-            </tr>
-          </thead>
-  
-          <tbody>
-            <tr *ngFor="
-                let perfil of perfiles
-                  | paginate: { itemsPerPage: 3, currentPage: p }
-              ">
-              <td>{{ perfil.nombre_perfil }}</td>
-              <td>{{ perfil.profesion }}</td>
-  
-              <td>{{ perfil.descripcion }}</td>
-  
-              <td>
-                <img *ngIf="perfil.tipo_archivo == 'image/png' || perfil.tipo_archivo=='image/jpeg'" width="100px" heigh="100px"
-                  [src]="'http://localhost:3000/' + perfil.ruta_archivo" alt="no-image" />
-                <video *ngIf="perfil.tipo_archivo == 'video/mp4' || tipo_archivo=='video/mov'" width="100px" heigh="100px"
-                  [src]="'http://localhost:3000/' + perfil.ruta_archivo" class="img-fluid" alt="no-image"></video>
-              </td>
-  
-              <td>
-                <button class="btn btn-primary" (click)="getpublicacion(perfil.id_publicacion); open(contenido)">
-                  <i class="fas fa-edit"></i>
-                </button>
-                |
-                <button class="btn btn-danger" (click)="deletePublicacion(perfil.id_publicacion)">
-                  <i class="far fa-trash-alt"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <!-- [(ngModel)]="textoBuscar" -->
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead>
+                <tr class="table-active">
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Profesión</th>
       
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
-
-      <!-- <video src="../../../../assets/Pregunta a.mp4" width="300" controls> -->
-      <!-- </video> -->
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Imagen</th>
+      
+                  <th scope="col">acciones</th>
+                </tr>
+              </thead>
+      
+              <tbody>
+                <tr *ngFor="
+                    let perfil of perfiles
+                      | paginate: { itemsPerPage: 3, currentPage: p }
+                  ">
+                  <td>{{ perfil.nombre_perfil }}</td>
+                  <td>{{ perfil.profesion }}</td>
+      
+                  <td>{{ perfil.descripcion }}</td>
+      
+                  <td>
+                    <img *ngIf="perfil.tipo_archivo == 'image/png' || perfil.tipo_archivo=='image/jpeg'" width="100px" heigh="100px"
+                      [src]="'http://localhost:3000/' + perfil.ruta_archivo" alt="no-image" />
+                    <video *ngIf="perfil.tipo_archivo == 'video/mp4' || tipo_archivo=='video/mov'" width="100px" heigh="100px"
+                      [src]="'http://localhost:3000/' + perfil.ruta_archivo" class="img-fluid" alt="no-image"></video>
+                  </td>
+      
+                  <td>
+                    <button class="btn btn-primary" (click)="getpublicacion(perfil.id_publicacion); open(contenido)">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    |
+                    <button class="btn btn-danger" (click)="deletePublicacion(perfil.id_publicacion)">
+                      <i class="far fa-trash-alt"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+     
+        
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  
+        <!-- <video src="../../../../assets/Pregunta a.mp4" width="300" controls> -->
+        <!-- </video> -->
+      </div>
     </div>
   </div>
 </div>
+
 
 <ng-template #contenido let-modal>
   <div class="modal-header">
