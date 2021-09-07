@@ -1,21 +1,8 @@
 import { Request, Response } from "express";
 import pool from "../database";
-import path from "path";
-import fs from "fs-extra";
 
 class ArchivosController {
-  // public async list(req: Request, res: Response){
-    
-  //   await pool.query("SELECT *FROM  publicacion ", (err: any, rows: any) => {
-  //     if (err) {
-  //       res.status(404).json("error al cargar");
-  //       console.log(err)
-  //     } else {
-  //       res.status(200).json(rows);
-  //       console.log("Datos de publicaciones seleccionados");
-  //     }
-  //   });
-  // }
+ 
   
   public async listP(req: Request, res: Response){
     await pool.query("SELECT u.id_publicacion, u.titulo, u.nombre_perfil, u.fecha_publicacion,u.descripcion,u.enlace,u.profesion,u.estado_profesion,u.ruta_archivo,u.tipo_archivo,u.id_tipo_publicacion,u.id_usuario, u.id_estado_publicacion, r.nombre_carrera from publicacion u, carreras_fica r WHERE r.id_carrera=u.id_carrera ORDER BY fecha_publicacion DESC", (err: any, rows: any) => {
@@ -58,7 +45,14 @@ class ArchivosController {
 
   
   public async create(req: Request, res: Response) {
-    console.log("CREAR");
+    const cloudinary=require('cloudinary');
+    cloudinary.config({ //conexion a cloudinary
+    cloud_name:'dlmebnxnv',
+    api_key:'941161988641637',
+    api_secret:'goFBkSN4gSR10QPWAhS4e18-O5U'
+    })
+    const fs=require('fs-extra')  
+    
     try {
       const {
         titulo,
@@ -77,26 +71,18 @@ class ArchivosController {
     
       console.log("el archivo",req.file);
 
-      console.log("titulo:" + req.body.titulo);
-      console.log("descripcion", req.body.descripcion);
-      console.log("enlace", req.body.enlace);
-      console.log("profeion", req.body.profesion);
-      console.log("estado profesion", req.body.estado_profesion);
-      console.log("id_tipo_publicacion:" + req.body.id_tipo_publicacion);
-      console.log("usuario:" + req.body.id_usuario);
-      console.log("id_estado_publicación:" + req.body.id_estado_publicacion);
-      console.log("id_carrera",req.body.id_carrera);
-      console.log("nombre_perfil",req.body.nombre_perfil);
-      
+
+      const result=await cloudinary.v2.uploader.upload(req.file.path)
+      console.log("RESULT ",result)
       const query =
-        "INSERT INTO publicacion (titulo,nombre_perfil,descripcion,enlace,profesion,estado_profesion,ruta_archivo,tipo_archivo,id_tipo_publicacion,id_usuario,id_estado_publicacion,id_carrera) VALUES (?,?,?,?,?,?,?,?,?,?,?,(select id_carrera from carreras_fica where nombre_carrera=?))";
+        "INSERT INTO publicacion (titulo,nombre_perfil,descripcion,enlace,profesion,estado_profesion,ruta_archivo,public_id_archivo,tipo_archivo,id_tipo_publicacion,id_usuario,id_estado_publicacion,id_carrera) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,(select id_carrera from carreras_fica where nombre_carrera=?))";
         
 
       if (req.file){ 
-        console.log("pasa1");
-        const ruta_archivo = req.file.path;
+        const ruta_archivo = result.url;
+        const public_id=result.public_id
         const tipo_archivo=req.file.mimetype
-        console.log(req.file.path);
+        console.log(ruta_archivo);
         console.log(req.file.mimetype)
         await pool.query(query, [
           titulo,
@@ -106,12 +92,14 @@ class ArchivosController {
           profesion,
           estado_profesion,
           ruta_archivo,
+          public_id,
           tipo_archivo,
           id_tipo_publicacion,
           id_usuario,
           id_estado_publicacion,
           id_carrera
         ]);
+        await fs.unlink(req.file.path) //eliminar de archivo de la ruta local
         res.status(201).json({ text: "Archivo guardado" });
       } else {
         const query1 =
@@ -137,34 +125,32 @@ class ArchivosController {
       res.status(404).json({ text: "error no se puede guardar" });
     }
   }
-
   public async delete(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
+    const cloudinary=require('cloudinary');
+    cloudinary.config({ //conexion a cloudinary
+    cloud_name:'dlmebnxnv',
+    api_key:'941161988641637',
+    api_secret:'goFBkSN4gSR10QPWAhS4e18-O5U'
+    })
     const publicacion = await pool.query(
       "SELECT * FROM publicacion WHERE id_publicacion=?",
       [id]
     );
-
-    if (publicacion.length > 0) {
+    console.log("publicacion a eliminas", publicacion)
+    if (publicacion.length > 0) { 
       console.log("pasa");
       const archivo = await pool.query(
         " DELETE FROM publicacion WHERE id_publicacion=?",
         [id]
       );
-      if (publicacion[0].ruta_archivo != null) {
-        console.log("si hay ruta");
-        if (!path.resolve(publicacion[0].ruta_archivo)) {
-          console.log("segundo pasa");
-          await fs.unlink(path.resolve(publicacion[0].ruta_archivo));
-        } else {
-          return res.json({ message: "No existe archivo en el servidor" });
-        }
-      }
-
-      return res.status(204).json({ message: "el archivo fue eliminado" });
+     
+    await cloudinary.v2.uploader.destroy(publicacion[0].public_id_archivo)
+    return res.status(204).json({ message: "el archivo fue eliminado" });
     }
     return res.status(404).json({ text: "el archivo no existe" });
   }
+
 
   
 

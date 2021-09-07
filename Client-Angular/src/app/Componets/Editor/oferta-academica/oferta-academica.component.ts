@@ -158,7 +158,7 @@ export class OfertaAcademicaComponent implements OnInit {
         (res) => {
           console.log(res);
           this.oferta_academica = res;
-          this.API_URI = 'http://localhost:3000/' + this.oferta_academica.ruta_archivo;
+          this.API_URI = this.oferta_academica.ruta_archivo;
           this.edit = true;
         },
         (err) => console.error(err)

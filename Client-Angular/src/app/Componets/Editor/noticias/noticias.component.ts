@@ -170,7 +170,7 @@ export class NoticiasComponent implements OnInit {
         res => {
           console.log(res);
           this.noticia=res;
-          this.API_URI='http://localhost:3000/'+this.noticia.ruta_archivo;
+          this.API_URI=this.noticia.ruta_archivo;
           this.edit=true 
          
           

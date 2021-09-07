@@ -14,20 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.archivosController = void 0;
 const database_1 = __importDefault(require("../database"));
-const path_1 = __importDefault(require("path"));
-const fs_extra_1 = __importDefault(require("fs-extra"));
 class ArchivosController {
-    // public async list(req: Request, res: Response){
-    //   await pool.query("SELECT *FROM  publicacion ", (err: any, rows: any) => {
-    //     if (err) {
-    //       res.status(404).json("error al cargar");
-    //       console.log(err)
-    //     } else {
-    //       res.status(200).json(rows);
-    //       console.log("Datos de publicaciones seleccionados");
-    //     }
-    //   });
-    // }
     listP(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query("SELECT u.id_publicacion, u.titulo, u.nombre_perfil, u.fecha_publicacion,u.descripcion,u.enlace,u.profesion,u.estado_profesion,u.ruta_archivo,u.tipo_archivo,u.id_tipo_publicacion,u.id_usuario, u.id_estado_publicacion, r.nombre_carrera from publicacion u, carreras_fica r WHERE r.id_carrera=u.id_carrera ORDER BY fecha_publicacion DESC", (err, rows) => {
@@ -65,26 +52,24 @@ class ArchivosController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("CREAR");
+            const cloudinary = require('cloudinary');
+            cloudinary.config({
+                cloud_name: 'dlmebnxnv',
+                api_key: '941161988641637',
+                api_secret: 'goFBkSN4gSR10QPWAhS4e18-O5U'
+            });
+            const fs = require('fs-extra');
             try {
                 const { titulo, nombre_perfil, descripcion, enlace, profesion, estado_profesion, id_tipo_publicacion, id_usuario, id_estado_publicacion, id_carrera } = req.body;
                 console.log("el archivo", req.file);
-                console.log("titulo:" + req.body.titulo);
-                console.log("descripcion", req.body.descripcion);
-                console.log("enlace", req.body.enlace);
-                console.log("profeion", req.body.profesion);
-                console.log("estado profesion", req.body.estado_profesion);
-                console.log("id_tipo_publicacion:" + req.body.id_tipo_publicacion);
-                console.log("usuario:" + req.body.id_usuario);
-                console.log("id_estado_publicación:" + req.body.id_estado_publicacion);
-                console.log("id_carrera", req.body.id_carrera);
-                console.log("nombre_perfil", req.body.nombre_perfil);
-                const query = "INSERT INTO publicacion (titulo,nombre_perfil,descripcion,enlace,profesion,estado_profesion,ruta_archivo,tipo_archivo,id_tipo_publicacion,id_usuario,id_estado_publicacion,id_carrera) VALUES (?,?,?,?,?,?,?,?,?,?,?,(select id_carrera from carreras_fica where nombre_carrera=?))";
+                const result = yield cloudinary.v2.uploader.upload(req.file.path);
+                console.log("RESULT ", result);
+                const query = "INSERT INTO publicacion (titulo,nombre_perfil,descripcion,enlace,profesion,estado_profesion,ruta_archivo,public_id_archivo,tipo_archivo,id_tipo_publicacion,id_usuario,id_estado_publicacion,id_carrera) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,(select id_carrera from carreras_fica where nombre_carrera=?))";
                 if (req.file) {
-                    console.log("pasa1");
-                    const ruta_archivo = req.file.path;
+                    const ruta_archivo = result.url;
+                    const public_id = result.public_id;
                     const tipo_archivo = req.file.mimetype;
-                    console.log(req.file.path);
+                    console.log(ruta_archivo);
                     console.log(req.file.mimetype);
                     yield database_1.default.query(query, [
                         titulo,
@@ -94,12 +79,14 @@ class ArchivosController {
                         profesion,
                         estado_profesion,
                         ruta_archivo,
+                        public_id,
                         tipo_archivo,
                         id_tipo_publicacion,
                         id_usuario,
                         id_estado_publicacion,
                         id_carrera
                     ]);
+                    yield fs.unlink(req.file.path); //eliminar de archivo de la ruta local
                     res.status(201).json({ text: "Archivo guardado" });
                 }
                 else {
@@ -129,20 +116,18 @@ class ArchivosController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
+            const cloudinary = require('cloudinary');
+            cloudinary.config({
+                cloud_name: 'dlmebnxnv',
+                api_key: '941161988641637',
+                api_secret: 'goFBkSN4gSR10QPWAhS4e18-O5U'
+            });
             const publicacion = yield database_1.default.query("SELECT * FROM publicacion WHERE id_publicacion=?", [id]);
+            console.log("publicacion a eliminas", publicacion);
             if (publicacion.length > 0) {
                 console.log("pasa");
                 const archivo = yield database_1.default.query(" DELETE FROM publicacion WHERE id_publicacion=?", [id]);
-                if (publicacion[0].ruta_archivo != null) {
-                    console.log("si hay ruta");
-                    if (!path_1.default.resolve(publicacion[0].ruta_archivo)) {
-                        console.log("segundo pasa");
-                        yield fs_extra_1.default.unlink(path_1.default.resolve(publicacion[0].ruta_archivo));
-                    }
-                    else {
-                        return res.json({ message: "No existe archivo en el servidor" });
-                    }
-                }
+                yield cloudinary.v2.uploader.destroy(publicacion[0].public_id_archivo);
                 return res.status(204).json({ message: "el archivo fue eliminado" });
             }
             return res.status(404).json({ text: "el archivo no existe" });

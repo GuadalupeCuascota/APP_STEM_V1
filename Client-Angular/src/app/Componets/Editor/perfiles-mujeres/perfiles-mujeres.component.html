@@ -54,9 +54,9 @@
       
                   <td>
                     <img *ngIf="perfil.tipo_archivo == 'image/png' || perfil.tipo_archivo=='image/jpeg'" width="100px" heigh="100px"
-                      [src]="'http://localhost:3000/' + perfil.ruta_archivo" alt="no-image" />
+                      [src]="perfil.ruta_archivo" alt="no-image" />
                     <video *ngIf="perfil.tipo_archivo == 'video/mp4' || tipo_archivo=='video/mov'" width="100px" heigh="100px"
-                      [src]="'http://localhost:3000/' + perfil.ruta_archivo" class="img-fluid" alt="no-image"></video>
+                      [src]="perfil.ruta_archivo" class="img-fluid" alt="no-image"></video>
                   </td>
       
                   <td>

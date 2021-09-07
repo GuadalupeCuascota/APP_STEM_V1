@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
     database: {
-        host: 'localhost',
+        host: 'www.wserstem.tk',
         user: 'root',
-        password: '',
+        password: 'Lupita4137',
         database: 'bdd_appstem'
     }
 };

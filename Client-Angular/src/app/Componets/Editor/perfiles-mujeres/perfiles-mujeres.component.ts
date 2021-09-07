@@ -185,7 +185,7 @@ export class PerfilesMujeresComponent implements OnInit {
         res => {
           console.log(res);
           this.perfil=res;
-          this.API_URI='http://localhost:3000/'+this.perfil.ruta_archivo;
+          this.API_URI=this.perfil.ruta_archivo;
           console.log("enlace",this.API_URI)
           this.edit=true 
          
