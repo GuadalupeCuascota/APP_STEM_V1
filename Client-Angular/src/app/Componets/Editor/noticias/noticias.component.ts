@@ -4,6 +4,7 @@ import {Publicacion} from '../../../Models/publicacion'
 import{AlertsService} from '../../../Services/alerts/alerts.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import {Router,ActivatedRoute} from '@angular/router'
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-noticias',
@@ -63,14 +64,22 @@ export class NoticiasComponent implements OnInit {
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
+      this.edit=false
+      this.clear()
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      this.edit=false
+      this.clear()
       return 'by clicking on a backdrop';
     } else {
+      this.clear();
+      this.edit=false
       return `with: ${reason}`;
+      
     }
   }
   close(content) {
+    this.edit=false
     this.modalService.dismissAll(content);
    
   }
@@ -181,7 +190,7 @@ export class NoticiasComponent implements OnInit {
     
   }
   updatepublicacion() {
-    
+    this.edit=true;
     try {
       const fda =new FormData(); //objeto que almacena datos de un formulario
       // for( let i=0; i<this.archivosSeleccionado.length; i++){

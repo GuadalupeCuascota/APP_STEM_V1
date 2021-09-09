@@ -26,4 +26,8 @@ export class RegistroPublicacionService {
   getPost(url:string){
     return this.httpClient.get<Publicacion>(url)
   }
+
+  updatePublicacion(idPublicacion:number,formData){
+    return this.httpClient.put<Publicacion>(environment.baseUrl+"/publicaciones/"+idPublicacion,formData);
+  }
 }

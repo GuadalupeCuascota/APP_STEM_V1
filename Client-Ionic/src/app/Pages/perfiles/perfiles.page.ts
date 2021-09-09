@@ -39,12 +39,14 @@ export class PerfilesPage implements OnInit {
 
   /////YOUTUBE-API/////
   idcanal:string='UCS1EzRQqzi03AEYWSFMER_Q';
-  maxRes:string='6';
+ 
+  maxRes:string='70+30';
   googleToken:string='AIzaSyAIyv-RhbPIbXTIZrhA-aMR-4OsRBgFRTk';
   post:any=[];
   posts:any=[];
   search:string='Women in STEM'
-
+  playlistId="PL43UVswQuVDMrDJJvzbnnKco1CoJJhZMK"
+  MQcI6zKT7S8
 
   constructor(
     
@@ -52,7 +54,11 @@ export class PerfilesPage implements OnInit {
     private streamingMedia: StreamingMedia,
     private router: Router,
   ) {
-    let url="https://www.googleapis.com/youtube/v3/search?part=id,snippet&channelId="+this.idcanal+"&q="+this.search+"&type=video&order=date&maxResults="+this.maxRes+"&key="+this.googleToken;  
+    // let url="https://www.googleapis.com/youtube/v3/search?part=id,snippet&channelId="+this.idcanal+"&q="+this.search+"&type=video&order=date&maxResults="+this.maxRes+"&key="+this.googleToken;  
+   
+    let url ="https://www.googleapis.com/youtube/v3/playlistItems?key="+this.googleToken+"&playlistId="+this.playlistId+"&part=snippet,id&maxResults=50"
+    
+    // let url='https://www.googleapis.com/youtube/v3/playlistItems?part=id,snippet&channelId='+this.idcanal+'& playlistId='+this.playlistId+'&type=video&order=date&maxResults='+this.maxRes+'&key='+this.googleToken;
     this.regitroPublicacion.getPost(url).subscribe(
       (res) => {
         this.post=res;

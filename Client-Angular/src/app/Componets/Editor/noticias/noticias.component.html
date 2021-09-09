@@ -63,9 +63,10 @@
 
   <ng-template #contenido let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">
+      <h4 *ngIf="!edit" class="modal-title" id="modal-basic-title">
        Noticias, iniciativas y eventos STEM
       </h4>
+      <h4 *ngIf="edit">Actualizar información   </h4>
       <button
         class="close"
         aria-label="close"
@@ -137,8 +138,11 @@
       >
         Cerrar
       </button>
-      <button type="button" class="btn btn-primary" (click)=" edit ? updatepublicacion():saveArchivo();close(contenido)">
+      <button  *ngIf="!edit" type="button" class="btn btn-primary" (click)=" edit ? updatepublicacion():saveArchivo();close(contenido)">
         PUBLICAR
+      </button>
+      <button *ngIf="edit" type="button" class="btn btn-primary" (click)="edit ? updatepublicacion() : saveArchivo()">
+        GUARDAR <i class="fas fa-save"></i>
       </button>
     </div>
   </ng-template>

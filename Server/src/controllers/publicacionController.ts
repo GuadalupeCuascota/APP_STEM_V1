@@ -154,7 +154,15 @@ class ArchivosController {
 
   
 
-  public async update(req: Request, res: Response): Promise<Response> {
+  public async update(req: Request, res: Response){
+    const cloudinary=require('cloudinary');
+    cloudinary.config({ //conexion a cloudinary
+    cloud_name:'dlmebnxnv',
+    api_key:'941161988641637',
+    api_secret:'goFBkSN4gSR10QPWAhS4e18-O5U'
+    })
+    const fs=require('fs-extra')  
+    console.log("pasa server actualizar")
     try {
       const { id } = req.params;
       console.log("id: " + id);
@@ -164,12 +172,15 @@ class ArchivosController {
         enlace,
         profesion,
         estado_profesion,
+        
       } = req.body;
-
+     
       const query =
         "UPDATE publicacion set titulo=?,descripcion=?,enlace=?, profesion=?,estado_profesion=?, ruta_archivo=? WHERE id_publicacion=?";
       if (req.file) {
-      const ruta_archivo = req.file.path;
+      const result=await cloudinary.v2.uploader.upload(req.file.path)
+      const ruta_archivo = result.url
+
       pool.query(query, [
         titulo,
         descripcion,

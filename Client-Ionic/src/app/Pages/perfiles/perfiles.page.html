@@ -45,13 +45,13 @@
         width="100%"
         preload="auto"
         muted="false"
-        src="http://192.168.100.45:3000/{{perfil.ruta_archivo}} "
+        src="{{perfil.ruta_archivo}} "
         (click)="playVideo(perfil.ruta_archivo)"
         controls
       ></video>
       <ion-img
         *ngIf="perfil.tipo_archivo=='image/png' ||perfil.tipo_archivo=='image/jpeg'"
-        src="http://192.168.100.45:3000/{{perfil.ruta_archivo}}"
+        src="{{perfil.ruta_archivo}}"
         width="100%"
         height="100%"
       ></ion-img>
@@ -107,11 +107,13 @@
         {{item.snippet.title}}
       </ion-card-header>
       <ion-card-content>
+        <!-- <img [src]="item.snippet.thumbnails.medium.url">
+        -->
         <!-- <img [src]="item.snippet.thumbnails.high.url">  -->
         <iframe
           width="100%"
           height="315"
-          [src]="item.id.videoId|youtube"
+          [src]="item.snippet.resourceId.videoId|youtube"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen

@@ -58,7 +58,7 @@ export class DetalleNoticiaPage implements OnInit {
     this.regitroPublicacion.getPublicacion(params.id).subscribe((res) => {
       this.noticia = res;
       console.log('la noticia detalle', this.noticia);
-      this.API_URI = 'http://192.168.100.45:3000/' + this.noticia.ruta_archivo;
+      this.API_URI = this.noticia.ruta_archivo;
       this.descripcion = this.noticia.descripcion;
       this.enlace = this.noticia.enlace;
       this.tipo_archivo = this.noticia.tipo_archivo;

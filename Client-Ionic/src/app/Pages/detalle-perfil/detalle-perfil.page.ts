@@ -51,7 +51,7 @@ export class DetallePerfilPage implements OnInit {
       this.perfil = res;
       console.log("perfil",this.perfil)
       console.log('la noticia detalle', this.perfil);
-      this.API_URI = 'http://192.168.100.45:3000/' + this.perfil.ruta_archivo;
+      this.API_URI = this.perfil.ruta_archivo;
       this.descripcion = this.perfil.descripcion;
       console.log("des",this.descripcion)
       this.profesion = this.perfil.profesion;

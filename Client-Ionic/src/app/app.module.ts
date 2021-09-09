@@ -21,7 +21,7 @@ import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
-
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 import {
   StreamingMedia
  
@@ -48,7 +48,7 @@ import { PipesModule } from './pipes/pipes.module';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Storage,
     IonicStorageModule,
-    StreamingMedia,
+    StreamingMedia,YoutubeVideoPlayer,
   ],
   exports: [MenuPrincipalPageModule],
   bootstrap: [AppComponent],

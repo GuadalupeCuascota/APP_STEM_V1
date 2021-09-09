@@ -64,15 +64,18 @@ export class PerfilesMujeresComponent implements OnInit {
     if (reason === ModalDismissReasons.ESC) {
       this.edit=false
       this.tipo=false
+      this.clear();
       return 'by pressing ESC';
       
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       this.edit=false
       this.tipo=false
+      this.clear();
       return 'by clicking on a backdrop';
     } else {
       this.edit=false
       this.tipo=false
+      this.clear();
       return `with: ${reason}`;
     }
   }
@@ -92,7 +95,7 @@ export class PerfilesMujeresComponent implements OnInit {
     this.perfil.profesion=null
     this.leerArchivo=null
     this.API_URI=null
-    this
+  
 
   }
   onFileSelect  (event){
@@ -197,6 +200,8 @@ export class PerfilesMujeresComponent implements OnInit {
     
   }
   updatepublicacion() {
+    console.log("archivo actualizado", this.archivosSeleccionado)
+    console.log("ACTUALIZAR INFO")
     this.edit=true;
     console.log("hola",this.perfil.ruta_archivo)
     try {

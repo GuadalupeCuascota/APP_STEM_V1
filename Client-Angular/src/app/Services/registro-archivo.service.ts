@@ -30,7 +30,7 @@ export class RegistroArchivoService {
   
   }
 updateArchivo (id:number, formData){
-    return this.http.put(`${environment.API_URI}publicaciones/${id}`,formData);
+    return this.http.put(`${environment.API_URI}/publicaciones/${id}`,formData);
   
   }
   
