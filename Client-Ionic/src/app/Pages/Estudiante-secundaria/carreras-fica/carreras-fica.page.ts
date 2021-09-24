@@ -70,7 +70,7 @@ export class CarrerasFicaPage implements OnInit {
     this.registroCarreras.getCarreras().subscribe(
       (res) => {
         for (let aux of res) {
-          if (aux.nombre_carrera != "sin asignar") {
+          if (aux.id_carrera != 1) {
             auxper.push(aux);
           }
         }

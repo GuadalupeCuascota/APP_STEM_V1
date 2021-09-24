@@ -4,12 +4,12 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://192.168.100.45:3000/api',
+  baseUrl: 'https://server-app-stem-elreq.ondigitalocean.app/api',
  
 };
 export const environmentLogin = {
   production: false,
-  baseUrl: 'http://192.168.100.45:3000/login'
+  baseUrl: 'https://server-app-stem-elreq.ondigitalocean.app/login'
 };
 
 

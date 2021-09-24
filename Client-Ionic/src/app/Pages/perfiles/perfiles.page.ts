@@ -2,13 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Publicacion } from 'src/app/Models/publicacion';
 // import 'rxjs/add/operator/map';
 
-
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { MensajesService } from 'src/app/Services/mensajes.service';
 import { LoadingService } from 'src/app/Services/loading.service';
@@ -20,6 +13,10 @@ import {
 } from '@ionic-native/streaming-media/ngx';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { YoutubeApiService } from 'src/app/Services/youtube-api.service';
+import { ObjectUnsubscribedError } from 'rxjs';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
+
 
 @Component({
   selector: 'app-perfiles',
@@ -41,7 +38,7 @@ export class PerfilesPage implements OnInit {
   idcanal:string='UCS1EzRQqzi03AEYWSFMER_Q';
  
   maxRes:string='70+30';
-  googleToken:string='AIzaSyAIyv-RhbPIbXTIZrhA-aMR-4OsRBgFRTk';
+  googleToken:string='AIzaSyAIyv-RhbPIbXTIZrhA-aMR-4OsRBgFRTk';//api key
   post:any=[];
   posts:any=[];
   search:string='Women in STEM'
@@ -53,36 +50,53 @@ export class PerfilesPage implements OnInit {
     private regitroPublicacion: RegistroPublicacionService,
     private streamingMedia: StreamingMedia,
     private router: Router,
+    private yotubeapi:YoutubeApiService,
+    private youtube:YoutubeVideoPlayer
   ) {
-    // let url="https://www.googleapis.com/youtube/v3/search?part=id,snippet&channelId="+this.idcanal+"&q="+this.search+"&type=video&order=date&maxResults="+this.maxRes+"&key="+this.googleToken;  
-   
-    let url ="https://www.googleapis.com/youtube/v3/playlistItems?key="+this.googleToken+"&playlistId="+this.playlistId+"&part=snippet,id&maxResults=50"
+
     
-    // let url='https://www.googleapis.com/youtube/v3/playlistItems?part=id,snippet&channelId='+this.idcanal+'& playlistId='+this.playlistId+'&type=video&order=date&maxResults='+this.maxRes+'&key='+this.googleToken;
-    this.regitroPublicacion.getPost(url).subscribe(
-      (res) => {
-        this.post=res;
-        console.log("LA RESPUESTA",this.post.items);
-      this.posts=this.post.items
+  
+   
+    // let url ="https://www.googleapis.com/youtube/v3/playlistItems?key="+this.googleToken+"&playlistId="+this.playlistId+"&part=snippet,id&maxResults=50"
+    // this.regitroPublicacion.getPost(url).subscribe(
+    //   (res) => {
+    //     this.post=res;
+    //     console.log("LA RESPUESTA",this.post.items);
+    //   this.posts=this.post.items
         
        
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    //   },
+    //   (err) => {
+    //     console.log(err);
+    //   }
+    // );
 
-    // this.httpClient.get(url).subscribe(res=>res.subscribe(data=> {
-    //   this.post=this.post.concat(data.items);
-    //   console.log("el post")
     
   } //inyecto el servicio importado
 
   ngOnInit() {
     this.getPerfiles();
     this.doRefresh();
+    this.getPlayList();
     this.datos=JSON.parse(localStorage.getItem('payload'));
     console.log(this.datos.nivel_academico)
+  }
+
+  getPlayList(){
+    this.yotubeapi.getListVideos(this.playlistId).subscribe(
+      (res) => {
+        this.post=res;
+        console.log("LA RESPUESTA 1",this.post.items);
+        this.posts=this.post.items
+      },
+      (err) => {
+        console.log(err);
+      }
+     )
+  }
+
+  openVideo(video){
+this.youtube.openVideo(video)
   }
   buscar(event) {
     this.textoBuscar = event.detail.value;
@@ -174,4 +188,12 @@ export class PerfilesPage implements OnInit {
     this.router.navigate(['/detalle-perfil/', id]);
      
   }
+
+////////////////////////////////////////////////////////////////////
+
+
+
+
 }
+
+

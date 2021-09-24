@@ -1,9 +1,12 @@
+
+
 ion-header {
   background: var(--ion-color-light);
 
   ion-list {
     background: var(--ion-color-primary);
     border-radius: 0 0 20px 20px;
+    background: linear-gradient(135deg, #420252 10%, #D10A11 100%);
 
     //padding-bottom: 1vh; ancho del ion list
     ion-label {
@@ -13,13 +16,13 @@ ion-header {
     }
   }
 
-  .popover {
-    margin: 0 8px;
-
-    ion-searchbar {
-      --border-radius: 20px;
-      margin-top: -30px;
-    }
+  
+}
+.popover {
+  margin: 0 8px;
+   ion-searchbar {
+    --border-radius: 20px;
+    // margin-top: -30px;
   }
 }
 ion-card-header{

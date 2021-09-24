@@ -1,14 +1,14 @@
 <ion-header class="ion-no-border">
   <ion-list lines="none">
-    <ion-item color="primary">
+    <ion-item color="none">
       <ion-buttons *ngIf="datos.nivel_academico=='secundaria'" slot="start">
-        <ion-back-button defaultHref="menu-opciones-se/menu-principal/home-secundaria"></ion-back-button>
+        <ion-back-button  color="light" defaultHref="menu-opciones-se/menu-principal/home-secundaria"></ion-back-button>
       </ion-buttons>
 
       <ion-buttons *ngIf="datos.nivel_academico=='superior'" slot="start">
-        <ion-back-button defaultHref="menu-opciones/tabs/home-superior"></ion-back-button>
+        <ion-back-button  color="light"defaultHref="menu-opciones/tabs/home-superior"></ion-back-button>
       </ion-buttons>
-      <ion-label>Mis mentorias</ion-label>
+      <ion-label color="light">Mis mentorias</ion-label>
     </ion-item>
   </ion-list>
 </ion-header>

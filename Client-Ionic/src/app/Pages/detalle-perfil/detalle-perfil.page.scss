@@ -2,6 +2,14 @@ ion-content {
   position: relative;
 }
 
+img {
+  width: 100vw;
+  max-width: 100vw;
+  object-fit: cover;
+  width: 100%;
+  height: 50%;
+
+}
 .image-slider {
   position: relative;
 
@@ -31,14 +39,6 @@ ion-content {
 
   }
 
-  img {
-    width: 100vw;
-    max-width: 100vw;
-    object-fit: cover;
-    width: 100%;
-    height: 50%;
-
-  }
 
 
 }

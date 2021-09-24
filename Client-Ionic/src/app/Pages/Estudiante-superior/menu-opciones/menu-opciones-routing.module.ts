@@ -16,6 +16,7 @@ const routes: Routes = [
         path: 'home-superior',
         loadChildren: () => import('../home-superior/home-superior.module').then( m => m.HomeSuperiorPageModule)
       },
+     
   ]
   
   },

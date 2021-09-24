@@ -1,100 +1,137 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button color="primary">
-        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-   
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <div id="header">
-    <h1>Iniciar Sesión</h1>
-    <img src="../../../assets/utn.PNG" />
-  </div>
-  <form id="form" [formGroup]="formLogin" (ngSubmit)="login()">
-    <ion-item>
-      <ion-label color="secondary" position="floating"> Correo electrónico:</ion-label>
-      <ion-input   formControlName="correo_electronico" ></ion-input>
-    </ion-item>
-    <br>
-    <ion-item>
-      <ion-label  color="secondary" position="floating"> Contraseña:</ion-label>
-      <ion-input formControlName="contrasenia" 
-        [type]="showPassword ? 'text': 'password'"
-        
-      ></ion-input>
-      <ion-icon 
-      color="dark"
-        slot="end"
-        [name]="passwordIcon"
-        (click)="toggleShow()"
-      ></ion-icon>
-    </ion-item>
-    <br>
-    <div class="head">
-      <ion-text color="medium"  class="ion-text-right">Recuerdame</ion-text>
-    
-       <a color="secondary" href="/recuperar-contrasenia">Olvidaste tu contraseña?</a>
-      
-    </div>
-    
-   <br>
-   
-    <!-- <p class="message"><a href="/registro-editor">Olvidaste tu contraseña?</a></p> -->
-    <ion-button type="submit" color="primary"  [disabled]="!formLogin.valid" shape="round" expand="block" >Iniciar Sesión</ion-button>
-    <p>
-      <ion-text  color="medium"  class="ion-text-right">¿Todavía no tienes cuenta? <a href="/registro-usuario">Registrate</a></ion-text>
-    </p>
-  </form>
-</ion-content>
-
-
-
-
-
-
+<!-- 
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button color="primary">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+     
+    </ion-toolbar>
+  </ion-header> -->
 <!-- <ion-content>
-
-  <form [formGroup]="formLogin" (ngSubmit)="login()">
-   
-  
-    
-      <ion-item class="ion-margin-bottom">
-        <ion-label position="floating"> Correo electrónico:</ion-label>
-        <ion-input   formControlName="correo_electronico" placeholder="Ingrese email"></ion-input>
-      </ion-item>
+    <div id="header">
+      <h1>Iniciar Sesión</h1>
+      <img src="../../../assets/utn.PNG" />
+    </div>
+    <form id="form" [formGroup]="formLogin" (ngSubmit)="login()">
       <ion-item>
-        <ion-label position="floating"> Contraseña:</ion-label>
+        <ion-label color="secondary" position="floating"> Correo electrónico:</ion-label>
+        <ion-input   formControlName="correo_electronico" ></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label  color="secondary" position="floating"> Contraseña:</ion-label>
         <ion-input formControlName="contrasenia" 
           [type]="showPassword ? 'text': 'password'"
-          placeholder="Ingrese contraseña" 
+          
         ></ion-input>
-        <ion-icon
+        <ion-icon 
+        color="dark"
           slot="end"
           [name]="passwordIcon"
           (click)="toggleShow()"
         ></ion-icon>
       </ion-item>
-     
-  
-    <p  class="message"><a href="/registro-editor">Olvidaste tu contraseña?</a></p>
-
-      <ion-button type="submit" color="tertiary"  [disabled]="!formLogin.valid" expand="block" >ENTRAR</ion-button>
-      <ion-button
-      color="tertiary"
-        type="submit"
-        routerLink="/registro-usuario"
-        expand="block"
-        >Registarse</ion-button>
-       
-    
+      <br>
+      <div class="head">
+        <ion-text color="medium"  class="ion-text-right">Recuerdame</ion-text>
       
-    </ion-card>
-    <br>
-    
-  </form>
+         <a color="secondary" href="/recuperar-contrasenia">Olvidaste tu contraseña?</a>
+        
+      </div>
+      
+     <br>
+     
+      <ion-button type="submit" color="primary"  [disabled]="!formLogin.valid" shape="round" expand="block" >Iniciar Sesión</ion-button>
+      <p>
+        <ion-text  color="medium"  class="ion-text-right">¿Todavía no tienes cuenta? <a href="/registro-usuario">Registrate</a></ion-text>
+      </p>
+    </form>
+  </ion-content> -->
 
-</ion-content> -->
+<div class="login-page">
+  <div id="header">
+   
+    <img src="../../../assets/MUJER_STEM.png" />
+    
+  </div>
+  <div class="container">
+    <form id="form" [formGroup]="formLogin" (ngSubmit)="login()">
+      <h1>Iniciar Sesión</h1>
+      <ion-item>
+        <ion-label color="secondary" position="floating"> Correo electrónico:</ion-label>
+        <ion-input   formControlName="correo_electronico" ></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label  color="secondary" position="floating"> Contraseña:</ion-label>
+        <ion-input formControlName="contrasenia" 
+          [type]="showPassword ? 'text': 'password'"
+          
+        ></ion-input>
+        <ion-icon 
+        color="dark"
+          slot="end"
+          [name]="passwordIcon"
+          (click)="toggleShow()"
+        ></ion-icon>
+      </ion-item>
+      <br>
+      <div class="head">
+        <ion-text color="medium"  class="ion-text-right">Recuerdame</ion-text>
+      
+         <a color="secondary" href="/recuperar-contrasenia">Olvidaste tu contraseña?</a>
+        
+      </div>
+      
+     <br>
+     
+      <ion-button type="submit" color="primary"  [disabled]="!formLogin.valid" shape="round" expand="block" >Iniciar Sesión</ion-button>
+      <p>
+        <ion-text  color="medium"  class="ion-text-right">¿Todavía no tienes cuenta? <a href="/registro-usuario">Registrate</a></ion-text>
+      </p>
+    </form>
+  </div>
+</div>
+
+<!-- <div class="login-page">
+    <div id="header">
+      <img src="../../../assets/LOGO.png" />
+    </div>
+
+    <form id="form" [formGroup]="formLogin" (ngSubmit)="login()">
+      <ion-item>
+        <ion-label color="secondary" position="floating"> Correo electrónico:</ion-label>
+        <ion-input   formControlName="correo_electronico" ></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label  color="secondary" position="floating"> Contraseña:</ion-label>
+        <ion-input formControlName="contrasenia" 
+          [type]="showPassword ? 'text': 'password'"
+          
+        ></ion-input>
+        <ion-icon 
+        color="dark"
+          slot="end"
+          [name]="passwordIcon"
+          (click)="toggleShow()"
+        ></ion-icon>
+      </ion-item>
+      <br>
+      <div class="head">
+        <ion-text color="medium"  class="ion-text-right">Recuerdame</ion-text>
+      
+         <a color="secondary" href="/recuperar-contrasenia">Olvidaste tu contraseña?</a>
+        
+      </div>
+      
+     <br>
+     
+      <ion-button type="submit" color="primary"  [disabled]="!formLogin.valid" shape="round" expand="block" >Iniciar Sesión</ion-button>
+      <p>
+        <ion-text  color="medium"  class="ion-text-right">¿Todavía no tienes cuenta? <a href="/registro-usuario">Registrate</a></ion-text>
+      </p>
+    </form>
+    </div> -->

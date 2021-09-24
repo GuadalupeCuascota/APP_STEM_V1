@@ -3,13 +3,19 @@ ion-icon{
 }
 
 ion-header {
-  background: var(--ion-color-light);
+  img{
+    margin-top: 100px;
+    height: 200px;
+  }
 
+   background: var(--ion-color-light);
+  
   ion-list {
     background: var(--ion-color-primary);
     border-radius: 0 0 20px 20px;
     padding-bottom: 7vh;
-    
+    background: linear-gradient(135deg, #420252 10%, #D10A11 100%);
+
     ion-label {
 
       font-weight: bold;
@@ -18,9 +24,18 @@ ion-header {
       color: rgb(253, 250, 250);
       margin-top: -20px;
     }
-    h2{
-      text-align: center;
-      color: rgb(253, 250, 250);
+    .user_div {
+      padding: 20px;
+      width: 100%;
+      height: 60px;
+      display: flex;
+      padding-top: 10px;
+      justify-content: space-between;
+
+      
+
+
+
     }
     
   }
@@ -32,12 +47,15 @@ ion-card {
   height: 25vh;
   border-radius: 10px;
   background: var(--ion-color-white);
- 
+  img {
+    width: 60%;
+  }
+
   ion-icon{
-    color: #3b0b72;
-    font-size: 50px;
     
+    font-size: 50px;
    
+    
   }
  
 
@@ -49,3 +67,5 @@ ion-card {
   }
 
 }
+
+

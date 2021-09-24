@@ -3,8 +3,19 @@ ion-content{
     // (--ion-color-secondary)))
     background: var(--ion-color-secondary);
 }
+.my-custom-menu {
+    --width: 70%;
+  }
 .menu-header-bg{
-    height: 130px;
+    
+    height: 20%;
     background-color: rgb(209, 10, 17);
     border-radius: 0px 0px 15px 15px;
+    img{
+        align-items: center;
+        margin-top: 8%;
+        height: 75%;
+        margin-left: 33%;
+      }
+    
 }

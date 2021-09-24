@@ -1,16 +1,14 @@
 
   <ion-header class="ion-no-border">
     <ion-list lines="none">
-      <ion-item color="primary">
-        
         <ion-buttons slot="start">
-          <ion-menu-button auto-hide="false"></ion-menu-button>
+          <ion-menu-button color="light" auto-hide="false"></ion-menu-button>
         </ion-buttons>
-      </ion-item>
-      <!-- <img src="../../../../assets/undraw_Artificial_intelligence_re_enpp.svg"> -->
-      <ion-item color="primary">
-        <ion-label>Bienvenida, {{datos.nombre}} {{datos.apellido}}</ion-label> 
-      </ion-item> 
+
+        <div class="user_div">
+
+            <h5>Bienvenida {{datos.nombre}} {{datos.apellido}}</h5>
+        </div>
     </ion-list>
   </ion-header>
   
@@ -21,10 +19,9 @@
   <ion-grid>
     <ion-row>
       <ion-col col-6 class="ion-align-self-end"> 
-        <ion-card routerLink="/tabs/perfiles">
-          <!-- <img width="100px" src="../../../../assets/mujeresstem.jpg" /> -->
-          <!-- <img height="100px" src="../../../../assets/women (1).svg"> -->
-          <ion-icon color="secondary" name="people"></ion-icon>
+        <ion-card routerLink="/menu-opciones/tabs/perfiles">
+          <img  src="../../../../assets/mi.jpg" >
+          <!-- <ion-icon color="secondary" name="people"></ion-icon> -->
           <ion-card-content>
             <ion-label>Mujeres en STEM </ion-label>
             
@@ -32,12 +29,12 @@
         </ion-card>
       </ion-col>
       <ion-col col-6>
-        <ion-card routerLink="/tabs/noticias">
+        <ion-card routerLink="/menu-opciones/tabs/noticias">
           <!-- <img height="100px" src="../../../../assets/honor (1).svg"> -->
-          <ion-icon color="secondary"name="newspaper"></ion-icon>
+          <img src="../../../../assets/new.png" >
 
           <ion-card-content>
-            <ion-label>Noticias </ion-label>
+            <ion-label>Noticias y eventos </ion-label>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -46,8 +43,8 @@
     <ion-row>
       <ion-col col-6>
         <ion-card routerLink="/registro-tutorias">
-          <!-- <img height="100px" src="../../../../assets/calendar.svg"> -->
-          <ion-icon color="secondary" name="create"></ion-icon>
+          <img src="../../../../assets/agenda.png" >
+          <!-- <ion-icon color="secondary" name="create"></ion-icon> -->
           <ion-card-content>
             <ion-label>Agendar mentorías</ion-label>
           </ion-card-content>
@@ -55,8 +52,8 @@
       </ion-col>
       <ion-col col-6 >
         <ion-card routerLink="/mis-mentorias">
-          <!-- <img height="100px" src="../../../../assets/calendar (1).svg"> -->
-          <ion-icon color="secondary" name="calendar-number"></ion-icon>
+          <img src="../../../../assets/calendar-flat.png" >
+          <!-- <ion-icon color="secondary" name="calendar-number"></ion-icon> -->
           <ion-card-content>
             <ion-label>Mis mentorias</ion-label>
           </ion-card-content>

@@ -146,7 +146,8 @@ const routes: Routes = [
   {
     path: 'detalle-perfil/:id',
     loadChildren: () => import('./Pages/detalle-perfil/detalle-perfil.module').then( m => m.DetallePerfilPageModule)
-  },  {
+  },
+  {
     path: 'resultado-test-aptitud',
     loadChildren: () => import('./Pages/Estudiante-secundaria/resultado-test-aptitud/resultado-test-aptitud.module').then( m => m.ResultadoTestAptitudPageModule)
   },

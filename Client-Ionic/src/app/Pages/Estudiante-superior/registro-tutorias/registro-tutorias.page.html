@@ -1,18 +1,18 @@
 <ion-header class="ion-no-border">
   <ion-list lines="none">
-    <ion-item color="primary">
-      <ion-buttons *ngIf="datos.nivel_academico=='secundaria'" slot="start">
-        <ion-back-button
+    <ion-item color="none">
+      <ion-buttons  *ngIf="datos.nivel_academico=='secundaria'" slot="start">
+        <ion-back-button   color="light"
           defaultHref="menu-opciones-se/menu-principal/home-secundaria"
         ></ion-back-button>
       </ion-buttons>
 
       <ion-buttons *ngIf="datos.nivel_academico=='superior'" slot="start">
-        <ion-back-button
+        <ion-back-button  color="light"
           defaultHref="menu-opciones/tabs/home-superior"
         ></ion-back-button>
       </ion-buttons>
-      <ion-label>Mentorias</ion-label>
+      <ion-label color="light">Mentorias</ion-label>
     </ion-item>
   </ion-list>
 
@@ -50,7 +50,7 @@
         <ion-card-subtitle
           >Hora:{{registro.hora_inicio}}-{{registro.hora_fin}}</ion-card-subtitle
         >
-        <ion-card-subtitle>Materia: Programación</ion-card-subtitle>
+        <ion-card-subtitle>Materia:{{registro.materia}}</ion-card-subtitle>
       </ion-card-content>
     </ion-card>
 

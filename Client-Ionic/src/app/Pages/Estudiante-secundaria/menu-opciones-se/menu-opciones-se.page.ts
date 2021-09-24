@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 import { LoadingService } from 'src/app/Services/loading.service';
 import {AutenticacionService} from '../../../Services/autenticacion.service'
 
@@ -9,10 +10,12 @@ import {AutenticacionService} from '../../../Services/autenticacion.service'
 })
 export class MenuOpcionesSePage implements OnInit {
   datos: any = {};
-  constructor(private autenticacion:AutenticacionService,
+  constructor(private autenticacion:AutenticacionService,public menuCtrl: MenuController,
     private loadinServices: LoadingService) { }
 
   ngOnInit() {
+    
+    
     console.log("PRIMERO")
     this.datos=JSON.parse(localStorage.getItem('payload'));
     
@@ -22,4 +25,6 @@ export class MenuOpcionesSePage implements OnInit {
     await loading.present();
     this.autenticacion.logOut();
   }
+
+
 }
