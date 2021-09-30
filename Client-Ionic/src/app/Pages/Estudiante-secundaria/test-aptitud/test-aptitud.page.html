@@ -11,21 +11,22 @@
 
 <ion-content [fullscreen]="true">
   <ion-slides #slides>
-    <!-- <ion-slide class="start-slide">
-      <button ion-button color="primary" (click)="nextSlide()">Start!</button>
-    </ion-slide> -->
+
     <ion-slide *ngFor="let preguntas of test; let i = index;">
       <div>
         <h4>{{i+1}} of {{test.length}}</h4>
         <h3>{{preguntas.pregunta}}</h3>
       </div>
       <div class="list-item">
-        <ion-list no-lines radio-group>
-          <ion-item *ngFor="let answer of test[i].opciones; let i = index;">
-            <ion-label>{{i+1}}. {{answer.opcion}}</ion-label>
-            <ion-radio value="{{answer.id_opcion}}"></ion-radio>
-          </ion-item>
-        </ion-list>
+        <ion-radio-group (ionChange)="selectRes($event)" value="biff">
+          <ion-list no-lines radio-group>
+            <ion-item *ngFor="let answer of test[i].opciones; let i = index;">
+              <ion-label>{{i+1}}. {{answer.opcion}}</ion-label>
+              <ion-radio value={{answer.puntos}}></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-radio-group>
+       
 
         <div>
           <ion-button

@@ -37,12 +37,7 @@
         <ion-label>
           Mentora: {{registro.nombre}} {{registro.apellido}}</ion-label
         >
-        <ion-button
-          fill="outline"
-          slot="end"
-          (click)="getMentoria(registro.id_registro_mentoria)"
-          >AGENDAR</ion-button
-        >
+      
       </ion-item>
 
       <ion-card-content>
@@ -51,6 +46,12 @@
           >Hora:{{registro.hora_inicio}}-{{registro.hora_fin}}</ion-card-subtitle
         >
         <ion-card-subtitle>Materia:{{registro.materia}}</ion-card-subtitle>
+        <ion-button
+        fill="outline"
+        slot="end"
+        (click)="getMentoria(registro.id_registro_mentoria)"
+        >AGENDAR</ion-button
+      >
       </ion-card-content>
     </ion-card>
 

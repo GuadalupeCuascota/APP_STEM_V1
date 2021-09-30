@@ -20,32 +20,38 @@ export class TestAptitudService {
    
     test: testAptitud[]=[
       {
-        pregunta:'Me gustaria que mi trabajo sirviese para?...',
+        pregunta:'Me gusta todo aquello exacto que se puede tocar.',
+        carrera:'Textil',
         opciones:[
           {
-            opcion:'Mejorar la vida de las personas ',
-            puntos:0,
+            opcion:'Sí, todo lo tangible.',
+            puntos:20,
             id_opcion: 1
           },
           {
-            opcion:'Construir un mundo mejor ',
-            puntos:0,
+            opcion:'No es importante para mí que se pueda tocar ',
+            puntos:10,
             id_opcion: 2
-          }
-         
+          },
+          {
+            opcion:'No, no es necesario para mí',
+            puntos:5,
+            id_opcion: 3
+          },
         ]
       },{
-        pregunta:'Cual de estas crees que es tu mejor cualidad...',
+        pregunta:'Me gusta trabajar con calculadoras y entretenerme con juegos electrónicos',
+        carrera:'Electricidad',
         opciones:[
           {
-            opcion:'Mi lógica ',
-            puntos:0,
+            opcion:'Si ',
+            puntos:20,
             id_opcion: 1
 
           },
           {
-            opcion:'Construir un mundo mejor ',
-            puntos:0,
+            opcion:'No',
+            puntos:5,
             id_opcion: 2
             
 
@@ -54,16 +60,17 @@ export class TestAptitudService {
          
         ]
       },{
-        pregunta:'Cual es tu eleccion futura...',
+        pregunta:'Me gusta involucrarme con la evaluación de forma eficiente la fabricación de productos y prestación de servicios.',
+        carrera:'Industrial',
         opciones:[
           {
-            opcion:'A ',
-            puntos:0,
+            opcion:'Si',
+            puntos:20,
             id_opcion: 1
           },
           {
-            opcion:'B',
-            puntos:0,
+            opcion:'No',
+            puntos:5,
             id_opcion: 2
           }
          

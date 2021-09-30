@@ -14,7 +14,7 @@ export class SocialsharePage implements OnInit {
   //////
   link: string='https://link.medium.com/JA4amAHFJ5'
   text: string='Flamenco'
-  imgurl:string= 'https://dametresminutos.files.wordpress.com/2018/11/nick-fewings-532590-unsplash.jpg?w=584'
+  imgurl:string= 'http://res.cloudinary.com/dlmebnxnv/image/upload/v1632245783/oa4mx6tg1fi4u4gejthp.jpg'
   
   constructor(private modal: ModalController,private socialSharing: SocialSharing) { }
 

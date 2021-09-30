@@ -18,14 +18,14 @@
       width="100%"
       preload="auto"
       muted="false"
-      src="http://192.168.100.45:3000/{{oferta.ruta_archivo}} "
+      src="{{oferta.ruta_archivo}}"
       
       controls
     ></video>
     <div class="img">
       <ion-img
       *ngIf="oferta.tipo_archivo=='image/png' || oferta.tipo_archivo=='image/jpeg' "
-        src="http://192.168.100.45:3000/{{oferta.ruta_archivo}}"
+        src="{{oferta.ruta_archivo}}"
        
       ></ion-img>
     </div>

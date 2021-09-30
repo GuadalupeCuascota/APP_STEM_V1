@@ -59,9 +59,9 @@ export class DetalleMentoriaPage implements OnInit {
   async presentAlert() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Confirmar',
+      header: 'Confirmación',
       subHeader: '',
-      message: '¿Desea guardar la mentoria seleccionada?',
+      message: 'Está seguro de agendar la mentoria seleccionada?',
       buttons: [
         {
           text: 'Cancelar',

@@ -31,6 +31,18 @@ export class CarrerasFicaPage implements OnInit {
     this.textoBuscar = event.detail.value;
     console.log(event);
   }
+  loadData(event) {
+    console.log(event, 'el evento');
+    setTimeout(() => {
+      console.log('Done');
+      event.target.complete();
+
+      if (this.carreras.length == 9) {
+        event.target.disabled = true;
+        console.log('es igual');
+      }
+    }, 500);
+  }
   doRefresh($event?: any) {
     //envia un evento opcional de tipo any
     this.getCarreras();
@@ -75,6 +87,7 @@ export class CarrerasFicaPage implements OnInit {
           }
         }
         this.carreras =auxper;
+        console.log("las carreras",this.carreras)
         this.isLoaded=true;
 
       },

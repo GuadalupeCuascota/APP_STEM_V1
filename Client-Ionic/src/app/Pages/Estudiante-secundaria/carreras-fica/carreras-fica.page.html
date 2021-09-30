@@ -1,17 +1,75 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="none">
     <ion-buttons *ngIf="datos.nivel_academico=='secundaria'" slot="start">
-      <ion-back-button color="light" defaultHref="menu-opciones-se/menu-principal/home-secundaria"></ion-back-button>
+      <ion-back-button
+        color="light"
+        defaultHref="menu-opciones-se/menu-principal/home-secundaria"
+      ></ion-back-button>
     </ion-buttons>
 
-    <ion-buttons *ngIf="datos.nivel_academico=='superior'"slot="start">
-      <ion-back-button defaultHref="menu-opciones/menu-tabs1/home-superior"></ion-back-button>
+    <ion-buttons *ngIf="datos.nivel_academico=='superior'" slot="start">
+      <ion-back-button
+        defaultHref="menu-opciones/menu-tabs1/home-superior"
+      ></ion-back-button>
     </ion-buttons>
-   
+
     <ion-title>Carreras de Grado</ion-title>
   </ion-toolbar>
 </ion-header>
-<ng-container *ngIf="!isLoaded; else showList">
+<ion-content> 
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+<ion-card>
+  <h2>
+    Elegir una profesión es una decisión clave en la vida profesional y personal. Infórmate y toma una de las mejores decisiones de tu vida.
+  </h2>
+  
+</ion-card>
+<ion-card *ngFor="let carrera of carreras">
+  <img width="100%"
+    src="{{carrera.ruta_archivo_carrera}}"
+  />
+  <ion-card-header>
+    <ion-card-subtitle></ion-card-subtitle>
+    <ion-card-title>{{carrera.nombre_carrera}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    {{carrera.descripcion}}
+  </ion-card-content>
+  <ion-item>
+    <ion-button
+    
+    type="submit"
+    color="primary"
+    shape="round"
+    expand="block"
+    routerLink="/oferta-academica/{{carrera.id_carrera}}/{{carrera.nombre_carrera}}"
+    >Ver mas</ion-button>
+  </ion-item>
+</ion-card>
+
+
+
+<ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
+  <ion-infinite-scroll-content
+    loadingSpinner="lines-small"
+    loadingText="Cargando..."
+  >
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>
+<!-- <ion-card *ngFor="let carrera of carreras">
+
+  <ion-img  width="100%"
+  height="200%" src="{{carrera.ruta_archivo_carrera}}" ></ion-img>
+  
+ 
+</ion-card> -->
+
+<!-- 
+  MOSTRAR EN UN ION LIST
+  <ng-container *ngIf="!isLoaded; else showList">
   <ion-spinner> </ion-spinner>
 </ng-container>
 <ng-template #showList>
@@ -23,7 +81,4 @@
      </ion-item>
     </ion-list> 
 </ion-content>
-  </ng-template>
-
-
-
+  </ng-template> -->
