@@ -26,7 +26,7 @@ import { SolicitudMentoriaService } from 'src/app/Services/solicitud-mentoria.se
 })
 export class RegistroTutoriasPage implements OnInit {
   valueSelected: string = '1';
-  registroMentorias: any[] = [];
+  registroMentorias: any[]=[];
   registroM: RegistroMentorias;
   usuariosM: any[] = [];
   materiasC: any[] = [];
@@ -50,6 +50,9 @@ export class RegistroTutoriasPage implements OnInit {
   id_registro_mentoria = 0;
   altert: boolean = false;
   formSolicitudM: FormGroup;
+  formGroup: FormGroup;
+  option_selected: string = '';
+
   
   constructor(
     private regitroMentoriasService: RegistroMentoriasService,
@@ -67,7 +70,8 @@ export class RegistroTutoriasPage implements OnInit {
 
   ngOnInit() {
     this.doRefresh();
-    this.getRegistroMentorias();
+   this.getMentorasRegistro()
+    // this.getRegistroMentorias();
     this.getSolicitudesMentoria();
     this.datos = JSON.parse(localStorage.getItem('payload'));
     this.getMateriasCarrera();
@@ -76,7 +80,13 @@ export class RegistroTutoriasPage implements OnInit {
       tema:new FormControl('', Validators.required),
        
     })
+    
     this.solicitudM= new SolicitudMentoria();
+    this.formGroup = this.formBuilder.group({
+      nombre_mentor: new FormControl('', Validators.required),
+    });
+  
+  
   }
   segmenntChange(event: any) {
     this.valueSelected = event.detail.value;
@@ -84,7 +94,7 @@ export class RegistroTutoriasPage implements OnInit {
   }
   doRefresh($event?: any) {
     //envia un evento opcional de tipo any
-    this.getRegistroMentorias();
+    // this.getRegistroMentorias();
     if ($event) {
       $event.target.complete();
     }
@@ -102,6 +112,15 @@ export class RegistroTutoriasPage implements OnInit {
     }, 500);
   }
 
+
+  buscarDisponibilidad(){
+    const id=this.option_selected;
+    
+    this.option_selected
+    console.log("el id",this.option_selected)
+     this.router.navigate(['agendar-mentoria/'+id]);
+  }
+
   getMateriasCarrera() {
     this.registroCarrera.getMateriaEstudiante(this.datos.carrera).subscribe(
       (res) => {
@@ -113,16 +132,22 @@ export class RegistroTutoriasPage implements OnInit {
       }
     );
   }
+  selectRes(event: any) {
+    console.log(event);
+    this.option_selected = event.detail.value;
+    console.log("la opcion",this.option_selected);
 
-  getRegistroMentorias() {
+  }
+  getMentorasRegistro() {
+    
     var UsuMentoria = [];
-    this.regitroMentoriasService.getRegistroMentorias().subscribe(
+    this.regitroMentoriasService.getMentorasRegistro().subscribe(
       (res) => {
-        console.log('las mentorias', res);
+        console.log('las mentoras', res);
         for (let usu1 of res) {
-          this.localTime = moment(usu1.fecha).format('DD/MM/YYYY');
+         
           if (usu1.carrera == this.datos.carrera) {
-            usu1.fecha = this.localTime;
+            console.log("pasa carerra")
             UsuMentoria.push(usu1);
           }
         }
@@ -140,6 +165,33 @@ export class RegistroTutoriasPage implements OnInit {
       }
     );
   }
+  // getRegistroMentorias() {
+
+  //   var UsuMentoria = [];
+  //   this.regitroMentoriasService.getRegistroMentorias().subscribe(
+  //     (res) => {
+  //       console.log('las mentorias', res);
+  //       for (let usu1 of res) {
+  //         this.localTime = moment(usu1.fecha).format('DD/MM/YYYY');
+  //         if (usu1.carrera == this.datos.carrera) {
+  //           usu1.fecha = this.localTime;
+  //           UsuMentoria.push(usu1);
+  //         }
+  //       }
+       
+  //       if (UsuMentoria.length > 0) {
+  //         this.registroMentorias = UsuMentoria;
+  //       } else {
+  //         this.mensaje = 'No existe mentorias disponibles';
+  //         this.altert = true;
+  //       }
+
+  //     },
+  //     (err) => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -181,7 +233,6 @@ export class RegistroTutoriasPage implements OnInit {
       (res) => {
         this.registroM = res;
         this.localTime = moment(this.registroM.fecha).format('DD/MM/YYYY');
-
         console.log('el registro', this.registroM);
 
         this.presentAlert();

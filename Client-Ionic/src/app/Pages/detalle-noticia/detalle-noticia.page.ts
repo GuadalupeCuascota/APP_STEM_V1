@@ -11,7 +11,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { ModalController } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
 import { SocialsharePage } from '../socialshare/socialshare.page';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 @Component({
   selector: 'app-detalle-noticia',
   templateUrl: './detalle-noticia.page.html',
@@ -24,7 +24,9 @@ export class DetalleNoticiaPage implements OnInit {
     private registroEvento: RegistroEventoService,
     private socialSharing: SocialSharing,
     public modalCtrl: ModalController,
-    public actionSheetController: ActionSheetController
+    public actionSheetController: ActionSheetController,
+    private browser: InAppBrowser,
+
   ) {}
   id = 0;
   API_URI = '';
@@ -32,6 +34,7 @@ export class DetalleNoticiaPage implements OnInit {
   noticia: Publicacion;
   enlace = '';
   tipo_archivo = '';
+  id_publicacion=0;
   titulo = '';
   selectedTab = '';
   evento: Evento = {
@@ -56,6 +59,9 @@ export class DetalleNoticiaPage implements OnInit {
     // this.regitroPublicacion.getPublicacion()
     const params = this.actRoute.snapshot.params;
     this.id = params.id;
+
+    
+    
     console.log('el id es', params);
     this.regitroPublicacion.getPublicacion(params.id).subscribe((res) => {
       this.noticia = res;
@@ -65,6 +71,7 @@ export class DetalleNoticiaPage implements OnInit {
       this.enlace = this.noticia.enlace;
       this.tipo_archivo = this.noticia.tipo_archivo;
       this.titulo = this.noticia.titulo;
+      this.id_publicacion=this.noticia.id_publicacion
       console.log(this.noticia);
     });
 
@@ -88,7 +95,9 @@ export class DetalleNoticiaPage implements OnInit {
       });
   }
   socialS(imgUrl) {
-   
+    this.evento.id_tipo_evento = 3;
+    this.evento.id_publicacion = this.id_publicacion;
+    this.evento.id_usuario = this.datos.id_usuario;
     var options = {
       tittle: this.titulo,
       message: this.descripcion,
@@ -101,6 +110,15 @@ export class DetalleNoticiaPage implements OnInit {
       console.log("Guardado Completado"+msg);
     };
     this.socialSharing.shareWithOptions(options);
+    this.registroEvento.saveEvento(this.id_publicacion, this.datos.id_usuario, this.evento).subscribe(
+      (res) => {
+       console.log("guardado")
+        
+      },
+      (err) => {
+        console.log('no se puede guardar');
+      }
+    );
   }
 
   async showShareOptions() {
@@ -117,7 +135,7 @@ export class DetalleNoticiaPage implements OnInit {
   buscar(id_publicacion) {
     this.evento.id_tipo_evento = 1;
     this.evento.id_publicacion = id_publicacion;
-    this.evento.id_usuario = this.datos.id_9usuario;
+    this.evento.id_usuario = this.datos.id_usuario;
     this.registroEvento
       .getEvento(id_publicacion, this.datos.id_usuario)
       .subscribe(
@@ -214,4 +232,8 @@ export class DetalleNoticiaPage implements OnInit {
     const { role } = await actionSheet.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
   }
+  openUrl(url){
+    this.browser.create(url,'_self')
+  }
+ 
 }

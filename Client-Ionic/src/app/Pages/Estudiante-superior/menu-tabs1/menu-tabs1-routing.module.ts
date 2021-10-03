@@ -35,6 +35,27 @@ const routes: Routes = [
             (m) => m.NoticiasPageModule
           ),
       },
+      {
+        path: 'registro-tutorias',
+        loadChildren: () =>
+          import('../../../Pages/Estudiante-superior/registro-tutorias/registro-tutorias.module').then(
+            (m) => m.RegistroTutoriasPageModule
+          ),
+      },
+      {
+        path: 'mis-mentorias',
+        loadChildren: () =>
+          import('../../../Pages/Estudiante-superior/mis-mentorias/mis-mentorias.module').then(
+            (m) => m.MisMentoriasPageModule
+          ),
+      },
+      {
+        path: 'mis-mentorias',
+        loadChildren: () =>
+          import('../../../Pages/Estudiante-superior/mis-mentorias/mis-mentorias.module').then(
+            (m) => m.MisMentoriasPageModule
+          ),
+      },
 
     ],
   }

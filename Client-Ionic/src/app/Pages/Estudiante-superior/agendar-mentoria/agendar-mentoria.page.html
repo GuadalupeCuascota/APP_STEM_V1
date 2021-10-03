@@ -1,9 +1,37 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>agendarMentoria</ion-title>
-  </ion-toolbar>
+
+<ion-header class="ion-no-border">
+  <ion-list lines="none">
+    <ion-item color="none">
+      <ion-buttons *ngIf="datos.nivel_academico=='superior'" slot="start">
+        <ion-back-button
+          color="light"
+          defaultHref="/registro-tutorias"
+        ></ion-back-button>
+        <ion-label color="light">Disponibilidad de días:</ion-label>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
 </ion-header>
 
 <ion-content>
+<ion-card  *ngFor="let horario of Horarios">
+  <ion-item>
+            <ion-label>Día:{{horario.fecha}}
+            </ion-label>
+          
+          </ion-item> 
 
+  <ion-card-content>
+            <ion-card-subtitle
+              >Hora:{{horario.hora_inicio}}-{{horario.hora_fin}}</ion-card-subtitle
+            >
+            <ion-card-subtitle>Materia:{{horario.materia}}</ion-card-subtitle>
+            <ion-button
+            fill="outline"
+            slot="end"
+            (click)="getMentoria(horario.id_registro_mentoria)"
+            >AGENDAR</ion-button
+          >
+          </ion-card-content>
+</ion-card>
 </ion-content>

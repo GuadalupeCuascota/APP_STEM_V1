@@ -30,7 +30,13 @@
       <ion-label> Hora: </ion-label>
       Hora:{{mentorias.hora_inicio}}-{{mentorias.hora_fin}}
       <br />
-      <ion-label> Materia: </ion-label>{{mentorias.nombre_estado_agen_mentoria}}
+      <ion-label> Materia: </ion-label>{{mentorias.materia}}
+      <BR>
+      <ion-button
+            fill="outline"
+            slot="end"
+            (click)="presentAlert(mentorias.id_agendamiento_mentoria)"
+            ><ion-icon name="trash-outline"></ion-icon> ANULAR</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

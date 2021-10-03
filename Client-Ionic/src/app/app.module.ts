@@ -14,6 +14,7 @@ import { MenuPrincipalPageModule } from './Pages/Estudiante-secundaria/menu-prin
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
+
 ///complementos file///
 import { File } from "@ionic-native/file/ngx";
 import { FileTransfer } from "@ionic-native/file-transfer/ngx";
@@ -21,7 +22,7 @@ import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 import {
   StreamingMedia
@@ -34,6 +35,7 @@ import { PipesModule } from './pipes/pipes.module';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+  
     BrowserModule,
     IonicModule.forRoot(),
     HttpClientModule,
@@ -44,7 +46,7 @@ import { PipesModule } from './pipes/pipes.module';
     IonicStorageModule.forRoot(),
     PipesModule,
   ],
-  providers: [ ImagePicker,File,Camera,
+  providers: [ ImagePicker,File,Camera,InAppBrowser,
     FileTransfer,FileChooser, FilePath,PhotoLibrary,SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Storage,

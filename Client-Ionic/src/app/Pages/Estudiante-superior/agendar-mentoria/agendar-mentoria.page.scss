@@ -1,0 +1,28 @@
+ion-card {
+    border-radius: 10px;
+}
+ion-header {
+    background: var(--ion-color-light);
+  
+    ion-list {
+      background: var(--ion-color-primary);
+      border-radius: 0 0 18px 18px;
+      background: linear-gradient(135deg, #420252 10%, #D10A11 100%);
+  
+      //padding-bottom: 1vh; ancho del ion list
+      ion-label {
+        font-weight: bold; //negrita
+        font-size: 1rem; //tamaño letra
+        letter-spacing: 0.1px;
+      }
+    }
+    
+
+  }
+
+  p {
+    font-size: 1rem;
+    color: #646262;
+    margin-right: 5px;
+    text-align: center;
+  }

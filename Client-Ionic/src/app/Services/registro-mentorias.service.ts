@@ -12,6 +12,13 @@ export class RegistroMentoriasService {
   getRegistroMentorias(){
     return this.httpClient.get<Array<RegistroMentorias>>(environment.baseUrl+"/registro-mentorias");
     }
+   
+    getMentorasRegistro(){
+      return this.httpClient.get<Array<RegistroMentorias>>(environment.baseUrl+"/mentorasRegistro");
+      }
+      getRegistrohorarioMentoria(id_usuario:number){
+        return this.httpClient.get<RegistroMentorias>(environment.baseUrl+"/mentorasRegistro/"+id_usuario);
+      }
     getRegistroMentoria(id_registro_mentoria:number){
       return this.httpClient.get<RegistroMentorias>(environment.baseUrl+"/registro-mentorias/"+id_registro_mentoria);
     }
@@ -24,4 +31,5 @@ export class RegistroMentoriasService {
     getRegistroMentoriasUsuario(id_usuario:number){
       return this.httpClient.get<RegistroMentorias>(environment.baseUrl+"/mentoriaUsuario/"+id_usuario);
     }
+    
 }

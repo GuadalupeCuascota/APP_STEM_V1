@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSheetController, ModalController } from '@ionic/angular';
 import { Evento } from 'src/app/Models/evento';
 import { Publicacion } from 'src/app/Models/publicacion';
 import { RegistroEventoService } from 'src/app/Services/registro-evento.service';
 import { RegistroPublicacionService } from 'src/app/Services/registro-publicacion.service';
-import {SocialsharePage} from '../socialshare/socialshare.page'
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 @Component({
   selector: 'app-detalle-perfil',
   templateUrl: './detalle-perfil.page.html',
@@ -20,6 +21,7 @@ export class DetallePerfilPage implements OnInit {
   tipo_archivo = '';
   nombre_perfil = '';
   selectedTab = '';
+  enlaceLinkend='';
   evento: Evento = {
     id_evento: 0,
     id_tipo_evento: 0,
@@ -34,13 +36,14 @@ export class DetallePerfilPage implements OnInit {
     private regitroPublicacion: RegistroPublicacionService,
     private actRoute: ActivatedRoute,
     private registroEvento: RegistroEventoService,
-    // private socialSharing: SocialSharing,
+    private router: Router,
+
     public modalCtrl: ModalController,
-    public actionSheetController: ActionSheetController
+    public actionSheetController: ActionSheetController,
+    private browser: InAppBrowser,
+    private socialSharing: SocialSharing,
   ) { }
-  link: string='https://link.medium.com/JA4amAHFJ5'
-  text: string='Flamenco'
-  imgurl:string= 'https://dametresminutos.files.wordpress.com/2018/11/nick-fewings-532590-unsplash.jpg?w=584'
+  
   ngOnInit() {
     this.datos = JSON.parse(localStorage.getItem('payload'));
     // this.regitroPublicacion.getPublicacion()
@@ -56,7 +59,8 @@ export class DetallePerfilPage implements OnInit {
       console.log("des",this.descripcion)
       this.profesion = this.perfil.profesion;
       this.tipo_archivo = this.perfil.tipo_archivo;
-       this.nombre_perfil = this.perfil.nombre_perfil;
+      this.nombre_perfil = this.perfil.nombre_perfil;
+      this.enlaceLinkend=this.perfil.enlace;
       console.log(this.perfil);
     });
     
@@ -79,14 +83,14 @@ export class DetallePerfilPage implements OnInit {
         }
       });
   }
-  async showShareOptions() {
-    const modal = await this.modalCtrl.create({
-      component: SocialsharePage,
-      cssClass: 'backTransparent',
-      backdropDismiss: true
-    });
-    return modal.present();
-  }
+  // async showShareOptions() {
+  //   const modal = await this.modalCtrl.create({
+  //     component: SocialsharePage,
+  //     cssClass: 'backTransparent',
+  //     backdropDismiss: true
+  //   });
+  //   return modal.present();
+  // }
 
 
 
@@ -139,50 +143,69 @@ export class DetallePerfilPage implements OnInit {
       );
   }
 
-  async presentActionSheet() {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Comparta contenido con personas cercanas',
-      cssClass: 'my-custom-class',
+  socialS(imgUrl) {
+   
+    var options = {
+      tittle: this.nombre_perfil,
+      message: this.descripcion,
+      url: imgUrl,
+    };
+    var onSuccess=function(result){
+      console.log("Guardado Completado"+result);
+    };
+    var onError=function(msg){
+      console.log("Guardado Completado"+msg);
+    };
+    this.socialSharing.shareWithOptions(options);
+  }
+  openUrl(url){
+    this.browser.create(url,'_system')
+  }
+ 
+  // async presentActionSheet() {
+  //   const actionSheet = await this.actionSheetController.create({
+  //     header: 'Comparta contenido con personas cercanas',
+  //     cssClass: 'my-custom-class',
 
       
-      buttons: [{
-        text: '',
-        role: 'destructive',
-        icon: 'logo-whatsapp',
+  //     buttons: [{
+  //       text: '',
+  //       role: 'destructive',
+  //       icon: 'logo-whatsapp',
      
-        handler: () => {
-          console.log('Delete clicked');
-        }
-      }, {
-        text: 'Share',
-        icon: 'logo-facebook',
-        handler: () => {
-          console.log('Share clicked');
-        }
-      }, {
-        text: 'Play (open modal)',
-        icon: 'logo-twitter',
-        handler: () => {
-          console.log('Play clicked');
-        }
-      }, {
-        text: 'Favorite',
-        icon: 'heart',
-        handler: () => {
-          console.log('Favorite clicked');
-        }
-      }, {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'logo-instagram',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
-    });
-    await actionSheet.present();
+  //       handler: () => {
+  //         console.log('Delete clicked');
+  //       }
+  //     }, {
+  //       text: 'Share',
+  //       icon: 'logo-facebook',
+  //       handler: () => {
+  //         console.log('Share clicked');
+  //       }
+  //     }, {
+  //       text: 'Play (open modal)',
+  //       icon: 'logo-twitter',
+  //       handler: () => {
+  //         console.log('Play clicked');
+  //       }
+  //     }, {
+  //       text: 'Favorite',
+  //       icon: 'heart',
+  //       handler: () => {
+  //         console.log('Favorite clicked');
+  //       }
+  //     }, {
+  //       text: 'Cancel',
+  //       icon: 'close',
+  //       role: 'logo-instagram',
+  //       handler: () => {
+  //         console.log('Cancel clicked');
+  //       }
+  //     }]
+  //   });
+  //   await actionSheet.present();
 
-    const { role } = await actionSheet.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
-  }
+  //   const { role } = await actionSheet.onDidDismiss();
+  //   console.log('onDidDismiss resolved with role', role);
+  // }
 }

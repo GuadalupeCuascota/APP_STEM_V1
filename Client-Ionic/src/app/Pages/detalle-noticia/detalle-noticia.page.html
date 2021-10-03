@@ -43,7 +43,8 @@
         <p>
          {{descripcion}}
         </p>
-        <a>{{enlace}}</a>
+
+        <a *ngIf="enlace" href="{{enlace}}">#MujerStem{{titulo}}</a>
       </div>
     </div>
   </div>
