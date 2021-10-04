@@ -31,7 +31,21 @@ ion-header {
       display: flex;
       padding-top: 10px;
       justify-content: space-between;
-
+      .first_div{
+        padding-top: 35px;
+  
+          .bienvenida{
+            font-size: 18px;
+            font-weight: 500;
+          }
+          .nombres {
+            
+            font-size: 20px;
+            color: #fdfdfd;
+            
+          }
+        }
+        
       
 
 

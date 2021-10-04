@@ -62,6 +62,8 @@
       <ion-item>
         <ion-label color="secondary" position="floating"> Correo electrónico:</ion-label>
         <ion-input   formControlName="correo_electronico" ></ion-input>
+        <ion-icon color="dark"
+        slot="end" name="mail-outline"></ion-icon>
       </ion-item>
       <br>
       <ion-item>
@@ -87,7 +89,7 @@
       
      <br>
      
-      <ion-button type="submit" color="primary"  [disabled]="!formLogin.valid" shape="round" expand="block" >Iniciar Sesión</ion-button>
+      <ion-button type="submit"  [disabled]="!formLogin.valid" shape="round" expand="block" >Iniciar Sesión</ion-button>
       <p>
         <ion-text  color="medium"  class="ion-text-right">¿Todavía no tienes cuenta? <a href="/registro-usuario">Registrate</a></ion-text>
       </p>

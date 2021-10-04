@@ -5,7 +5,16 @@
     </ion-buttons>
 
     <div class="user_div">
-      <h5>Bienvenida {{datos.nombre}} {{datos.apellido}}</h5>
+      <div class="first_div">
+        <ion-label class="bienvenida">
+          Bienvenida 
+        </ion-label> <br>
+        <ion-label class="nombres">
+          {{datos.nombre}} {{datos.apellido}}
+        </ion-label>
+      
+      </div>
+     
     </div>
   </ion-list>
 </ion-header>
